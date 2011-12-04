@@ -1,13 +1,13 @@
 <?php
 
 require_once('../../jazzy-forms/core/Tokenizer.php');
-require_once('TestCommon.php');
+require_once('Test_Common.php');
 
 /**
  * @backupGlobals disabled
  */
 
-class TokenizerTest extends TestCommon {
+class Tokenizer_Test extends Test_Common {
 
 	function __construct() {
 		$this->infile = 'tokenizer_test.csv';

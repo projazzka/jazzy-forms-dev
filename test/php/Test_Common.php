@@ -2,8 +2,8 @@
 
 define('DEFDIR', dirname(__FILE__) . '/../def/');
 
-class TestCommon extends PHPUnit_Framework_TestCase {
-		function test_all() {
+class Test_Common extends PHPUnit_Framework_TestCase {
+	function test_all() {
 		$lines = file( DEFDIR . $this->infile);
 		if($lines === false) {
 			$this->assertTrue(false, 'Can\t load test definition file');
