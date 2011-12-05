@@ -4,6 +4,11 @@ Build Requirements for MacOs Lion:
 - PEAR
 - PHPUnit
 
+PHP5:
+
+In php.ini:
+short_open_tag = On
+
 PEAR:
 
 cd /usr/lib/php (or alternative pear root directory)

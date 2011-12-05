@@ -1,0 +1,31 @@
+{
+    "form": {
+        "columns": {
+            "title": "str",
+            "name": "str"
+        }
+    },
+    "element": {
+        "columns": {
+            "form": "id",
+            "title": "str",
+            "name": "str",
+            "formula": "str",
+            "external": "bool",
+            "params": "json"
+        }
+    },
+    "record": {
+        "columns": {
+            "title": "str",
+            "name": "str"
+        }
+    },
+    "field": {
+        "columns": {
+            "element": "id",
+            "record": "id",
+            "value": "str"
+        }
+    }
+}
