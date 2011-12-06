@@ -1,5 +1,10 @@
 <?php
 
+function jzzf_parse($notation) {
+    $tokens = jzzf_tokenize($notation);
+    return jzzf_parse_tokens($tokens);
+}
+
 function jzzf_parse_tokens($in) {
     $tokenizer = new Jzzf_Parser($in);
     return $tokenizer->output();
