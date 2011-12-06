@@ -101,7 +101,7 @@ class Jzzf_Parser {
         $id = $this->consume();
         $this->consume();
         $args = $this->arguments();
-        return array_merge($args, array(array('f', array($id[1], count($args)))));
+        return array_merge($args, array(array('f', $id[1], count($args))));
     }
     
     private function variable() {
