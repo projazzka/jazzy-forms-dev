@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <script src="../3rdparty/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+    <h1>Mixed 1</h1>
+    <script src="../../jazzy-forms/js/jazzy-forms.js"></script>
+    <script>
+        jzzf_data = {
+            "one": 1.1,
+            "two": [1,2,3],
+            "fee": [5, 10]
+        };
+        jzzf_types = {
+            "one": "n",
+            "two": "d",
+            "subtotal": "f",
+            "fee": "c",
+            "total": "f"
+        };
+        jzzf_dependencies = {
+            "one": ["subtotal"],
+            "two": ["subtotal"],
+            "subtotal": ["total"],
+            "fee": ["total"]
+        };
+        jzzf_formulas = {
+            "subtotal": [["v", "one"], ["v", "two"], ["o", "*"]],
+            "total": [["v", "subtotal"], ["v", "fee"], ["o", "+"]]
+        };
+    </script>
+
+    One: <input type="text" id="jzzf_one" value="100"><br>
+    Two: <select id="jzzf_two">
+        <option>Keep value</option>
+        <option>Double value</option>
+        <option>Triple value</option>
+    </select><br>
+    Subtotal: <input id="jzzf_subtotal" type="text" disabled="disabled"><br>
+    Fee: <input id="jzzf_fee" type="checkbox"><br>
+    Total: <input id="jzzf_total" type="text" disabled="disabled"><br>
+
+    
+    
