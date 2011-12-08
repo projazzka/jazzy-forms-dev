@@ -10,9 +10,18 @@
         var id;
         for(id in jzzf_types) {
             update(id);
-            $('#jzzf_' + id).bind('change ready', function() {
-                update($(this).attr('id').substring(5))
-            });
+            switch(jzzf_types[id]) {
+                case 'r':
+                    $('input:radio[name=jzzf_' + id + ']').bind('change ready', function() {
+                        update($(this).attr('name').substring(5))
+                    });
+                    break;
+                default:
+                    $('#jzzf_' + id).bind('change ready', function() {
+                        update($(this).attr('id').substring(5))
+                    });
+                    
+            }
         }
     }
 

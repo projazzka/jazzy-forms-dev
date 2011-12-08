@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <script src="../3rdparty/jquery-1.7.1.min.js"></script>
+</head>
+<body>
+    <h1>Radio</h1>
+    <script src="../../jazzy-forms/js/jazzy-forms.js"></script>
+    <script>
+        jzzf_data = {
+            "radio": [10, 20, 30, 40]
+        };
+        jzzf_types = {
+            "radio": "r",
+            "total": "f"
+        };
+        jzzf_dependencies = {
+            "radio": ["total"],
+        }
+        jzzf_formulas = {
+            "total": [["v", "radio"]]
+        };
+    </script>
+
+<input type="radio" name="jzzf_radio" checked="checked" value="0">Ten<br>
+<input type="radio" name="jzzf_radio" checked="checked" value="1">Twenty<br>
+<input type="radio" name="jzzf_radio" checked="checked" value="2">Thirty<br>
+<input type="radio" name="jzzf_radio" checked="checked" value="3">Fourty<br>
+Total: <input id="jzzf_total" type="text" disabled="disabled"><br>
+
+    
+    
