@@ -1,1 +1,5 @@
-CREATE TABLE {prefix}jzzf_<?=$table?> IF NOT EXISTS ( <? foreach($schema as $column => $type): ?> <?=$column?> <?=$type?>, <? endforeach ?>);
+<? $definitions = array();
+    foreach($schema as $column => $type) {
+        $definitions[] = "$column $type";
+    } ?>
+CREATE TABLE IF NOT EXISTS {prefix}jzzf_<?=$table?> ( <?=implode(',', $definitions) ?> );

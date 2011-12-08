@@ -9,7 +9,7 @@ Author URI: http://www.l90r.com/
 
 ---------------------------------------------------------------------
 	This file is part of the wordpress plugin "Jazzy Forms"
-    Copyright (C) 2009 by Igor Prochazka
+    Copyright (C) 2011 by Igor Prochazka
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -53,11 +53,20 @@ function jzzf_init() {
 }
 
 function jzzf_activate() {
+	global $wpdb;
+	$schema = file( dirname(__FILE__) . '/generated/schema.sql' );
+	foreach($schema as $line) {
+		$sql = trim($line);
+		if($sql && $sql[0] != '#') {
+			$sql = str_replace('{prefix}', $wpdb->prefix, $sql);
+			$wpdb->query($sql);
+		}
+	}
 }
 
 /* register filter hook */
 
-register_activation_hook( WP_PLUGIN_DIR . '/jazzy-forms/jazz-forms.php', 'jzzf_activate' );
+register_activation_hook( WP_PLUGIN_DIR . '/jazzy-forms/jazzy-forms.php', 'jzzf_activate' );
 add_action('admin_menu', 'jzzf_admin' );
 add_action('init', 'jzzf_init' );
 
