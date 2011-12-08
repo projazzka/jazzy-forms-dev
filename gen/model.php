@@ -35,7 +35,6 @@ $code = '';
 foreach($methods as $method) {
     $code .= generate($method['method'], $method['template'], $method['table'], $method['args']);
 }
-$code = indent($code);
 include(TEMPLATE_DIR . '/main.php');
 
 

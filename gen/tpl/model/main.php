@@ -1,10 +1,3 @@
 <? echo "<?php"; ?>
 
-class Jzzf_Model {
-    
-    <?=$code?>
-
-}
-
-
-    
+<?=$code?>

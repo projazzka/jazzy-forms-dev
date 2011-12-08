@@ -2,7 +2,7 @@
     $format = get_placeholder_format($table);
 ?>
 
-public static function <?=$method?>($obj) {
+function jzzf_<?=$method?>($obj) {
     global $wpdb;
     $format = <? indented_export($format) ?>;
     if($obj->id) {
