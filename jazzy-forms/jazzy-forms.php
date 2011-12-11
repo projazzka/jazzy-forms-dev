@@ -27,6 +27,12 @@ Author URI: http://www.l90r.com/
 ---------------------------------------------------------------------
 */
 
+define(JZZF_ROOT, dirname(__FILE__) . '/');
+define(JZZF_GENERATED, JZZF_ROOT . 'generated/');
+define(JZZF_CORE, JZZF_ROOT . 'core/');
+define(JZZF_BACK, JZZF_ROOT . 'back/');
+define(JZZF_FRONT, JZZF_ROOT . 'front/');
+
 function jzzf_head() {
 	wp_register_script( 'jzzf-admin-js', plugins_url('jazzy-forms/back/gui.js'));
 	wp_register_style( 'jzzf-admin-css', plugins_url('jazzy-forms/back/gui.css'));
@@ -42,7 +48,8 @@ function jzzf_admin() {
 }
 
 function jzzf_forms() {
-	echo "Forms screen";
+	require_once('back/ctrl-forms.php');
+	jzzf_ctrl_forms();
 }
 
 function jzzf_data() {
