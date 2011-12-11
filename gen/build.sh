@@ -2,6 +2,6 @@
 
 GENERATED=../jazzy-forms/generated/
 
-php model.php > $GENERATED/Model.php
+php model.php > $GENERATED/Basic_Model.php
 php schema.php > $GENERATED/schema.sql
 

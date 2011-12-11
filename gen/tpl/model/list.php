@@ -1,8 +1,5 @@
-function jzzf_<?=$method?>($<?=$arg?>) {
+function jzzf_<?=$method?>() {
     global $wpdb;
-    $query = "SELECT * FROM ${wpdb->prefix}<?=$table?> WHERE `<?=$arg?>` = %d";
-    $sql = $wpdb->prepare($query, $<?=$parent?>);
+    $sql = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?>";
     return $wpdb->get_results($sql);
 }
-
-

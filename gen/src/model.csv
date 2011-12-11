@@ -1,5 +1,7 @@
 # method                 | template             | table               | args
 # -----------------------+----------------------+---------------------+------------+-----
+list_form                | list                 | form                |
 get_form                 | get                  | form                |
 set_element              | set                  | element             |
+list_element             | list_children        | element             | form
 
