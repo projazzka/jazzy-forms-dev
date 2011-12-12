@@ -1,4 +1,24 @@
-<script>
+<script id="jzzf_tmpl_number" type="text/html">
+<li>
+<div class="jzzf_element_header">
+    <span class="jzzf_type jzzf_number_entry_type">Number Entry</span>
+    <span class="jzzf_header_title">{{title}}</span>
+</div>
+<div class="jzzf_element_body">
+    <ul class="jzzf_element_parameters">
+        <li>
+            <label for="jzzf_element_{{id}}_title">Title</label>
+            <input type="text" id="jzzf_element_{{id}}_title" value="{{title}}">
+        </li>
+        <li>
+            <label for="jzzf_element_{{id}}_name">ID</label>
+            <input type="text" id="jzzf_element_{{id}}_name" value="{{name}}">
+        </li>
+    </ul>
+</div>
+</li>
+</script>
+<script type="text/javascript">
 jzzf_forms = <?php echo json_encode($forms) ?>;
 </script>
 <h2>Jazzy Forms</h2>
@@ -19,8 +39,21 @@ jzzf_forms = <?php echo json_encode($forms) ?>;
     </ul>
     <div id="jzzf_main">
         <div id="jzzf_section_elements">
-            Elements section (to be implemented)
-
+            <div id="jzzf_elements_toolbox">
+                <div id="jzzf_elements_toolbox_description">Click or drag to add</div>
+                <ul id="jzzf_elements_toolbox_items">
+                    <li>Number Entry</li>
+                    <li>Dropdown Menu</li>
+                    <li>Radio Buttons</li>
+                    <li>Output</li>
+                    <li>Hidden Field</li>
+                </ul>
+            </div>
+            <div id="jzzf_elements">
+                Form Elements
+                <ul id="jzzf_elements_list">
+                </ul>
+            </div>
         </div>
         <div id="jzzf_section_buttons">
             Buttons section (to be implemented)
