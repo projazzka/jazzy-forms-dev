@@ -5,7 +5,7 @@ require_once(JZZF_GENERATED . 'Basic_Model.php');
 function jzzf_list_form_recursive() {
     $forms = jzzf_list_form();
     foreach( $forms as $form ) {
-        $form->element = jzzf_list_element($form->id);
+        $form->elements = jzzf_list_element($form->id);
     }
     return $forms;
 }
