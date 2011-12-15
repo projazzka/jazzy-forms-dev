@@ -11,31 +11,50 @@
         sorted_forms.sort(function(a,b) { return a.key < b.key ? -1 : 1 });
     }
     
-    function name_occupied(name) {
-        for(var i=0; i<elements.length; i++) {
-            if(elements[i].name == name) {
+    function column_occupied(val, arr, column) {
+        for(var i=0; i<arr.length; i++) {
+            if(arr[i][column] == val) {
                 return true;
             }
         }
         return false;
     }
     
-    function suggest_name_index() {
-        var i=0;
-        var name;
-        do {
-            i++;
-        } while(name_occupied('element-' + i));
-        return i;
+    function suggest_name(title, arr) {
+        var base = title_to_name(title);
+        var name = base;
+        var idx = 1;
+        while(column_occupied(name, arr, 'name')) {
+            name = base + '-' + idx;
+            idx++;
+        }
+        return name;
     }
     
-    function new_element() {
-        var i = suggest_name_index();
-        return obj = {'title': 'Element ' + i, 'name': 'element-' + i};
+    function suggest_title(base, arr) {
+        var title = base;
+        var idx = 1;
+        while(column_occupied(title, arr, 'title')) {
+            title = base + ' (' + idx + ')';
+            idx++;
+        }
+        return title;
+    }
+    
+    function title_to_name(title) {
+        title = title.toLowerCase();
+        title = title.replace(/ /, "_");
+        return title.replace(/[^a-zA-Z0-9_]/g, "");
+    }
+        
+    function new_element(type) {
+        var title = suggest_title('Element', elements);
+        var name = suggest_name(title, elements);
+        return obj = {'title': title, 'name': name, 'type': type};
     }
     
     function add_new_element(type) {
-        var obj = new_element();
+        var obj = new_element(type);
         add_element(obj);
         elements.push(obj);
     }
@@ -47,7 +66,6 @@
     }
     
     function initial_visibility() {
-        $('#jzzf_new_form,.jzzf_section').hide();
         select_tab('elements');
     }
     
@@ -121,13 +139,17 @@
     }
     
     function add_form() {
-        // @todo
+        var title = $('#jzzf_new_form_title').val();
+        var name = suggest_name(title, jzzf_forms);
+        form = {'title': title, 'name': name, 'elements': []};
+        elements = [];
+        $('#jzzf_form').show();
     }
     
     function set_current_form(idx) {
         current_form = idx;
         elements = jzzf_forms[idx].elements;
-        //bind_form_data(jzzf_forms[idx]);
+        bind_form_data(jzzf_forms[idx]);
     }
     
     function cancel_form() {
