@@ -8,6 +8,7 @@
     "element": {
         "columns": {
             "form": "id",
+            "type": "str",
             "title": "str",
             "name": "str",
             "formula": "str",
