@@ -13,6 +13,7 @@ $type_map = array(
 
 $db = get_db();
 foreach($db as $table => $def) {
+    $schema = array();
     $colschema = $def['columns'];
     foreach($colschema as $column => $type) {
         $schema[$column] = $type_map[$type];
