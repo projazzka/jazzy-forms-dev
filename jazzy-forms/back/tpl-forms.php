@@ -1,8 +1,9 @@
 <script id="jzzf_tmpl_number" type="text/html">
 <li class="jzzf_element">
     <div class="jzzf_element_header">
-        <span class="jzzf_type jzzf_number_entry_type">Number Entry</span>
+        <span class="jzzf_type jzzf_number_entry_type">[Number Entry]</span>
         <span class="jzzf_header_title">{{title}}</span>
+        <span class="jzzf_toggler">[>]</span>
     </div>
     <div class="jzzf_element_body">
         <fieldset>

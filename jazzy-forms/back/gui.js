@@ -55,14 +55,20 @@
     
     function add_new_element(type) {
         var obj = new_element(type);
-        add_element(obj);
-        elements.push(obj);
+        var idx = elements.length;
+        add_element(obj, idx);
+        elements.splice(idx, 0, obj);
     }
     
-    function add_element(element) {
-        $('#jzzf_elements_list').append(
-            Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element)
-        );
+    function add_element(element, idx) {
+        $('#jzzf_elements_list li').addClass('jzzf_collapsed');
+        var html = Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element);
+        if(idx==0) {
+            $('#jzzf_elements_list').prepend(html);
+        } else {
+            $('#jzzf_elements_list > li').eq(idx-1).after(html);
+        }
+        bind_element_events(idx);
     }
     
     function initial_visibility() {
@@ -81,6 +87,13 @@
             return;
         }
         // @todo
+    }
+    
+    function bind_element_events(idx) {
+        var element = $('#jzzf_elements_list > li:eq(' + idx + ')');
+        $(element).find('.jzzf_element_header').click(function() {
+            $(this).parent().toggleClass('jzzf_collapsed');
+        });
     }
     
     function bind_events() {

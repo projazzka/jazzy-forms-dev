@@ -51,6 +51,35 @@
 
 #jzzf_elements {
     overflow: hidden;
-    background: red;
-    margin-left: 300px;
+    margin-left: 400px;
+}
+
+#jzzf_elements_list {
+    min-height: 200px;
+    padding: 10px;
+    overflow: hidden;
+    background: #eee;
+}
+
+.jzzf_element {
+    margin: 5px;
+    border: 1px solid #ccc;
+}
+
+.jzzf_element_header {
+    background: #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.jzzf_element_header .jzzf_toggler {
+    float: right;
+}
+
+.jzzf_element_body {
+    background: #fff;
+    padding: 5px;
+}
+
+.jzzf_element.jzzf_collapsed .jzzf_element_body {
+    display: none;
 }
