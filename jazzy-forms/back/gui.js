@@ -157,6 +157,11 @@
         form = {'title': title, 'name': name, 'elements': []};
         elements = [];
         $('#jzzf_form').show();
+        var option = $('<option>');
+        option.text(title);
+        $('#jzzf_selector').append(option);
+        $('#jzzf_new_form').hide();
+        $('#jzzf_selection').show();
     }
     
     function set_current_form(idx) {
