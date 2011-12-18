@@ -43,6 +43,7 @@
     <label for="jzzf_new_form_title">Title</label><input type="text" id="jzzf_new_form_title" name="jzzf_new_form_title" value="New Form">
     <input id="jzzf_new_form_add" type="button" value="Add"><a href="" id="jzzf_new_form_cancel">Cancel</a>
 </div>
+<div id="message" class="updated" style="display:none"><p></p></div>
 <div id="jzzf_form">
     <ul id="jzzf_tabs">
         <li id="jzzf_tab_elements">Elements</li>
@@ -76,6 +77,6 @@
             General section (to be implemented)
         </div>
     </div>
-    <input id="jzzf_form_save" type="button" value="Save"><a href="" id="jzzf_form_cancel">Discard changes</a>
+    <input id="jzzf_form_save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Discard changes</a>
 </div>
 
