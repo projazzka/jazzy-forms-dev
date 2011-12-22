@@ -9,19 +9,20 @@
         <fieldset>
             <ul class="jzzf_element_parameters">
                 <li>
+                    <input type="hidden" class="jzzf_element_type" value="number">
                     <label for="jzzf_element_{{id}}_title">Title</label>
-                    <input type="text" id="jzzf_element_{{id}}_title" value="{{title}}">
+                    <input type="text" id="jzzf_element_{{id}}_title" class="jzzf_element_title" value="{{title}}">
                 </li>
                 <li>
                     <label for="jzzf_element_{{id}}_name">ID</label>
-                    <input type="text" id="jzzf_element_{{id}}_name" value="{{name}}">
+                    <input type="text" id="jzzf_element_{{id}}_name" class="jzzf_element_name" value="{{name}}">
                 </li>
             </ul>
         </fieldset>
         <fieldset>
             <legend>Value</legend>
             <label for="jzzf_element_{{id}}_value">Factor</label>
-            <input type="text" id="jzzf_element_{{id}}_value" value="{{value}}">
+            <input type="text" id="jzzf_element_{{id}}_value" class="jzzf_element_value" value="{{value}}">
         </fieldset>
     </div>
 </li>

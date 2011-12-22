@@ -61,7 +61,12 @@
     }
     
     function add_element(element, idx) {
+        if ( typeof add_element.counter == 'undefined' ) {
+                add_element.counter = 0;
+        }
+        add_element.counter++;
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
+        element.id = add_element.counter;
         var html = Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element);
         if(idx==0) {
             $('#jzzf_elements_list').prepend(html);
@@ -70,6 +75,7 @@
         }
         bind_element_events(idx);
     }
+        
     function delete_form() {
         if(current_form==null) {
             return;
@@ -107,6 +113,8 @@
             bind_form_data(jzzf_forms[$('#jzzf_selector').val()]);
         });
         
+        $('#jzzf_form_save').click(save);
+        
     }
     
     function bind_data() {
@@ -123,6 +131,32 @@
         for(var i=0; i<elements.length; i++) {
             add_element(elements[i]);
         }
+    }
+
+    function get_element_data(li) {
+        var data = {
+            "title": li.find('.jzzf_element_title').val(),
+            "name": li.find('.jzzf_element_name').val()
+        };
+        switch(li.find('.jzzf_element_type').val()) {
+            case 'number':
+                data.value = li.find('.jzzf_element_value').val();
+                break;
+        };
+        return data;
+    }
+    
+    function get_form_data() {
+        var elements = [];
+        $('#jzzf_elements_list > li').each(function(idx) {
+            elements.push(get_element_data($(this)));
+        });
+        return {"elements": elements};
+    }
+    
+    function save() {
+        var form = get_form_data();
+        alert(JSON.stringify(form));
     }
     
     function add_form() {
