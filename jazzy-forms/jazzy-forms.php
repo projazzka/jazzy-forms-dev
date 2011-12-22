@@ -35,7 +35,8 @@ define(JZZF_FRONT, JZZF_ROOT . 'front/');
 
 function jzzf_head() {
 	wp_register_script( 'mustache', plugins_url('jazzy-forms/3rdparty/mustache.js', null, '0.3.0'));
-	wp_register_script( 'jzzf-admin-js', plugins_url('jazzy-forms/back/gui.js'), array('mustache'), '1.0' );
+	wp_register_script( 'jzzf-tabs', plugins_url('jazzy-forms/back/tabs.js', null, '1.0'));
+	wp_register_script( 'jzzf-admin-js', plugins_url('jazzy-forms/back/gui.js'), array('mustache', 'jzzf-tabs'), '1.0' );
 	wp_register_style( 'jzzf-admin-css', plugins_url('jazzy-forms/back/gui.css'));
 	wp_enqueue_script('jquery-ui-sortable');
 	wp_enqueue_script('jzzf-admin-js');
