@@ -10,13 +10,21 @@ function jzzf_element($) {
     this.add = function(element, idx) {
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
         element.id = this.counter();
-        var html = Mustache.to_html($('#jzzf_tmpl_common').html(), element, {'extra': $('#jzzf_tmpl_' + element.type).html()});
+        var html = this.html(element);
         if(idx==0) {
             $('#jzzf_elements_list').prepend(html);
         } else {
             $('#jzzf_elements_list > li').eq(idx-1).after(html);
         }
         this.bind(idx);
+    }
+    
+    this.html = function(element) {
+        return Mustache.to_html($('#jzzf_tmpl_common').html(), element, {'extra': this.extra(element)});
+    }
+    
+    this.extra = function(element) {
+        return $('#jzzf_tmpl_' + element.type).html()
     }
     
     this.bind = function(idx) {

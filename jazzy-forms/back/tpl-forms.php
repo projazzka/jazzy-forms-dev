@@ -30,6 +30,16 @@
             <input type="text" id="jzzf_element_{{id}}_value" class="jzzf_element_value" value="{{value}}">
         </fieldset>
 </script>
+<script id="jzzf_tmpl_dropdown" type="text/html">
+</script>
+<script id="jzzf_tmpl_radio" type="text/html">
+</script>
+<script id="jzzf_tmpl_checkbox" type="text/html">
+</script>
+<script id="jzzf_tmpl_output" type="text/html">
+</script>
+<script id="jzzf_tmpl_hidden" type="text/html">
+</script>
 <script type="text/javascript">
     var jzzf_forms = <?php echo json_encode($forms) ?>;
 </script>

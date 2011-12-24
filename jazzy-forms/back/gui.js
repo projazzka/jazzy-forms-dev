@@ -41,8 +41,19 @@
             };
         }
         
+        function get_add_element_cb(type) {
+            return function() {
+                add_new_element(type);
+            }
+        }
+        
+        var types = ['number', 'dropdown', 'radio', 'checkbox', 'output', 'hidden'];
+        
+        for(var idx=0; idx<types.length; idx++) {
+            $('#jzzf_elements_toolbox_' + types[idx]).click(get_add_element_cb(types[idx]));
+        }
+        
         handlers = {
-            '#jzzf_elements_toolbox_number': function() { add_new_element('number'); },
             '#jzzf_selector_new': new_form,
             '#jzzf_selector_delete': delete_form,
             '#jzzf_new_form_add': add_form,
