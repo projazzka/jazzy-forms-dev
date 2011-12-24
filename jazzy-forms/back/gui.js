@@ -110,24 +110,11 @@
             element.add(elements[i], i);
         }
     }
-
-    function get_element_data(li) {
-        var data = {
-            "title": li.find('.jzzf_element_title').val(),
-            "name": li.find('.jzzf_element_name').val()
-        };
-        switch(li.find('.jzzf_element_type').val()) {
-            case 'number':
-                data.value = li.find('.jzzf_element_value').val();
-                break;
-        };
-        return data;
-    }
     
     function get_form_data() {
         var elements = [];
         $('#jzzf_elements_list > li').each(function(idx) {
-            elements.push(get_element_data($(this)));
+            elements.push(jzzf_element.data_from_li($(this)));
         });
         return {"elements": elements};
     }
