@@ -10,46 +10,12 @@
         }
         sorted_forms.sort(function(a,b) { return a.key < b.key ? -1 : 1 });
     }
-    
-    function column_occupied(val, arr, column) {
-        for(var i=0; i<arr.length; i++) {
-            if(arr[i][column] == val) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    function suggest_name(title, arr) {
-        var base = title_to_name(title);
-        var name = base;
-        var idx = 1;
-        while(column_occupied(name, arr, 'name')) {
-            name = base + '-' + idx;
-            idx++;
-        }
-        return name;
-    }
-    
-    function suggest_title(base, arr) {
-        var title = base;
-        var idx = 1;
-        while(column_occupied(title, arr, 'title')) {
-            title = base + ' (' + idx + ')';
-            idx++;
-        }
-        return title;
-    }
-    
-    function title_to_name(title) {
-        title = title.toLowerCase();
-        title = title.replace(/ /, "_");
-        return title.replace(/[^a-zA-Z0-9_]/g, "");
-    }
-        
+
     function new_element(type) {
-        var title = suggest_title('Element', elements);
-        var name = suggest_name(title, elements);
+        var elements = get_form_elements();
+        var id_helper = new jzzf_id(elements);
+        var title = id_helper.suggest_title('Element');
+        var name = id_helper.suggest_name(title);
         return obj = {'title': title, 'name': name, 'type': type};
     }
     
@@ -111,12 +77,18 @@
         }
     }
     
-    function get_form_data() {
+    function get_form_elements() {
         var elements = [];
         $('#jzzf_elements_list > li').each(function(idx) {
             elements.push(jzzf_element.data_from_li($(this)));
         });
-        return {"elements": elements};
+        return elements;
+    }
+    
+    function get_form_data() {
+        return {
+            "elements": get_form_elements()
+        };
     }
     
     function save() {
@@ -126,7 +98,8 @@
     
     function add_form() {
         var title = $('#jzzf_new_form_title').val();
-        var name = suggest_name(title, jzzf_forms);
+        var id_helper = new jzzf_id(jzzf_forms);
+        var name = id_helper.suggest_name(title);
         form = {'title': title, 'name': name, 'elements': []};
         elements = [];
         $('#jzzf_form').show();
