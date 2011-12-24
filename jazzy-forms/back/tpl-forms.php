@@ -1,7 +1,7 @@
-<script id="jzzf_tmpl_number" type="text/html">
+<script id="jzzf_tmpl_common" type="text/html">
 <li class="jzzf_element">
     <div class="jzzf_element_header">
-        <span class="jzzf_type jzzf_number_entry_type">[Number Entry]</span>
+        <span class="jzzf_type jzzf_type_{{type}}">[  ]</span>
         <span class="jzzf_header_title">{{title}}</span>
         <span class="jzzf_toggler">[>]</span>
     </div>
@@ -9,7 +9,7 @@
         <fieldset>
             <ul class="jzzf_element_parameters">
                 <li>
-                    <input type="hidden" class="jzzf_element_type" value="number">
+                    <input type="hidden" class="jzzf_element_type" value="{{type}}">
                     <label for="jzzf_element_{{id}}_title">Title</label>
                     <input type="text" id="jzzf_element_{{id}}_title" class="jzzf_element_title" value="{{title}}">
                 </li>
@@ -19,13 +19,16 @@
                 </li>
             </ul>
         </fieldset>
+        {{>extra}}
+    </div>
+</li>
+</script>
+<script id="jzzf_tmpl_number" type="text/html">
         <fieldset>
             <legend>Value</legend>
             <label for="jzzf_element_{{id}}_value">Factor</label>
             <input type="text" id="jzzf_element_{{id}}_value" class="jzzf_element_value" value="{{value}}">
         </fieldset>
-    </div>
-</li>
 </script>
 <script type="text/javascript">
     var jzzf_forms = <?php echo json_encode($forms) ?>;

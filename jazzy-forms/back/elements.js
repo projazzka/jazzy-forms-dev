@@ -10,7 +10,7 @@ function jzzf_element($) {
     this.add = function(element, idx) {
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
         element.id = this.counter();
-        var html = Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element);
+        var html = Mustache.to_html($('#jzzf_tmpl_common').html(), element, {'extra': $('#jzzf_tmpl_' + element.type).html()});
         if(idx==0) {
             $('#jzzf_elements_list').prepend(html);
         } else {
