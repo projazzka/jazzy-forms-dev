@@ -55,39 +55,16 @@
     
     function add_new_element(type) {
         var obj = new_element(type);
-        var idx = elements.length;
-        add_element(obj, idx);
-        elements.splice(idx, 0, obj);
+        var idx = $('#jzzf_elements_list > li').length;
+        var gui = jzzf_element.create(type);
+        gui.add(obj, idx);
     }
-    
-    function add_element(element, idx) {
-        if ( typeof add_element.counter == 'undefined' ) {
-                add_element.counter = 0;
-        }
-        add_element.counter++;
-        $('#jzzf_elements_list li').addClass('jzzf_collapsed');
-        element.id = add_element.counter;
-        var html = Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element);
-        if(idx==0) {
-            $('#jzzf_elements_list').prepend(html);
-        } else {
-            $('#jzzf_elements_list > li').eq(idx-1).after(html);
-        }
-        bind_element_events(idx);
-    }
-        
+            
     function delete_form() {
         if(current_form==null) {
             return;
         }
         // @todo
-    }
-    
-    function bind_element_events(idx) {
-        var element = $('#jzzf_elements_list > li:eq(' + idx + ')');
-        $(element).find('.jzzf_element_header').click(function() {
-            $(this).parent().toggleClass('jzzf_collapsed');
-        });
     }
     
     function bind_events() {
@@ -129,7 +106,8 @@
         $('#jzzf_form').show();
         $('#jzzf_elements_list').html('');
         for(var i=0; i<elements.length; i++) {
-            add_element(elements[i]);
+            var element = jzzf_element.create(elements[i].type)
+            element.add(elements[i], i);
         }
     }
 
