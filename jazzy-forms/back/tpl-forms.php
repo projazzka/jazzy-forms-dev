@@ -58,7 +58,7 @@
 <script id="jzzf_tmpl_options" type="text/html">
         <fieldset>
             <legend>Options</legend>
-            <table>
+            <table class="jzzf_option_table">
             <thead><tr>
                 <th>Title</th>
                 <th>Value</th>
@@ -66,16 +66,19 @@
             </tr></thead>
             <tbody>
             {{#options}}
-                <tr>
-                    <td><input type="text" value="{{title}}"></td>
-                    <td><input type="text" value="{{value}}"></td>
-                    <td><a href="" class="jzzf_option_delete">delete</a></td>
-                </tr>
+                {{>option}}
             {{/options}}
             </tbody>
             </table>
             <a href="" class="jzzf_option_add">Add</a>
         </fieldset>
+</script>
+<script id="jzzf_tmpl_option" type="text/html">
+                <tr>
+                    <td><input type="text" value="{{title}}"></td>
+                    <td><input type="text" value="{{value}}"></td>
+                    <td><a href="" class="jzzf_option_delete">delete</a></td>
+                </tr>
 </script>
 <script type="text/javascript">
     var jzzf_forms = <?php echo json_encode($forms) ?>;

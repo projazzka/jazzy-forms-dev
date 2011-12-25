@@ -11,7 +11,7 @@ function jzzf_element($) {
     this.add = function(element, idx) {
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
         element.id = this.counter();
-        var html = this.html(element);
+        var html = this.html(element.type, element);
         if(idx==0) {
             $('#jzzf_elements_list').prepend(html);
         } else {
@@ -20,8 +20,8 @@ function jzzf_element($) {
         this.bind(idx);
     }
     
-    this.html = function(element) {
-        return Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element, partials);
+    this.html = function(tmpl_name, data) {
+        return Mustache.to_html($('#jzzf_tmpl_' + tmpl_name).html(), data, partials);
     }
     
     this.init_partials = function() {
@@ -34,8 +34,17 @@ function jzzf_element($) {
     
     this.bind = function(idx) {
         var element = jzzf_element.from_index(idx);
-        $(element).find('.jzzf_element_header').click(function() {
+        element.find('.jzzf_element_header').click(function() {
             $(this).parent().toggleClass('jzzf_collapsed');
+        });
+        var self = this;
+        element.find('.jzzf_option_add').click(function() {
+            $(this).parent().find('.jzzf_option_table').append(self.html('option', {}));
+            $('.jzzf_option_delete').click(function() {
+                $(this).parentsUntil('table', 'tr').remove();
+                return false;
+            });
+            return false;
         });
     }
     
