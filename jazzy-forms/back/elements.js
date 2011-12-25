@@ -57,8 +57,22 @@ function jzzf_element($) {
             case 'number':
                 result.value = li.find('.jzzf_element_value').val();
                 break;
+            case 'radio':
+            case 'dropdown':
+                result = $.extend(result, this.options_data(li));
+                break;
         };
         return result;
+    }
+    
+    this.options_data = function(li) {
+        var options = [];
+        var values = [];
+        li.find('.jzzf_option').each(function(idx) {
+            options.push($(this).find('.jzzf_option_title').val());
+            values.push($(this).find('.jzzf_option_value').val());
+        });
+        return {'options': options, 'values': values };
     }
     
     this.init_partials();
