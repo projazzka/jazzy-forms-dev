@@ -1,4 +1,5 @@
 function jzzf_element($) {
+    var partials = {};
     
     this.counter = function() {
         if ( typeof jzzf_element.incremental == 'undefined' ) {
@@ -20,11 +21,15 @@ function jzzf_element($) {
     }
     
     this.html = function(element) {
-        return Mustache.to_html($('#jzzf_tmpl_common').html(), element, {'extra': this.extra(element)});
+        return Mustache.to_html($('#jzzf_tmpl_' + element.type).html(), element, partials);
     }
     
-    this.extra = function(element) {
-        return $('#jzzf_tmpl_' + element.type).html()
+    this.init_partials = function() {
+        $('[id^="jzzf_tmpl_"]').each(function() {
+            var tmpl = $(this).html();
+            var id = $(this).attr('id').replace('jzzf_tmpl_', '');
+            partials[id] = tmpl;
+        });
     }
     
     this.bind = function(idx) {
@@ -46,6 +51,8 @@ function jzzf_element($) {
         };
         return result;
     }
+    
+    this.init_partials();
 }
 
 jzzf_element.from_index = function(idx) {

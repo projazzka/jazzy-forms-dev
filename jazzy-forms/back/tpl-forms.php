@@ -19,26 +19,63 @@
                 </li>
             </ul>
         </fieldset>
-        {{>extra}}
+</script>
+<script id="jzzf_tmpl_foot">
     </div>
 </li>
 </script>
 <script id="jzzf_tmpl_number" type="text/html">
+{{>common}}
         <fieldset>
             <legend>Value</legend>
             <label for="jzzf_element_{{id}}_value">Factor</label>
             <input type="text" id="jzzf_element_{{id}}_value" class="jzzf_element_value" value="{{value}}">
         </fieldset>
+{{>foot}}
 </script>
 <script id="jzzf_tmpl_dropdown" type="text/html">
+{{>common}}
+{{>options}}
+{{>foot}}
 </script>
 <script id="jzzf_tmpl_radio" type="text/html">
+{{>common}}
+{{>options}}
+{{>foot}}
 </script>
 <script id="jzzf_tmpl_checkbox" type="text/html">
+{{>common}}
+{{>foot}}
 </script>
 <script id="jzzf_tmpl_output" type="text/html">
+{{>common}}
+{{>foot}}
 </script>
 <script id="jzzf_tmpl_hidden" type="text/html">
+{{>common}}
+{{>foot}}
+</script>
+<script id="jzzf_tmpl_options" type="text/html">
+        <fieldset>
+            <legend>Options</legend>
+            <table>
+            <thead><tr>
+                <th>Title</th>
+                <th>Value</th>
+                <th></th>
+            </tr></thead>
+            <tbody>
+            {{#options}}
+                <tr>
+                    <td><input type="text" value="{{title}}"></td>
+                    <td><input type="text" value="{{value}}"></td>
+                    <td><a href="" class="jzzf_option_delete">delete</a></td>
+                </tr>
+            {{/options}}
+            </tbody>
+            </table>
+            <a href="" class="jzzf_option_add">Add</a>
+        </fieldset>
 </script>
 <script type="text/javascript">
     var jzzf_forms = <?php echo json_encode($forms) ?>;
