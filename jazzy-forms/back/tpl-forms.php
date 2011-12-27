@@ -20,7 +20,7 @@
             </ul>
         </fieldset>
 </script>
-<script id="jzzf_tmpl_foot">
+<script id="jzzf_tmpl_foot" type="text/html">
     </div>
 </li>
 </script>
@@ -80,9 +80,9 @@
                     <td><a href="" class="jzzf_option_delete">delete</a></td>
                 </tr>
 </script>
-<script type="text/javascript">
+<script type="text/javascript">//<![CDATA[
     var jzzf_forms = <?php echo json_encode($forms) ?>;
-</script>
+//]]></script>
 <h2>Jazzy Forms</h2>
 <div id="jzzf_selection">
     <select id="jzzf_selector">
