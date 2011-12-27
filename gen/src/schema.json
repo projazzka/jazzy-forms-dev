@@ -3,6 +3,9 @@
         "columns": {
             "title": "str",
             "name": "str"
+        },
+        "recursion": {
+            "elements": "element"
         }
     },
     "element": {
@@ -14,19 +17,16 @@
             "formula": "str",
             "external": "bool",
             "params": "json"
+        },
+        "recursion": {
+            "options": "option"
         }
     },
-    "record": {
-        "columns": {
-            "title": "str",
-            "name": "str"
-        }
-    },
-    "field": {
+    "option": {
         "columns": {
             "element": "id",
-            "record": "id",
-            "value": "str"
+            "title": "str",
+            "name": "str"
         }
     }
 }

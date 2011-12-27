@@ -6,7 +6,7 @@ define('MODEL_FILE', 'src/model.csv');
 require_once('common.php');
 require_once(TEMPLATE_DIR . '/common.php');
 
-function generate($method, $template, $table, $args) {
+function generate($method, $template, $table, $args, $recursion) {
     ob_start();
     include(TEMPLATE_DIR . "/${template}.php");
     return ob_get_clean();
@@ -23,7 +23,9 @@ function get_methods() {
                 $template = trim($arr[1]);
                 $table = trim($arr[2]);
                 $args = trim($arr[3]);
-                $out[] = array('method'=>$method, 'template'=>$template, 'table'=>$table, 'args'=> $args);
+                $schema = get_schema($table);
+                $recursion = array_key_exists('recursion', $schema) ? $schema['recursion'] : array();
+                $out[] = array('method'=>$method, 'template'=>$template, 'table'=>$table, 'args'=> $args, 'recursion'=>$recursion);
             }
         }
     }
@@ -33,7 +35,7 @@ function get_methods() {
 $methods = get_methods();
 $code = '';
 foreach($methods as $method) {
-    $code .= generate($method['method'], $method['template'], $method['table'], $method['args']);
+    $code .= generate($method['method'], $method['template'], $method['table'], $method['args'], $method['recursion']);
 }
 include(TEMPLATE_DIR . '/main.php');
 

@@ -1,6 +1,7 @@
-function jzzf_<?=$method?>() {
+function jzzf_<?=$method?>($parent) {
     global $wpdb;
-    $sql = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?>";
+    $query = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?> WHERE <?=$args?>='%d'";
+    $sql = $wpdb->prepare($query, $parent);
     $results = $wpdb->get_results($sql);
 <? if($recursion) : ?>
     if($results) {

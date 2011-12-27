@@ -2,6 +2,12 @@
 # -----------------------+----------------------+---------------------+------------+-----
 list_form                | list                 | form                |
 get_form                 | get                  | form                |
-set_element              | set                  | element             |
-list_element             | list_children        | element             | form
-
+set_form                 | set                  | form                |
+delete_form              | delete               | form                |
+list_element             | list_child           | element             | form
+get_element              | get                  | element             |
+set_element              | set                  | element             | form
+delete_element           | delete               | element             |
+list_option              | list_child           | option              | element
+set_option               | set                  | option              | element
+delete_option            | delete               | option              |
