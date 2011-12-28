@@ -51,6 +51,7 @@ function jzzf_element($) {
     this.data = function(li) {
         var result = {
             "id": li.find('.jzzf_element_id').val(),
+            "type": li.find('.jzzf_element_type').val(),
             "title": li.find('.jzzf_element_title').val(),
             "name": li.find('.jzzf_element_name').val()
         };
