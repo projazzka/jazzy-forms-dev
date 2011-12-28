@@ -81,7 +81,9 @@
     
     function save() {
         var form = get_form();
-        alert(JSON.stringify(form));
+        var serialized = JSON.stringify(form);
+        $('#jzzf_form_data').val(serialized);
+        $('#jzzf_form_form').submit();
     }
     
     function add_form() {
