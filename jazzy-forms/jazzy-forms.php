@@ -47,7 +47,7 @@ function jzzf_head() {
 
 function jzzf_admin() {
 	$page = add_menu_page( 'Forms', 'Forms', 8, 'jzzf_forms_top', 'jzzf_forms', null, 30);
-	add_submenu_page('jzzf_forms_top', "Data", "Data", 8, 'jzzf_data', 'jzzf_data');
+	/* add_submenu_page('jzzf_forms_top', "Data", "Data", 8, 'jzzf_data', 'jzzf_data'); */
 	add_action('admin_print_styles-' . $page, 'jzzf_head');
 }
 
