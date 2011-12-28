@@ -2,15 +2,15 @@ function jzzf_element($) {
     var partials = {};
     
     this.counter = function() {
-        if ( typeof jzzf_element.incremental == 'undefined' ) {
-                jzzf_element.incremental = 0;
+        if(jzzf_element.incremental == undefined) {
+            jzzf_element.incremental = 0;
         }
-        jzzf_element.incremental++;        
+        return ++jzzf_element.incremental;
     }
     
     this.add = function(element, idx) {
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
-        element.id = this.counter();
+        element.counter = this.counter();
         var html = this.html(element.type, element);
         if(idx==0) {
             $('#jzzf_elements_list').prepend(html);
@@ -50,6 +50,7 @@ function jzzf_element($) {
     
     this.data = function(li) {
         var result = {
+            "id": li.find('.jzzf_element_id').val(),
             "title": li.find('.jzzf_element_title').val(),
             "name": li.find('.jzzf_element_name').val()
         };

@@ -1,5 +1,6 @@
 <script id="jzzf_tmpl_common" type="text/html">
 <li class="jzzf_element">
+    <input type="hidden" value="{{id}}" class="jzzf_element_id">
     <div class="jzzf_element_header">
         <span class="jzzf_type jzzf_type_{{type}}">[  ]</span>
         <span class="jzzf_header_title">{{title}}</span>
@@ -10,12 +11,12 @@
             <ul class="jzzf_element_parameters">
                 <li>
                     <input type="hidden" class="jzzf_element_type" value="{{type}}">
-                    <label for="jzzf_element_{{id}}_title">Title</label>
-                    <input type="text" id="jzzf_element_{{id}}_title" class="jzzf_element_title" value="{{title}}">
+                    <label for="jzzf_element_{{counter}}_title">Title</label>
+                    <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
                 </li>
                 <li>
-                    <label for="jzzf_element_{{id}}_name">ID</label>
-                    <input type="text" id="jzzf_element_{{id}}_name" class="jzzf_element_name" value="{{name}}">
+                    <label for="jzzf_element_{{counter}}_name">ID</label>
+                    <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
                 </li>
             </ul>
         </fieldset>
@@ -74,6 +75,7 @@
         </fieldset>
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
+                <input type="hidden" value="0" class="jzzf_option_id">
                 <tr class="jzzf_option">
                     <td><input type="text" value="{{title}}" class="jzzf_option_title"></td>
                     <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
