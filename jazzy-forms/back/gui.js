@@ -50,6 +50,10 @@
         } else {
             $('#jzzf_new_form').hide();
             $('#jzzf_form').show();
+
+            $('#jzzf_id').val(form.id);
+            $('#jzzf_title').val(form.title);
+            $('#jzzf_name').val(form.name);
             $('#jzzf_elements_list').html('');
             for(var i=0; i<form.elements.length; i++) {
                 var element = jzzf_element.create(form.elements[i].type)
@@ -68,6 +72,9 @@
     
     function get_form() {
         return {
+            "id": $('#jzzf_id').val(),
+            "title": $('#jzzf_title').val(),
+            "name": $('#jzzf_name').val(),
             "elements": get_elements()
         };
     }

@@ -103,7 +103,6 @@
 <div id="jzzf_form">
     <ul id="jzzf_tabs">
         <li id="jzzf_tab_elements">Elements</li>
-        <li id="jzzf_tab_buttons">Buttons</li>
         <li id="jzzf_tab_general">General</li>
     </ul>
     <div id="jzzf_main">
@@ -125,12 +124,19 @@
                 </ul>
             </div>
         </div>
-        <div class="jzzf_section" id="jzzf_section_buttons">
-            Buttons section (to be implemented)
-
-        </div>
-        <div class="jzzf_section" id="jzzf_section_general">           
-            General section (to be implemented)
+        <div class="jzzf_section" id="jzzf_section_general">
+            <input type="hidden" id="jzzf_id">
+            <ul>
+                <li>
+                    <label for="jzzf_title">Form Title</label>
+                    <input type="text" id="jzzf_title">
+                </li>
+                <li>
+                    <label for="jzzf_name">Form ID</label>
+                    <input type="text" id="jzzf_name">
+                </li>
+                
+            </ul>
         </div>
     </div>
     <input id="jzzf_form_save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Discard changes</a>
