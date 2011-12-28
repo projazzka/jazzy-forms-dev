@@ -1,25 +1,15 @@
 (function($) {
-    var elements;
-    var sorted_forms;
-    var current_form = null;
+    var form = null;
     
-    function init() {
-        sorted_forms = [];
-        for(var key in jzzf_forms) {
-            sorted_forms.push(jzzf_forms[key]);
-        }
-        sorted_forms.sort(function(a,b) { return a.key < b.key ? -1 : 1 });
-    }
-
     function new_element(type) {
-        var elements = get_form_elements();
+        var elements = get_elements(); // need existing elements to suggest a valid name/title
         var id_helper = new jzzf_id(elements);
         var title = id_helper.suggest_title('Element');
         var name = id_helper.suggest_name(title);
         return obj = {'title': title, 'name': name, 'type': type};
     }
     
-    function add_new_element(type) {
+    function add_element(type) {
         var obj = new_element(type);
         var idx = $('#jzzf_elements_list > li').length;
         var gui = jzzf_element.create(type);
@@ -33,62 +23,42 @@
         // @todo
     }
     
-    function bind_events() {
-        function get_cb_wrapper(cb) {
-            return function() {
-                cb();
-                return false;
-            };
-        }
-        
-        function get_add_element_cb(type) {
-            return function() {
-                add_new_element(type);
-            }
-        }
-        
-        var types = ['number', 'dropdown', 'radio', 'checkbox', 'output', 'hidden'];
-        
-        for(var idx=0; idx<types.length; idx++) {
-            $('#jzzf_elements_toolbox_' + types[idx]).click(get_add_element_cb(types[idx]));
-        }
-        
-        handlers = {
-            '#jzzf_selector_new': new_form,
-            '#jzzf_selector_delete': delete_form,
-            '#jzzf_new_form_add': add_form,
-            '#jzzf_new_form_cancel': cancel_form
-        };
-        for(var id in handlers) {
-            $(id).click(get_cb_wrapper(handlers[id]));
-        }
-        
+    function bind() {     
+        $('#jzzf_elements_toolbox_number').click(function() { add_element('number'); return false; });
+        $('#jzzf_elements_toolbox_dropdown').click(function() { add_element('dropdown'); return false; });
+        $('#jzzf_elements_toolbox_radio').click(function() { add_element('radio'); return false; });
+        $('#jzzf_elements_toolbox_checkbox').click(function() { add_element('checkbox'); return false; });
+        $('#jzzf_elements_toolbox_output').click(function() { add_element('output'); return false; });
+        $('#jzzf_elements_toolbox_hidden').click(function() { add_element('hidden'); return false; });
+
+        $('#jzzf_selector_new').click(function() { new_form(); return false; });
+        $('#jzzf_selector_delete').click(function() { delete_form(); return false; });
+        $('#jzzf_selector_add').click(function() { add_form(); return false; });
+        $('#jzzf_selector_cancel').click(function() { cancel_form(); return false; });
+                                              
         $('#jzzf_selector').change(function() {
-            bind_form_data(jzzf_forms[$('#jzzf_selector').val()]);
+            set_current_form($('#jzzf_selector').val());
         });
         
         $('#jzzf_form_save').click(save);
-        
     }
     
-    function bind_data() {
-        if(current_form==null) {
+    function set_form(form) {
+        if(form==null) {
             $('#jzzf_form').hide();
+            $('#jzzf_new_form').show();
         } else {
-            bind_form_data()
+            $('#jzzf_new_form').hide();
+            $('#jzzf_form').show();
+            $('#jzzf_elements_list').html('');
+            for(var i=0; i<form.elements.length; i++) {
+                var element = jzzf_element.create(form.elements[i].type)
+                element.add(form.elements[i], i);
+            }
         }
     }
     
-    function bind_form_data(form) {
-        $('#jzzf_form').show();
-        $('#jzzf_elements_list').html('');
-        for(var i=0; i<elements.length; i++) {
-            var element = jzzf_element.create(elements[i].type)
-            element.add(elements[i], i);
-        }
-    }
-    
-    function get_form_elements() {
+    function get_elements() {
         var elements = [];
         $('#jzzf_elements_list > li').each(function(idx) {
             elements.push(jzzf_element.data_from_li($(this)));
@@ -96,14 +66,14 @@
         return elements;
     }
     
-    function get_form_data() {
+    function get_form() {
         return {
-            "elements": get_form_elements()
+            "elements": get_elements()
         };
     }
     
     function save() {
-        var form = get_form_data();
+        var form = get_form();
         alert(JSON.stringify(form));
     }
     
@@ -122,30 +92,27 @@
     }
     
     function set_current_form(idx) {
-        current_form = idx;
-        elements = jzzf_forms[idx].elements;
-        bind_form_data(jzzf_forms[idx]);
+        form = jzzf_forms[idx];
+        set_form(form);
     }
     
     function cancel_form() {
         $('#jzzf_new_form_title, #jzzf_new_form_name').val('');
-        $('#jzzf_new_form').hide();
+        set_current_for$('#jzzf_new_form').hide();
         $('#jzzf_selection').show();
     }
     
     function new_form() {
-        $('#jzzf_selection').hide();
-        $('#jzzf_new_form').show();
+        form = null;
+        set_form(form);
     }
     
     $(function() {
-        init();
         if(jzzf_forms.length == 0) {
             new_form();
         } else {
             set_current_form(0);
         }
-        bind_events();
-        bind_data();
+        bind();
     });
 })(jQuery);

@@ -86,8 +86,8 @@
 <h2>Jazzy Forms</h2>
 <div id="jzzf_selection">
     <select id="jzzf_selector">
-<?php foreach($forms as $form) : ?>
-        <option value="<?php echo $form->name ?>"><?php echo htmlspecialchars($form->title) ?></option>
+<?php $i=0; foreach($forms as $form) : ?>
+        <option value="<?php echo $i++ ?>"><?php echo htmlspecialchars($form->title) ?></option>
 <?php endforeach; ?>
     </select>
     <a id="jzzf_selector_new" href="">New</a> <a id="jzzf_selector_delete" href="">Delete</a>
