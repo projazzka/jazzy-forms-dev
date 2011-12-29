@@ -1,25 +1,37 @@
 <?
-    $format = get_placeholder_format($table);
+    $schema = get_columns($table);
+    $placeholder_array = array();
+    $assignment_array = array();
+    $member_array = array();
+    $column_array = array();
+    foreach($schema as $column => $type) {
+        if(in_array($type, array('id', 'int'))) {
+            $placeholder = '%d';
+        } else {
+            $placeholder = '%s';
+        }
+        $assignment_array[] = "`{$column}`={$placeholder}";
+        $placeholder_array[] = $placeholder;
+        $member_array[] = '$obj->' . $column;
+        $column_array[] = '`' . $column  . '`';
+    }
+    $placeholders = implode(',', $placeholder_array);
+    $assignments = implode(',', $assignment_array);
+    $members = implode(',', $member_array);
+    $columns = implode(',', $column_array);
 ?>
 
 function jzzf_<?=$method?>($obj) {
     global $wpdb;
-    $format = <? indented_export($format) ?>;
     if($obj->id) {
-        $result = $wpdb->update(
-            'jzzf_<?=$table?>',
-            $obj,
-            array('id'=>$obj->id),
-            $format,
-            '%d'
-        );
+        $query = "UPDATE {$wpdb->prefix}jzzf_<?=$table?> SET <?=$assignments?> WHERE id=%d";
+        $sql = $wpdb->prepare($query, <?=$members?>, $obj->id);
+        $result = $wpdb->query($sql);
         $id = $obj->id;
     } else {
-        $result = $wpdb->insert(
-            'jzzf_<?=$table?>',
-            $obj,
-            $format
-        );
+        $query = "INSERT INTO {$wpdb->prefix}jzzf_<?=$table?> (<?=$columns?>) VALUES (<?=$placeholders?>)";
+        $sql = $wpdb->prepare($query, <?=$members?>);
+        $result = $wpdb->query($sql);
         $id = $wpdb->insert_id;
     }
 <? if($recursion): ?>
@@ -34,5 +46,5 @@ function jzzf_<?=$method?>($obj) {
 <? endforeach ?>
     }
 <? endif ?>
-    return $result;
+    return $result!==false;
 }
