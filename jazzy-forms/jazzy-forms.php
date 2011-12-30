@@ -76,8 +76,8 @@ function jzzf_activate() {
 }
 
 function jzzf_shortcode( $attr ) {
-	$output = "Jazzy Form";
-	return $output;
+	require_once('front/ctrl-shortcode.php');
+	return jzzf_ctrl_shortcode($attr);
 }
 
 /* register filter hook */
