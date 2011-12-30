@@ -1,11 +1,12 @@
 # method                 | template             | table               | args
 # -----------------------+----------------------+---------------------+------------+-----
 list_form                | list                 | form                |
-get_form                 | get                  | form                |
+get_form                 | get                  | form                | {"column": "id", "type": "id"}
+get_form_by_name         | get                  | form                | {"column": "name", "type": "string"}
 set_form                 | set                  | form                |
 delete_form              | delete               | form                |
 list_element             | list_child           | element             | form
-get_element              | get                  | element             |
+get_element              | get                  | element             | {"column": "id", "type": "id"}
 set_element              | set                  | element             | form
 delete_element           | delete               | element             |
 list_option              | list_child           | option              | element

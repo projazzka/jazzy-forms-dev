@@ -5,17 +5,11 @@ function get_columns($table) {
     return $schema['columns'];
 }
 
-function get_placeholder_format($table) {
-    $schema = get_columns($table);
-    $format = array();
-    foreach($schema as $column => $type) {
-        if(in_array($type, array('id', 'int'))) {
-            $placeholder = '%d';
-        } else {
-            $placeholder = '%s';
-        }
-        $format[$column] = $placeholder;
+function get_placeholder($type) {
+    if(in_array($type, array('id', 'int'))) {
+        return '%d';
+    } else {
+        return '%s';
     }
-    return $format;
 }
 
