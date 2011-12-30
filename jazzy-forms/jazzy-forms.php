@@ -75,10 +75,15 @@ function jzzf_activate() {
 	}
 }
 
+function jzzf_shortcode( $attr ) {
+	$output = "Jazzy Form";
+	return $output;
+}
+
 /* register filter hook */
 
 register_activation_hook( WP_PLUGIN_DIR . '/jazzy-forms/jazzy-forms.php', 'jzzf_activate' );
 add_action('admin_menu', 'jzzf_admin' );
 add_action('init', 'jzzf_init' );
-
+add_shortcode( 'jazzy', 'jzzf_shortcode' );
 ?>
