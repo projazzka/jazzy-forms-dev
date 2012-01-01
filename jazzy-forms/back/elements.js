@@ -61,7 +61,7 @@ function jzzf_element($) {
                 break;
             case 'radio':
             case 'dropdown':
-                result = $.extend(result, this.options_data(li));
+                result.options = this.options_data(li);
                 break;
         };
         return result;
@@ -69,12 +69,13 @@ function jzzf_element($) {
     
     this.options_data = function(li) {
         var options = [];
-        var values = [];
         li.find('.jzzf_option').each(function(idx) {
-            options.push($(this).find('.jzzf_option_title').val());
-            values.push($(this).find('.jzzf_option_value').val());
+            options.push({
+                'title': $(this).find('.jzzf_option_title').val(),
+                'value': $(this).find('.jzzf_option_value').val()
+            });
         });
-        return {'options': options, 'values': values };
+        return options;
     }
     
     this.init_partials();

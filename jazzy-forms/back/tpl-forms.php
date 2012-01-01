@@ -75,9 +75,8 @@
         </fieldset>
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
-                <input type="hidden" value="0" class="jzzf_option_id">
                 <tr class="jzzf_option">
-                    <td><input type="text" value="{{title}}" class="jzzf_option_title"></td>
+                    <td><input type="hidden" value="0" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
                     <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
                     <td><a href="" class="jzzf_option_delete">delete</a></td>
                 </tr>
