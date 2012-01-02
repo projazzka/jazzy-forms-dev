@@ -37,6 +37,9 @@ function jzzf_element($) {
         element.find('.jzzf_element_header').click(function() {
             $(this).parent().toggleClass('jzzf_collapsed');
         });
+        element.find('.jzzf_element_delete').click(function() {
+            $(this).parentsUntil('#jzzf_elements_list').remove();
+        });
         var self = this;
         element.find('.jzzf_option_add').click(function() {
             $(this).parent().find('.jzzf_option_table').append(self.html('option', {}));
