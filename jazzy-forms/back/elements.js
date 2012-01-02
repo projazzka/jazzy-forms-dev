@@ -71,6 +71,7 @@ function jzzf_element($) {
         var options = [];
         li.find('.jzzf_option').each(function(idx) {
             options.push({
+                'id': $(this).find('.jzzf_option_id').val(),
                 'title': $(this).find('.jzzf_option_title').val(),
                 'value': $(this).find('.jzzf_option_value').val()
             });

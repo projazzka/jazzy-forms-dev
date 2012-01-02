@@ -76,7 +76,7 @@
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
                 <tr class="jzzf_option">
-                    <td><input type="hidden" value="0" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
+                    <td><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
                     <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
                     <td><a href="" class="jzzf_option_delete">delete</a></td>
                 </tr>
