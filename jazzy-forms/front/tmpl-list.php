@@ -33,15 +33,26 @@ class Jzzf_List_Template {
     }
     
     function dropdown($element) { ?>
-        Dropdown menu (to be implementd)
+    <label><?php echo htmlspecialchars($element->title) ?></label>
+    <select id="<?php echo htmlspecialchars($element->id) ?>">
+    <?php foreach($element->options as $option) : ?>
+    <option><label><?php echo htmlspecialchars($option->title) ?></option>
+    <?php endforeach ?>
+    </select>
 <?php
     }
 
     function hidden($element) { ?>
-        Hidden element (to be implementd)
+        <input type="hidden" id="<?php echo htmlspecialchars($element->id) ?>" value="<?php echo htmlspecialchars($element->value)?>">
 <?php
     }
     
+    function output($element) { ?>
+        <label for="<?php echo htmlspecialchars($id) ?>"><?php echo htmlspecialchars($element->title) ?></label>
+        <input type="text" readonly="readonly" id="<?php echo htmlspecialchars($element->id) ?>">
+<?php
+    }
+
     function foot($form) { ?>
 </ul>
 <?php
