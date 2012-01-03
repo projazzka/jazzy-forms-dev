@@ -46,7 +46,7 @@ function jzzf_<?=$method?>($obj) {
             }
             $query = "SELECT id FROM {$wpdb->prefix}jzzf_<?=$child?> WHERE `<?=$table?>` = %d";
             if($placeholders) {
-                $query .= 'AND id NOT IN (' . implode(',', $placeholders) . ')';
+                $query .= ' AND id NOT IN (' . implode(',', $placeholders) . ')';
             }
             array_unshift($values, $obj->id);
             $sql = $wpdb->prepare($query, $values);
