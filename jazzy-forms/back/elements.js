@@ -43,10 +43,15 @@ function jzzf_element($) {
         var self = this;
         element.find('.jzzf_option_add').click(function() {
             $(this).parent().find('.jzzf_option_table').append(self.html('option', {}));
-            $('.jzzf_option_delete').click(function() {
-                $(this).parentsUntil('table', 'tr').remove();
-                return false;
-            });
+            self.bind_options();
+            return false;
+        });
+        this.bind_options();
+    }
+
+    this.bind_options = function() {
+        $('.jzzf_option_delete').click(function() {
+            $(this).parentsUntil('table', 'tr').remove();
             return false;
         });
     }
