@@ -38,6 +38,22 @@ function jzzf_<?=$method?>($obj) {
     if($result !== false) {
 <? foreach($recursion as $id => $child ) : ?>
         if(is_array($obj-><?=$id?>)) {
+            $placeholders = array();
+            $values = array();
+            foreach($obj-><?=$id?> as $child) {
+                $placeholders[] = '%d';
+                $values[] = $child->id;
+            }
+            $query = "SELECT id FROM {$wpdb->prefix}jzzf_<?=$child?> WHERE `<?=$table?>` = %d";
+            if($placeholders) {
+                $query .= 'AND id NOT IN (' . implode(',', $placeholders) . ')';
+            }
+            array_unshift($values, $obj->id);
+            $sql = $wpdb->prepare($query, $values);
+            $orphans = $wpdb->get_col($sql);
+            foreach($orphans as $orphan) {
+                jzzf_delete_<?=$child?>($orphan);
+            }
             foreach($obj-><?=$id?> as $child) {
                 $child-><?=$table?> = $id;
                 jzzf_set_<?=$child?>($child);
