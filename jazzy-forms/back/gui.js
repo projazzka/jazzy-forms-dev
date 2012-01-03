@@ -64,8 +64,11 @@
     
     function get_elements() {
         var elements = [];
+        var idx = 0;
         $('#jzzf_elements_list > li').each(function(idx) {
-            elements.push(jzzf_element.data_from_li($(this)));
+            var element = jzzf_element.data_from_li($(this));
+            element.order = idx++;
+            elements.push(element);
         });
         return elements;
     }

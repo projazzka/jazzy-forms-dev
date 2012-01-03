@@ -11,6 +11,7 @@
     "element": {
         "columns": {
             "form": "id",
+            "order": "int",
             "type": "str",
             "title": "str",
             "name": "str",
@@ -24,6 +25,7 @@
     },
     "option": {
         "columns": {
+            "order": "int",
             "element": "id",
             "title": "str",
             "name": "str"
