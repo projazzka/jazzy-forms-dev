@@ -3,7 +3,13 @@
 require_once( JZZF_CORE . '/model.php');
 
 function jzzf_ctrl_forms() {
-    if($_POST['form']) {
+    if($_POST['delete']) {
+        if(jzzf_delete_form($_POST['delete'])) {
+            $msg = "Form Deleted.";
+        } else {
+            $msg = "An error ocurred while deleting your form!";
+        }
+    } elseif($_POST['form']) {
         $json = stripcslashes($_POST['form']);
         $form = json_decode($json);
         if(jzzf_set_form($form)) {

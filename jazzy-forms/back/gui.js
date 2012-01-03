@@ -17,10 +17,12 @@
     }
             
     function delete_form() {
-        if(current_form==null) {
-            return;
+        if(form==null) {
+            return false;
         }
-        // @todo
+        $('#jzzf_delete').val(form.id);
+        $('#jzzf_delete_form').submit();
+        return false;
     }
     
     function bind() {     

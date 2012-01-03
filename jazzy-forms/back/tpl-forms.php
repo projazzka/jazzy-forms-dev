@@ -86,12 +86,15 @@
 //]]></script>
 <h2>Jazzy Forms</h2>
 <div id="jzzf_selection">
+    <form id="jzzf_delete_form" method="post" action="#">
     <select id="jzzf_selector">
 <?php $i=0; foreach($forms as $form) : ?>
         <option value="<?php echo $i++ ?>"><?php echo htmlspecialchars($form->title) ?></option>
 <?php endforeach; ?>
     </select>
+    <input id="jzzf_delete" name="delete" type="hidden" value="0">
     <a id="jzzf_selector_new" href="">New</a> <a id="jzzf_selector_delete" href="">Delete</a>
+    </form>
 </div>
 <div id="jzzf_new_form">
     <h3>New Form</h3>
