@@ -1,14 +1,14 @@
 # method                 | template             | table               | args
 # -----------------------+----------------------+---------------------+------------+-----
-list_form                | list                 | form                |
+list_form                | list                 | form                | title
 get_form                 | get                  | form                | {"column": "id", "type": "id"}
 get_form_by_name         | get                  | form                | {"column": "name", "type": "string"}
 set_form                 | set                  | form                |
 delete_form              | delete               | form                |
-list_element             | list_child           | element             | form
+list_element             | list_child           | element             | {"parent": "form", "order": "order"} 
 get_element              | get                  | element             | {"column": "id", "type": "id"}
 set_element              | set                  | element             | form
 delete_element           | delete               | element             |
-list_option              | list_child           | option              | element
+list_option              | list_child           | option              | {"parent": "element", "order": "order"}
 set_option               | set                  | option              | element
 delete_option            | delete               | option              |

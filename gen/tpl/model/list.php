@@ -1,6 +1,6 @@
 function jzzf_<?=$method?>() {
     global $wpdb;
-    $sql = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?>";
+    $sql = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?> ORDER BY `<?=$args?>`";
     $results = $wpdb->get_results($sql);
 <? if($recursion) : ?>
     if($results) {
