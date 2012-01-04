@@ -47,11 +47,11 @@
     
     function set_form(form) {
         if(form==null) {
-            $('#jzzf_form').hide();
+            $('#jzzf_form,#jzzf_selection').hide();
             $('#jzzf_new_form').show();
         } else {
             $('#jzzf_new_form').hide();
-            $('#jzzf_form').show();
+            $('#jzzf_form,#jzzf_selection').show();
 
             $('#jzzf_id').val(form.id);
             $('#jzzf_title').val(form.title);
@@ -111,7 +111,7 @@
     
     function cancel_form() {
         $('#jzzf_new_form_title, #jzzf_new_form_name').val('');
-        set_current_for$('#jzzf_new_form').hide();
+        $('#jzzf_new_form').hide();
         $('#jzzf_selection').show();
     }
     
