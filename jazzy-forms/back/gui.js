@@ -35,8 +35,8 @@
 
         $('#jzzf_selector_new').click(function() { new_form(); return false; });
         $('#jzzf_selector_delete').click(function() { delete_form(); return false; });
-        $('#jzzf_selector_add').click(function() { add_form(); return false; });
-        $('#jzzf_selector_cancel').click(function() { cancel_form(); return false; });
+        $('#jzzf_new_form_add').click(function() { add_form(); return false; });
+        $('#jzzf_new_form_cancel').click(function() { cancel_form(); return false; });
                                               
         $('#jzzf_selector').change(function() {
             set_current_form($('#jzzf_selector').val());
@@ -100,9 +100,8 @@
         $('#jzzf_form').show();
         var option = $('<option>');
         option.text(title);
-        $('#jzzf_selector').append(option);
-        $('#jzzf_new_form').hide();
-        $('#jzzf_selection').show();
+        $('#jzzf_selector').append(option).children('option:last').attr('selected', 'selected');
+        set_form(form);
     }
     
     function set_current_form(idx) {
