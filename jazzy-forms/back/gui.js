@@ -32,6 +32,8 @@
         $('#jzzf_elements_toolbox_checkbox').click(function() { add_element('checkbox'); return false; });
         $('#jzzf_elements_toolbox_output').click(function() { add_element('output'); return false; });
         $('#jzzf_elements_toolbox_hidden').click(function() { add_element('hidden'); return false; });
+        
+        $('#jzzf_elements_list').sortable();
 
         $('#jzzf_selector_new').click(function() { new_form(); return false; });
         $('#jzzf_selector_delete').click(function() { delete_form(); return false; });

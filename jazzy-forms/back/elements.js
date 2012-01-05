@@ -46,6 +46,7 @@ function jzzf_element($) {
             self.bind_options();
             return false;
         });
+        element.find('.jzzf_option_table').sortable();
         this.bind_options();
     }
 
