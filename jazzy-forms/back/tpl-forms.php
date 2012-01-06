@@ -113,12 +113,12 @@
             <div id="jzzf_elements_toolbox">
                 <div id="jzzf_elements_toolbox_description">Click or drag to add</div>
                 <ul id="jzzf_elements_toolbox_items">
-                    <li id="jzzf_elements_toolbox_number">Number Entry</li>
-                    <li id="jzzf_elements_toolbox_dropdown">Dropdown Menu</li>
-                    <li id="jzzf_elements_toolbox_radio">Radio Buttons</li>
-                    <li id="jzzf_elements_toolbox_checkbox">Checkbox</li>
-                    <li id="jzzf_elements_toolbox_output">Output</li>
-                    <li id="jzzf_elements_toolbox_hidden">Hidden Field</li>
+                    <li jzzf_type="number">Number Entry</li>
+                    <li jzzf_type="dropdown">Dropdown Menu</li>
+                    <li jzzf_type="radio">Radio Buttons</li>
+                    <li jzzf_type="checkbox">Checkbox</li>
+                    <li jzzf_type="output">Output</li>
+                    <li jzzf_type="hidden">Hidden Field</li>
                 </ul>
             </div>
             <div id="jzzf_elements">

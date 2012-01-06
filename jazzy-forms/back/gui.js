@@ -9,10 +9,11 @@
         return obj = {'title': title, 'name': name, 'type': type};
     }
     
-    function add_element(type, placeholder) {
+    function add_element(item, remove) {
+        var type = item.attr('jzzf_type');
         var obj = new_element(type);
         var gui = jzzf_element.create(type);
-        gui.add(obj, placeholder);
+        gui.add(obj, remove ? item : null);
     }
 
     function delete_form() {
@@ -25,16 +26,14 @@
     }
     
     function bind() {     
-        $('#jzzf_elements_toolbox_number').click(function() { add_element('number', null); return false; });
-        $('#jzzf_elements_toolbox_dropdown').click(function() { add_element('dropdown', null); return false; });
-        $('#jzzf_elements_toolbox_radio').click(function() { add_element('radio', null); return false; });
-        $('#jzzf_elements_toolbox_checkbox').click(function() { add_element('checkbox', null); return false; });
-        $('#jzzf_elements_toolbox_output').click(function() { add_element('output', null); return false; });
-        $('#jzzf_elements_toolbox_hidden').click(function() { add_element('hidden', null); return false; });
+        $('#jzzf_elements_toolbox_items li').click(function() {
+            add_element($(this), false);
+            return false;
+        });
         
         $('#jzzf_elements_list').sortable({
             update: function(event, ui) {
-                add_element('number', ui.item);
+                add_element(ui.item, true);
             }
         });
         $('#jzzf_elements_toolbox_items li').draggable({
