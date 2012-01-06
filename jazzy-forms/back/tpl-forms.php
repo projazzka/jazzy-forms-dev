@@ -105,8 +105,9 @@
 <div id="message" class="updated" <?php if(!$msg): ?>style="display:none"<?php endif ?>><p><?php echo htmlspecialchars($msg) ?></p></div>
 <div id="jzzf_form">
     <ul id="jzzf_tabs">
-        <li id="jzzf_tab_elements">Elements</li>
-        <li id="jzzf_tab_general">General</li>
+        <li jzzf_section="elements">Elements</li>
+        <li jzzf_section="appearance">Appearance</li>
+        <li jzzf_section="general" >General</li>
     </ul>
     <div id="jzzf_main">
         <div class="jzzf_section" id="jzzf_section_elements">
@@ -126,6 +127,17 @@
                 <ul id="jzzf_elements_list">
                 </ul>
             </div>
+        </div>
+        <div class="jzzf_section" id="jzzf_section_appearance">
+            <ul>
+                <li>
+                    <input type="checkbox" id="jzzf_default_css"><label for="jzzf_default_css">Load default theme</label>
+                </li>
+                <li>
+                    <label for="jzzf_custom_css">Custom CSS</label>
+                    <textarea id="jzzf_custom_css"></textarea>
+                </li>
+            </ul>
         </div>
         <div class="jzzf_section" id="jzzf_section_general">
             <input type="hidden" id="jzzf_id">

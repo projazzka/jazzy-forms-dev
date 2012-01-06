@@ -7,7 +7,7 @@
     function select(name) {
         $('#jzzf_tabs li').removeClass('jzzf_current_tab');
         $('.jzzf_section').hide();
-        $('#jzzf_tab_' + name).addClass('jzzf_current_tab');
+        $('#jzzf_tabs li[jzzf_section="' + name + '"]').addClass('jzzf_current_tab');
         $('#jzzf_section_' + name).show();
     }
     
@@ -19,9 +19,8 @@
     }
     
     function bind() {
-        var tabs = ['elements', 'buttons', 'general'];
-        for(var i=0; i<tabs.length; i++) {
-            $('#jzzf_tab_' + tabs[i]).click(factory(tabs[i]));
-        }
+        $('#jzzf_tabs li').each(function() {
+            $(this).click(factory($(this).attr("jzzf_section")));
+        });
     }
 })(jQuery);
