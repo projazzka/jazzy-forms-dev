@@ -27,7 +27,7 @@ class Jzzf_List_Template {
     function radio($element) { ?>
     <label><?php echo htmlspecialchars($element->title) ?></label>
     <?php $idx = 0; foreach($element->options as $option) { $idx++; ?>
-    <input type="radio"><label><?php echo htmlspecialchars($option->title) ?></label>    
+    <input type="radio" name="<?php echo htmlspecialchars($element->id) ?>"><label><?php echo htmlspecialchars($option->title) ?></label>    
 <?php
         }
     }
