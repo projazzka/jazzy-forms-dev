@@ -8,16 +8,19 @@ function jzzf_element($) {
         return ++jzzf_element.incremental;
     }
     
-    this.add = function(element, idx) {
+    this.add = function(element, placeholder) {
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
         element.counter = this.counter();
         var html = this.html(element.type, element);
-        if(idx==0) {
-            $('#jzzf_elements_list').prepend(html);
+        var li;
+        if(placeholder) {
+            li = $(html);
+            placeholder.replaceWith(li);
         } else {
-            $('#jzzf_elements_list > li').eq(idx-1).after(html);
+            $('#jzzf_elements_list').append(html);
+            li = $('#jzzf_elements_list li:last-child');
         }
-        this.bind(idx);
+        this.bind(li);
     }
     
     this.html = function(tmpl_name, data) {
@@ -32,8 +35,8 @@ function jzzf_element($) {
         });
     }
     
-    this.bind = function(idx) {
-        var element = jzzf_element.from_index(idx);
+    this.bind = function(li) {
+        var element = li;
         element.find('.jzzf_element_header').click(function() {
             $(this).parent().toggleClass('jzzf_collapsed');
         });

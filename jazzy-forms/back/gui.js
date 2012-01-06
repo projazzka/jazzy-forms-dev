@@ -9,13 +9,12 @@
         return obj = {'title': title, 'name': name, 'type': type};
     }
     
-    function add_element(type) {
+    function add_element(type, placeholder) {
         var obj = new_element(type);
-        var idx = $('#jzzf_elements_list > li').length;
         var gui = jzzf_element.create(type);
-        gui.add(obj, idx);
+        gui.add(obj, placeholder);
     }
-            
+
     function delete_form() {
         if(form==null) {
             return false;
@@ -26,14 +25,23 @@
     }
     
     function bind() {     
-        $('#jzzf_elements_toolbox_number').click(function() { add_element('number'); return false; });
-        $('#jzzf_elements_toolbox_dropdown').click(function() { add_element('dropdown'); return false; });
-        $('#jzzf_elements_toolbox_radio').click(function() { add_element('radio'); return false; });
-        $('#jzzf_elements_toolbox_checkbox').click(function() { add_element('checkbox'); return false; });
-        $('#jzzf_elements_toolbox_output').click(function() { add_element('output'); return false; });
-        $('#jzzf_elements_toolbox_hidden').click(function() { add_element('hidden'); return false; });
+        $('#jzzf_elements_toolbox_number').click(function() { add_element('number', null); return false; });
+        $('#jzzf_elements_toolbox_dropdown').click(function() { add_element('dropdown', null); return false; });
+        $('#jzzf_elements_toolbox_radio').click(function() { add_element('radio', null); return false; });
+        $('#jzzf_elements_toolbox_checkbox').click(function() { add_element('checkbox', null); return false; });
+        $('#jzzf_elements_toolbox_output').click(function() { add_element('output', null); return false; });
+        $('#jzzf_elements_toolbox_hidden').click(function() { add_element('hidden', null); return false; });
         
-        $('#jzzf_elements_list').sortable();
+        $('#jzzf_elements_list').sortable({
+            update: function(event, ui) {
+                add_element('number', ui.item);
+            }
+        });
+        $('#jzzf_elements_toolbox_items li').draggable({
+            connectToSortable: "#jzzf_elements_list",
+            helper: "clone",
+            revert: "invalid"
+        });
 
         $('#jzzf_selector_new').click(function() { new_form(); return false; });
         $('#jzzf_selector_delete').click(function() { delete_form(); return false; });
@@ -61,7 +69,7 @@
             $('#jzzf_elements_list').html('');
             for(var i=0; i<form.elements.length; i++) {
                 var element = jzzf_element.create(form.elements[i].type)
-                element.add(form.elements[i], i);
+                element.add(form.elements[i], null);
             }
         }
     }
