@@ -62,6 +62,12 @@
             $('#jzzf_new_form').hide();
             $('#jzzf_form,#jzzf_selection').show();
 
+            if(form.theme == 1) {
+                $('#jzzf_default_css').attr('checked', 'checked');
+            } else {
+                $('#jzzf_default_css').removeAttr('checked');
+            }
+            $('#jzzf_css').val(form.css);
             $('#jzzf_id').val(form.id);
             $('#jzzf_title').val(form.title);
             $('#jzzf_name').val(form.name);
@@ -89,6 +95,8 @@
             "id": $('#jzzf_id').val(),
             "title": $('#jzzf_title').val(),
             "name": $('#jzzf_name').val(),
+            "theme": $('#jzzf_default_css').is(':checked'),
+            "css": $('#jzzf_css').val(),
             "elements": get_elements()
         };
     }

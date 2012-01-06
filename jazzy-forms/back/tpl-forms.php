@@ -134,8 +134,8 @@
                     <input type="checkbox" id="jzzf_default_css"><label for="jzzf_default_css">Load default theme</label>
                 </li>
                 <li>
-                    <label for="jzzf_custom_css">Custom CSS</label>
-                    <textarea id="jzzf_custom_css"></textarea>
+                    <label for="jzzf_css">Custom CSS</label>
+                    <textarea id="jzzf_css"></textarea>
                 </li>
             </ul>
         </div>

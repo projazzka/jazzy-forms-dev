@@ -2,7 +2,9 @@
     "form": {
         "columns": {
             "title": "str",
-            "name": "str"
+            "name": "str",
+            "theme": "int",
+            "css": "str"
         },
         "recursion": {
             "elements": "element"
