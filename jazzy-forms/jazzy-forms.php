@@ -27,7 +27,7 @@ Author URI: http://www.l90r.com/
 ---------------------------------------------------------------------
 */
 
-define(JZZF_ROOT, dirname(__FILE__) . '/');
+define(JZZF_ROOT, WP_PLUGIN_DIR . '/jazzy-forms/');
 define(JZZF_GENERATED, JZZF_ROOT . 'generated/');
 define(JZZF_CORE, JZZF_ROOT . 'core/');
 define(JZZF_BACK, JZZF_ROOT . 'back/');
@@ -82,7 +82,7 @@ function jzzf_shortcode( $attr ) {
 
 /* register filter hook */
 
-register_activation_hook( WP_PLUGIN_DIR . '/jazzy-forms/jazzy-forms.php', 'jzzf_activate' );
+register_activation_hook( JZZF_ROOT . 'jazzy-forms.php', 'jzzf_activate' );
 add_action('admin_menu', 'jzzf_admin' );
 add_action('init', 'jzzf_init' );
 add_shortcode( 'jazzy', 'jzzf_shortcode' );

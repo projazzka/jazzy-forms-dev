@@ -2,6 +2,21 @@
 
 class Jzzf_List_Template {
     function __construct($form) {}
+
+    function theme($num) {?>
+    <style type="text/css">
+        @import url(<?php echo plugins_url('themes/' . ((int) $num)  . '.css', JZZF_ROOT . 'front/tmpl-list.php') ?>);
+    </style>
+<?php
+    }
+    
+    function css($css) { ?>
+    <style type="text/css">
+        <?php print $css; ?>
+
+    </style>
+<?php
+    }
     
     function head($form) { ?>
 <ul>

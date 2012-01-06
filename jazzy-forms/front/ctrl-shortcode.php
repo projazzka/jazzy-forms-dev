@@ -20,6 +20,12 @@ function jzzf_ctrl_shortcode($attr) {
 function jzzf_view_front($form) {
     ob_start();
     $tpl = new Jzzf_List_Template($form);
+    if($form->theme) {
+        $tpl->theme($form->theme);
+    }
+    if(trim($form->css)) {
+        $tpl->css($form->css);
+    }
     $tpl->head($form);
     foreach($form->elements as $element) {
         $tpl->before($element);
