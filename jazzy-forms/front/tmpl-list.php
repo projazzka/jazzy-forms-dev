@@ -3,6 +3,11 @@
 class Jzzf_List_Template {
     function __construct($form) {}
 
+    function script($form) {?>
+        <script type="text/javascript" src="<?php echo plugins_url('jazzy-forms.js', JZZF_ROOT . 'front/tmpl-list.php') ?>"></script>
+<?php
+    }
+    
     function theme($num) {?>
     <style type="text/css">
         @import url(<?php echo plugins_url('themes/' . ((int) $num)  . '.css', JZZF_ROOT . 'front/tmpl-list.php') ?>);

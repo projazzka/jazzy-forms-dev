@@ -26,6 +26,7 @@ function jzzf_view_front($form) {
     if(trim($form->css)) {
         $tpl->css($form->css);
     }
+    $tpl->script($form);
     $tpl->head($form);
     foreach($form->elements as $element) {
         $tpl->before($element);

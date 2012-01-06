@@ -80,10 +80,30 @@ function jzzf_shortcode( $attr ) {
 	return jzzf_ctrl_shortcode($attr);
 }
 
+// Trick from http://goo.gl/5JnKZ
+function jzzf_conditional_queuing($posts) {
+	if ( empty($posts) ) return $posts;
+
+	$shortcode_found = false;
+	foreach ( $posts as $post ){
+		if ( stripos($post->post_content, '[jazzy') ){
+			$shortcode_found = true;
+			break;
+		}
+	}
+
+	if ( $shortcode_found ) {
+		wp_enqueue_script('jquery');
+	}
+
+	return $posts;
+}
+
 /* register filter hook */
 
 register_activation_hook( JZZF_ROOT . 'jazzy-forms.php', 'jzzf_activate' );
 add_action('admin_menu', 'jzzf_admin' );
 add_action('init', 'jzzf_init' );
 add_shortcode( 'jazzy', 'jzzf_shortcode' );
+add_filter('the_posts', 'jzzf_conditional_queuing');
 ?>
