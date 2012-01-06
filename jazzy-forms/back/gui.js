@@ -20,8 +20,10 @@
         if(form==null) {
             return false;
         }
-        $('#jzzf_delete').val(form.id);
-        $('#jzzf_delete_form').submit();
+        if(confirm("Are you sure to delete the selected form?")) {
+            $('#jzzf_delete').val(form.id);
+            $('#jzzf_delete_form').submit();
+        }
         return false;
     }
     
