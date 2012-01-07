@@ -53,6 +53,10 @@
             set_current_form($('#jzzf_selector').val());
         });
         
+        $('#jzzf_form *').delegate('*', 'click change sortupdate', function(event) {
+            $('#message').hide();
+        });
+        
         $('#jzzf_form_save').click(save);
     }
     
