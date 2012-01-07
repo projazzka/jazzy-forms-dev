@@ -4,14 +4,13 @@ function jzzf_<?=$method?>($parent) {
     $query = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?> WHERE <?=$parent?>='%d' ORDER BY `<?=$order?>`";
     $sql = $wpdb->prepare($query, $parent);
     $results = $wpdb->get_results($sql);
-<? if($recursion) : ?>
     if($results) {
         foreach($results as $obj) {
+<? include('sanitize.php') ?>
 <? foreach($recursion as $id => $child) : ?>
             $obj-><?=$id?> = jzzf_list_<?=$child?>($obj->id);
 <? endforeach ?>
         }
     }
-<? endif ?>
     return $results;
 }
