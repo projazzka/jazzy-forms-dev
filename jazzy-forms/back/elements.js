@@ -29,6 +29,9 @@ function jzzf_element($) {
             $.each(data.options, function(idx) {
                 data.options[idx].counter = counter;
             });
+            if(data.type == 'checkbox') {
+                data.checked = (data.default == "1");
+            }
         }
         return this.html(tmpl_name, data);
     }
@@ -93,9 +96,16 @@ function jzzf_element($) {
             case 'number':
                 result.value = li.find('.jzzf_element_value').val();
                 break;
+            case 'checkbox':
+                result.value = li.find('.jzzf_element_value').val();
+                result.value2 = li.find('.jzzf_element_value2').val();
+                result.default = li.find('.jzzf_element_checked').is(':checked') ? "1" : "0";
             case 'radio':
             case 'dropdown':
                 result.options = this.options_data(li);
+                break;
+            case 'output':
+                result.formula = li.find('.jzzf_element_formula').val();
                 break;
         };
         return result;

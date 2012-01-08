@@ -19,6 +19,7 @@
             "name": "str",
             "formula": "str",
             "value": "str",
+            "value2": "str",
             "default": "str",
             "external": "bool",
             "params": "json"

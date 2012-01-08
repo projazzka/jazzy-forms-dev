@@ -55,10 +55,32 @@
 </script>
 <script id="jzzf_tmpl_checkbox" type="text/html">
 {{>common}}
+    <fieldset>
+        <legend>Values</legend>
+        <ul>
+            <li>
+                <label for="jzzf_element_{{counter}}_value">Value for checked</label>
+                <input type="text" id="jzzf_element_{{counter}}_value" class="jzzf_element_value" value="{{value}}">
+            </li>
+            <li>
+                <label for="jzzf_element_{{counter}}_value2">Value for unchecked</label>
+                <input type="text" id="jzzf_element_{{counter}}_value2" class="jzzf_element_value2" value="{{value2}}">
+            </li>
+            <li>
+                <input type="checkbox" id="jzzf_element_{{counter}}_checked" class="jzzf_element_checked"{{#checked}} checked="checked"{{/checked}}>
+                <label for="jzzf_element_{{counter}}_checked">Checked by default</label>
+            </li>
+        </ul>
+    </fieldset>
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_output" type="text/html">
 {{>common}}
+    <fieldset>
+        <legend>Formula</legend>
+        <label for="jzzf_element_{{counter}}_formula">Formula</label>
+        <input type="text" id="jzzf_element_{{counter}}_formula" class="jzzf_element_formula" value="{{formula}}">
+    </fieldset>
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_hidden" type="text/html">
