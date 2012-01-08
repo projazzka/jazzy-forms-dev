@@ -10,8 +10,7 @@ function jzzf_element($) {
     
     this.add = function(element, placeholder) {
         $('#jzzf_elements_list li').addClass('jzzf_collapsed');
-        element.counter = this.counter();
-        var html = this.html(element.type, element);
+        var html = this.html_element(element.type, element);
         var li;
         if(placeholder) {
             li = $(html);
@@ -22,9 +21,25 @@ function jzzf_element($) {
         }
         this.bind(li);
     }
+        
+    this.html_element = function(tmpl_name, data) {
+        var counter = this.counter();
+        data.counter = counter;
+        if(data.options) {
+            $.each(data.options, function(idx) {
+                data.options[idx].counter = counter;
+            });
+        }
+        return this.html(tmpl_name, data);
+    }
+
+    this.html_option = function(data, counter) {
+        data.counter = counter;
+        return this.html('option', data);
+    }
     
     this.html = function(tmpl_name, data) {
-        return Mustache.to_html($('#jzzf_tmpl_' + tmpl_name).html(), data, partials);
+        return Mustache.to_html($('#jzzf_tmpl_' + tmpl_name).html(), data, partials)    
     }
     
     this.init_partials = function() {
@@ -47,7 +62,8 @@ function jzzf_element($) {
         });
         var self = this;
         element.find('.jzzf_option_add').click(function() {
-            $(this).parent().find('.jzzf_option_table').append(self.html('option', {}));
+            var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
+            $(this).parent().find('.jzzf_option_table').append(self.html_option({}, counter));
             self.bind_options();
             return false;
         });
@@ -69,7 +85,9 @@ function jzzf_element($) {
             "id": li.find('.jzzf_element_id').val(),
             "type": li.find('.jzzf_element_type').val(),
             "title": li.find('.jzzf_element_title').val(),
-            "name": li.find('.jzzf_element_name').val()
+            "name": li.find('.jzzf_element_name').val(),
+            "value": li.find('.jzzf_element_value').val(),
+            "default": li.find('.jzzf_element_default').val()
         };
         switch(li.find('.jzzf_element_type').val()) {
             case 'number':
@@ -91,7 +109,8 @@ function jzzf_element($) {
                 'id': $(this).find('.jzzf_option_id').val(),
                 'order': idx++,
                 'title': $(this).find('.jzzf_option_title').val(),
-                'value': $(this).find('.jzzf_option_value').val()
+                'value': $(this).find('.jzzf_option_value').val(),
+                'default': $(this).find('.jzzf_option_default').is(':checked')
             });
         });
         return options;

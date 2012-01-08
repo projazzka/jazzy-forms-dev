@@ -18,6 +18,8 @@
             "title": "str",
             "name": "str",
             "formula": "str",
+            "value": "str",
+            "default": "str",
             "external": "bool",
             "params": "json"
         },
@@ -29,8 +31,10 @@
         "columns": {
             "order": "int",
             "element": "id",
+            "default": "bool",
             "title": "str",
-            "name": "str"
+            "name": "str",
+            "value": "str"
         }
     }
 }

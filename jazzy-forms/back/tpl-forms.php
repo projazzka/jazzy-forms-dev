@@ -1,6 +1,7 @@
 <script id="jzzf_tmpl_common" type="text/html">
 <li class="jzzf_element">
     <input type="hidden" value="{{id}}" class="jzzf_element_id">
+    <input type="hidden" value="{{counter}}" class="jzzf_element_counter">
     <div class="jzzf_element_header">
         <span class="jzzf_type jzzf_type_{{type}}">[  ]</span>
         <span class="jzzf_header_title">{{title}}</span>
@@ -29,8 +30,16 @@
 {{>common}}
         <fieldset>
             <legend>Value</legend>
-            <label for="jzzf_element_{{id}}_value">Factor</label>
-            <input type="text" id="jzzf_element_{{id}}_value" class="jzzf_element_value" value="{{value}}">
+            <ul>
+                <li>
+                    <label for="jzzf_element_{{counter}}_value">Factor</label>
+                    <input type="text" id="jzzf_element_{{counter}}_value" class="jzzf_element_value" value="{{value}}">
+                </li>
+                <li>
+                    <label for="jzzf_element_{{id}}_default">Default</label>
+                    <input type="text" id="jzzf_element_{{id}}_default" class="jzzf_element_default" value="{{default}}">
+                </li>
+            </ul>                
         </fieldset>
 {{>foot}}
 </script>
@@ -61,6 +70,8 @@
             <legend>Options</legend>
             <table class="jzzf_option_table">
             <thead><tr>
+                <th></th>
+                <th>Default</th>
                 <th>Title</th>
                 <th>Value</th>
                 <th></th>
@@ -77,6 +88,7 @@
 <script id="jzzf_tmpl_option" type="text/html">
                 <tr class="jzzf_option">
                     <td class="jzzf_option_drag">[drag]</td>
+                    <td><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
                     <td><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
                     <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
                     <td><a href="" class="jzzf_option_delete">(x)</a></td>
