@@ -1,3 +1,38 @@
-body {
-    color: red;
+.jzzf_form * {
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+.jzzf_form :focus {/* remember to define focus styles! */
+	outline: 0;
+}
+.jzzf_form ul {
+	list-style: none;
+}
+
+.jzzf_form ul li.jzzf_radio_option {
+	display: list-item;
+}
+
+.jzzf_form .jzzf_element_label {
+    display: block;
+    font-weight: bold;
+}
+
+.jzzf_form .jzzf_element {
+    padding-bottom: 1em;
+}
+
+.jzzf_form .jzzf_radio_option_label, .jzzf_form .jzzf_checkbox_label {
+    padding-left: 8px;
+}
+
+.jzzf_form input[type=text], .jzzf_form select {
+    width: 200px;
 }

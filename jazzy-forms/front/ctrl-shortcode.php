@@ -46,6 +46,9 @@ function jzzf_view_front($form) {
             case 'dropdown':
                 $tpl->dropdown($element);
                 break;
+            case 'checkbox':
+                $tpl->checkbox($element);
+                break;
         }
         $tpl->after($element);
     }
