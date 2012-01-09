@@ -93,18 +93,18 @@ function jzzf_element($) {
             "default": li.find('.jzzf_element_default').val()
         };
         switch(li.find('.jzzf_element_type').val()) {
-            case 'number':
+            case 'n':
                 result.value = li.find('.jzzf_element_value').val();
                 break;
-            case 'checkbox':
+            case 'c':
                 result.value = li.find('.jzzf_element_value').val();
                 result.value2 = li.find('.jzzf_element_value2').val();
                 result.default = li.find('.jzzf_element_checked').is(':checked') ? "1" : "0";
-            case 'radio':
-            case 'dropdown':
+            case 'r':
+            case 'd':
                 result.options = this.options_data(li);
                 break;
-            case 'output':
+            case 'f':
                 result.formula = li.find('.jzzf_element_formula').val();
                 break;
         };

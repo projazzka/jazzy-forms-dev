@@ -26,7 +26,7 @@
     </div>
 </li>
 </script>
-<script id="jzzf_tmpl_number" type="text/html">
+<script id="jzzf_tmpl_n" type="text/html">
 {{>common}}
         <fieldset>
             <legend>Value</legend>
@@ -43,17 +43,17 @@
         </fieldset>
 {{>foot}}
 </script>
-<script id="jzzf_tmpl_dropdown" type="text/html">
+<script id="jzzf_tmpl_d" type="text/html">
 {{>common}}
 {{>options}}
 {{>foot}}
 </script>
-<script id="jzzf_tmpl_radio" type="text/html">
+<script id="jzzf_tmpl_r" type="text/html">
 {{>common}}
 {{>options}}
 {{>foot}}
 </script>
-<script id="jzzf_tmpl_checkbox" type="text/html">
+<script id="jzzf_tmpl_c" type="text/html">
 {{>common}}
     <fieldset>
         <legend>Values</legend>
@@ -74,7 +74,7 @@
     </fieldset>
 {{>foot}}
 </script>
-<script id="jzzf_tmpl_output" type="text/html">
+<script id="jzzf_tmpl_f" type="text/html">
 {{>common}}
     <fieldset>
         <legend>Formula</legend>
@@ -148,12 +148,11 @@
             <div id="jzzf_elements_toolbox">
                 <div id="jzzf_elements_toolbox_description">Click or drag to add</div>
                 <ul id="jzzf_elements_toolbox_items">
-                    <li jzzf_type="number">Number Entry</li>
-                    <li jzzf_type="dropdown">Dropdown Menu</li>
-                    <li jzzf_type="radio">Radio Buttons</li>
-                    <li jzzf_type="checkbox">Checkbox</li>
-                    <li jzzf_type="output">Output</li>
-                    <li jzzf_type="hidden">Hidden Field</li>
+                    <li jzzf_type="n">Number Entry</li>
+                    <li jzzf_type="d">Drop-down Menu</li>
+                    <li jzzf_type="r">Radio Buttons</li>
+                    <li jzzf_type="c">Checkbox</li>
+                    <li jzzf_type="f">Output</li>
                 </ul>
             </div>
             <div id="jzzf_elements">

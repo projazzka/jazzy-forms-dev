@@ -31,22 +31,19 @@ function jzzf_view_front($form) {
     foreach($form->elements as $element) {
         $tpl->before($element);
         switch($element->type) {
-            case 'number':
+            case 'n':
                 $tpl->number($element);
                 break;
-            case 'hidden':
-                $tpl->hidden($element);
-                break;
-            case 'output':
+            case 'f':
                 $tpl->output($element);
                 break;
-            case 'radio':
+            case 'r':
                 $tpl->radio($element);
                 break;
-            case 'dropdown':
+            case 'd':
                 $tpl->dropdown($element);
                 break;
-            case 'checkbox':
+            case 'c':
                 $tpl->checkbox($element);
                 break;
         }
