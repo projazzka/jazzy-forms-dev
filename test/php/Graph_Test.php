@@ -13,14 +13,15 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 
     function test_empty() {
         $result = jzzf_get_graph(array());
-        $this->assertEquals(array(array(), array(), array()), $result);
+        $this->assertEquals(array('data'=>array(), 'types'=>array(), 'dependencies'=>array(), 'formulas'=>array()), $result);
     }
 	
 	function test_simple() {
 		$elements = array(
 			(object) array('id'=> 'num', 'type'=> 'n')
 		);
-		list($types, $dependencies, $formulas) = jzzf_get_graph($elements);
+		$graph = jzzf_get_graph($elements);
+		extract($graph);
 		$this->assertEquals(array('num'=>'n'), $types);
 		$this->assertEquals(array(), $dependencies);
 		$this->assertEquals(array(), $formulas);
@@ -31,7 +32,8 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 			(object) array('id'=> 'num', 'type'=> 'n'),
 			(object) array('id'=> 'result', 'type'=> 'f', 'formula' => 'num*2')
 		);
-		list($types, $dependencies, $formulas) = jzzf_get_graph($elements);
+		$graph = jzzf_get_graph($elements);
+		extract($graph);
 		$this->assertEquals(array('num'=>'n', 'result'=>'f'), $types);
 		$this->assertEquals(array('num'=>array('result')), $dependencies);
 		$this->assertEquals(array('result'=>array(array('v', 'num'), array('n', '2'), array('o', '*'))), $formulas);
@@ -43,7 +45,8 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 			(object) array('id'=> 'subtotal', 'type'=> 'f', 'formula' => 'num*2'),
 			(object) array('id'=> 'total', 'type'=> 'f', 'formula' => 'subtotal+1')
 		);
-		list($types, $dependencies, $formulas) = jzzf_get_graph($elements);
+		$graph = jzzf_get_graph($elements);
+		extract($graph);
 		$this->assertEquals(array('num'=>'n', 'subtotal'=>'f', 'total'=>'f'), $types);
 		$this->assertEquals(array('num'=>array('subtotal'), 'subtotal'=>array('total')), $dependencies);
 		$this->assertEquals(

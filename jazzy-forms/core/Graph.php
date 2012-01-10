@@ -1,6 +1,7 @@
 <?php
 
 function jzzf_get_graph($elements) {
+    $data = array();
     $types = array();
     $dependencies = array();
     $formulas = array();
@@ -17,7 +18,7 @@ function jzzf_get_graph($elements) {
             }
         }
     }
-    return array($types, $dependencies, $formulas);
+    return compact('data', 'types', 'dependencies', 'formulas');
 }
 
 function jzzf_get_dependencies($formula) {
