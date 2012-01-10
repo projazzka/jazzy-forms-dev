@@ -18,7 +18,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 	
 	function test_simple() {
 		$elements = array(
-			(object) array('id'=> 'num', 'type'=> 'n')
+			(object) array('id'=> 'num', 'type'=> 'n', 'value' => 10)
 		);
 		$graph = jzzf_get_graph($elements);
 		extract($graph);
@@ -29,7 +29,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 
 	function test_single_dependency() {
 		$elements = array(
-			(object) array('id'=> 'num', 'type'=> 'n'),
+			(object) array('id'=> 'num', 'type'=> 'n', 'value' => 10),
 			(object) array('id'=> 'result', 'type'=> 'f', 'formula' => 'num*2')
 		);
 		$graph = jzzf_get_graph($elements);
@@ -41,7 +41,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 	
 	function test_multiple_dependency() {
 		$elements = array(
-			(object) array('id'=> 'num', 'type'=> 'n'),
+			(object) array('id'=> 'num', 'type'=> 'n', 'value' => 10),
 			(object) array('id'=> 'subtotal', 'type'=> 'f', 'formula' => 'num*2'),
 			(object) array('id'=> 'total', 'type'=> 'f', 'formula' => 'subtotal+1')
 		);
@@ -55,5 +55,46 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
 			$formulas
 		);
+	}
+	
+	function test_types_and_data() {
+		$elements = array(
+			(object) array('id'=> 'eins', 'type'=> 'n', 'value'=> 10),
+			(object) array('id'=> 'zwei', 'type'=> 'f','formula' => '3*x'),
+			(object) array(
+				'id'=> 'drei',
+				'type'=> 'r',
+				'options' => array(
+					(object) array('value' => 10),
+					(object) array('value' => 20),
+					(object) array('value' => 30),
+				)
+			),
+			(object) array(
+				'id'=> 'vier',
+				'type'=> 'd',
+				'options' => array(
+					(object) array('value' => 1),
+					(object) array('value' => 2),
+					(object) array('value' => 3),
+				)
+			),
+			(object) array('id'=> 'fuenf', 'type'=> 'c', 'value'=>10, 'value2'=>5)
+		);
+		$graph = jzzf_get_graph($elements);
+		$types = $graph['types'];
+		$data = $graph['data'];
+		$this->assertEquals(5, count($types));
+		$this->assertEquals(4, count($data));
+		$this->assertEquals('n', $types['eins']);
+		$this->assertEquals('f', $types['zwei']);
+		$this->assertEquals('r', $types['drei']);
+		$this->assertEquals('d', $types['vier']);
+		$this->assertEquals('c', $types['fuenf']);
+		$this->assertEquals(10, $data['eins']);
+		$this->assertArrayNotHasKey('zwei', $data);
+		$this->assertEquals(array(10,20,30), $data['drei']);
+		$this->assertEquals(array(1,2,3), $data['vier']);
+		$this->assertEquals(array(5,10), $data['fuenf']);
 	}
 }

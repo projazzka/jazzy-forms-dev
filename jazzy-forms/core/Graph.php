@@ -17,6 +17,9 @@ function jzzf_get_graph($elements) {
                 $dependencies[$dep][] = $id;
             }
         }
+        if($values = jzzf_get_values($elem)) {
+            $data[$id] = $values;
+        }
     }
     return compact('data', 'types', 'dependencies', 'formulas');
 }
@@ -29,4 +32,34 @@ function jzzf_get_dependencies($formula) {
         }
     }
     return $deps;
+}
+
+function jzzf_get_values($element) {
+    $values = null;
+    switch($element->type) {
+        case 'n':
+            if($val = $element->value) {
+                $values = $val;
+            } else {
+                $values = 1;
+            }
+            break;
+        case 'c':
+            $val = $element->value ? $element->value : 1;
+            $val2 = $element->value2 ? $element->value2 : 0;
+            $values = array($val2, $val);
+            break;
+        case 'r':
+        case 'd':
+            $values = array();
+            foreach($element->options as $opt) {
+                if($opt->value) {
+                    $values[] = $opt->value;
+                } else {
+                    $values[] = 0;
+                }
+            }
+            break;
+    }
+    return $values;
 }
