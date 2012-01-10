@@ -18,7 +18,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 	
 	function test_simple() {
 		$elements = array(
-			(object) array('id'=> 'num', 'type'=> 'n', 'value' => 10)
+			(object) array('name'=> 'num', 'type'=> 'n', 'value' => 10)
 		);
 		$graph = jzzf_get_graph($elements);
 		extract($graph);
@@ -29,8 +29,8 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 
 	function test_single_dependency() {
 		$elements = array(
-			(object) array('id'=> 'num', 'type'=> 'n', 'value' => 10),
-			(object) array('id'=> 'result', 'type'=> 'f', 'formula' => 'num*2')
+			(object) array('name'=> 'num', 'type'=> 'n', 'value' => 10),
+			(object) array('name'=> 'result', 'type'=> 'f', 'formula' => 'num*2')
 		);
 		$graph = jzzf_get_graph($elements);
 		extract($graph);
@@ -41,9 +41,9 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 	
 	function test_multiple_dependency() {
 		$elements = array(
-			(object) array('id'=> 'num', 'type'=> 'n', 'value' => 10),
-			(object) array('id'=> 'subtotal', 'type'=> 'f', 'formula' => 'num*2'),
-			(object) array('id'=> 'total', 'type'=> 'f', 'formula' => 'subtotal+1')
+			(object) array('name'=> 'num', 'type'=> 'n', 'value' => 10),
+			(object) array('name'=> 'subtotal', 'type'=> 'f', 'formula' => 'num*2'),
+			(object) array('name'=> 'total', 'type'=> 'f', 'formula' => 'subtotal+1')
 		);
 		$graph = jzzf_get_graph($elements);
 		extract($graph);
@@ -59,10 +59,10 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 	
 	function test_types_and_data() {
 		$elements = array(
-			(object) array('id'=> 'eins', 'type'=> 'n', 'value'=> 10),
-			(object) array('id'=> 'zwei', 'type'=> 'f','formula' => '3*x'),
+			(object) array('name'=> 'eins', 'type'=> 'n', 'value'=> 10),
+			(object) array('name'=> 'zwei', 'type'=> 'f','formula' => '3*x'),
 			(object) array(
-				'id'=> 'drei',
+				'name'=> 'drei',
 				'type'=> 'r',
 				'options' => array(
 					(object) array('value' => 10),
@@ -71,7 +71,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 				)
 			),
 			(object) array(
-				'id'=> 'vier',
+				'name'=> 'vier',
 				'type'=> 'd',
 				'options' => array(
 					(object) array('value' => 1),
@@ -79,7 +79,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 					(object) array('value' => 3),
 				)
 			),
-			(object) array('id'=> 'fuenf', 'type'=> 'c', 'value'=>10, 'value2'=>5)
+			(object) array('name'=> 'fuenf', 'type'=> 'c', 'value'=>10, 'value2'=>5)
 		);
 		$graph = jzzf_get_graph($elements);
 		$types = $graph['types'];
