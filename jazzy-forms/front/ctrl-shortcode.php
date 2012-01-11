@@ -1,6 +1,9 @@
 <?php
 
 require_once(JZZF_CORE . 'Model.php');
+require_once(JZZF_CORE . 'Graph.php');
+require_once(JZZF_CORE . 'Parser.php');
+require_once(JZZF_CORE . 'Tokenizer.php');
 require_once(JZZF_FRONT . 'tmpl-list.php');
 
 function jzzf_ctrl_shortcode($attr) {
@@ -26,6 +29,7 @@ function jzzf_view_front($form) {
     if(trim($form->css)) {
         $tpl->css($form->css);
     }
+    $tpl->graph(jzzf_get_graph($form->elements));
     $tpl->script($form);
     $tpl->head($form);
     foreach($form->elements as $element) {

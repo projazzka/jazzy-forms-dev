@@ -23,6 +23,16 @@ class Jzzf_List_Template {
 <?php
     }
     
+    function graph($graph) { extract($graph); ?>
+    <script type="text/javascript">
+        jzzf_data = <?php echo json_encode($data) ?>;
+        jzzf_types = <?php echo json_encode($types) ?>;
+        jzzf_dependencies = <?php echo json_encode($dependencies) ?>;
+        jzzf_formulas = <?php echo json_encode($formulas) ?>;
+    </script>
+<?php
+    }
+    
     function head($form) { ?>
 <div class="jzzf_form">
 <ul>
