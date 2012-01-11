@@ -36,25 +36,25 @@ class Jzzf_Parser {
             }
             return array(array('n', 0)) + $negative + array(array('o', '-'));
         }
-        return $this->operation('+-', 'product');
+        return $this->operation('sum', '+-', 'product');
     }
     
     private function product() {
-        return $this->operation('*/', 'exponentiation');
+        return $this->operation('product', '*/', 'exponentiation');
     }
     
     private function exponentiation() {
-        return $this->operation('^', 'term');
+        return $this->operation('exponentiation', '^', 'term');
     }
     
-    private function operation($operators, $subordinate) {
+    private function operation($name, $operators, $subordinate) {
         $left = $this->$subordinate();
         if(!$left) {
             return array();
         }
         if($this->ahead($operators)) {
             $op = $this->consume();
-            $right = $this->$subordinate();
+            $right = $this->$name();
             if(!$right) {
                 throw new Exception('missing right operand');
                 return array();
