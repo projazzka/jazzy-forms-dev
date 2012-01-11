@@ -4,7 +4,6 @@ class Jzzf_List_Template {
     function __construct($form) {}
 
     function script($form) {?>
-        <script type="text/javascript" src="<?php echo plugins_url('jazzy-forms.js', JZZF_ROOT . 'front/tmpl-list.php') ?>"></script>
 <?php
     }
     

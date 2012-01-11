@@ -93,7 +93,9 @@ function jzzf_conditional_queuing($posts) {
 	}
 
 	if ( $shortcode_found ) {
+		wp_register_script( 'jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), '1.0' );
 		wp_enqueue_script('jquery');
+		wp_enqueue_script('jazzy-forms');
 	}
 
 	return $posts;
