@@ -55,8 +55,12 @@
             case 'n':
                 return $('#jzzf_' + id).val() * jzzf_data[id];
             case 'r':
-                var idx = $('input:radio[name=jzzf_' + id + ']:checked').val();
-                return jzzf_data[id][idx];
+                var idx = $('input:radio[name=jzzf_' + id + ']:checked').index('input:radio[name=jzzf_' + id + ']');
+                if(idx>0) {
+                    return jzzf_data[id][idx];
+                } else {
+                    return 0;
+                }
             case "c":
                 return $('#jzzf_' + id).is(':checked') ? jzzf_data[id][1] : jzzf_data[id][0];
             case 'd':
@@ -86,8 +90,8 @@
                     stack.push(evaluate(f[i][1]));
                     break;
                 case 'o':
-                    var right = stack.pop();
-                    var left = stack.pop();
+                    var right = parseFloat(stack.pop());
+                    var left = parseFloat(stack.pop());
                     var result;
                     switch(f[i][1]) {
                         case '+':
