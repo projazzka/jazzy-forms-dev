@@ -29,7 +29,8 @@ function jzzf_view_front($form) {
     if(trim($form->css)) {
         $tpl->css($form->css);
     }
-    $tpl->graph(jzzf_get_graph($form->elements));
+    $graph = jzzf_get_graph($form->elements);
+    $tpl->graph($graph);
     $tpl->script($form);
     $tpl->head($form);
     foreach($form->elements as $element) {
@@ -39,6 +40,9 @@ function jzzf_view_front($form) {
                 $tpl->number($element);
                 break;
             case 'f':
+                if(!in_array($element->name, $graph['formulas'])) {
+                    $element->invalid = true;
+                }
                 $tpl->output($element);
                 break;
             case 'r':

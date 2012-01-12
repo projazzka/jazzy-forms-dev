@@ -10,14 +10,20 @@ function jzzf_get_graph($elements) {
         $type = $elem->type;
         $types[$id] = $type;
         if($type == "f") {
-            $formula = jzzf_parse($elem->formula);
-            $formulas[$id] = $formula;
-            $deps = jzzf_get_dependencies($formula);
-            foreach($deps as $dep) {
-                $dependencies[$dep][] = $id;
+            $formula = null;
+            try {
+                $formula = jzzf_parse($elem->formula);
+            } catch(Exception $e) {
+                
             }
-        }
-        if($values = jzzf_get_values($elem)) {
+            if($formula) {
+                $formulas[$id] = $formula;
+                $deps = jzzf_get_dependencies($formula);
+                foreach($deps as $dep) {
+                    $dependencies[$dep][] = $id;
+                }
+            }
+        } elseif($values = jzzf_get_values($elem)) {
             $data[$id] = $values;
         }
     }
