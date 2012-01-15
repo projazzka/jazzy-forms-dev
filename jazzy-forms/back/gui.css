@@ -44,9 +44,16 @@
 #jzzf_elements_toolbox {
     display: block;
     overflow: visible;
-    width: 300px;
+    width: 200px;
     float: left;
     clear: both;
+}
+
+#jzzf_elements_push_for_action {
+    text-align: center;
+    margin-top: 80px;
+    float: left;
+    width: 150px;
 }
 
 #jzzf_elements {

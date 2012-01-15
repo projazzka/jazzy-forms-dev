@@ -142,7 +142,7 @@
     <div id="jzzf_main">
         <div class="jzzf_section" id="jzzf_section_elements">
             <div id="jzzf_elements_toolbox">
-                <div id="jzzf_elements_toolbox_description">Click or drag to add</div>
+            <div id="jzzf_elements_toolbox_description">Available form elements</div>
                 <ul id="jzzf_elements_toolbox_items">
                     <li jzzf_type="n">Number Entry</li>
                     <li jzzf_type="d">Drop-down Menu</li>
@@ -151,8 +151,9 @@
                     <li jzzf_type="f">Output</li>
                 </ul>
             </div>
+            <div id="jzzf_elements_push_for_action">Click or drag to add<br>==&gt;</div>
             <div id="jzzf_elements">
-                Form Elements
+                Form elements
                 <ul id="jzzf_elements_list">
                 </ul>
             </div>
