@@ -105,7 +105,7 @@
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
                 <tr class="jzzf_option">
-                    <td class="jzzf_option_drag">[drag]</td>
+                    <td class="jzzf_option_drag">&nbsp;</td>
                     <td><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
                     <td><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
                     <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
