@@ -15,15 +15,15 @@
     margin: 10px 0 0 20px;
     list-style-type: none;
     display: block;
-    height: 20px;
+    height: 30px;
 }
 
 #jzzf_tabs li {
-    display: inline;
-    padding: 4px;
+    display: inline-block;
+    padding: 8px 12px;
     margin: 0 0px 0 0px;
     border: 1px solid #ddd;
-    height: 24px;
+    height: 13px;
     z-index: 10;
     background-color: #eee;
 }
