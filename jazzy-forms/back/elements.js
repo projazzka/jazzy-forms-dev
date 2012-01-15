@@ -67,11 +67,11 @@ function jzzf_element($) {
         var self = this;
         element.find('.jzzf_option_add').click(function() {
             var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
-            $(this).parent().find('.jzzf_option_table').append(self.html_option({}, counter));
+            $(this).parent().find('.jzzf_option_table tbody').append(self.html_option({}, counter));
             self.bind_options();
             return false;
         });
-        element.find('.jzzf_option_table').sortable();
+        element.find('.jzzf_option_table tbody').sortable();
         this.bind_options();
     }
 
