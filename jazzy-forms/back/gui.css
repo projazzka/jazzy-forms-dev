@@ -75,6 +75,7 @@
 #jzzf_elements {
     overflow: hidden;
     margin-left: 400px;
+    width: 500px;
 }
 
 #jzzf_elements_list {
@@ -102,7 +103,21 @@
 
 .jzzf_element_body {
     background: #fff;
-    padding: 5px;
+    padding: 8px 12px;
+}
+
+.jzzf_element_body label, .jzzf_section > ul > li > label {
+    display: inline-block;
+    width: 100px;
+    margin-right: 12px;
+}
+
+.jzzf_element_body fieldset ul li input, .jzzf_section > ul > li > input[type=text]  {
+    width: 280px;
+}
+
+.jzzf_element_body legend {
+    padding: 8px 0;
 }
 
 .jzzf_element.jzzf_collapsed .jzzf_element_body {
