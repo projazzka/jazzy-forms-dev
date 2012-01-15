@@ -118,6 +118,7 @@
 <h2>Jazzy Forms</h2>
 <div id="jzzf_selection">
     <form id="jzzf_delete_form" method="post" action="#">
+    <label for="jzzf_selector">Form:</label>
     <select id="jzzf_selector">
 <?php $i=0; foreach($forms as $form) : ?>
         <option value="<?php echo $i++ ?>"><?php echo htmlspecialchars($form->title) ?></option>
@@ -142,7 +143,7 @@
     <div id="jzzf_main">
         <div class="jzzf_section" id="jzzf_section_elements">
             <div id="jzzf_elements_toolbox">
-            <div id="jzzf_elements_toolbox_description">Available form elements</div>
+            <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
                 <ul id="jzzf_elements_toolbox_items">
                     <li jzzf_type="n">Number Entry</li>
                     <li jzzf_type="d">Drop-down Menu</li>
@@ -153,7 +154,7 @@
             </div>
             <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>
             <div id="jzzf_elements">
-                Form elements
+            <div class="jzzf_column_heading">Form elements</div>
                 <ul id="jzzf_elements_list">
                 </ul>
             </div>

@@ -1,14 +1,18 @@
 
-#jzzf_selection {
-    padding: 10px;
-}
-
 #jzzf_selection select {
     width: 500px;
 }
 
+#jzzf_selection label {
+    margin-right: 12px;    
+}
+
 #jzzf_selection a {
     padding-left: 5px;
+}
+
+.jzzf_column_heading {
+    margin-bottom: 10px;
 }
 
 #jzzf_tabs {
@@ -21,7 +25,7 @@
 #jzzf_tabs li {
     display: inline-block;
     padding: 8px 12px;
-    margin: 0 0px 0 0px;
+    margin: 0 4px 0 0px;
     border: 1px solid #ddd;
     height: 13px;
     z-index: 10;
@@ -37,7 +41,7 @@
     overflow: hidden;
     background-color: #fff;
     margin: 0 10px 10px 0px;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #ddd;
 }
 
@@ -47,6 +51,18 @@
     width: 200px;
     float: left;
     clear: both;
+}
+
+#jzzf_elements_toolbox_items items {
+    padding: 10px;
+}
+
+#jzzf_elements_toolbox_items li {
+    background: #ddd;
+    border: 1px solid #ccc;
+    padding: 8px;
+    height: 20px;
+    width: 100px;
 }
 
 #jzzf_elements_push_for_action {
@@ -76,6 +92,8 @@
 .jzzf_element_header {
     background: #ddd;
     border-bottom: 1px solid #ddd;
+    padding: 8px;
+    height: 20px;
 }
 
 .jzzf_element_header .jzzf_element_delete {
@@ -89,4 +107,13 @@
 
 .jzzf_element.jzzf_collapsed .jzzf_element_body {
     display: none;
+}
+
+.jzzf_option_table thead tr th {
+    text-align: left;
+    font-weight: normal;
+}
+
+#jzzf_form_form input {
+    margin-right: 12px;
 }
