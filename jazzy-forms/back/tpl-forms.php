@@ -83,10 +83,6 @@
     </fieldset>
 {{>foot}}
 </script>
-<script id="jzzf_tmpl_hidden" type="text/html">
-{{>common}}
-{{>foot}}
-</script>
 <script id="jzzf_tmpl_options" type="text/html">
         <fieldset>
             <legend>Options</legend>
