@@ -8,8 +8,7 @@ function jzzf_element($) {
         return ++jzzf_element.incremental;
     }
     
-    this.add = function(element, placeholder) {
-        $('#jzzf_elements_list li').addClass('jzzf_collapsed');
+    this.add = function(element, placeholder, collapsed) {
         var html = this.html_element(element.type, element);
         var li;
         if(placeholder) {
@@ -18,6 +17,9 @@ function jzzf_element($) {
         } else {
             $('#jzzf_elements_list').append(html);
             li = $('#jzzf_elements_list li:last-child');
+        }
+        if(collapsed === undefined || collapsed) {
+            li.addClass('jzzf_collapsed');
         }
         this.bind(li);
     }

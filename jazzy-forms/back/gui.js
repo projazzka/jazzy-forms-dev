@@ -13,7 +13,7 @@
         var type = item.attr('jzzf_type');
         var obj = new_element(type);
         var gui = jzzf_element.create(type);
-        gui.add(obj, remove ? item : null);
+        gui.add(obj, remove ? item : null, false);
     }
 
     function delete_form() {
