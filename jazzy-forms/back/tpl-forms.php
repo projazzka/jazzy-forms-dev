@@ -151,7 +151,7 @@
                     <li jzzf_type="f">Output</li>
                 </ul>
             </div>
-            <div id="jzzf_elements_push_for_action">Click or drag to add<br>==&gt;</div>
+            <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>
             <div id="jzzf_elements">
                 Form elements
                 <ul id="jzzf_elements_list">
