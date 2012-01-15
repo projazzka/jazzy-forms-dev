@@ -25,6 +25,7 @@ function jzzf_element($) {
     this.html_element = function(tmpl_name, data) {
         var counter = this.counter();
         data.counter = counter;
+        data.typeString = $('#jzzf_elements_toolbox_items li[jzzf_type="' + data.type + '"]').text();
         if(data.options) {
             $.each(data.options, function(idx) {
                 data.options[idx].counter = counter;

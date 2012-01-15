@@ -3,7 +3,7 @@
     <input type="hidden" value="{{id}}" class="jzzf_element_id">
     <input type="hidden" value="{{counter}}" class="jzzf_element_counter">
     <div class="jzzf_element_header">
-        <span class="jzzf_type jzzf_type_{{type}}">[  ]</span>
+        <span class="jzzf_type jzzf_type_{{type}}">[{{typeString}}]</span>
         <span class="jzzf_header_title">{{title}}</span>
         <a href="#" class="jzzf_element_delete">(x)</a>
     </div>
