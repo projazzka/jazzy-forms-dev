@@ -57,9 +57,13 @@
             $('#message').hide();
         });
         
+        $('#jzzf_name').change(update_shortcode);
         $('#jzzf_form_save').click(save);
     }
     
+    function update_shortcode() {
+        $('#jzzf_shortcode').val('[jazzy form="' + $('#jzzf_name').val() + '"]');
+    }
     function set_form(form) {
         if(form==null) {
             $('#jzzf_form,#jzzf_selection').hide();
@@ -83,6 +87,7 @@
                 element.add(form.elements[i], null);
             }
         }
+        update_shortcode();
     }
     
     function get_elements() {

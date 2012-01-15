@@ -179,6 +179,13 @@
                     <label for="jzzf_name">Form ID</label>
                     <input type="text" id="jzzf_name">
                 </li>
+                <li>
+                    <label for="jzzf_shortcode">Shortcode</label>
+                    <input type="text" id="jzzf_shortcode" readonly="readonly">
+                    <p class="jzzf_shortcode_info">
+                        Please, copy and paste this shortcode into your page or post in order to insert this form (square brackets included).
+                    </p>
+                </li>
                 
             </ul>
         </div>
