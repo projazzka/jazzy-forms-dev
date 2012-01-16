@@ -108,12 +108,21 @@
 
 .jzzf_element_body label, .jzzf_section > ul > li > label {
     display: inline-block;
-    width: 100px;
+    width: 140px;
+    margin-right: 12px;
+}
+
+.jzzf_section > ul > li > input[type=checkbox]  {
     margin-right: 12px;
 }
 
 .jzzf_element_body fieldset ul li input, .jzzf_section > ul > li > input[type=text]  {
     width: 280px;
+}
+
+#jzzf_css {
+    width: 400px;
+    height: 200px;
 }
 
 .jzzf_element_body legend {
