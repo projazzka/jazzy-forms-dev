@@ -88,10 +88,10 @@
             <legend>Options</legend>
             <table class="jzzf_option_table">
             <thead><tr>
-                <th></th>
-                <th>Default</th>
-                <th>Title</th>
-                <th>Value</th>
+                <th class="jzzf_column_drag"></th>
+                <th class="jzzf_column_default">Default</th>
+                <th class="jzzf_column_title">Title</th>
+                <th class="jzzf_column_value">Value</th>
                 <th></th>
             </tr></thead>
             <tbody>
@@ -105,10 +105,10 @@
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
                 <tr class="jzzf_option">
-                    <td class="jzzf_option_drag">&nbsp;</td>
-                    <td><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
-                    <td><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
-                    <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
+                    <td class="jzzf_column_drag jzzf_option_drag">&nbsp;</td>
+                    <td class="jzzf_column_default"><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
+                    <td class="jzzf_column_title"><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
+                    <td class="jzzf_column_value"><input type="text" value="{{value}}" class="jzzf_option_value"></td>
                     <td><a href="" class="jzzf_option_delete">(x)</a></td>
                 </tr>
 </script>

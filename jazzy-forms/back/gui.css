@@ -129,6 +129,10 @@
     font-weight: normal;
 }
 
+.jzzf_column_title, .jzzf_column_value {
+    width: 174px;
+}
+
 #jzzf_form_form input {
     margin-right: 12px;
 }
