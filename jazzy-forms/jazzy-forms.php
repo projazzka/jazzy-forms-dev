@@ -8,7 +8,7 @@ Author: Igor Prochazka
 Author URI: http://www.l90r.com/
 
 ---------------------------------------------------------------------
-	This file is part of the WordPress plugin "Jazzy Forms"
+    This file is part of the WordPress plugin "Jazzy Forms"
     Copyright (C) 2012 by Igor Prochazka
 
     This program is free software: you can redistribute it and/or modify
