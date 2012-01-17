@@ -88,10 +88,10 @@
             <legend>Options</legend>
             <table class="jzzf_option_table">
             <thead><tr>
-                <th></th>
-                <th>Default</th>
-                <th>Title</th>
-                <th>Value</th>
+                <th class="jzzf_column_drag"></th>
+                <th class="jzzf_column_default">Default</th>
+                <th class="jzzf_column_title">Title</th>
+                <th class="jzzf_column_value">Value</th>
                 <th></th>
             </tr></thead>
             <tbody>
@@ -105,10 +105,10 @@
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
                 <tr class="jzzf_option">
-                    <td class="jzzf_option_drag">&nbsp;</td>
-                    <td><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
-                    <td><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
-                    <td><input type="text" value="{{value}}" class="jzzf_option_value"></td>
+                    <td class="jzzf_column_drag jzzf_option_drag">&nbsp;</td>
+                    <td class="jzzf_column_default"><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
+                    <td class="jzzf_column_title"><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
+                    <td class="jzzf_column_value"><input type="text" value="{{value}}" class="jzzf_option_value"></td>
                     <td><a href="" class="jzzf_option_delete">(x)</a></td>
                 </tr>
 </script>
@@ -118,6 +118,7 @@
 <h2>Jazzy Forms</h2>
 <div id="jzzf_selection">
     <form id="jzzf_delete_form" method="post" action="#">
+    <label for="jzzf_selector">Form:</label>
     <select id="jzzf_selector">
 <?php $i=0; foreach($forms as $form) : ?>
         <option value="<?php echo $i++ ?>"><?php echo htmlspecialchars($form->title) ?></option>
@@ -142,7 +143,7 @@
     <div id="jzzf_main">
         <div class="jzzf_section" id="jzzf_section_elements">
             <div id="jzzf_elements_toolbox">
-            <div id="jzzf_elements_toolbox_description">Available form elements</div>
+            <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
                 <ul id="jzzf_elements_toolbox_items">
                     <li jzzf_type="n">Number Entry</li>
                     <li jzzf_type="d">Drop-down Menu</li>
@@ -151,9 +152,9 @@
                     <li jzzf_type="f">Output</li>
                 </ul>
             </div>
-            <div id="jzzf_elements_push_for_action">Click or drag to add<br>==&gt;</div>
+            <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>
             <div id="jzzf_elements">
-                Form elements
+            <div class="jzzf_column_heading">Form elements</div>
                 <ul id="jzzf_elements_list">
                 </ul>
             </div>
@@ -164,7 +165,7 @@
                     <input type="checkbox" id="jzzf_default_css"><label for="jzzf_default_css">Load default theme</label>
                 </li>
                 <li>
-                    <label for="jzzf_css">Custom CSS</label>
+                    <label for="jzzf_css">Custom CSS</label><br>
                     <textarea id="jzzf_css"></textarea>
                 </li>
             </ul>

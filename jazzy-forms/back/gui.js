@@ -13,7 +13,7 @@
         var type = item.attr('jzzf_type');
         var obj = new_element(type);
         var gui = jzzf_element.create(type);
-        gui.add(obj, remove ? item : null);
+        gui.add(obj, remove ? item : null, false);
     }
 
     function delete_form() {
@@ -123,7 +123,7 @@
         var title = $('#jzzf_new_form_title').val();
         var id_helper = new jzzf_id(jzzf_forms);
         var name = id_helper.suggest_name(title);
-        form = {'title': title, 'name': name, 'elements': []};
+        form = {'title': title, 'name': name, 'elements': [], 'theme': 1};
         elements = [];
         $('#jzzf_form').show();
         var option = $('<option>');

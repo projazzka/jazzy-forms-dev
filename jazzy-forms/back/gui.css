@@ -1,29 +1,33 @@
 
-#jzzf_selection {
-    padding: 10px;
-}
-
 #jzzf_selection select {
     width: 500px;
+}
+
+#jzzf_selection label {
+    margin-right: 12px;    
 }
 
 #jzzf_selection a {
     padding-left: 5px;
 }
 
+.jzzf_column_heading {
+    margin-bottom: 10px;
+}
+
 #jzzf_tabs {
     margin: 10px 0 0 20px;
     list-style-type: none;
     display: block;
-    height: 20px;
+    height: 30px;
 }
 
 #jzzf_tabs li {
-    display: inline;
-    padding: 4px;
-    margin: 0 0px 0 0px;
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px 0 0px;
     border: 1px solid #ddd;
-    height: 24px;
+    height: 13px;
     z-index: 10;
     background-color: #eee;
 }
@@ -37,7 +41,7 @@
     overflow: hidden;
     background-color: #fff;
     margin: 0 10px 10px 0px;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid #ddd;
 }
 
@@ -47,6 +51,18 @@
     width: 200px;
     float: left;
     clear: both;
+}
+
+#jzzf_elements_toolbox_items items {
+    padding: 10px;
+}
+
+#jzzf_elements_toolbox_items li {
+    background: #ddd;
+    border: 1px solid #ccc;
+    padding: 8px;
+    height: 20px;
+    width: 100px;
 }
 
 #jzzf_elements_push_for_action {
@@ -59,6 +75,7 @@
 #jzzf_elements {
     overflow: hidden;
     margin-left: 400px;
+    width: 500px;
 }
 
 #jzzf_elements_list {
@@ -76,6 +93,8 @@
 .jzzf_element_header {
     background: #ddd;
     border-bottom: 1px solid #ddd;
+    padding: 8px;
+    height: 20px;
 }
 
 .jzzf_element_header .jzzf_element_delete {
@@ -84,9 +103,45 @@
 
 .jzzf_element_body {
     background: #fff;
-    padding: 5px;
+    padding: 8px 12px;
+}
+
+.jzzf_element_body label, .jzzf_section > ul > li > label {
+    display: inline-block;
+    width: 140px;
+    margin-right: 12px;
+}
+
+.jzzf_section > ul > li > input[type=checkbox]  {
+    margin-right: 12px;
+}
+
+.jzzf_element_body fieldset ul li input, .jzzf_section > ul > li > input[type=text]  {
+    width: 280px;
+}
+
+#jzzf_css {
+    width: 400px;
+    height: 200px;
+}
+
+.jzzf_element_body legend {
+    padding: 8px 0;
 }
 
 .jzzf_element.jzzf_collapsed .jzzf_element_body {
     display: none;
+}
+
+.jzzf_option_table thead tr th {
+    text-align: left;
+    font-weight: normal;
+}
+
+.jzzf_column_title, .jzzf_column_value {
+    width: 174px;
+}
+
+#jzzf_form_form input {
+    margin-right: 12px;
 }
