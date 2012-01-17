@@ -1,0 +1,78 @@
+=== Jazzy Forms ===
+Contributors: jazzigor
+Donate link: http://www.jazzyforms.com/
+Tags: forms, form generator, calculator, price calculator, cost estimate
+Requires at least: 3.2.1
+Tested up to: 3.3
+Stable tag: 0.9
+
+Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
+
+== Description ==
+
+Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
+
+Features:
+
+* Form insertion into posts or pages
+* Easy form set-up with drag and drop
+* Real-time formula evaluation
+
+Form elements:
+
+* Number entry
+* Radio buttons
+* Drop-down menu
+* Check-boxes
+* Output
+* Update button
+
+== Installation ==
+
+Install and activate the plugin. See the Frequently Asked Questions (FAQ) section on how to set up forms and insert them into your site.
+
+== Frequently Asked Questions ==
+
+= Can I see a demo somewhere? =
+
+Go to
+http://www.l90r.com/posts/jazzy-forms-demo
+
+= Where is the Jazzy Forms administration screen? =
+
+This software adds a "Forms" item to WordPress'es menu in the sidebar. That's where you set up your forms.
+
+= How to create a new form ? =
+
+On the Forms screen, add a new form, then drag the desired elements into it, change their titles and settings. Finally don't forget to hit the Save button.
+
+= How to insert a form on my site? =
+
+Simply insert the following shortcode in the post or page you want the form to appear in:
+
+[jazzy form="FORM_ID"]
+
+Replace FORM_ID with the ID of the form you want to add. The complete shortcode for your form is also displayed on its administration screen in the "General" tab. Copy and paste it from there.
+
+= What are element IDs good for ? =
+
+Each element is assigned a so called ID (identifier) that you can choose. These IDs are used to reference the form elements' values in formulas. IDs must start with a letter (a-z) and be all lower-case characters or numbers. Special characters or white space are not permitted.
+
+= Do you accept donations? =
+
+Thank you. For this project your feedback, your ideas and suggestions are much more valuable for me than your money! So please drop me an email instead.
+
+= I have a suggestion =
+
+Bug reports and support requests are handled in the official WordPress forum. You can also get in touch with me at jazzyforms@gmail.com and twitter.com/jazzyforms .
+
+I would love to gain insight about the way you are using this software and the things you are missing. Please help me building up a really useful product.
+
+== Screenshots ==
+
+== Changelog ==
+
+= 0.9 =
+* Initial release (beta)
+
+== Upgrade Notice ==
