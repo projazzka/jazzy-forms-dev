@@ -52,7 +52,8 @@ function jzzf_admin() {
 }
 
 function jzzf_forms() {
-	require_once('back/ctrl-forms.php');
+	require_once(JZZF_BACK . 'ctrl-forms.php');
+	require_once(JZZF_GENERATED . 'Basic_Model.php');
 	jzzf_ctrl_forms();
 }
 
@@ -76,7 +77,11 @@ function jzzf_activate() {
 }
 
 function jzzf_shortcode( $attr ) {
-	require_once('front/ctrl-shortcode.php');
+	require_once(JZZF_FRONT . 'ctrl-shortcode.php');
+	require_once(JZZF_GENERATED . 'Basic_Model.php');
+	require_once(JZZF_CORE . 'Graph.php');
+	require_once(JZZF_CORE . 'Parser.php');
+	require_once(JZZF_CORE . 'Tokenizer.php');
 	return jzzf_ctrl_shortcode($attr);
 }
 

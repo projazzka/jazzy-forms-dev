@@ -1,7 +1,5 @@
 <?php
 
-require_once( JZZF_CORE . '/model.php');
-
 function jzzf_ctrl_forms() {
     if($_POST['delete']) {
         if(jzzf_delete_form($_POST['delete'])) {
