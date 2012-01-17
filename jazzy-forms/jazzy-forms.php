@@ -87,18 +87,20 @@ function jzzf_shortcode( $attr ) {
 
 // Trick from http://goo.gl/5JnKZ
 function jzzf_conditional_queuing($posts) {
-	if ( empty($posts) ) return $posts;
+	if (empty($posts)) {
+		return $posts;
+	}
 
 	$shortcode_found = false;
-	foreach ( $posts as $post ){
-		if ( stripos($post->post_content, '[jazzy') ){
+	foreach($posts as $post) {
+		if(stripos($post->post_content, '[jazzy') !== false) {
 			$shortcode_found = true;
 			break;
 		}
 	}
 
-	if ( $shortcode_found ) {
-		wp_register_script( 'jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), '1.0' );
+	if($shortcode_found) {
+		wp_register_script('jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), '1.0');
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('jazzy-forms');
 	}
