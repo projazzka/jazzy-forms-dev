@@ -1,4 +1,4 @@
-.jzzf_form * {
+.jzzf_form div, .jzzf_form p, .jzzf_form ul, .jzzf_form li, .jzzf_form span {
 	border: 0;
 	font-family: inherit;
 	font-size: 100%;
