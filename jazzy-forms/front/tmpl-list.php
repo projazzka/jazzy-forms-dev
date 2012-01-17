@@ -91,7 +91,11 @@ class Jzzf_List_Template {
     function output($element) { ?>
         <label class="jzzf_element_label jzzf_output_label" for="jzzf_<?php echo htmlspecialchars($name) ?>"><?php echo htmlspecialchars($element->title) ?></label>
         <input type="text" readonly="readonly" id="jzzf_<?php echo htmlspecialchars($element->name) ?>"<?php if($element->invalid) : ?> value="Invalid formula"<?php endif ?>>
-        <!-- <?php print_r($element) ?> -->
+<?php
+    }
+
+    function update($element) { ?>
+        <input type="submit" id="jzzf_<?php echo htmlspecialchars($element->name) ?>" value="<?php echo htmlspecialchars($element->title) ?>">
 <?php
     }
 

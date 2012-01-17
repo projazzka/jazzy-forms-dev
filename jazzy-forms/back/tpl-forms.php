@@ -83,6 +83,10 @@
     </fieldset>
 {{>foot}}
 </script>
+<script id="jzzf_tmpl_u" type="text/html">
+{{>common}}
+{{>foot}}
+</script>
 <script id="jzzf_tmpl_options" type="text/html">
         <fieldset>
             <legend>Options</legend>
@@ -150,6 +154,7 @@
                     <li jzzf_type="r">Radio Buttons</li>
                     <li jzzf_type="c">Checkbox</li>
                     <li jzzf_type="f">Output</li>
+                    <li jzzf_type="u">Update Button</li>
                 </ul>
             </div>
             <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>

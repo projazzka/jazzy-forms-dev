@@ -50,6 +50,9 @@ function jzzf_view_front($form) {
             case 'c':
                 $tpl->checkbox($element);
                 break;
+            case 'u':
+                $tpl->update($element);
+                break;
         }
         $tpl->after($element);
     }
