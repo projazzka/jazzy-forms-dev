@@ -33,11 +33,6 @@ Install and activate the plugin. See the Frequently Asked Questions (FAQ) sectio
 
 == Frequently Asked Questions ==
 
-= Can I see a demo somewhere? =
-
-Go to
-http://www.l90r.com/posts/jazzy-forms-demo
-
 = Where is the Jazzy Forms administration screen? =
 
 This software adds a "Forms" item to WordPress'es menu in the sidebar. That's where you set up your forms.
