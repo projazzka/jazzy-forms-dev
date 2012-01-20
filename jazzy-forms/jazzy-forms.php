@@ -67,10 +67,20 @@ function jzzf_init() {
 function jzzf_activate() {
 	global $wpdb;
 	$schema = file( dirname(__FILE__) . '/generated/schema.sql' );
+
+	if(!empty($wpdb->charset)) {
+		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+	}
+	
+	if(!empty($wpdb->collate)) {
+		$charset_collate .= " COLLATE $wpdb->collate";
+	}
+		
 	foreach($schema as $line) {
 		$sql = trim($line);
 		if($sql && $sql[0] != '#') {
-			$sql = str_replace('{prefix}', $wpdb->prefix, $sql);
+			$sql = str_replace('{{prefix}}', $wpdb->prefix, $sql);
+			$sql = str_replace('{{charset_collate}}', $charset_collate, $sql);
 			$wpdb->query($sql);
 		}
 	}
