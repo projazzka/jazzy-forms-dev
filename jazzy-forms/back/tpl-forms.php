@@ -125,7 +125,7 @@
     <label for="jzzf_selector">Form:</label>
     <select id="jzzf_selector">
 <?php $i=0; foreach($forms as $form) : ?>
-        <option value="<?php echo $i++ ?>"><?php echo htmlspecialchars($form->title) ?></option>
+        <option value="<?php echo $i++ ?>"><?php echo esc_attr($form->title) ?></option>
 <?php endforeach; ?>
     </select>
     <input id="jzzf_delete" name="delete" type="hidden" value="0">
@@ -137,7 +137,7 @@
     <label for="jzzf_new_form_title">Title</label><input type="text" id="jzzf_new_form_title" name="jzzf_new_form_title" value="New Form">
     <input id="jzzf_new_form_add" type="button" value="Add"><a href="" id="jzzf_new_form_cancel">Cancel</a>
 </div>
-<div id="message" class="updated" <?php if(!$msg): ?>style="display:none"<?php endif ?>><p><?php echo htmlspecialchars($msg) ?></p></div>
+<div id="message" class="updated" <?php if(!$msg): ?>style="display:none"<?php endif ?>><p><?php esc_html_e($msg) ?></p></div>
 <div id="jzzf_form">
     <ul id="jzzf_tabs">
         <li jzzf_section="elements">Elements</li>
