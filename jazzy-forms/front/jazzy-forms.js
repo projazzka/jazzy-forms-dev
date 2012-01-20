@@ -56,7 +56,7 @@
                 return $('#jzzf_' + id).val() * jzzf_data[id];
             case 'r':
                 var idx = $('input:radio[name=jzzf_' + id + ']:checked').index('input:radio[name=jzzf_' + id + ']');
-                if(idx>0) {
+                if(idx>=0) {
                     return jzzf_data[id][idx];
                 } else {
                     return 0;
@@ -65,7 +65,11 @@
                 return $('#jzzf_' + id).is(':checked') ? jzzf_data[id][1] : jzzf_data[id][0];
             case 'd':
                 var idx = $('#jzzf_' + id + ' option:selected').index('#jzzf_' + id + ' option');
-                return jzzf_data[id][idx];
+                if(idx>=0) {
+                    return jzzf_data[id][idx];
+                } else {
+                    return 0;
+                }
             case 'f':
                 return formula(id);
         }
