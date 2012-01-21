@@ -77,6 +77,10 @@ I would love to gain insight about the way you are using this software and the t
 
 == Changelog ==
 
+= 0.9.1 (to be released) =
+* Correctly handle character sets and collations (including Russian)
+* Fixed values for radio buttons
+
 = 0.9 =
 * Initial release (beta)
 
