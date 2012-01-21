@@ -7,3 +7,6 @@ hyphen_underscore     | '_foo_123-2'              | '[["i", "_foo_123"], ["-"], 
 string                | '"foo bar"'               | '[["s", "foo bar"]]'
 escape_quote          | '"foo \"bar\""'           | '[["s", "foo \"bar\""]]'
 mixed                 | '(123+3^4)+len("foo")'    | '[["("], ["n", 123], ["+"], ["n", 3], ["^"], ["n", 4], [")"], ["+"], ["i", "len"], ["("], ["s", "foo"], [")"]]'
+prepended_whitespace  | '  foo'                   | '[["i", "foo"]]'
+appended_whitespace   | 'foo  '                   | '[["i", "foo"]]'
+mixed_whitespace      | ' ( 123 + 3 ^ 4 ) + len ( "foo" )' | '[["("], ["n", 123], ["+"], ["n", 3], ["^"], ["n", 4], [")"], ["+"], ["i", "len"], ["("], ["s", "foo"], [")"]]'
