@@ -81,6 +81,7 @@ I would love to gain insight about the way you are using this software and the t
 * Correctly handle character sets and collations (including Russian)
 * Fixed values for radio buttons
 * Accept whitespace in formulas
+* Adding insertion/queueing functions for the use in themes instead of the shortcode
 
 = 0.9 =
 * Initial release (beta)

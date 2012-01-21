@@ -95,6 +95,25 @@ function jzzf_shortcode( $attr ) {
 	return jzzf_ctrl_shortcode($attr);
 }
 
+function jzzf_enqueue() {
+	wp_register_script('jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), '1.0');
+	wp_enqueue_script('jquery');
+	wp_enqueue_script('jazzy-forms');
+}
+
+function jzzf_form($id, $attr=null, $return=false) {
+	if($attr === null) {
+		$attr = array();
+	}
+	$attr['form'] = $id;
+	$out = jzzf_shortcode($attr);
+	if($return) {
+		return $out;
+	} else {
+		echo $out;
+	}
+}
+
 // Trick from http://goo.gl/5JnKZ
 function jzzf_conditional_queuing($posts) {
 	if (empty($posts)) {
@@ -110,9 +129,7 @@ function jzzf_conditional_queuing($posts) {
 	}
 
 	if($shortcode_found) {
-		wp_register_script('jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), '1.0');
-		wp_enqueue_script('jquery');
-		wp_enqueue_script('jazzy-forms');
+		jzzf_enqueue();
 	}
 
 	return $posts;
