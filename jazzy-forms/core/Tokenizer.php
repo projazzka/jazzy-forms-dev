@@ -13,7 +13,10 @@ class Jzzf_Tokenizer {
     }
 
     public function output() {
-        while($this->rest) {
+        while(true) {
+            $this->rest = ltrim($this->rest);
+            if(!$this->rest)
+                break;
             if(!$this->operator()) {
                 if(!$this->positive()) {
                     if(!$this->bracket()) {
