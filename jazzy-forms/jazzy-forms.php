@@ -142,4 +142,7 @@ add_action('admin_menu', 'jzzf_admin' );
 add_action('init', 'jzzf_init' );
 add_shortcode( 'jazzy', 'jzzf_shortcode' );
 add_filter('the_posts', 'jzzf_conditional_queuing');
+add_action('jzzf_enqueue', 'jzzf_enqueue');
+add_action('jzzf_form', 'jzzf_form', 2);
+
 ?>
