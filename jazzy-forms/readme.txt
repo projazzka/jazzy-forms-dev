@@ -55,11 +55,11 @@ Replace FORM_ID with the ID of the form you want to add. The complete shortcode 
 
 Each element is assigned a so called ID (identifier) that you can choose. These IDs are used to reference the form elements' values in formulas. IDs must start with a letter (a-z) and be all lower-case characters or numbers. Special characters or white space are not permitted.
 
-= What's format or syntax of a formula ? =
+= What's the format or syntax of a formula ? =
 
 Formulas are thought to have a similar notation to what you are probably used to from popular spreadsheet programs. An example could be:
 
-(base_price+price*quantity)*(1+tax/100)
+`(base_price + price * quantity) * (1 + tax/100)`
 
 where "base_price", "price", "quantity" and "tax" are IDs of other existing form elements.
 
