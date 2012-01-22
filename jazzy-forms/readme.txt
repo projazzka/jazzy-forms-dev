@@ -55,7 +55,7 @@ Replace FORM_ID with the ID of the form you want to add. The complete shortcode 
 
 The short code is useful for posts or pages, without the need of any coding. Alternatively programmers and theme designers can also use the corresponding PHP functions to do so.
 
-Place the following code in the header, before a call to wp_head(), in order to queue Jazzy Form's JavaScript scripts:
+Place the following code in the header, before a call to wp_head(), in order to queue Jazzy Forms' JavaScript scripts:
 `<?php jzzf_queue() ?>`
 
 To insert a form with ID "form_id" do the following:
@@ -67,6 +67,11 @@ This prints out the form to the screen. If you need to process the output in any
 There are also corresponding WordPress actions:
 `<?php do_action('jzzf_queue') ?>`
 `<?php do_action('jzzf_form', 'form_id') ?>`
+
+= Is there a way to use a Jazzy Form within a widget? =
+
+There is no Jazzy Forms widget yet, but you can use the shortcode within WordPress'es default "Text" widget with minor trickery: use the `<?php jzzf_queue() ?>` in order to queue Jazzy Forms' JavaScript as described in the previous section. Then add the following line somewhere, e.g. at the and of your theme's "functions.php" file: `add_filter('widget_text','do_shortcode');`
+With this line the Text widget handles shortcodes.
 
 = What are element IDs good for ? =
 
@@ -84,6 +89,10 @@ where "base_price", "price", "quantity" and "tax" are IDs of other existing form
 
 Thank you. For this project your feedback, your ideas and suggestions are much more valuable for me than your money! So please drop me an email instead.
 
+= Is there a list of known issues? =
+
+Yes, Jazzy Forms is still at an early stage. Bugs and enhancement request are tracked [here](https://github.com/l90r/jazzy-forms-dev/issues?sort=created&direction=desc&state=open).
+
 = I have a suggestion =
 
 Bug reports and support requests are handled in the official WordPress forum. You can also get in touch with me at jazzyforms@gmail.com and twitter.com/jazzyforms .
@@ -94,7 +103,7 @@ I would love to gain insight about the way you are using this software and the t
 
 == Changelog ==
 
-= 0.9.1 (to be released) =
+= 0.9.1 =
 * Correctly handle character sets and collations (including Russian)
 * Fixed values for radio buttons
 * Accept whitespace in formulas
