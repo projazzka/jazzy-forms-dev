@@ -58,6 +58,5 @@ function jzzf_view_front($form) {
     }
     $tpl->foot($form);
     $output = ob_get_clean();
-    ob_end_clean();
     return $output;
 }

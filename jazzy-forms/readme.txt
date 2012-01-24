@@ -108,6 +108,7 @@ I would love to gain insight about the way you are using this software and the t
 * Fixed values for radio buttons
 * Accept whitespace in formulas
 * Adding insertion/queueing functions for the use in themes instead of the shortcode
+* Fixed post insertion that sporadically caused partial loss of WordPress HTML code
 
 = 0.9 =
 * Initial release (beta)
