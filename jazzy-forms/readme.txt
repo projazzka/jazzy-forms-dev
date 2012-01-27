@@ -103,6 +103,9 @@ I would love to gain insight about the way you are using this software and the t
 
 == Changelog ==
 
+= 0.9.2 =
+* Ignore uppercase/lowercase in formulas
+
 = 0.9.1 =
 * Correctly handle character sets and collations (including Russian)
 * Fixed values for radio buttons

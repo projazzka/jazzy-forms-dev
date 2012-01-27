@@ -89,12 +89,12 @@ class Jzzf_Parser {
         $id = $this->consume();
         $this->consume();
         $args = $this->arguments();
-        return array_merge($args, array(array('f', $id[1], count($args))));
+        return array_merge($args, array(array('f', strtolower($id[1]), count($args))));
     }
     
     private function variable() {
         $id = $this->consume();
-        return array(array('v', $id[1]));
+        return array(array('v', strtolower($id[1])));
     }
         
     private function association() {
