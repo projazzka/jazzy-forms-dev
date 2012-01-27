@@ -24,18 +24,6 @@ class Jzzf_Parser {
     }
 
     private function sum() {
-        if($this->ahead('-')) {
-            $this->consume();
-            if($this->ahead('n')) {
-                $negative = $this->consume();
-                return array(array('n', 0-$negative[1]));
-            }
-            $negative = $this->sum();
-            if(!$negative) {
-                throw new Exception('negation without operand');
-            }
-            return array(array('n', 0)) + $negative + array(array('o', '-'));
-        }
         return $this->operation('sum', '+-', 'product');
     }
     
@@ -138,7 +126,7 @@ class Jzzf_Parser {
         }
         else if($this->ahead('-')) {
             if($this->ahead('n', 1)) {
-                $this->negative();
+                return $this->negative();
             }
         }
         else if($this->ahead('ns')) { // number or string
