@@ -1,6 +1,6 @@
 function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas) {
     
-    jzzf_precision = 10^6;
+    jzzf_precision = Math.pow(10,6);
     
     $(function() {
         bind();
@@ -111,7 +111,7 @@ function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas)
                             result = left / right;
                             break;
                         case '^':
-                            result = left ^ right;
+                            result = Math.pow(left, right);
                             break;
                     }
                     stack.push(result);
