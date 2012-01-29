@@ -22,12 +22,13 @@ class Jzzf_List_Template {
 <?php
     }
     
-    function graph($graph) { extract($graph); ?>
+    function graph($form, $graph) { extract($graph); ?>
     <script type="text/javascript">
-        jzzf_data = <?php echo json_encode($data) ?>;
-        jzzf_types = <?php echo json_encode($types) ?>;
-        jzzf_dependencies = <?php echo json_encode($dependencies) ?>;
-        jzzf_formulas = <?php echo json_encode($formulas) ?>;
+        jzzf_data_<?php echo $form->id ?> = <?php echo json_encode($data) ?>;
+        jzzf_types_<?php echo $form->id ?> = <?php echo json_encode($types) ?>;
+        jzzf_dependencies_<?php echo $form->id ?> = <?php echo json_encode($dependencies) ?>;
+        jzzf_formulas_<?php echo $form->id ?> = <?php echo json_encode($formulas) ?>;
+        jazzy_forms(jQuery, jzzf_data_<?php echo $form->id ?>, jzzf_types_<?php echo $form->id ?>, jzzf_dependencies_<?php echo $form->id ?>, jzzf_formulas_<?php echo $form->id ?>);
     </script>
 <?php
     }

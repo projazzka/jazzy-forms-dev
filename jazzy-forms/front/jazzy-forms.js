@@ -1,4 +1,4 @@
-(function($) {
+function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas) {
     
     jzzf_precision = 10^6;
     
@@ -128,4 +128,4 @@
         return stack.pop();
     }
     
-})(jQuery)
+}

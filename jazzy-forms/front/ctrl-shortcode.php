@@ -26,7 +26,7 @@ function jzzf_view_front($form) {
         $tpl->css($form->css);
     }
     $graph = jzzf_get_graph($form->elements);
-    $tpl->graph($graph);
+    $tpl->graph($form, $graph);
     $tpl->script($form);
     $tpl->head($form);
     foreach($form->elements as $element) {
