@@ -1,4 +1,4 @@
-function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas) {
+function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas) {
     
     jzzf_precision = Math.pow(10,6);
     
@@ -6,19 +6,28 @@ function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas)
         bind();
     });
     
+    function element(id) {
+        return $('#jzzf_' + form_id + '_' + id);
+    }
+    
+    function element_id(element) {
+        var chunks = element.attr('id').split('_');
+        return chunks[chunks.length - 1];
+    }
+    
     function bind() {
         var id;
         for(id in jzzf_types) {
             update(id);
             switch(jzzf_types[id]) {
                 case 'r':
-                    $('input:radio[name=jzzf_' + id + ']').bind('change ready', function() {
-                        update($(this).attr('name').substring(5))
+                    element(id).find('input:radio').bind('change ready', function() {
+                        update(element_id($(this).parent()));
                     });
                     break;
                 default:
-                    $('#jzzf_' + id).bind('change ready', function() {
-                        update($(this).attr('id').substring(5))
+                    element(id).bind('change ready', function() {
+                        update(element_id($(this)));
                     });
                     
             }
@@ -37,7 +46,7 @@ function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas)
         if(jzzf_types[id] != 'f' || id in just_updated) {
             return;
         }
-        $('#jzzf_' + id).val(Math.round(evaluate(id)*jzzf_precision)/jzzf_precision);
+        element(id).val(Math.round(evaluate(id)*jzzf_precision)/jzzf_precision);
         just_updated.push(id);        
     }
 
@@ -53,18 +62,18 @@ function jazzy_forms($, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas)
     function evaluate(id) {
         switch(jzzf_types[id]) {
             case 'n':
-                return $('#jzzf_' + id).val() * jzzf_data[id];
+                return element(id).val() * jzzf_data[id];
             case 'r':
-                var idx = $('input:radio[name=jzzf_' + id + ']:checked').index('input:radio[name=jzzf_' + id + ']');
+                var idx = element(id).find('input:checked').index(element(id).find('input'));
                 if(idx>=0) {
                     return jzzf_data[id][idx];
                 } else {
                     return 0;
                 }
             case "c":
-                return $('#jzzf_' + id).is(':checked') ? jzzf_data[id][1] : jzzf_data[id][0];
+                return element(id).is(':checked') ? jzzf_data[id][1] : jzzf_data[id][0];
             case 'd':
-                var idx = $('#jzzf_' + id + ' option:selected').index('#jzzf_' + id + ' option');
+                var idx = element(id).find('option:selected').index(element(id).find('option'));
                 if(idx>=0) {
                     return jzzf_data[id][idx];
                 } else {
