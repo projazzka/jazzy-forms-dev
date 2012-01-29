@@ -79,7 +79,7 @@ class Jzzf_List_Template {
     <label class="jzzf_element_label jzzf_dropdown_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
     <select id="<?php $this->id($element) ?>">
     <?php foreach($element->options as $option) : ?>
-    <option<?php if($option->default): ?> checked="checked"<?php endif ?>><?php esc_html_e($option->title) ?></option>
+    <option<?php if($option->default): ?> selected="selected"<?php endif ?>><?php esc_html_e($option->title) ?></option>
     <?php endforeach ?>
     </select>
 <?php
