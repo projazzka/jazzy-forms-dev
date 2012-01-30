@@ -22,7 +22,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
             switch(jzzf_types[id]) {
                 case 'r':
                     element(id).find('input:radio').bind('change ready', function() {
-                        update(element_id($(this).parent()));
+                        update(element_id($(this).parents('.jzzf_radio')));
                     });
                     break;
                 default:
@@ -64,7 +64,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
             case 'n':
                 return element(id).val() * jzzf_data[id];
             case 'r':
-                var idx = element(id).find('input:checked').index();
+                var idx = element(id).find('input:checked').parent().index();
                 if(idx>=0) {
                     return jzzf_data[id][idx];
                 } else {
