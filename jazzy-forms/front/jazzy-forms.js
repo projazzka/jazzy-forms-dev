@@ -64,7 +64,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
             case 'n':
                 return element(id).val() * jzzf_data[id];
             case 'r':
-                var idx = element(id).find('input:checked').index(element(id).find('input'));
+                var idx = element(id).find('input:checked').index();
                 if(idx>=0) {
                     return jzzf_data[id][idx];
                 } else {
@@ -73,7 +73,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
             case "c":
                 return element(id).is(':checked') ? jzzf_data[id][1] : jzzf_data[id][0];
             case 'd':
-                var idx = element(id).find('option:selected').index(element(id).find('option'));
+                var idx = element(id).find('option:selected').index();
                 if(idx>=0) {
                     return jzzf_data[id][idx];
                 } else {
