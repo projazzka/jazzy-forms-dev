@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://blankito.local/" />
+<title>multiple</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">multiple</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>multiple-forms/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id1</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>name=jzzf_7_id2</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id1</td>
+	<td>200</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>xpath=(//input[@name='jzzf_8_id2'])[2]</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>220</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jzzf_7_id1</td>
+	<td>101.001</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>202.002</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>220</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='jzzf_7_id2'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>303.003</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>220</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='jzzf_7_id2'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>404.004</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>220</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jzzf_8_id1</td>
+	<td>202</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>404.004</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>222</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>name=jzzf_8_id2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>404.004</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>212</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='jzzf_8_id2'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>404.004</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>222</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>xpath=(//input[@name='jzzf_8_id2'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_7_id3</td>
+	<td>404.004</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_8_id3</td>
+	<td>232</td>
+</tr>
+</tbody></table>
+</body>
+</html>
