@@ -67,7 +67,7 @@ class Jzzf_List_Template {
     <ul id="<?php $this->id($element) ?>" class="jzzf_radio">
     <?php $idx = 0; foreach($element->options as $option) { $idx++; ?>
     <li>
-        <input type="radio" name="jzzf_<?php esc_attr_e($element->name) ?>"<?php if($option->default): ?> checked="checked"<?php endif ?>>
+        <input type="radio" name="<?php $this->id($element) ?>"<?php if($option->default): ?> checked="checked"<?php endif ?>>
         <label class="jzzf_radio_option_label"><?php esc_html_e($option->title) ?></label>
     </li>
 <?php
