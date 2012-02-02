@@ -154,18 +154,20 @@ function jzzf_functions(id, args) {
         'roundup': function() {
             var digits = arg(1, 0);
             var decimal = Math.pow(10, digits);
-            return Math.ceil(arg(0)*decimal)/decimal;
+            var x = arg(0);
+            return (x > 0) ? Math.ceil(arg(0)*decimal)/decimal : Math.floor(arg(0)*decimal)/decimal;
         },
         'rounddown': function() {
             var digits = arg(1, 0);
             var decimal = Math.pow(10, digits);
-            return Math.floor(arg(0)*decimal)/decimal;
+            var x = arg(0);
+            return (x > 0) ? Math.floor(arg(0)*decimal)/decimal : Math.ceil(arg(0)*decimal)/decimal;
         },
         'sqrt': function() {
             return Math.sqrt(arg(0));
         },
         'sin': function() {
-            return Math.cos(arg(0));
+            return Math.sin(arg(0));
         },
         'cos': function() {
             return Math.cos(arg(0));
