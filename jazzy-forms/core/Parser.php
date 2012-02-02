@@ -16,19 +16,23 @@ class Jzzf_Parser {
     }
 
     public function output() {
-        $result = $this->sum();
+        $result = $this->comparison();
         if($this->rest) {
             throw new Exception('unexpected trailing symbols');
         }
         return $result;
     }
 
+    private function comparison() {
+        return $this->operation('comparison', array('<=', '>=', '<', '>', '='), 'sum');
+    }
+
     private function sum() {
-        return $this->operation('sum', '+-', 'product');
+        return $this->operation('sum', array('+', '-'), 'product');
     }
     
     private function product() {
-        return $this->operation('product', '*/', 'exponentiation');
+        return $this->operation('product', array('*', '/'), 'exponentiation');
     }
     
     private function exponentiation() {
@@ -52,11 +56,21 @@ class Jzzf_Parser {
         return $left;
     }
     
-    private function ahead($pattern, $skip=0) {
+    private function ahead($tokens, $skip=0) {
         if(count($this->rest) <= $skip) {
             return false;
         }
-        return strstr($pattern, $this->rest[$skip][0]);
+        $ahead = $this->rest[$skip][0];
+        if(is_array($tokens)) {
+            foreach($tokens as $token) {
+                if($token == $ahead) {
+                    return true;
+                }
+            }
+            return false;
+        } else {
+            return $tokens == $ahead;
+        }
     }
 
     private function complete() {
@@ -70,14 +84,14 @@ class Jzzf_Parser {
     }
 
     private function arguments() {
-        $result = $this->sum();
+        $result = $this->comparison();
         while(true) {
             if($this->ahead(')')) {
                 break;
             }
             if($this->ahead(',')) {
                 $this->consume();
-                $next = $this->sum();
+                $next = $this->comparison();
                 $result = array_merge($result, $next);
             }
         }
@@ -99,7 +113,7 @@ class Jzzf_Parser {
         
     private function association() {
         $this->consume();
-        $content = $this->sum();
+        $content = $this->comparison();
         if(!$content) {
             throw new Exception('Empty bracket term');
         }
@@ -129,7 +143,7 @@ class Jzzf_Parser {
                 return $this->negative();
             }
         }
-        else if($this->ahead('ns')) { // number or string
+        else if($this->ahead(array('n', 's'))) { // number or string
             return array($this->consume());
         }
         else if($this->ahead('i')) { // identifier
