@@ -84,11 +84,62 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
         }
         return 0;
     }
-    
-    var functions = {
-        'abs': function(args) {
-            return Math.abs(args[0]);
+        
+    var functions = function(id, args) {
+        
+        function arg(idx, def) {
+            if(idx >= args.length) {
+                return def;
+            }
+            return args[idx];
         }
+
+        var all = {
+            'abs': function() {
+                return Math.abs(arg(0));
+            },
+            'round': function() {
+                var digits = arg(1, 0);
+                var decimal = Math.pow(10, digits);
+                return Math.round(arg(0)*decimal)/decimal;
+            },
+            'roundup': function() {
+                var digits = arg(1, 0);
+                var decimal = Math.pow(10, digits);
+                return Math.ceil(arg(0)*decimal)/decimal;
+            },
+            'rounddown': function() {
+                var digits = arg(1, 0);
+                var decimal = Math.pow(10, digits);
+                return Math.floor(arg(0)*decimal)/decimal;
+            },
+            'sqrt': function() {
+                return Math.sqrt(arg(0));
+            },
+            'sin': function() {
+                return Math.cos(arg(0));
+            },
+            'cos': function() {
+                return Math.cos(arg(0));
+            },
+            'tan': function() {
+                return Math.tan(arg(0));
+            },
+            'asin': function() {
+                return Math.asin(arg(0));
+            },
+            'acos': function() {
+                return Math.acos(arg(0));
+            },
+            'atan': function() {
+                return Math.atan(arg(0));
+            },
+            'pi': function() {
+                return Math.PI;
+            }
+        };
+
+        return (all[id])();        
     }
     
     function formula(id) {
@@ -130,7 +181,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
                     for(var j=0; j<f[i][2]; j++) {
                         args.unshift(stack.pop());
                     }
-                    stack.push(functions[f[i][1]](args));
+                    stack.push(functions(f[i][1], args));
                     break;
             }
         }
