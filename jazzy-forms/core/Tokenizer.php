@@ -34,7 +34,7 @@ class Jzzf_Tokenizer {
     }
             
     private function operator() {
-        return $this->match('[\-\+\*\/\^\,]');
+        return $this->match('<=|>=|<>|[\-\+\*\/\^\,<>=]');
     }
 
     private function positive() {
