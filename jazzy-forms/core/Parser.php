@@ -24,7 +24,7 @@ class Jzzf_Parser {
     }
 
     private function comparison() {
-        return $this->operation('comparison', array('<=', '>=', '<', '>', '='), 'sum');
+        return $this->operation('comparison', array('<=', '>=', '<', '>', '=', '<>'), 'sum');
     }
 
     private function sum() {

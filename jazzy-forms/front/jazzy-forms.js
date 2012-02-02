@@ -116,6 +116,24 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
                         case '^':
                             result = Math.pow(left, right);
                             break;
+                        case '<':
+                            result = left < right;
+                            break;
+                        case '>':
+                            result = left > right;
+                            break;
+                        case '<>':
+                            result = left != right;
+                            break;
+                        case '<=':
+                            result = left <= right;
+                            break;
+                        case '>=':
+                            result = left >= right;
+                            break;
+                        case '=':
+                            result = left == right;
+                            break;
                     }
                     stack.push(result);
                     break;
