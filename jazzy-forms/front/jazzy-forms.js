@@ -1,6 +1,6 @@
 function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas) {
     
-    jzzf_precision = Math.pow(10,6);
+    jzzf_precision = Math.pow(10,9);
     
     $(function() {
         bind();
