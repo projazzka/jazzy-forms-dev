@@ -154,6 +154,64 @@ test("acos 1", function() {
   equal(prcsn(jzzf_functions('acos', [1])), 0);
 });
 
+module("Logical")
+
+test("not true", function() {
+  equal(jzzf_functions('not', [true]), false);
+});
+
+test("not false", function() {
+  equal(jzzf_functions('not', [false]), true);
+});
+
+test("true and false", function() {
+  equal(jzzf_functions('and', [true, false]), false);
+});
+
+test("false and true", function() {
+  equal(jzzf_functions('and', [false, true]), false);
+});
+
+test("false and false", function() {
+  equal(jzzf_functions('and', [false, false]), false);
+});
+
+test("true and true", function() {
+  equal(jzzf_functions('and', [true, true]), true);
+});
+
+test("true or false", function() {
+  equal(jzzf_functions('or', [true, false]), true);
+});
+
+test("false or true", function() {
+  equal(jzzf_functions('or', [false, true]), true);
+});
+
+test("false or false", function() {
+  equal(jzzf_functions('or', [false, false]), false);
+});
+
+test("true or true", function() {
+  equal(jzzf_functions('or', [true, true]), true);
+});
+
+test("if true", function() {
+  equal(jzzf_functions('if', [true, 10, 20]), 10);
+});
+
+test("if false", function() {
+  equal(jzzf_functions('if', [false, 10, 20]), 20);
+});
+
+test("true", function() {
+  equal(jzzf_functions('true', []), true);
+});
+
+test("false", function() {
+  equal(jzzf_functions('false', []), false);
+});
+
 });
 
 function prcsn(x) {

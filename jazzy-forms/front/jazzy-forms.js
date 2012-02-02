@@ -186,7 +186,26 @@ function jzzf_functions(id, args) {
         },
         'pi': function() {
             return Math.PI;
+        },
+        'not': function() {
+            return !arg(0);
+        },
+        'and': function() {
+            return arg(0) && arg(1);
+        },
+        'or': function() {
+            return arg(0) || arg(1);
+        },
+        'if': function() {
+            return arg(0) ? arg(1) : arg(2);
+        },
+        'true': function() {
+            return true;
+        },
+        'false': function() {
+            return false;
         }
+        
     };
 
     return (all[id])();        
