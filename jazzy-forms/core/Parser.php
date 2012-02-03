@@ -84,7 +84,11 @@ class Jzzf_Parser {
     }
 
     private function arguments() {
+        $num = 0;
         $result = $this->comparison();
+        if($result) {
+            $num++;
+        }
         while(true) {
             if($this->ahead(')')) {
                 break;
@@ -93,17 +97,18 @@ class Jzzf_Parser {
                 $this->consume();
                 $next = $this->comparison();
                 $result = array_merge($result, $next);
+                $num++;
             }
         }
         $this->consume(); // closing bracket
-        return $result;
+        return array($num, $result);
     }
 
     private function func() {
         $id = $this->consume();
         $this->consume();
-        $args = $this->arguments();
-        return array_merge($args, array(array('f', strtolower($id[1]), count($args))));
+        list($num, $args) = $this->arguments();
+        return array_merge($args, array(array('f', strtolower($id[1]), $num)));
     }
     
     private function variable() {
