@@ -142,7 +142,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
                     for(var j=0; j<f[i][2]; j++) {
                         args.unshift(stack.pop());
                     }
-                    stack.push(jzff_functions(f[i][1], args));
+                    stack.push(jzzf_functions(f[i][1], args));
                     break;
             }
         }
