@@ -1,6 +1,10 @@
 function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas) {
     
     jzzf_precision = Math.pow(10,9);
+    function prcsn(x) {
+        return Math.round(x*jzzf_precision)/jzzf_precision;
+    }
+    
     
     $(function() {
         bind();
@@ -117,22 +121,22 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
                             result = Math.pow(left, right);
                             break;
                         case '<':
-                            result = left < right;
+                            result = prcsn(left) < prcsn(right);
                             break;
                         case '>':
-                            result = left > right;
+                            result = prcsn(left) > prcsn(right);
                             break;
                         case '<>':
-                            result = left != right;
+                            result = prcsn(left) != prcsn(right);
                             break;
                         case '<=':
-                            result = left <= right;
+                            result = prcsn(left) <= prcsn(right);
                             break;
                         case '>=':
-                            result = left >= right;
+                            result = prcsn(left) >= prcsn(right);
                             break;
                         case '=':
-                            result = left == right;
+                            result = prcsn(left) == prcsn(right);
                             break;
                     }
                     stack.push(result);
