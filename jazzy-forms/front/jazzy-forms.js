@@ -219,7 +219,7 @@ function jzzf_functions(id, args) {
             return arg(0) || arg(1);
         },
         'if': function() {
-            return arg(0) ? arg(1) : arg(2);
+            return arg(0) ? arg(1) : arg(2, false);
         },
         'true': function() {
             return true;

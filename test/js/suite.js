@@ -204,6 +204,14 @@ test("if false", function() {
   equal(jzzf_functions('if', [false, 10, 20]), 20);
 });
 
+test("if true, no value for false", function() {
+  equal(jzzf_functions('if', [true, 10]), 10);
+});
+
+test("if false, no value for false", function() {
+  equal(jzzf_functions('if', [false, 10]), false);
+});
+
 test("true", function() {
   equal(jzzf_functions('true', []), true);
 });
