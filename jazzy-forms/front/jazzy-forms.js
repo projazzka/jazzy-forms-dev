@@ -15,8 +15,8 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
     
     function element_id(element) {
-        var chunks = element.attr('id').split('_');
-        return chunks[chunks.length - 1];
+        var id = element.attr('id');
+        return id.substr(id.indexOf('_', 5)+1);
     }
     
     function bind() {

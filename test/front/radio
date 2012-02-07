@@ -23,12 +23,12 @@
 </tr>
 <tr>
 	<td>verifyChecked</td>
-	<td>//ul[@id=&quot;jzzf_5_second&quot;]//input[1]</td>
+	<td>//ul[@id=&quot;jzzf_5_element_2&quot;]//input[1]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyChecked</td>
-	<td>//ul[@id=&quot;jzzf_5_third&quot;]/li[2]/input</td>
+	<td>//ul[@id=&quot;jzzf_5_element_number_three&quot;]/li[2]/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -58,7 +58,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>xpath=(//input[@name='jzzf_5_second'])[2]</td>
+	<td>xpath=(//input[@name='jzzf_5_element_2'])[2]</td>
 	<td></td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>name=jzzf_5_third</td>
+	<td>name=jzzf_5_element_number_three</td>
 	<td></td>
 </tr>
 <tr>

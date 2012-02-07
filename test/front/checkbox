@@ -23,12 +23,12 @@
 </tr>
 <tr>
 	<td>verifyValue</td>
-	<td>id=jzzf_6_second</td>
+	<td>id=jzzf_6_element_2nd</td>
 	<td>off</td>
 </tr>
 <tr>
 	<td>verifyValue</td>
-	<td>id=jzzf_6_third</td>
+	<td>id=jzzf_6_element_three</td>
 	<td>on</td>
 </tr>
 <tr>
@@ -58,7 +58,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=jzzf_6_second</td>
+	<td>id=jzzf_6_element_2nd</td>
 	<td></td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>id=jzzf_6_third</td>
+	<td>id=jzzf_6_element_three</td>
 	<td></td>
 </tr>
 <tr>

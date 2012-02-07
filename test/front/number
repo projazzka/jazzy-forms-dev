@@ -23,12 +23,12 @@
 </tr>
 <tr>
 	<td>verifyValue</td>
-	<td>id=jzzf_3_second</td>
+	<td>id=jzzf_3_element_2</td>
 	<td>10</td>
 </tr>
 <tr>
 	<td>verifyValue</td>
-	<td>id=jzzf_3_third</td>
+	<td>id=jzzf_3_element_number_three</td>
 	<td>10</td>
 </tr>
 <tr>
@@ -58,7 +58,7 @@
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=jzzf_3_second</td>
+	<td>id=jzzf_3_element_2</td>
 	<td>4.321</td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=jzzf_3_third</td>
+	<td>id=jzzf_3_element_number_three</td>
 	<td>100</td>
 </tr>
 <tr>
