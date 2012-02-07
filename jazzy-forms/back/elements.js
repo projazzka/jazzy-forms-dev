@@ -32,7 +32,7 @@ function jzzf_element($) {
             $.each(data.options, function(idx) {
                 data.options[idx].counter = counter;
             });
-            if(data.type == 'checkbox') {
+            if(data.type == 'c') {
                 data.checked = (data.default == "1");
             }
         }
