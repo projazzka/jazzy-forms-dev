@@ -102,6 +102,6 @@ class Jzzf_Tokenizer {
     }
 
     private function error($msg) {
-        echo $msg . ':' . $this->rest;
+        throw(new Exception($msg . ':' . $this->rest));
     }
 }

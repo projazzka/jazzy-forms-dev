@@ -1,7 +1,11 @@
 <?php
 
 function jzzf_parse($notation) {
-    $tokens = jzzf_tokenize($notation);
+    try {
+        $tokens = jzzf_tokenize($notation);
+    } catch( Exception $e ) {
+        return null;
+    }
     return jzzf_parse_tokens($tokens);
 }
 
