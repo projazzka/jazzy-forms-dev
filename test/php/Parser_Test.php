@@ -25,6 +25,7 @@ class Parser_Test extends Test_Common {
     }
 
 	function check($name, $input, $json) {
+        echo "$name\n";
         $result = jzzf_parse_tokens(json_decode($input));
         $this->assertEquals(json_decode($json), $result, $name);
 	}	

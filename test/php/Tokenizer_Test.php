@@ -20,6 +20,7 @@ class Tokenizer_Test extends Test_Common {
 	}
 
 	function check($name, $input, $json) {
+        echo "$name\n";
         $result = jzzf_tokenize($input);
         $this->assertEquals(json_decode($json), $result, $name);
 	}
