@@ -6,7 +6,7 @@ class Jzzf_List_Template {
     }
 
     function id($element) {
-        echo esc_attr('jzzf_' . $this->form->id . '_' . $element->name);
+        echo esc_attr('jzzf_' . $this->form->id . '_' . strtolower($element->name));
     }
 
 

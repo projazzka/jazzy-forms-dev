@@ -38,6 +38,18 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array('num'=>array('result')), $dependencies);
 		$this->assertEquals(array('result'=>array(array('v', 'num'), array('n', '2'), array('o', '*'))), $formulas);
 	}
+
+	function test_single_dependency_ugly_characters() {
+		$elements = array(
+			(object) array('name'=> 'Num1', 'type'=> 'n', 'value' => 10),
+			(object) array('name'=> 'out_put', 'type'=> 'f', 'formula' => 'nuM1*2')
+		);
+		$graph = jzzf_get_graph($elements);
+		extract($graph);
+		$this->assertEquals(array('num1'=>'n', 'out_put'=>'f'), $types);
+		$this->assertEquals(array('num1'=>array('out_put')), $dependencies);
+		$this->assertEquals(array('out_put'=>array(array('v', 'num1'), array('n', '2'), array('o', '*'))), $formulas);
+	}
 	
 	function test_multiple_dependency() {
 		$elements = array(

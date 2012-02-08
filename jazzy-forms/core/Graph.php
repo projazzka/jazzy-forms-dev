@@ -6,7 +6,7 @@ function jzzf_get_graph($elements) {
     $dependencies = array();
     $formulas = array();
     foreach($elements as $elem) {
-        $id = $elem->name;
+        $id = strtolower($elem->name);
         $type = $elem->type;
         $types[$id] = $type;
         if($type == "f") {
