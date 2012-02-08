@@ -3,7 +3,7 @@
 Plugin Name: Jazzy Forms
 Plugin URI: http://www.jazzyforms.com/
 Description: Online form builder
-Version: 0.9.2
+Version: 0.9.3
 Author: Igor Prochazka
 Author URI: http://www.l90r.com/
 
