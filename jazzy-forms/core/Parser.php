@@ -3,15 +3,19 @@
 function jzzf_parse($notation) {
     try {
         $tokens = jzzf_tokenize($notation);
+        return jzzf_parse_tokens($tokens);
     } catch( Exception $e ) {
         return null;
-    }
-    return jzzf_parse_tokens($tokens);
+    }        
 }
 
 function jzzf_parse_tokens($in) {
-    $tokenizer = new Jzzf_Parser($in);
-    return $tokenizer->output();
+    try {
+        $tokenizer = new Jzzf_Parser($in);
+        return $tokenizer->output();
+    } catch( Exception $e ) {
+        return null;
+    }        
 }
 
 class Jzzf_Parser {
@@ -164,6 +168,6 @@ class Jzzf_Parser {
         else if($this->ahead('(')) {
             return $this->association();
         }
-        return array();
+        return null;
     }
 }
