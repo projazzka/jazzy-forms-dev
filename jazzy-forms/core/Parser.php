@@ -106,6 +106,8 @@ class Jzzf_Parser {
                 $next = $this->comparison();
                 $result = array_merge($result, $next);
                 $num++;
+            } else {
+                throw new Exception("Closing bracket or comma expected");
             }
         }
         $this->consume(); // closing bracket
