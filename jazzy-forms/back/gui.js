@@ -93,7 +93,7 @@
             }
         });
         
-        $('#jzzf_form *').delegate('*', 'click change sortupdate', function(event) {
+        $('#jzzf_form *, #jzzf_selection *').delegate('*', 'click change sortupdate', function(event) {
             $('#message').hide();
         });
         
@@ -191,6 +191,7 @@
     }
     
     function new_form() {
+        $('#message').hide();
         if(warn_dirty()) {
             form = null;
             set_form(form);            
