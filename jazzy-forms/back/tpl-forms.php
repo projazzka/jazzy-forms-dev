@@ -125,7 +125,7 @@
     <label for="jzzf_selector">Form:</label>
     <select id="jzzf_selector">
 <?php $i=0; foreach($forms as $form) : ?>
-        <option value="<?php echo $i++ ?>"><?php echo esc_attr($form->title) ?></option>
+        <option value="<?php echo $i++ ?>"<?php if($form->id == $current) :?> selected="selected"<?php endif ?>><?php echo esc_attr($form->title) ?></option>
 <?php endforeach; ?>
     </select>
     <input id="jzzf_delete" name="delete" type="hidden" value="0">

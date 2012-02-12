@@ -10,7 +10,7 @@ function jzzf_ctrl_forms() {
     } elseif($_POST['form']) {
         $json = stripcslashes($_POST['form']);
         $form = json_decode($json);
-        if(jzzf_set_form($form)) {
+        if($current = jzzf_set_form($form)) {
             $msg = "Form Saved.";
         } else {
             $msg = "An error ocurred while saving your form!";

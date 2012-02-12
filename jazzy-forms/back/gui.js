@@ -198,10 +198,11 @@
     }
     
     $(function() {
+        form_index = $('#jzzf_selector option:selected').index();
         if(jzzf_forms.length == 0) {
             new_form();
         } else {
-            set_current_form(0);
+            set_current_form(form_index);
         }
         bind();
     });
