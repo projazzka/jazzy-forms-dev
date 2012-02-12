@@ -27,6 +27,7 @@ function jzzf_element($) {
     this.html_element = function(tmpl_name, data) {
         var counter = this.counter();
         data.counter = counter;
+        data.display_title = this.display_title(data.title);
         data.typeString = $('#jzzf_elements_toolbox_items li[jzzf_type="' + data.type + '"]').text();
         if(data.options) {
             $.each(data.options, function(idx) {
@@ -112,6 +113,14 @@ function jzzf_element($) {
                 break;
         };
         return result;
+    }
+    
+    this.display_title = function(title) {
+        if(title.length >= 50) {
+            return title.substring(0, 47) + '...';
+        } else {
+            return title;
+        }
     }
     
     this.options_data = function(li) {
