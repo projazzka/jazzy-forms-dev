@@ -1,5 +1,9 @@
 (function($) {
     var form = null;
+    var form_index = 0;
+    var dirty = false;
+    var text_unload = "The current form has unsaved changes.";
+    var text_dirty = text_unload + "\nAre you sure you want to discard them?";
     
     function new_element(type) {
         var elements = get_elements(); // need existing elements to suggest a valid name/title
@@ -27,7 +31,37 @@
         return false;
     }
     
-    function bind() {     
+    function warn_unload() {
+        return dirty ? text_unload : null;
+    }
+    
+    function warn_dirty() {
+        if(dirty) {
+            return confirm(text_dirty);
+        } else {
+            return true;
+        }
+    }
+    
+    function mark_dirty() {
+        if(!dirty) {
+            dirty = true;
+            window.onbeforeunload = warn_unload;
+        }
+        return true;
+    }
+    
+    function mark_clean() {
+        if(dirty) {
+            dirty = false;
+            window.onbeforeunload = null;
+        }
+        return true;
+    }
+    
+    function bind() {
+        $('#jzzf_main').delegate('input', 'change', mark_dirty);
+        
         $('#jzzf_elements_toolbox_items li').click(function() {
             add_element($(this), false);
             return false;
@@ -50,7 +84,13 @@
         $('#jzzf_new_form_cancel').click(function() { cancel_form(); return false; });
                                               
         $('#jzzf_selector').change(function() {
-            set_current_form($('#jzzf_selector').val());
+            if(warn_dirty()) {
+                set_current_form($('#jzzf_selector').val());
+                return true;
+            } else {
+                reset_current_form();
+                return false;
+            }
         });
         
         $('#jzzf_form *').delegate('*', 'click change sortupdate', function(event) {
@@ -113,6 +153,7 @@
     }
     
     function save() {
+        window.onbeforeunload = null;
         var form = get_form();
         var serialized = JSON.stringify(form);
         $('#jzzf_form_data').val(serialized);
@@ -132,8 +173,14 @@
         set_form(form);
     }
     
+    function reset_current_form() {
+        $('#jzzf_selector option:eq(' + form_index + ')').attr('selected', 'selected');
+    }
+    
     function set_current_form(idx) {
+        mark_clean();
         form = jzzf_forms[idx];
+        form_index = idx;
         set_form(form);
     }
     
@@ -144,8 +191,10 @@
     }
     
     function new_form() {
-        form = null;
-        set_form(form);
+        if(warn_dirty()) {
+            form = null;
+            set_form(form);            
+        }
     }
     
     $(function() {
