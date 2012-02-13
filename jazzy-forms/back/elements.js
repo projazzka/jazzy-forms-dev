@@ -74,6 +74,9 @@ function jzzf_element($) {
             self.bind_options();
             return false;
         });
+        element.find('.jzzf_element_title').change(function() {
+           element.find('.jzzf_header_title').text(self.display_title($(this).val())); 
+        });
         element.find('.jzzf_option_table tbody').sortable();
         this.bind_options();
     }
