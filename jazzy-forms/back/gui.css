@@ -32,6 +32,7 @@
     height: 13px;
     z-index: 10;
     background-color: #eee;
+    cursor: pointer;
 }
 
 #jzzf_tabs li.jzzf_current_tab {
@@ -67,6 +68,11 @@
     padding: 8px;
     height: 14px;
     width: 100px;
+    cursor: move;
+}
+
+#jzzf_elements_toolbox_items li:hover {
+    background-color: #e8e8e8;
 }
 
 #jzzf_elements_push_for_action {
@@ -101,6 +107,15 @@
     border-bottom: 1px solid #ddd;
     padding: 8px;
     height: 14px;
+    cursor: move;
+}
+
+.jzzf_element.jzzf_collapsed .jzzf_element_header {
+    border-bottom: none;
+}
+
+.jzzf_element_header:hover {
+    background-color: #e8e8e8;
 }
 
 .jzzf_element_header .jzzf_element_delete {

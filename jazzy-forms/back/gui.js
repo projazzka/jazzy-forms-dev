@@ -75,7 +75,8 @@
         $('#jzzf_elements_toolbox_items li').draggable({
             connectToSortable: "#jzzf_elements_list",
             helper: "clone",
-            revert: "invalid"
+            revert: "invalid",
+            cursor: "move"
         });
 
         $('#jzzf_selector_new').click(function() { new_form(); return false; });
