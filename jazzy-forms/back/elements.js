@@ -28,7 +28,7 @@ function jzzf_element($) {
         var counter = this.counter();
         data.counter = counter;
         data.display_title = this.display_title(data.title);
-        data.typeString = $('#jzzf_elements_toolbox_items li[jzzf_type="' + data.type + '"]').text();
+        data.typeString = $('.jzzf_elements_toolbox_items li[jzzf_type="' + data.type + '"]').text();
         if(data.options) {
             $.each(data.options, function(idx) {
                 data.options[idx].counter = counter;

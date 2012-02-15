@@ -62,7 +62,7 @@
     function bind() {
         $('#jzzf_main').delegate('input', 'change', mark_dirty);
         
-        $('#jzzf_elements_toolbox_items li').click(function() {
+        $('.jzzf_elements_toolbox_items li').click(function() {
             add_element($(this), false);
             return false;
         });
@@ -72,7 +72,7 @@
                 add_element(ui.item, true);
             }
         });
-        $('#jzzf_elements_toolbox_items li').draggable({
+        $('.jzzf_elements_toolbox_items li').draggable({
             connectToSortable: "#jzzf_elements_list",
             helper: "clone",
             revert: "invalid",

@@ -146,9 +146,9 @@
     </ul>
     <div id="jzzf_main">
         <div class="jzzf_section" id="jzzf_section_elements">
-            <div id="jzzf_elements_toolbox">
+            <div class="jzzf_elements_toolbox">
             <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
-                <ul id="jzzf_elements_toolbox_items">
+                <ul class="jzzf_elements_toolbox_items">
                     <li jzzf_type="n">Number Entry</li>
                     <li jzzf_type="d">Drop-down Menu</li>
                     <li jzzf_type="r">Radio Buttons</li>
