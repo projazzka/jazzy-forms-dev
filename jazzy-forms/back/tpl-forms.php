@@ -5,7 +5,7 @@
     <div class="jzzf_element_header">
         <span class="jzzf_type jzzf_type_{{type}}">[{{typeString}}]</span>
         <span class="jzzf_header_title">{{display_title}}</span>
-        <a href="#" class="jzzf_element_delete">(x)</a>
+        <a href="#" class="jzzf_element_delete" title="Delete Element"></a>
     </div>
     <div class="jzzf_element_body">
         <fieldset>

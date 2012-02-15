@@ -119,7 +119,14 @@
 }
 
 .jzzf_element_header .jzzf_element_delete {
+    width: 16px;
+    height: 16px;
+    background: url('img/del.png') no-repeat center;
     float: right;
+}
+
+.jzzf_element_header .jzzf_element_delete:hover {
+    background: url('img/del_hi.png') no-repeat center;
 }
 
 .jzzf_element_body {
