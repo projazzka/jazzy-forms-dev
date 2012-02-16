@@ -148,13 +148,20 @@
         <div class="jzzf_section" id="jzzf_section_elements">
             <div class="jzzf_elements_toolbox">
             <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
-                <ul class="jzzf_elements_toolbox_items">
+                <ul id="jzzf_toolbox_input" class="jzzf_elements_toolbox_items">
                     <li jzzf_type="n">Number Entry</li>
                     <li jzzf_type="d">Drop-down Menu</li>
                     <li jzzf_type="r">Radio Buttons</li>
                     <li jzzf_type="c">Checkbox</li>
                     <li jzzf_type="f">Output</li>
+                </ul>
+                <ul id="jzzf_toolbox_buttons" class="jzzf_elements_toolbox_items">
                     <li jzzf_type="u">Update Button</li>
+                </ul>
+                <ul id="jzzf_toolbox_text" class="jzzf_elements_toolbox_items">
+                    <li jzzf_type="t">Text</li>
+                    <li jzzf_type="h">Heading</li>
+                    <li jzzf_type="m">Free HTML</li>
                 </ul>
             </div>
             <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>

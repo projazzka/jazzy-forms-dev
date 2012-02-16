@@ -52,13 +52,27 @@
 .jzzf_elements_toolbox {
     display: block;
     overflow: visible;
-    width: 200px;
+    width: 330px;
     float: left;
     clear: both;
 }
 
-.jzzf_elements_toolbox_items items {
-    padding: 10px;
+.jzzf_elements_toolbox_items {
+    display: block;
+    padding: 10px 10px 4px 10px;
+    overflow: hidden;
+    background: #eee;
+    border-radius: 3px;
+    width: 138px;
+    float: left;
+}
+
+#jzzf_toolbox_input {
+    margin-right: 10px;
+}
+
+#jzzf_toolbox_buttons {
+    margin-bottom: 10px;
 }
 
 .jzzf_elements_toolbox_items li {
@@ -67,7 +81,7 @@
     border-radius: 3px;
     padding: 8px;
     height: 14px;
-    width: 100px;
+    width: 120px;
     cursor: move;
 }
 
