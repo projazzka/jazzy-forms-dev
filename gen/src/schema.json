@@ -4,10 +4,14 @@
             "title": "str",
             "name": "str",
             "theme": "int",
-            "css": "str"
+            "css": "str",
+            "realtime": "bool"
         },
         "recursion": {
             "elements": "element"
+        },
+        "update": {
+            "0.0903": ["realtime"]
         }
     },
     "element": {

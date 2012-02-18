@@ -3,6 +3,14 @@
 define('SCHEMA_FILE', 'src/schema.json');
 define('INDENT', 4);
 
+$type_map = array(
+    'str' => 'varchar(1024)',
+    'bool' => 'int(1)',
+    'json' => 'varchar(2048)',
+    'id' => 'bigint(20)',
+    'int' => 'int(12)'
+);
+
 function indent($str, $indent=1) {
     return preg_replace('/\n/', "\n" . str_repeat(" ", $indent*INDENT), $str);
 }

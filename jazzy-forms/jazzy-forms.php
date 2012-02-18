@@ -27,6 +27,8 @@ Author URI: http://www.l90r.com/
 ---------------------------------------------------------------------
 */
 
+define(JZZF_VERSION, 0.0903);
+
 define(JZZF_ROOT, WP_PLUGIN_DIR . '/jazzy-forms/');
 define(JZZF_GENERATED, JZZF_ROOT . 'generated/');
 define(JZZF_CORE, JZZF_ROOT . 'core/');
@@ -66,7 +68,6 @@ function jzzf_init() {
 
 function jzzf_activate() {
 	global $wpdb;
-	$schema = file( dirname(__FILE__) . '/generated/schema.sql' );
 
 	if(!empty($wpdb->charset)) {
 		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
@@ -75,8 +76,20 @@ function jzzf_activate() {
 	if(!empty($wpdb->collate)) {
 		$charset_collate .= " COLLATE $wpdb->collate";
 	}
-		
-	foreach($schema as $line) {
+	
+	jzzf_create_tables($charset_collate);
+	jzzf_update($charset_collate);
+}
+
+function jzzf_create_tables($charset_collate) {
+	jzzf_execute_sql('schema.sql', $charset_collate);
+}
+
+function jzzf_execute_sql($filename, $charset_collate) {
+	global $wpdb;
+
+	$file = file( dirname(__FILE__) . '/generated/' . $filename );
+	foreach($file as $line) {
 		$sql = trim($line);
 		if($sql && $sql[0] != '#') {
 			$sql = str_replace('{{prefix}}', $wpdb->prefix, $sql);
@@ -84,6 +97,13 @@ function jzzf_activate() {
 			$wpdb->query($sql);
 		}
 	}
+}
+
+function jzzf_update($charset_collate) {
+	$previous = get_option('jzzf_version', 0.0);
+	update_option('jzzf_version', JZZF_VERSION);
+	
+	jzzf_execute_sql('update.sql', $charset_collate);	
 }
 
 function jzzf_shortcode( $attr ) {
