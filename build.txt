@@ -36,4 +36,7 @@ sudo pear install phpunit/PHPUnit
 sudo pear install phpunit/phpcpd
 sudo pear install PHP_CodeSniffer
 
+Artworks/Design manipulation with ImageMagick:
+
+sudo port install ImageMagick
 
