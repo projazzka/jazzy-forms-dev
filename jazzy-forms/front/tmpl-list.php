@@ -22,7 +22,7 @@ class Jzzf_List_Template {
     }
     
     function css($css) { ?>
-    <style type="text/css">
+    <style type="text/css" scoped="scoped">
         <?php print $css; ?>
 
     </style>
@@ -57,7 +57,7 @@ class Jzzf_List_Template {
     }
     
     function number($element) { ?>
-    <label class="jzzf_number_label jzzf_element_label" for="jzzf_<?php esc_attr_e($element->name) ?>"><?php esc_html_e($element->title) ?></label>
+    <label class="jzzf_number_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
     <input type="text" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->default) ?>">
 <?php
     }
