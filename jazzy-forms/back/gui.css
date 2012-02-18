@@ -150,6 +150,10 @@
     border-bottom-right-radius: 3px;
 }
 
+.jzzf_element_body li {
+    margin-bottom: 2px;
+}
+
 .jzzf_element_body label, .jzzf_section > ul > li > label {
     display: inline-block;
     width: 140px;

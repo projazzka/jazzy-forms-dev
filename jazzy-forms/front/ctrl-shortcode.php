@@ -53,6 +53,15 @@ function jzzf_view_front($form) {
             case 'u':
                 $tpl->update($element);
                 break;
+            case 'h':
+                $tpl->heading($element);
+                break;
+            case 't':
+                $tpl->text($element);
+                break;
+            case 'm':
+                $tpl->html($element);
+                break;
         }
         $tpl->after($element);
     }

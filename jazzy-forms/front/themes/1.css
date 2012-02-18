@@ -20,7 +20,7 @@
 	display: list-item;
 }
 
-.jzzf_form .jzzf_element_label {
+.jzzf_form .jzzf_element_label, .jzzf_form .jzzf_element_heading {
     display: block;
     font-weight: bold;
 }

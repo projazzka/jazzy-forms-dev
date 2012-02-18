@@ -1,17 +1,20 @@
-<script id="jzzf_tmpl_common" type="text/html">
+<script id="jzzf_tmpl_common_raw" type="text/html">
 <li class="jzzf_element">
     <input type="hidden" value="{{id}}" class="jzzf_element_id">
     <input type="hidden" value="{{counter}}" class="jzzf_element_counter">
+    <input type="hidden" class="jzzf_element_type" value="{{type}}">
     <div class="jzzf_element_header">
         <div class="jzzf_type jzzf_type_{{type}}"></div>
         <span class="jzzf_header_title">{{display_title}}</span>
         <a href="#" class="jzzf_element_delete" title="Delete Element"></a>
     </div>
     <div class="jzzf_element_body">
+</script>
+<script id="jzzf_tmpl_common" type="text/html">
+{{>common_raw}}
         <fieldset>
             <ul class="jzzf_element_parameters">
                 <li>
-                    <input type="hidden" class="jzzf_element_type" value="{{type}}">
                     <label for="jzzf_element_{{counter}}_title">Title</label>
                     <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
                 </li>
@@ -87,6 +90,43 @@
 {{>common}}
 {{>foot}}
 </script>
+<script id="jzzf_tmpl_t" type="text/html">
+{{>common_raw}}
+    <fieldset>
+        <ul>
+            <li>
+                <label for="jzzf_element_{{counter}}_title">Text</label>
+                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+            </li>
+        </ul>
+    </fieldset>
+{{>foot}}
+</script>
+<script id="jzzf_tmpl_h" type="text/html">
+{{>common_raw}}
+    <fieldset>
+        <ul>
+            <li>
+                <label for="jzzf_element_{{counter}}_title">Heading</label>
+                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+            </li>
+        </ul>
+    </fieldset>
+{{>foot}}
+</script>
+<script id="jzzf_tmpl_m" type="text/html">
+{{>common_raw}}
+    <fieldset>
+        <ul>
+            <li>
+                <label for="jzzf_element_{{counter}}_title">HTML code</label>
+                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+            </li>
+        </ul>
+    </fieldset>
+{{>foot}}
+</script>
+
 <script id="jzzf_tmpl_options" type="text/html">
         <fieldset>
             <legend>Options</legend>

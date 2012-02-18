@@ -107,6 +107,22 @@ class Jzzf_List_Template {
 <?php
     }
 
+    function heading($element) { ?>
+        <div class="jzzf_element_heading"><?php esc_html_e($element->title) ?></div>
+<?php
+    }
+
+    function text($element) { ?>
+        <div class="jzzf_element_text"><?php esc_html_e($element->title) ?></div>
+<?php
+    }
+
+    function html($element) { ?>
+        <?php echo $element->title ?>
+<?php
+    }
+
+
     function foot($form) { ?>
 </ul>
 </div>
