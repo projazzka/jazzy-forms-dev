@@ -15,8 +15,8 @@ function jzzf_element($) {
             li = $(html);
             placeholder.replaceWith(li);
         } else {
-            $('#jzzf_elements_list').append(html);
-            li = $('#jzzf_elements_list li:last-child');
+            li = $(html);
+            $('#jzzf_elements_list').append(li);
         }
         if(collapsed === undefined || collapsed) {
             li.addClass('jzzf_collapsed');
