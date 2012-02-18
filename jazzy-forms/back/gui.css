@@ -27,9 +27,12 @@
     padding: 8px 12px;
     margin: 0 4px 0 0px;
     border: 1px solid #ddd;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     height: 13px;
     z-index: 10;
     background-color: #eee;
+    cursor: pointer;
 }
 
 #jzzf_tabs li.jzzf_current_tab {
@@ -43,26 +46,47 @@
     margin: 0 10px 10px 0px;
     padding: 20px;
     border: 1px solid #ddd;
+    border-radius: 3px;
 }
 
-#jzzf_elements_toolbox {
+.jzzf_elements_toolbox {
     display: block;
     overflow: visible;
-    width: 200px;
+    width: 330px;
     float: left;
     clear: both;
 }
 
-#jzzf_elements_toolbox_items items {
-    padding: 10px;
+.jzzf_elements_toolbox_items {
+    display: block;
+    padding: 10px 10px 4px 10px;
+    overflow: hidden;
+    background: #eee;
+    border-radius: 3px;
+    width: 138px;
+    float: left;
 }
 
-#jzzf_elements_toolbox_items li {
+#jzzf_toolbox_input {
+    margin-right: 10px;
+}
+
+#jzzf_toolbox_buttons {
+    margin-bottom: 10px;
+}
+
+.jzzf_elements_toolbox_items li {
     background: #ddd;
     border: 1px solid #ccc;
+    border-radius: 3px;
     padding: 8px;
-    height: 20px;
-    width: 100px;
+    height: 14px;
+    width: 120px;
+    cursor: move;
+}
+
+.jzzf_elements_toolbox_items li:hover {
+    background-color: #e8e8e8;
 }
 
 #jzzf_elements_push_for_action {
@@ -83,27 +107,47 @@
     padding: 10px;
     overflow: hidden;
     background: #eee;
+    border-radius: 3px;
 }
 
 .jzzf_element {
     margin: 5px;
     border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 .jzzf_element_header {
     background: #ddd;
     border-bottom: 1px solid #ddd;
     padding: 8px;
-    height: 20px;
+    height: 14px;
+    cursor: move;
+}
+
+.jzzf_element.jzzf_collapsed .jzzf_element_header {
+    border-bottom: none;
+}
+
+.jzzf_element_header:hover {
+    background-color: #e8e8e8;
 }
 
 .jzzf_element_header .jzzf_element_delete {
+    width: 16px;
+    height: 16px;
+    background: url('img/del.png') no-repeat center;
     float: right;
+}
+
+.jzzf_element_header .jzzf_element_delete:hover {
+    background: url('img/del_hi.png') no-repeat center;
 }
 
 .jzzf_element_body {
     background: #fff;
     padding: 8px 12px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .jzzf_element_body label, .jzzf_section > ul > li > label {

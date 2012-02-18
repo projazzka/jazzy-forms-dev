@@ -60,7 +60,8 @@ function jzzf_<?=$method?>($obj) {
             }
         }
 <? endforeach ?>
+        return $id;
     }
 <? endif ?>
-    return $result!==false;
+    return false;
 }
