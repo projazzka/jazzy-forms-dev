@@ -3,7 +3,7 @@
     <input type="hidden" value="{{id}}" class="jzzf_element_id">
     <input type="hidden" value="{{counter}}" class="jzzf_element_counter">
     <div class="jzzf_element_header">
-        <span class="jzzf_type jzzf_type_{{type}}">[{{typeString}}]</span>
+        <div class="jzzf_type jzzf_type_{{type}}"></div>
         <span class="jzzf_header_title">{{display_title}}</span>
         <a href="#" class="jzzf_element_delete" title="Delete Element"></a>
     </div>
@@ -149,19 +149,19 @@
             <div class="jzzf_elements_toolbox">
             <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
                 <ul id="jzzf_toolbox_input" class="jzzf_elements_toolbox_items">
-                    <li jzzf_type="n">Number Entry</li>
-                    <li jzzf_type="d">Drop-down Menu</li>
-                    <li jzzf_type="r">Radio Buttons</li>
-                    <li jzzf_type="c">Checkbox</li>
-                    <li jzzf_type="f">Output</li>
+                    <li jzzf_type="n"><div class="jzzf_type jzzf_type_n"></div>Number Entry</li>
+                    <li jzzf_type="d"><div class="jzzf_type jzzf_type_d"></div>Drop-down Menu</li>
+                    <li jzzf_type="r"><div class="jzzf_type jzzf_type_r"></div>Radio Buttons</li>
+                    <li jzzf_type="c"><div class="jzzf_type jzzf_type_c"></div>Checkbox</li>
+                    <li jzzf_type="f"><div class="jzzf_type jzzf_type_f"></div>Output</li>
                 </ul>
                 <ul id="jzzf_toolbox_buttons" class="jzzf_elements_toolbox_items">
-                    <li jzzf_type="u">Update Button</li>
+                    <li jzzf_type="u"><div class="jzzf_type jzzf_type_u"></div>Update Button</li>
                 </ul>
                 <ul id="jzzf_toolbox_text" class="jzzf_elements_toolbox_items">
-                    <li jzzf_type="t">Text</li>
-                    <li jzzf_type="h">Heading</li>
-                    <li jzzf_type="m">Free HTML</li>
+                    <li jzzf_type="t"><div class="jzzf_type jzzf_type_t"></div>Text</li>
+                    <li jzzf_type="h"><div class="jzzf_type jzzf_type_h"></div>Heading</li>
+                    <li jzzf_type="m"><div class="jzzf_type jzzf_type_m"></div>Free HTML</li>
                 </ul>
             </div>
             <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>

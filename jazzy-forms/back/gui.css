@@ -52,7 +52,7 @@
 .jzzf_elements_toolbox {
     display: block;
     overflow: visible;
-    width: 330px;
+    width: 350px;
     float: left;
     clear: both;
 }
@@ -63,7 +63,7 @@
     overflow: hidden;
     background: #eee;
     border-radius: 3px;
-    width: 138px;
+    width: 148px;
     float: left;
 }
 
@@ -81,7 +81,7 @@
     border-radius: 3px;
     padding: 8px;
     height: 14px;
-    width: 120px;
+    width: 130px;
     cursor: move;
 }
 
@@ -189,3 +189,21 @@
 #jzzf_form_form input {
     margin-right: 12px;
 }
+
+.jzzf_type {
+    width: 16px;
+    height: 16px;
+    float: left;
+    padding-right: 10px;
+    background: url('img/u.png') no-repeat center;
+}
+
+.jzzf_type_n { background-image: url('img/n.png'); }
+.jzzf_type_c { background-image: url('img/c.png'); }
+.jzzf_type_r { background-image: url('img/r.png'); }
+.jzzf_type_d { background-image: url('img/d.png'); }
+.jzzf_type_u { background-image: url('img/u.png'); }
+.jzzf_type_f { background-image: url('img/f.png'); }
+.jzzf_type_t { background-image: url('img/t.png'); }
+.jzzf_type_h { background-image: url('img/h.png'); }
+.jzzf_type_m { background-image: url('img/m.png'); }
