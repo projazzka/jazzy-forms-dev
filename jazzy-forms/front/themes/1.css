@@ -29,6 +29,15 @@
     padding-bottom: 1em;
 }
 
+.jzzf_form .jzzf_element_c {
+    padding-bottom: inherit;
+}
+
+.jzzf_form .jzzf_element_h {
+    padding-bottom: inherit;
+    font-weight: bold;
+}
+
 .jzzf_form .jzzf_radio_option_label, .jzzf_form .jzzf_checkbox_label {
     padding-left: 8px;
 }

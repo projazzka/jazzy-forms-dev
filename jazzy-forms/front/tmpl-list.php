@@ -47,7 +47,7 @@ class Jzzf_List_Template {
     }
     
     function before($element) { ?>
-  <li class="jzzf_element">
+  <li class="jzzf_element jzzf_element_<?php echo $element->type ?>">
 <?php
     }
     
@@ -108,12 +108,12 @@ class Jzzf_List_Template {
     }
 
     function heading($element) { ?>
-        <div class="jzzf_element_heading"><?php esc_html_e($element->title) ?></div>
+        <?php esc_html_e($element->title) ?>
 <?php
     }
 
     function text($element) { ?>
-        <div class="jzzf_element_text"><?php esc_html_e($element->title) ?></div>
+        <?php esc_html_e($element->title) ?>
 <?php
     }
 
