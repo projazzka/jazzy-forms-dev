@@ -171,7 +171,7 @@
         var title = $('#jzzf_new_form_title').val();
         var id_helper = new jzzf_id(jzzf_forms);
         var name = id_helper.suggest_name(title);
-        form = {'title': title, 'name': name, 'elements': [], 'theme': 1};
+        form = {'title': title, 'name': name, 'elements': [], 'theme': 1, 'realtime': true};
         elements = [];
         $('#jzzf_form').show();
         var option = $('<option>');
