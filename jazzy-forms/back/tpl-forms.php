@@ -244,7 +244,10 @@
                         Please, copy and paste this shortcode into your page or post in order to insert this form (square brackets included).
                     </p>
                 </li>
-                
+                <li>
+                    <input type="checkbox" id="jzzf_realtime">
+                    <label for="jzzf_realtime" class="jzzf_checkbox_label">Update output elements instantly</label>
+                </li>                
             </ul>
         </div>
     </div>

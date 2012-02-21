@@ -123,6 +123,11 @@
             $('#jzzf_title').val(form.title);
             $('#jzzf_name').val(form.name);
             $('#jzzf_elements_list').html('');
+            if(form.realtime == 1) {
+                $('#jzzf_realtime').attr('checked', 'checked');
+            } else {
+                $('#jzzf_realtime').removeAttr('checked');
+            }
             for(var i=0; i<form.elements.length; i++) {
                 var element = jzzf_element.create(form.elements[i].type)
                 element.add(form.elements[i], null);
@@ -148,6 +153,7 @@
             "title": $('#jzzf_title').val(),
             "name": $('#jzzf_name').val(),
             "theme": $('#jzzf_default_css').is(':checked'),
+            "realtime": $('#jzzf_realtime').is(':checked'),
             "css": $('#jzzf_css').val(),
             "elements": get_elements()
         };

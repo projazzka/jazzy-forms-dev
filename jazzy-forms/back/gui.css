@@ -160,6 +160,10 @@
     margin-right: 12px;
 }
 
+.jzzf_section .jzzf_checkbox_label {
+    width: 400px;
+}
+
 .jzzf_section > ul > li > input[type=checkbox]  {
     margin-right: 12px;
 }
