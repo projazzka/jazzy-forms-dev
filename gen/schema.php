@@ -7,8 +7,8 @@ $db = get_db();
 foreach($db as $table => $def) {
     $schema = array();
     $colschema = $def['columns'];
-    foreach($colschema as $column => $type) {
-        $schema[$column] = $type_map[$type];
+    foreach($colschema as $column => $definition) {
+        $schema[$column] = $definition;
     }
     include(TEMPLATE_DIR . 'schema.php');
 }

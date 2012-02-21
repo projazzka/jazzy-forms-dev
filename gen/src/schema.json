@@ -1,11 +1,11 @@
 {
     "form": {
         "columns": {
-            "title": "str",
-            "name": "str",
-            "theme": "int",
-            "css": "str",
-            "realtime": "bool"
+            "title": {"type": "str"},
+            "name": {"type": "str"},
+            "theme": {"type": "int"},
+            "css": {"type": "str"},
+            "realtime": {"type": "bool", "default": true}
         },
         "recursion": {
             "elements": "element"
@@ -16,17 +16,17 @@
     },
     "element": {
         "columns": {
-            "form": "id",
-            "order": "int",
-            "type": "str",
-            "title": "str",
-            "name": "str",
-            "formula": "str",
-            "value": "str",
-            "value2": "str",
-            "default": "str",
-            "external": "bool",
-            "params": "json"
+            "form": {"type": "id"},
+            "order": {"type": "int"},
+            "type": {"type": "str"},
+            "title": {"type": "str"},
+            "name": {"type": "str"},
+            "formula": {"type": "str"},
+            "value": {"type": "str"},
+            "value2": {"type": "str"},
+            "default": {"type": "str"},
+            "external": {"type": "bool"},
+            "params": {"type": "json"}
         },
         "recursion": {
             "options": "option"
@@ -34,12 +34,12 @@
     },
     "option": {
         "columns": {
-            "order": "int",
-            "element": "id",
-            "default": "bool",
-            "title": "str",
-            "name": "str",
-            "value": "str"
+            "order": {"type": "int"},
+            "element": {"type": "id"},
+            "default": {"type": "bool"},
+            "title": {"type": "str"},
+            "name": {"type": "str"},
+            "value": {"type": "str"}
         }
     }
 }

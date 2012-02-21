@@ -12,13 +12,13 @@ foreach($db as $table => $def) {
     } else {
         $updates = null;
     }
-    foreach($colschema as $column => $type) {
-        $schema[$column] = $type_map[$type];
+    foreach($colschema as $column => $definition) {
+        $schema[$column] = $definition;
     }
     if($updates) {
         foreach($updates as $version => $columns) {
             foreach($columns as $column) {
-                $type = $schema[$column];
+                $definition = $schema[$column];
                 include(TEMPLATE_DIR . 'update.php');
             }
         }

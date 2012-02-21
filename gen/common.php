@@ -29,3 +29,10 @@ function get_schema($table) {
     return $db[$table];
 }
 
+function column_definition($column, $definition) {
+    global $type_map;
+    echo "`$column` " . $type_map[$definition['type']] . " NOT NULL";
+    if(array_key_exists('default', $definition) && $definition['default'] !== null) {
+        echo " DEFAULT " . $definition['default'];
+    }
+}
