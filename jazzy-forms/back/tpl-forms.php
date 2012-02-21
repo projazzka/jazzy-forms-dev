@@ -80,9 +80,13 @@
 <script id="jzzf_tmpl_f" type="text/html">
 {{>common}}
     <fieldset>
-        <legend>Formula</legend>
-        <label for="jzzf_element_{{counter}}_formula">Formula</label>
-        <input type="text" id="jzzf_element_{{counter}}_formula" class="jzzf_element_formula" value="{{formula}}">
+        <ul>
+            <li>
+                <legend>Formula</legend>
+                <label for="jzzf_element_{{counter}}_formula">Formula</label>
+                <input type="text" id="jzzf_element_{{counter}}_formula" class="jzzf_element_formula" value="{{formula}}">
+            </li>
+        </ul>
     </fieldset>
 {{>foot}}
 </script>
