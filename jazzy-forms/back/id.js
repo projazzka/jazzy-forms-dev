@@ -14,7 +14,7 @@ function jzzf_id(arr) {
         var name = base;
         var idx = 1;
         while(this.column_occupied(name, 'name')) {
-            name = base + '-' + idx;
+            name = base + '_' + idx;
             idx++;
         }
         return name;
