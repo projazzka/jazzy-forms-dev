@@ -26,7 +26,7 @@ function jzzf_view_front($form) {
         $tpl->css($form->css);
     }
     $graph = jzzf_get_graph($form->elements);
-    $tpl->graph($form, $graph);
+    $tpl->graph(jzzf_form_params($form), $graph);
     $tpl->script($form);
     $tpl->head($form);
     for($idx=0; $idx<count($form->elements); $idx++) {
@@ -75,4 +75,12 @@ function jzzf_view_front($form) {
     $tpl->foot($form);
     $output = ob_get_clean();
     return $output;
+}
+
+function jzzf_form_params($form) {
+    $params = clone $form;
+    unset($params->elements);
+    unset($params->css);    
+    return $params;
+
 }
