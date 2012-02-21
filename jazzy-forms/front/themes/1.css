@@ -29,13 +29,16 @@
     padding-bottom: 1em;
 }
 
-.jzzf_form .jzzf_element_c {
+.jzzf_form .jzzf_element_c.jzzf_ahead_c {
     padding-bottom: inherit;
 }
 
 .jzzf_form .jzzf_element_h {
-    padding-bottom: inherit;
     font-weight: bold;
+}
+
+.jzzf_form .jzzf_element_h.jzzf_ahead_c, .jzzf_form .jzzf_element_h.jzzf_ahead_m, .jzzf_form .jzzf_element_h.jzzf_ahead_t {
+    padding-bottom: inherit;
 }
 
 .jzzf_form .jzzf_radio_option_label, .jzzf_form .jzzf_checkbox_label {

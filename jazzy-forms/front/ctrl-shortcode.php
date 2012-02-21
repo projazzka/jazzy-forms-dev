@@ -29,8 +29,15 @@ function jzzf_view_front($form) {
     $tpl->graph($form, $graph);
     $tpl->script($form);
     $tpl->head($form);
-    foreach($form->elements as $element) {
-        $tpl->before($element);
+    for($idx=0; $idx<count($form->elements); $idx++) {
+        $element = $form->elements[$idx];
+        if($idx < count($form->elements)-1) {
+            $ahead = $form->elements[$idx+1];
+        } else {
+            $ahead = null;
+        }
+        $tpl->before($element, $ahead);
+        
         switch($element->type) {
             case 'n':
                 $tpl->number($element);
