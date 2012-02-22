@@ -6,7 +6,7 @@ function get_columns($table) {
 }
 
 function get_placeholder($type) {
-    if(in_array($type, array('id', 'int'))) {
+    if(in_array($type, array('id', 'int', 'bool'))) {
         return '%d';
     } else {
         return '%s';

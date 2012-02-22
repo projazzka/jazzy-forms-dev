@@ -4,12 +4,9 @@
     $assignment_array = array();
     $member_array = array();
     $column_array = array();
-    foreach($schema as $column => $type) {
-        if(in_array($type, array('id', 'int'))) {
-            $placeholder = '%d';
-        } else {
-            $placeholder = '%s';
-        }
+    foreach($schema as $column => $definition) {
+        $type = $definition['type'];
+        $placeholder = get_placeholder($type);
         $assignment_array[] = "`{$column}`={$placeholder}";
         $placeholder_array[] = $placeholder;
         $member_array[] = '$obj->' . $column;
