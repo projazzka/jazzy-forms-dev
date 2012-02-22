@@ -4,7 +4,7 @@ Donate link: http://www.jazzyforms.com/
 Tags: forms, form generator, calculator, price calculator, cost estimate
 Requires at least: 3.2.1
 Tested up to: 3.3.1
-Stable tag: 0.9.3
+Stable tag: 0.9.4
 
 Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
 
@@ -26,6 +26,7 @@ Form elements:
 * Check-boxes
 * Output
 * Update button
+* Text/Heading/HTML
 
 This is an early release. Features like input validation, data collection or Email are still being worked on.
 
@@ -47,7 +48,7 @@ On the Forms screen, add a new form, then drag the desired elements into it, cha
 
 Simply insert the following shortcode in the post or page you want the form to appear in:
 
-[jazzy form="FORM_ID"]
+`[jazzy form="FORM_ID"]`
 
 Replace FORM_ID with the ID of the form you want to add. The complete shortcode for your form is also displayed on its administration screen in the "General" tab. Copy and paste it from there.
 
@@ -84,6 +85,7 @@ Formulas are thought to have a similar notation to what you are probably used to
 `(base_price + price * quantity) * (1 + tax/100)`
 
 where "base_price", "price", "quantity" and "tax" are IDs of other existing form elements.
+While the author is still working on a proper documentation, you can preview a list of available functions at https://gist.github.com/1779127
 
 = Do you accept donations? =
 
@@ -102,6 +104,14 @@ I would love to gain insight about the way you are using this software and the t
 == Screenshots ==
 
 == Changelog ==
+
+= 0.9.4 =
+* Some GUI polishing
+* Treat quotes correctly on the back-end
+* Avoid crashes/freeze on formulas with unbalanced paranthesis
+* Add extra elements for text, heading and raw HTML
+* Make real-time updating optional
+* Generate valid HTML5 code
 
 = 0.9.3 =
 * Fix on fix: properly treat uppercase and underscore character in IDs and formulas
