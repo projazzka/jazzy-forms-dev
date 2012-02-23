@@ -35,6 +35,14 @@ define(JZZF_CORE, JZZF_ROOT . 'core/');
 define(JZZF_BACK, JZZF_ROOT . 'back/');
 define(JZZF_FRONT, JZZF_ROOT . 'front/');
 
+function jzzf_get_version() {
+    return get_option('jzzf_version', 0.0);
+}
+
+function jzzf_set_version($float) {
+    update_option('jzzf_version', JZZF_VERSION);
+}
+
 function jzzf_head() {
 	wp_register_script( 'mustache', plugins_url('jazzy-forms/3rdparty/mustache.js', null, '0.3.0'));
 	wp_register_script( 'jzzf-tabs', plugins_url('jazzy-forms/back/tabs.js', null, '1.0'));
@@ -64,29 +72,24 @@ function jzzf_data() {
 }
 
 function jzzf_init() {
+	jzzf_sanitize_db();
 }
 
 function jzzf_activate() {
 	global $wpdb;
 
-	if(!empty($wpdb->charset)) {
-		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
-	}
-	
-	if(!empty($wpdb->collate)) {
-		$charset_collate .= " COLLATE $wpdb->collate";
-	}
-	
-	jzzf_create_tables($charset_collate);
-	jzzf_update($charset_collate);
+	jzzf_create_tables();
+	jzzf_update();
 }
 
-function jzzf_create_tables($charset_collate) {
-	jzzf_execute_sql('schema.sql', $charset_collate);
+function jzzf_create_tables() {
+	jzzf_execute_sql('schema.sql');
 }
 
-function jzzf_execute_sql($filename, $charset_collate) {
+function jzzf_execute_sql($filename) {
 	global $wpdb;
+	
+	$charset_collate = jzzf_charset_collate();
 
 	$file = file( dirname(__FILE__) . '/generated/' . $filename );
 	foreach($file as $line) {
@@ -99,11 +102,32 @@ function jzzf_execute_sql($filename, $charset_collate) {
 	}
 }
 
-function jzzf_update($charset_collate) {
-	$previous = get_option('jzzf_version', 0.0);
-	update_option('jzzf_version', JZZF_VERSION);
+function jzzf_sanitize_db() {
+	$current = jzzf_get_version();
+	if($current < JZZF_VERSION) {
+		jzzf_update();
+	}
+}
+
+function jzzf_charset_collate() {
+	global $wpdb;
 	
-	jzzf_execute_sql('update.sql', $charset_collate);	
+	$charset_collate = '';
+	
+	if(!empty($wpdb->charset)) {
+		$charset_collate = "DEFAULT CHARACTER SET $wpdb->charset";
+	}
+	
+	if(!empty($wpdb->collate)) {
+		$charset_collate .= " COLLATE $wpdb->collate";
+	}	
+	return $charset_collate;
+}
+
+
+function jzzf_update() {	
+	jzzf_execute_sql('update.sql');
+	jzzf_set_version(JZZF_VERSION);
 }
 
 function jzzf_shortcode( $attr ) {
