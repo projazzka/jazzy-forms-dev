@@ -42,11 +42,16 @@
 
 #jzzf_main {
     overflow: hidden;
+    width: 1000px;
     background-color: #fff;
     margin: 0 10px 10px 0px;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 3px;
+}
+
+.jzzf_section {
+    width: 1000px;
 }
 
 .jzzf_elements_toolbox {
