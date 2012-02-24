@@ -28,6 +28,7 @@ Author URI: http://www.l90r.com/
 */
 
 define(JZZF_VERSION, 0.0904);
+define(JZZF_OPTION_VERSION, 'jzzf_version');
 
 define(JZZF_ROOT, WP_PLUGIN_DIR . '/jazzy-forms/');
 define(JZZF_GENERATED, JZZF_ROOT . 'generated/');
@@ -36,11 +37,15 @@ define(JZZF_BACK, JZZF_ROOT . 'back/');
 define(JZZF_FRONT, JZZF_ROOT . 'front/');
 
 function jzzf_get_version() {
-    return get_option('jzzf_version', 0.0);
+    return get_option(JZZF_OPTION_VERSION, 0.0);
 }
 
 function jzzf_set_version($float) {
-    update_option('jzzf_version', JZZF_VERSION);
+    update_option(JZZF_OPTION_VERSION, JZZF_VERSION);
+}
+
+function jzzf_delete_version() {
+	delete_option(JZZF_OPTION_VERSION);
 }
 
 function jzzf_head() {
@@ -103,7 +108,9 @@ function jzzf_execute_sql($filename) {
 }
 
 function jzzf_panic() {
-	// to be implemented
+	jzzf_execute_sql('drop.sql');
+	jzzf_delete_version();
+	deactivate_plugins(JZZF_ROOT . 'jazzy-forms.php');
 }
 
 function jzzf_sanitize_db() {

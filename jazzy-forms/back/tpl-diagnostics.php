@@ -23,4 +23,4 @@ Plugins: <?php echo htmlentities(json_encode(get_plugins())); ?>
 <h2>Panic</h2>
 <form method="post" action="#">
     <input type="submit" name="panic" value="DON'T PRESS THIS!" class="button-primary">
-        <p>This completely deletes any configuration and deactive the plugin</p>
+        <p>This completely deletes any Jazzy Forms configuration and deactives the plugin.</p>
