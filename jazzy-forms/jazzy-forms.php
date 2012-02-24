@@ -102,6 +102,10 @@ function jzzf_execute_sql($filename) {
 	}
 }
 
+function jzzf_panic() {
+	// to be implemented
+}
+
 function jzzf_sanitize_db() {
 	$current = jzzf_get_version();
 	if($current < JZZF_VERSION) {

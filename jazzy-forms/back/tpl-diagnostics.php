@@ -18,4 +18,9 @@ Forms:
 <?php echo htmlentities(json_encode($forms)); ?>
 
 Plugins: <?php echo htmlentities(json_encode(get_plugins())); ?>
+
 </pre>
+<h2>Panic</h2>
+<form method="post" action="#">
+    <input type="submit" name="panic" value="DON'T PRESS THIS!" class="button-primary">
+        <p>This completely deletes any configuration and deactive the plugin</p>
