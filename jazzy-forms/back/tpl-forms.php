@@ -208,7 +208,7 @@
                     <li jzzf_type="m"><div class="jzzf_type jzzf_type_m"></div>Free HTML</li>
                 </ul>
             </div>
-            <div id="jzzf_elements_push_for_action">Click or drag to add<br>&gt;&gt;</div>
+            <div id="jzzf_elements_push_for_action">Click or drag to add<br><div class="jzzf_arrow"></div></div>
             <div id="jzzf_elements">
             <div class="jzzf_column_heading">Form elements</div>
                 <ul id="jzzf_elements_list">

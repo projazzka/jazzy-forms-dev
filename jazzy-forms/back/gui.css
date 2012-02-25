@@ -220,3 +220,10 @@
 .jzzf_type_t { background-image: url('img/t.png'); }
 .jzzf_type_h { background-image: url('img/h.png'); }
 .jzzf_type_m { background-image: url('img/m.png'); }
+
+.jzzf_arrow {
+    width: 32px;
+    height: 16px;
+    background: url('img/arrow.png') no-repeat center;
+    margin: 4px auto;
+}
