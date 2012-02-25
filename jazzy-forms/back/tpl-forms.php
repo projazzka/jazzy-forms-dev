@@ -12,7 +12,7 @@
 </script>
 <script id="jzzf_tmpl_common" type="text/html">
 {{>common_raw}}
-        <fieldset>
+        <fieldset class="jzzf_div_fixed">
             <ul class="jzzf_element_parameters">
                 <li>
                     <label for="jzzf_element_{{counter}}_title">Title</label>
@@ -31,8 +31,8 @@
 </script>
 <script id="jzzf_tmpl_n" type="text/html">
 {{>common}}
-        <fieldset>
-            <legend>Value</legend>
+        <fieldset class="jzzf_div_collapsable">
+            <h3><div class="jzzf_toggler"></div>Value</h3>
             <ul>
                 <li>
                     <label for="jzzf_element_{{counter}}_value">Factor</label>
@@ -58,8 +58,8 @@
 </script>
 <script id="jzzf_tmpl_c" type="text/html">
 {{>common}}
-    <fieldset>
-        <legend>Values</legend>
+    <fieldset class="jzzf_div_collapsable">
+        <h3><div class="jzzf_toggler"></div>Values</h3>
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_value">Value for checked</label>
@@ -79,10 +79,10 @@
 </script>
 <script id="jzzf_tmpl_f" type="text/html">
 {{>common}}
-    <fieldset>
+    <fieldset class="jzzf_div_collapsable">
+        <h3><div class="jzzf_toggler"></div>Formula</h3>
         <ul>
             <li>
-                <legend>Formula</legend>
                 <label for="jzzf_element_{{counter}}_formula">Formula</label>
                 <input type="text" id="jzzf_element_{{counter}}_formula" class="jzzf_element_formula" value="{{formula}}">
             </li>
@@ -96,7 +96,7 @@
 </script>
 <script id="jzzf_tmpl_t" type="text/html">
 {{>common_raw}}
-    <fieldset>
+    <fieldset class="jzzf_div_fixed">
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">Text</label>
@@ -108,7 +108,7 @@
 </script>
 <script id="jzzf_tmpl_h" type="text/html">
 {{>common_raw}}
-    <fieldset>
+    <fieldset class="jzzf_div_fixed">
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">Heading</label>
@@ -120,7 +120,7 @@
 </script>
 <script id="jzzf_tmpl_m" type="text/html">
 {{>common_raw}}
-    <fieldset>
+    <fieldset class="jzzf_div_fixed">
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">HTML code</label>
@@ -132,8 +132,8 @@
 </script>
 
 <script id="jzzf_tmpl_options" type="text/html">
-        <fieldset>
-            <legend>Options</legend>
+        <fieldset class="jzzf_div_collapsable">
+            <h3><div class="jzzf_toggler"></div>Options</h3>
             <table class="jzzf_option_table">
             <thead><tr>
                 <th class="jzzf_column_drag"></th>
@@ -166,7 +166,7 @@
 <h2>Jazzy Forms</h2>
 <div id="jzzf_selection">
     <form id="jzzf_delete_form" method="post" action="#">
-    <label for="jzzf_selector">Form:</label>
+    <h3 for="jzzf_selector">Form:</h3>
     <select id="jzzf_selector">
 <?php $i=0; foreach($forms as $form) : ?>
         <option value="<?php echo $i++ ?>"<?php if($form->id == $current) :?> selected="selected"<?php endif ?>><?php echo esc_attr($form->title) ?></option>

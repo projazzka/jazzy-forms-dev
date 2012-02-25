@@ -62,6 +62,10 @@
     function bind() {
         $('#jzzf_main').delegate('input', 'change', mark_dirty);
         
+        $('#jzzf_elements_list').delegate('.jzzf_toggler', 'click', function() {
+            $(this).parent().parent().toggleClass('jzzf_div_collapsed');
+        });
+        
         $('.jzzf_elements_toolbox_items li').click(function() {
             add_element($(this), false);
             return false;

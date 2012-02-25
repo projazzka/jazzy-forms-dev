@@ -150,7 +150,7 @@
 
 .jzzf_element_body {
     background: #fff;
-    padding: 8px 12px;
+    padding: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
@@ -226,4 +226,45 @@
     height: 16px;
     background: url('img/arrow.png') no-repeat center;
     margin: 4px auto;
+}
+
+.jzzf_div_collapsable {
+    border-top: 1px solid #ccc;
+}
+
+.jzzf_div_collapsable > h3 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.jzzf_toggler {
+    float: left;
+    width: 16px;
+    height: 16px;
+    background-image: url('img/expanded.png');
+}
+
+.jzzf_div_collapsable {
+    padding: 4px 12px 8px 12px;
+}
+
+.jzzf_div_collapsable.jzzf_div_collapsed {
+    padding-bottom: 4px;
+}
+
+.jzzf_div_fixed {
+    padding: 8px 12px;
+}
+
+.jzzf_div_collapsed .jzzf_toggler {
+    background-image: url('img/collapsed.png');
+}
+
+.jzzf_div_collapsed > * {
+    display: none;
+}
+
+.jzzf_div_collapsed > h3 {
+    display: block;
 }
