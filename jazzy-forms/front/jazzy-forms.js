@@ -1,12 +1,20 @@
 function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas, jzzf_params) {
     
+    var all_ids = [];
     jzzf_precision = Math.pow(10,9);
     function prcsn(x) {
         return Math.round(x*jzzf_precision)/jzzf_precision;
     }
     
+    function retrieve_all_ids() {
+        for(id in jzzf_types) {
+            all_ids.push(id);
+        }
+    }
     
     $(function() {
+        retrieve_all_ids();
+        update(all_ids);
         bind();
     });
     
@@ -22,16 +30,12 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     function bind() {
         var id;
         for(id in jzzf_types) {
-            update(id);
             if(jzzf_params.realtime) {
                 bind_realtime_update(id);
             }
             if(jzzf_types[id] == 'u') {
                 element(id).click(function() {
-                    var id;
-                    for(id in jzzf_types) {
-                        update(id);
-                    }
+                    update(all_ids);
                 });
             }
         }
@@ -41,21 +45,23 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
         switch(jzzf_types[id]) {
         case 'r':
             element(id).find('input:radio').bind('change ready', function() {
-                update(element_id($(this).parents('.jzzf_radio')));
+                update([element_id($(this).parents('.jzzf_radio'))]);
             });
             break;
         default:
             element(id).bind('change ready', function() {
-                update(element_id($(this)));
+                update([element_id($(this))]);
             });
         }
     }
     
     var just_updated;
     
-    function update(id) {
+    function update(ids) {
         just_updated = [];
-        updating_worker(id);
+        for(var i=0; i<ids.length; i++) {
+            updating_worker(ids[i]);
+        }
     }
            
     function updating_worker(id) {
