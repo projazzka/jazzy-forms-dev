@@ -34,7 +34,10 @@ function jzzf_get_dependencies($formula) {
     $deps = array();
     foreach($formula as $token) {
         if($token[0] == 'v') {
-            $deps[] = $token[1];
+            $id = $token[1];
+            if(!in_array($id, $deps)) {
+                $deps[] = $id;
+            }
         }
     }
     return $deps;

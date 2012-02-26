@@ -39,6 +39,18 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array('result'=>array(array('v', 'num'), array('n', '2'), array('o', '*'))), $formulas);
 	}
 
+	function test_repeated_dependency() {
+		$elements = array(
+			(object) array('name'=> 'num', 'type'=> 'n', 'value' => 10),
+			(object) array('name'=> 'result', 'type'=> 'f', 'formula' => 'num*num*num')
+		);
+		$graph = jzzf_get_graph($elements);
+		extract($graph);
+		$this->assertEquals(array('num'=>'n', 'result'=>'f'), $types);
+		$this->assertEquals(array('num'=>array('result')), $dependencies);
+		$this->assertEquals(array('result'=>array(array('v', 'num'), array('v', 'num'), array('v', 'num'), array('o', '*'), array('o', '*'))), $formulas);
+	}
+
 	function test_single_dependency_ugly_characters() {
 		$elements = array(
 			(object) array('name'=> 'Num1', 'type'=> 'n', 'value' => 10),
