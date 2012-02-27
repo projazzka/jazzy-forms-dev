@@ -63,13 +63,28 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
             updating_worker(ids[i]);
         }
     }
-           
+    
+    function sanitize_result(val) {
+        switch(typeof val) {
+            case 'undefined':
+                val = 'Invalid formula';
+                break;
+            case 'number':
+                val = Math.round(val*jzzf_precision)/jzzf_precision;
+                break;
+            case 'boolean':
+                val = val ? 1 : 0;
+                break;
+        }
+        return val;
+    }
+    
     function updating_worker(id) {
         update_dependent(id);
         if(jzzf_types[id] != 'f' || id in just_updated) {
             return;
         }
-        element(id).val(Math.round(evaluate(id)*jzzf_precision)/jzzf_precision);
+        element(id).val(sanitize_result(evaluate(id)));
         just_updated.push(id);        
     }
 
@@ -111,6 +126,9 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     function formula(id) {
         var stack = [];
         var f = jzzf_formulas[id];
+        if(!f) {
+            return undefined;
+        }
         for(var i=0; i<f.length; i++) {
             switch(f[i][0]) {
                 case 'n':
