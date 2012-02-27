@@ -1,6 +1,8 @@
 function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas, jzzf_params) {
     
     var all_ids = [];
+    var cache = {};
+    
     jzzf_precision = Math.pow(10,9);
     function prcsn(x) {
         return Math.round(x*jzzf_precision)/jzzf_precision;
@@ -60,7 +62,9 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     function update(ids) {
         just_updated = [];
         for(var i=0; i<ids.length; i++) {
-            updating_worker(ids[i]);
+            var id = ids[i];
+            delete cache[id]
+            updating_worker(id);
         }
     }
     
@@ -98,6 +102,17 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
     
     function evaluate(id) {
+        var result;
+        if(!(id in cache) || (jzzf_types[id] == 'f' && !(id in just_updated))) {
+            result = evaluation_worker(id);
+            cache[id] = result;
+        } else {
+            result = cache[id];
+        }
+        return result;
+    }
+    
+    function evaluation_worker(id) {
         switch(jzzf_types[id]) {
             case 'n':
                 return element(id).val() * jzzf_data[id];
