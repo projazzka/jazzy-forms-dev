@@ -48,7 +48,7 @@ class Jzzf_List_Template {
     }
     
     function before($element, $ahead) { ?>
-  <li class="jzzf_element jzzf_element_<?php echo $element->type ?> jzzf_ahead_<?php echo $ahead ? $ahead->type : "end" ?>">
+  <li class="jzzf_element jzzf_element_<?php echo $element->type ?> jzzf_ahead_<?php echo $ahead ? $ahead->type : "end" ?>"<?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
 <?php
     }
     
