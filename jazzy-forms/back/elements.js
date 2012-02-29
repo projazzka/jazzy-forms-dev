@@ -37,6 +37,8 @@ function jzzf_element($) {
                 data.checked = (data.default == "1");
             }
         }
+        data.visible_always = (data.visible == 1);
+        data.visible_never = (data.visible == 0);        
         return this.html(tmpl_name, data);
     }
 
@@ -97,7 +99,8 @@ function jzzf_element($) {
             "title": li.find('.jzzf_element_title').val(),
             "name": li.find('.jzzf_element_name').val(),
             "value": li.find('.jzzf_element_value').val(),
-            "default": li.find('.jzzf_element_default').val()
+            "default": li.find('.jzzf_element_default').val(),
+            "visible": li.find('.jzzf_element_visible').val()
         };
         switch(li.find('.jzzf_element_type').val()) {
             case 'n':

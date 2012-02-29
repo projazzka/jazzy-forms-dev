@@ -11,7 +11,7 @@
             "elements": "element"
         },
         "update": {
-            "0.0903": ["realtime"]
+            "0.0904": ["realtime"]
         }
     },
     "element": {
@@ -26,10 +26,14 @@
             "value2": {"type": "str"},
             "default": {"type": "str"},
             "external": {"type": "bool"},
-            "params": {"type": "json"}
+            "params": {"type": "json"},
+            "visible": {"type": "int", "default": 1}
         },
         "recursion": {
             "options": "option"
+        },
+        "update": {
+            "0.0905": ["visible"]
         }
     },
     "option": {

@@ -26,8 +26,23 @@
         </fieldset>
 </script>
 <script id="jzzf_tmpl_foot" type="text/html">
+{{>visibility}}
     </div>
 </li>
+</script>
+<script id="jzzf_tmpl_visibility" type="text/html">
+        <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
+            <h3><div class="jzzf_toggler"></div>Visibility</h3>
+            <ul>
+                <li>
+                    <label for="jzzf_element_{{counter}}_visible">Show element...</label>
+                    <select id="jzzf_element_{{counter}}_visible" class="jzzf_element_visible">
+                        <option value="1" {{#visible_always}}selected="selected"{{/visible_always}}>Always</option>
+                        <option value="0" {{#visible_never}}selected="selected"{{/visible_never}}>Never</option>
+                    </select>
+                </li>
+            </ul>
+        </fieldset>
 </script>
 <script id="jzzf_tmpl_n" type="text/html">
 {{>common}}
