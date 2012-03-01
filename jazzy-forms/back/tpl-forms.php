@@ -33,31 +33,35 @@
 <script id="jzzf_tmpl_visibility" type="text/html">
         <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
             <h3><div class="jzzf_toggler"></div>Visibility</h3>
-            <ul>
-                <li>
-                    <label for="jzzf_element_{{counter}}_visible">Show element...</label>
-                    <select id="jzzf_element_{{counter}}_visible" class="jzzf_element_visible">
-                        <option value="1" {{#visible_always}}selected="selected"{{/visible_always}}>Always</option>
-                        <option value="0" {{#visible_never}}selected="selected"{{/visible_never}}>Never</option>
-                    </select>
-                </li>
-            </ul>
+            <div class="jzzf_collapsable_body">
+                <ul>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_visible">Show element...</label>
+                        <select id="jzzf_element_{{counter}}_visible" class="jzzf_element_visible">
+                            <option value="1" {{#visible_always}}selected="selected"{{/visible_always}}>Always</option>
+                            <option value="0" {{#visible_never}}selected="selected"{{/visible_never}}>Never</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
         </fieldset>
 </script>
 <script id="jzzf_tmpl_n" type="text/html">
 {{>common}}
         <fieldset class="jzzf_div_collapsable">
             <h3><div class="jzzf_toggler"></div>Value</h3>
-            <ul>
-                <li>
-                    <label for="jzzf_element_{{counter}}_value">Factor</label>
-                    <input type="text" id="jzzf_element_{{counter}}_value" class="jzzf_element_value" value="{{value}}">
-                </li>
-                <li>
-                    <label for="jzzf_element_{{id}}_default">Default</label>
-                    <input type="text" id="jzzf_element_{{id}}_default" class="jzzf_element_default" value="{{default}}">
-                </li>
-            </ul>                
+            <div class="jzzf_collapsable_body">
+                <ul>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_value">Factor</label>
+                        <input type="text" id="jzzf_element_{{counter}}_value" class="jzzf_element_value" value="{{value}}">
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{id}}_default">Default</label>
+                        <input type="text" id="jzzf_element_{{id}}_default" class="jzzf_element_default" value="{{default}}">
+                    </li>
+                </ul>
+            </div>
         </fieldset>
 {{>foot}}
 </script>
@@ -75,20 +79,22 @@
 {{>common}}
     <fieldset class="jzzf_div_collapsable">
         <h3><div class="jzzf_toggler"></div>Values</h3>
-        <ul>
-            <li>
-                <label for="jzzf_element_{{counter}}_value">Value for checked</label>
-                <input type="text" id="jzzf_element_{{counter}}_value" class="jzzf_element_value" value="{{value}}">
-            </li>
-            <li>
-                <label for="jzzf_element_{{counter}}_value2">Value for unchecked</label>
-                <input type="text" id="jzzf_element_{{counter}}_value2" class="jzzf_element_value2" value="{{value2}}">
-            </li>
-            <li>
-                <input type="checkbox" id="jzzf_element_{{counter}}_checked" class="jzzf_element_checked"{{#checked}} checked="checked"{{/checked}}>
-                <label for="jzzf_element_{{counter}}_checked">Checked by default</label>
-            </li>
-        </ul>
+        <div class="jzzf_collapsable_body">
+            <ul>
+                <li>
+                    <label for="jzzf_element_{{counter}}_value">Value for checked</label>
+                    <input type="text" id="jzzf_element_{{counter}}_value" class="jzzf_element_value" value="{{value}}">
+                </li>
+                <li>
+                    <label for="jzzf_element_{{counter}}_value2">Value for unchecked</label>
+                    <input type="text" id="jzzf_element_{{counter}}_value2" class="jzzf_element_value2" value="{{value2}}">
+                </li>
+                <li>
+                    <input type="checkbox" id="jzzf_element_{{counter}}_checked" class="jzzf_element_checked"{{#checked}} checked="checked"{{/checked}}>
+                    <label for="jzzf_element_{{counter}}_checked">Checked by default</label>
+                </li>
+            </ul>
+        </div>
     </fieldset>
 {{>foot}}
 </script>
@@ -96,12 +102,14 @@
 {{>common}}
     <fieldset class="jzzf_div_collapsable">
         <h3><div class="jzzf_toggler"></div>Formula</h3>
-        <ul>
-            <li>
-                <label for="jzzf_element_{{counter}}_formula">Formula</label>
-                <input type="text" id="jzzf_element_{{counter}}_formula" class="jzzf_element_formula" value="{{formula}}">
-            </li>
-        </ul>
+        <div class="jzzf_collapsable_body">
+            <ul>
+                <li>
+                    <label for="jzzf_element_{{counter}}_formula">Formula</label>
+                    <input type="text" id="jzzf_element_{{counter}}_formula" class="jzzf_element_formula" value="{{formula}}">
+                </li>
+            </ul>
+        </div>
     </fieldset>
 {{>foot}}
 </script>
@@ -149,21 +157,23 @@
 <script id="jzzf_tmpl_options" type="text/html">
         <fieldset class="jzzf_div_collapsable">
             <h3><div class="jzzf_toggler"></div>Options</h3>
-            <table class="jzzf_option_table">
-            <thead><tr>
-                <th class="jzzf_column_drag"></th>
-                <th class="jzzf_column_default">Default</th>
-                <th class="jzzf_column_title">Title</th>
-                <th class="jzzf_column_value">Value</th>
-                <th></th>
-            </tr></thead>
-            <tbody>
-            {{#options}}
-                {{>option}}
-            {{/options}}
-            </tbody>
-            </table>
-            <a href="" class="jzzf_option_add">Add</a>
+            <div class="jzzf_collapsable_body">
+                <table class="jzzf_option_table">
+                <thead><tr>
+                    <th class="jzzf_column_drag"></th>
+                    <th class="jzzf_column_default">Default</th>
+                    <th class="jzzf_column_title">Title</th>
+                    <th class="jzzf_column_value">Value</th>
+                    <th></th>
+                </tr></thead>
+                <tbody>
+                {{#options}}
+                    {{>option}}
+                {{/options}}
+                </tbody>
+                </table>
+                <a href="" class="jzzf_option_add">Add</a>
+            </div>
         </fieldset>
 </script>
 <script id="jzzf_tmpl_option" type="text/html">
