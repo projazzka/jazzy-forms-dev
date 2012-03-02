@@ -88,7 +88,7 @@ class Jzzf_List_Template {
 
     function checkbox($element) { ?>
     <input type="checkbox" id="<?php $this->id($element) ?>"<?php if($element->default): ?> checked="checked"<?php endif ?>>
-    <label class="jzzf_checkbox_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?>
+    <label class="jzzf_checkbox_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
 <?php
     }
     
