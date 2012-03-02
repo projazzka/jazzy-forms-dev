@@ -26,6 +26,31 @@
         </fieldset>
 </script>
 <script id="jzzf_tmpl_foot" type="text/html">
+        <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
+            <h3><div class="jzzf_toggler"></div>Appearance</h3>
+            <div class="jzzf_collapsable_body">
+                <ul>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_classes">Custom CSS classes</label>
+                        <input type="text" id="jzzf_element_{{counter}}_classes" class="jzzf_element_classes" value="{{classes}}">
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_width">Width</label>
+                        <select id="jzzf_element_{{counter}}_width" class="jzzf_element_width" value="{{classes}}">
+                            <option value="1" {{#width_1}}selected="selected"{{/width_1}}>1/1 (Full)</option>
+                            <option value="2" {{#width_2}}selected="selected"{{/width_2}}>1/2 (Half)</option>
+                            <option value="3" {{#width_3}}selected="selected"{{/width_3}}>1/3 (Third)</option>
+                            <option value="4" {{#width_4}}selected="selected"{{/width_4}}>1/4 (Quarter)</option>
+                        </select>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="jzzf_element_{{id}}_share" class="jzzf_element_share" {{#share}}checked="checked"{{/share}}>
+                        <label for="jzzf_element_{{id}}_share">Share row</label>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
 {{>visibility}}
     </div>
 </li>
@@ -111,6 +136,58 @@
             </ul>
         </div>
     </fieldset>
+        <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
+            <h3><div class="jzzf_toggler"></div>Number format</h3>
+            <div class="jzzf_collapsable_body">
+                <ul>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_prefix">Unit before number</label>
+                        <input type="text" id="jzzf_element_{{counter}}_prefix" class="jzzf_element_prefix" value="{{prefix}}">
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_postfix">Unit after number</label>
+                        <input type="text" id="jzzf_element_{{counter}}_postfix" class="jzzf_element_postfix" value="{{postfix}}">
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{id}}_zeros">Leading zeros</label>
+                        <select id="jzzf_element_{{id}}_zeros" class="jzzf_element_zeros">
+                        {{#zeros_options}}
+                            <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>0</option>
+                        {{/zeros_options}}
+                        </select>
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{id}}_decimals">Decimals</label>
+                        <select id="jzzf_element_{{id}}_decimals" class="jzzf_element_decimals">
+                        {{#decimals_options}}
+                            <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>0</option>
+                        {{/decimals_options}}
+                        </select>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="jzzf_element_{{id}}_fixed" class="jzzf_element_fixed" {{#fixed}}checked="checked"{{/fixed}}>
+                        <label for="jzzf_element_{{id}}_fixed">Fixed decimals</label>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{id}}_thousands">Thousands separator</label>
+                        <select id="jzzf_element_{{id}}_thousands" class="jzzf_element_thousands">
+                            <option value=""{{#thousands_none}} selected="selected"{{/thousands_none}}>None</option>
+                            <option value=" "{{#thousands_white}} selected="selected"{{/thousands_white}}>White space ( )</option>
+                            <option value=","{{#thousands_comma}} selected="selected"{{/thousands_comma}}>Comma (,)</option>
+                            <option value="."{{#thousands_point}} selected="selected"{{/thousands_point}}>Point (.)</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{id}}_point">Decimal point</label>
+                        <select id="jzzf_element_{{id}}_point" class="jzzf_element_point">
+                            <option value="."{{#point_point}} selected="selected"{{/point_point}}>Point (.)</option>
+                            <option value=","{{#point_comma}} selected="selected"{{/point_comma}}>Comma (,)</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_u" type="text/html">

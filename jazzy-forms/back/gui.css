@@ -157,6 +157,7 @@
 
 .jzzf_element_body li {
     margin-bottom: 2px;
+    height: 30px;
 }
 
 .jzzf_element_body label, .jzzf_section > ul > li > label {
@@ -270,9 +271,13 @@
 }
 
 .jzzf_collapsable_body {
-    margin-left: 16px;
+    margin: 10px 0 0 16px;
 }
 
 .jzzf_collapsable_body label {
     width: 124px;
+}
+
+.jzzf_element select {
+    width: 160px;
 }
