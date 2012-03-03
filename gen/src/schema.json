@@ -30,13 +30,23 @@
             "default": {"type": "str"},
             "external": {"type": "bool"},
             "params": {"type": "json"},
-            "visible": {"type": "int", "default": 1}
+            "visible": {"type": "int", "default": 1},
+            "prefix": {"type": "str", "len": 16},
+            "postfix": {"type": "str", "len": 16},
+            "zeros": {"type": "int", "len": 1},
+            "decimals": {"type": "int", "len": 1},
+            "fixed": {"type": "bool", "default": false},
+            "thousands": {"type": "str", "len": 1},
+            "point": {"type": "str", "len": 1, "default": "."},
+            "classes": {"type": "str"},
+            "divisions": {"type": "int", "len": 1, "default": 1},
+            "share": {"type": "bool"}
         },
         "recursion": {
             "options": "option"
         },
         "add": {
-            "0.0905": ["visible"]
+            "0.0905": ["visible", "prefix", "postfix", "zeros", "decimals", "fixed", "thousands", "point", "classes", "divisions", "share"]
         },
         "change": {
             "0.0905": ["title", "formula"]
