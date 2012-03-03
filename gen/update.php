@@ -7,19 +7,32 @@ $db = get_db();
 foreach($db as $table => $def) {
     $schema = array();
     $colschema = $def['columns'];
-    if(array_key_exists('update', $def)) {
-        $updates = $def['update'];
+    if(array_key_exists('add', $def)) {
+        $add = $def['add'];
     } else {
-        $updates = null;
+        $add = null;
+    }
+    if(array_key_exists('change', $def)) {
+        $change = $def['change'];
+    } else {
+        $change = null;
     }
     foreach($colschema as $column => $definition) {
         $schema[$column] = $definition;
     }
-    if($updates) {
-        foreach($updates as $version => $columns) {
+    if($add) {
+        foreach($add as $version => $columns) {
             foreach($columns as $column) {
                 $definition = $schema[$column];
-                include(TEMPLATE_DIR . 'update.php');
+                include(TEMPLATE_DIR . 'add.php');
+            }
+        }
+    }
+    if($change) {
+        foreach($change as $version => $columns) {
+            foreach($columns as $column) {
+                $definition = $schema[$column];
+                include(TEMPLATE_DIR . 'change.php');
             }
         }
     }

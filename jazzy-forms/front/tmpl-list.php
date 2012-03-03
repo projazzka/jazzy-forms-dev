@@ -68,8 +68,8 @@ class Jzzf_List_Template {
     <ul id="<?php $this->id($element) ?>" class="jzzf_radio">
     <?php $idx = 0; foreach($element->options as $option) { $idx++; ?>
     <li>
-        <input type="radio" name="<?php $this->id($element) ?>"<?php if($option->default): ?> checked="checked"<?php endif ?>>
-        <label class="jzzf_radio_option_label"><?php esc_html_e($option->title) ?></label>
+        <input type="radio" name="<?php $this->id($element) ?>" id="<?php echo $this->id($element) . '-' . $idx ?>"<?php if($option->default): ?> checked="checked"<?php endif ?>>
+        <label class="jzzf_radio_option_label" for="<?php echo $this->id($element) . '-' . $idx ?>"><?php esc_html_e($option->title) ?></label>
     </li>
 <?php
         } ?>
@@ -88,7 +88,7 @@ class Jzzf_List_Template {
 
     function checkbox($element) { ?>
     <input type="checkbox" id="<?php $this->id($element) ?>"<?php if($element->default): ?> checked="checked"<?php endif ?>>
-    <label class="jzzf_checkbox_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?>
+    <label class="jzzf_checkbox_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
 <?php
     }
     

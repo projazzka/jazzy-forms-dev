@@ -4,11 +4,19 @@ define('SCHEMA_FILE', 'src/schema.json');
 define('INDENT', 4);
 
 $type_map = array(
-    'str' => 'varchar(1024)',
-    'bool' => 'int(1)',
-    'json' => 'varchar(2048)',
-    'id' => 'bigint(20)',
-    'int' => 'int(12)'
+    'str' => 'varchar',
+    'bool' => 'int',
+    'json' => 'varchar',
+    'id' => 'bigint',
+    'int' => 'int'
+);
+
+$length_map = array(
+    'str' => 1024,
+    'bool' => 1,
+    'json' => 2048,
+    'id' => 20,
+    'int' => 12
 );
 
 function indent($str, $indent=1) {
@@ -29,9 +37,23 @@ function get_schema($table) {
     return $db[$table];
 }
 
+function type($definition) {
+    global $length_map, $type_map;
+    
+    if(array_key_exists('longtext', $definition)) {
+        return 'LONGTEXT';
+    }
+    if(array_key_exists('len', $definition)) {
+        $length = $definition['len'];
+    } else {
+        $length = $length_map[$definition['type']];
+    }
+    return $type_map[$definition['type']] . '(' . $length . ')';
+}
+
 function column_definition($column, $definition) {
     global $type_map;
-    echo "`$column` " . $type_map[$definition['type']] . " NOT NULL";
+    echo "`$column` " . type($definition) . " NOT NULL";
     if(array_key_exists('default', $definition) && $definition['default'] !== null) {
         echo " DEFAULT " . $definition['default'];
     }

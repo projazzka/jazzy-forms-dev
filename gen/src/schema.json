@@ -4,14 +4,17 @@
             "title": {"type": "str"},
             "name": {"type": "str"},
             "theme": {"type": "int"},
-            "css": {"type": "str"},
+            "css": {"type": "str", "longtext": true},
             "realtime": {"type": "bool", "default": true}
         },
         "recursion": {
             "elements": "element"
         },
-        "update": {
+        "add": {
             "0.0904": ["realtime"]
+        },
+        "change": {
+            "0.0905": ["css"]
         }
     },
     "element": {
@@ -19,9 +22,9 @@
             "form": {"type": "id"},
             "order": {"type": "int"},
             "type": {"type": "str"},
-            "title": {"type": "str"},
+            "title": {"type": "str", "len": 16383},
             "name": {"type": "str"},
-            "formula": {"type": "str"},
+            "formula": {"type": "str", "len": 16383},
             "value": {"type": "str"},
             "value2": {"type": "str"},
             "default": {"type": "str"},
@@ -32,8 +35,11 @@
         "recursion": {
             "options": "option"
         },
-        "update": {
+        "add": {
             "0.0905": ["visible"]
+        },
+        "change": {
+            "0.0905": ["title", "formula"]
         }
     },
     "option": {
