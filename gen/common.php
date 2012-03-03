@@ -51,10 +51,18 @@ function type($definition) {
     return $type_map[$definition['type']] . '(' . $length . ')';
 }
 
+function is_numeric_column($type) {
+    return in_array($type, array('id', 'int', 'bool'));
+}
+
 function column_definition($column, $definition) {
     global $type_map;
     echo "`$column` " . type($definition) . " NOT NULL";
     if(array_key_exists('default', $definition) && $definition['default'] !== null) {
-        echo " DEFAULT " . $definition['default'];
+        if(is_numeric_column($definition['type'])) {
+            echo " DEFAULT " . $definition['default'];
+        } else {
+            echo " DEFAULT '" . $definition['default'] . "'";
+        }
     }
 }
