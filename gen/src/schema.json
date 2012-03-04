@@ -1,7 +1,7 @@
 {
     "form": {
         "columns": {
-            "title": {"type": "str"},
+            "title": {"type": "str", "text": true},
             "name": {"type": "str"},
             "theme": {"type": "int"},
             "css": {"type": "str", "longtext": true},
@@ -22,9 +22,9 @@
             "form": {"type": "id"},
             "order": {"type": "int"},
             "type": {"type": "str"},
-            "title": {"type": "str", "len": 16383},
+            "title": {"type": "str", "text": true},
             "name": {"type": "str"},
-            "formula": {"type": "str", "len": 16383},
+            "formula": {"type": "str", "text": true},
             "value": {"type": "str"},
             "value2": {"type": "str"},
             "default": {"type": "str"},

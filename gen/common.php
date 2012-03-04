@@ -43,6 +43,9 @@ function type($definition) {
     if(array_key_exists('longtext', $definition)) {
         return 'LONGTEXT';
     }
+    if(array_key_exists('text', $definition)) {
+        return 'TEXT';
+    } 
     if(array_key_exists('len', $definition)) {
         $length = $definition['len'];
     } else {
