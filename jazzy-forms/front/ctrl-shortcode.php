@@ -16,6 +16,33 @@ function jzzf_ctrl_shortcode($attr) {
     return $output;
 }
 
+function jzzf_get_classes($element, $ahead) {
+    $classes = 'jzzf_element jzzf_element_' . $element->type . ' jzzf_ahead_' . $ahead->type;
+    if($element->share) {
+        $classes .= ' jzzf_share';
+    } else {
+        $classes .= ' jzzf_no_share';
+    }
+    switch($element->divisions) {
+        case 1:
+            $classes .= ' jzzf_full';
+            break;
+        case 2:
+            $classes .= ' jzzf_half';
+            break;
+        case 3:
+            $classes .= ' jzzf_third';
+            break;
+        case 4:
+            $classes .= ' jzzf_quarter';
+            break;
+    }
+    if($element->classes) {
+        $classes .= ' ' . trim($element->classes);
+    }
+    return $classes;
+}
+
 function jzzf_view_front($form) {
     ob_start();
     $tpl = new Jzzf_List_Template($form);
@@ -36,6 +63,8 @@ function jzzf_view_front($form) {
         } else {
             $ahead = null;
         }
+        
+        $element->classes = jzzf_get_classes($element, $ahead);
         $tpl->before($element, $ahead);
         
         switch($element->type) {

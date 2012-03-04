@@ -43,12 +43,12 @@ class Jzzf_List_Template {
     
     function head($form) { ?>
 <div class="jzzf_form">
-<ul>
+<ul class="jzzf_form_elements">
 <?php
     }
     
     function before($element, $ahead) { ?>
-  <li class="jzzf_element jzzf_element_<?php echo $element->type ?> jzzf_ahead_<?php echo $ahead ? $ahead->type : "end" ?>"<?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
+  <li class="<?php echo $element->classes ?>" "<?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
 <?php
     }
     

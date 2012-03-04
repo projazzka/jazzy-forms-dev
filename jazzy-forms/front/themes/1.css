@@ -9,6 +9,16 @@
 	padding: 0;
 	vertical-align: baseline;
 }
+
+.jzzf_form_elements {
+    width: 420px;
+}
+
+.jzzf_form input, .jzzf_form select {
+    padding: 0;
+    margin: 0;
+}
+
 .jzzf_form :focus {/* remember to define focus styles! */
 	outline: 0;
 }
@@ -45,6 +55,24 @@
     padding-left: 8px;
 }
 
-.jzzf_form input[type=text], .jzzf_form select {
-    width: 200px;
+.jzzf_form .jzzf_element {
+    padding-right: 8px;
+    display: block;
+}
+
+li.jzzf_full { width: 392px; }
+li.jzzf_half { width: 192px; }
+li.jzzf_third { width: 125px; }
+li.jzzf_quarter { width: 92px; }
+
+.jzzf_form input[type=text], .jzzf_form select { width: 100%; }
+
+
+.jzzf_share {
+    float: left;
+    clear: none;
+}
+
+.jzzf_no_share {
+    clear: both;
 }
