@@ -46,7 +46,6 @@
                     <li>
                         <input type="checkbox" id="jzzf_element_{{id}}_share" class="jzzf_element_share" {{#share}}checked="checked"{{/share}}>
                         <label for="jzzf_element_{{id}}_share">Share row</label>
-                        </select>
                     </li>
                 </ul>
             </div>
