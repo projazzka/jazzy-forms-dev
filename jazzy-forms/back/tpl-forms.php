@@ -35,12 +35,12 @@
                         <input type="text" id="jzzf_element_{{counter}}_classes" class="jzzf_element_classes" value="{{classes}}">
                     </li>
                     <li>
-                        <label for="jzzf_element_{{counter}}_width">Width</label>
-                        <select id="jzzf_element_{{counter}}_width" class="jzzf_element_width" value="{{classes}}">
-                            <option value="1" {{#width_1}}selected="selected"{{/width_1}}>1/1 (Full)</option>
-                            <option value="2" {{#width_2}}selected="selected"{{/width_2}}>1/2 (Half)</option>
-                            <option value="3" {{#width_3}}selected="selected"{{/width_3}}>1/3 (Third)</option>
-                            <option value="4" {{#width_4}}selected="selected"{{/width_4}}>1/4 (Quarter)</option>
+                        <label for="jzzf_element_{{counter}}_divisions">Width</label>
+                        <select id="jzzf_element_{{counter}}_divisions" class="jzzf_element_divisions" value="{{classes}}">
+                            <option value="1" {{#divisions_1}}selected="selected"{{/divisions_1}}>1/1 (Full)</option>
+                            <option value="2" {{#divisions_2}}selected="selected"{{/divisions_2}}>1/2 (Half)</option>
+                            <option value="3" {{#divisions_3}}selected="selected"{{/divisions_3}}>1/3 (Third)</option>
+                            <option value="4" {{#divisions_4}}selected="selected"{{/divisions_4}}>1/4 (Quarter)</option>
                         </select>
                     </li>
                     <li>
@@ -152,7 +152,7 @@
                         <label for="jzzf_element_{{id}}_zeros">Leading zeros</label>
                         <select id="jzzf_element_{{id}}_zeros" class="jzzf_element_zeros">
                         {{#zeros_options}}
-                            <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>0</option>
+                            <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{value}}</option>
                         {{/zeros_options}}
                         </select>
                     </li>
@@ -160,12 +160,12 @@
                         <label for="jzzf_element_{{id}}_decimals">Decimals</label>
                         <select id="jzzf_element_{{id}}_decimals" class="jzzf_element_decimals">
                         {{#decimals_options}}
-                            <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>0</option>
+                            <option value="{{value}}"{{#selected}} selected="selected"{{/selected}}>{{value}}</option>
                         {{/decimals_options}}
                         </select>
                     </li>
                     <li>
-                        <input type="checkbox" id="jzzf_element_{{id}}_fixed" class="jzzf_element_fixed" {{#fixed}}checked="checked"{{/fixed}}>
+                        <input type="checkbox" id="jzzf_element_{{id}}_fixed" class="jzzf_element_fixed" value="1"{{#fixed}} checked="checked"{{/fixed}}>
                         <label for="jzzf_element_{{id}}_fixed">Fixed decimals</label>
                         </select>
                     </li>
@@ -173,7 +173,7 @@
                         <label for="jzzf_element_{{id}}_thousands">Thousands separator</label>
                         <select id="jzzf_element_{{id}}_thousands" class="jzzf_element_thousands">
                             <option value=""{{#thousands_none}} selected="selected"{{/thousands_none}}>None</option>
-                            <option value=" "{{#thousands_white}} selected="selected"{{/thousands_white}}>White space ( )</option>
+                            <option value=" "{{#thousands_space}} selected="selected"{{/thousands_space}}>White space ( )</option>
                             <option value=","{{#thousands_comma}} selected="selected"{{/thousands_comma}}>Comma (,)</option>
                             <option value="."{{#thousands_point}} selected="selected"{{/thousands_point}}>Point (.)</option>
                         </select>

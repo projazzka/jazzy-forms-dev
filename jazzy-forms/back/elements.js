@@ -38,7 +38,21 @@ function jzzf_element($) {
             }
         }
         data.visible_always = (data.visible == 1);
-        data.visible_never = (data.visible == 0);        
+        data.visible_never = (data.visible == 0);
+        data.zeros_options = [];
+        data.decimals_options = [];
+        for(var i=0; i<9; i++) {
+            data.zeros_options.push({"value": i, "selected": (data.zeros == i)});
+            data.decimals_options.push({"value": i, "selected": (data.decimals == i)});
+        }
+        for(var i=1; i<=4; i++) {
+            data['divisions_' + i] = (data.divisions == i);
+        }
+        var separators = { "none": "", "comma": ",", "space": " ", "point": "." };
+        for(var key in separators) {
+            data['thousands_' + key] = (data.thousands === separators[key]);
+            data['point_' + key] = (data.point == separators[key]);
+        }
         return this.html(tmpl_name, data);
     }
 
@@ -93,31 +107,51 @@ function jzzf_element($) {
     }
     
     this.data = function(li) {
-        var result = {
-            "id": li.find('.jzzf_element_id').val(),
-            "type": li.find('.jzzf_element_type').val(),
-            "title": li.find('.jzzf_element_title').val(),
-            "name": li.find('.jzzf_element_name').val(),
-            "value": li.find('.jzzf_element_value').val(),
-            "default": li.find('.jzzf_element_default').val(),
-            "visible": li.find('.jzzf_element_visible').val()
-        };
-        switch(li.find('.jzzf_element_type').val()) {
-            case 'n':
-                result.value = li.find('.jzzf_element_value').val();
-                break;
-            case 'c':
-                result.value = li.find('.jzzf_element_value').val();
-                result.value2 = li.find('.jzzf_element_value2').val();
-                result.default = li.find('.jzzf_element_checked').is(':checked') ? "1" : "0";
-            case 'r':
+        var result = {};
+        var simple = [
+            'id',
+            'type',
+            'title',
+            'name',
+            'value',
+            'value2',
+            'visible',
+            'prefix',
+            'postfix',
+            'zeros',
+            'decimals',
+            'fixed',
+            'formula',
+            'thousands',
+            'point',
+            'classes',
+            'divisions',
+        ];
+        var checkboxes = [
+            'fixed',
+            'share'
+        ];
+
+        var type = li.find('.jzzf_element_type').val();
+        if(type == 'c') {
+            result.default = li.find('.jzzf_element_checked').is(':checked') ? "1" : "0";
+        } else {
+            simple.push('default');
+        }
+
+        switch(type) {
             case 'd':
+            case 'r':
                 result.options = this.options_data(li);
                 break;
-            case 'f':
-                result.formula = li.find('.jzzf_element_formula').val();
-                break;
         };
+
+        for(var i=0; i<simple.length; i++) {
+            result[simple[i]] = li.find('.jzzf_element_' + simple[i]).val();
+        }
+        for(var i=0; i<checkboxes.length; i++) {
+            result[checkboxes[i]] = li.find('.jzzf_element_' + checkboxes[i]).is(':checked');
+        }
         return result;
     }
     
