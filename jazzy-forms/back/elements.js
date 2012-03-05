@@ -129,7 +129,7 @@ function jzzf_element($) {
         ];
         var checkboxes = [
             'fixed',
-            'share'
+            'break'
         ];
 
         var type = li.find('.jzzf_element_type').val();

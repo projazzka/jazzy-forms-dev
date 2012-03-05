@@ -40,13 +40,13 @@
             "point": {"type": "str", "len": 1, "default": "."},
             "classes": {"type": "str"},
             "divisions": {"type": "int", "len": 1, "default": 1},
-            "share": {"type": "bool"}
+            "break": {"type": "bool", "default": 1}
         },
         "recursion": {
             "options": "option"
         },
         "add": {
-            "0.0905": ["visible", "prefix", "postfix", "zeros", "decimals", "fixed", "thousands", "point", "classes", "divisions", "share"]
+            "0.0905": ["visible", "prefix", "postfix", "zeros", "decimals", "fixed", "thousands", "point", "classes", "divisions", "break"]
         },
         "change": {
             "0.0905": ["title", "formula"]

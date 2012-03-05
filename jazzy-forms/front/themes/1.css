@@ -67,12 +67,11 @@ li.jzzf_quarter { width: 92px; }
 
 .jzzf_form input[type=text], .jzzf_form select { width: 100%; }
 
-
-.jzzf_share {
+.jzzf_break {
     float: left;
-    clear: none;
+    clear: left;
 }
 
-.jzzf_no_share {
-    clear: both;
+.jzzf_no_break {
+    float: left;
 }

@@ -18,10 +18,10 @@ function jzzf_ctrl_shortcode($attr) {
 
 function jzzf_get_classes($element, $ahead) {
     $classes = 'jzzf_element jzzf_element_' . $element->type . ' jzzf_ahead_' . $ahead->type;
-    if($element->share) {
-        $classes .= ' jzzf_share';
+    if($element->break) {
+        $classes .= ' jzzf_break';
     } else {
-        $classes .= ' jzzf_no_share';
+        $classes .= ' jzzf_no_break';
     }
     switch($element->divisions) {
         case 1:

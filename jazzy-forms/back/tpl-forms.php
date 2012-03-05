@@ -44,8 +44,8 @@
                         </select>
                     </li>
                     <li>
-                        <input type="checkbox" id="jzzf_element_{{counter}}_share" class="jzzf_element_share" {{#share}}checked="checked"{{/share}}>
-                        <label for="jzzf_element_{{counter}}_share">Share row</label>
+                        <input type="checkbox" id="jzzf_element_{{counter}}_break" class="jzzf_element_break" {{#break}}checked="checked"{{/break}}>
+                        <label for="jzzf_element_{{counter}}_break">Start new row</label>
                     </li>
                 </ul>
             </div>
