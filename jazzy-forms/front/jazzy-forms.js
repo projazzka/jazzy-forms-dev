@@ -1,4 +1,4 @@
-function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas, jzzf_params) {
+function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas, jzzf_form, jzzf_params) {
     
     var all_ids = [];
     var cache = {};
@@ -32,7 +32,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     function bind() {
         var id;
         for(id in jzzf_types) {
-            if(jzzf_params.realtime) {
+            if(jzzf_form.realtime) {
                 bind_realtime_update(id);
             }
             if(jzzf_types[id] == 'u') {
@@ -68,13 +68,15 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
         }
     }
     
-    function sanitize_result(val) {
+    function sanitize_result(val, id) {
         switch(typeof val) {
             case 'undefined':
                 val = 'Invalid formula';
                 break;
             case 'number':
-                val = Math.round(val*jzzf_precision)/jzzf_precision;
+                if(!isNaN(val)) {
+                    val = jzzf_format(val, jzzf_params[id]);
+                }
                 break;
             case 'boolean':
                 val = val ? 1 : 0;
@@ -88,7 +90,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
         if(jzzf_types[id] != 'f' || id in just_updated) {
             return;
         }
-        element(id).val(sanitize_result(evaluate(id)));
+        element(id).val(sanitize_result(evaluate(id), id));
         just_updated.push(id);        
     }
 

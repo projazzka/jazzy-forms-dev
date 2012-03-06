@@ -36,7 +36,8 @@ class Jzzf_List_Template {
         jzzf_dependencies_<?php echo $form->id ?> = <?php echo json_encode($dependencies) ?>;
         jzzf_formulas_<?php echo $form->id ?> = <?php echo json_encode($formulas) ?>;
         jzzf_form_<?php echo $form->id ?> = <?php echo json_encode($form) ?>;
-        jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_data_<?php echo $form->id ?>, jzzf_types_<?php echo $form->id ?>, jzzf_dependencies_<?php echo $form->id ?>, jzzf_formulas_<?php echo $form->id ?>, jzzf_form_<?php echo $form->id ?>);
+        jzzf_params_<?php echo $form->id ?> = <?php echo json_encode($params) ?>;
+        jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_data_<?php echo $form->id ?>, jzzf_types_<?php echo $form->id ?>, jzzf_dependencies_<?php echo $form->id ?>, jzzf_formulas_<?php echo $form->id ?>, jzzf_form_<?php echo $form->id ?>, jzzf_params_<?php echo $form->id ?>);
     </script>
 <?php
     }
