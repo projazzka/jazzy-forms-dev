@@ -291,39 +291,65 @@ function jzzf_format(input, args) {
     var sign;
     var natural;
     var decimals;
-    if(parts[0].substr(0,1) == '-') {
-        sign = '-';
-        natural = parts[0].substr(1);
-    } else {
-        sign = '';
-        natural = parts[0];
-    }
-    if(parts.length > 1) {
-        decimals = parts[1];
-    } else {
-        decimals = '';
-    }
-    if(args.decimals < decimals.length) {
-        var val = parseInt(decimals);
-        var precision = Math.pow(10, args.decimals-1);
-        decimals = ('' + Math.round(val/precision)*precision).substr(0,args.decimals);
-    }
-    if(args.fixed && args.decimals > decimals.length) {
-        decimals += Array(args.decimals - decimals.length + 1).join("0")
-    }
-    if(args.zeros > natural.length) {
-        natural = Array(args.zeros - natural.length + 1).join("0") + natural;
-    }
-    if(args.thousands.length) {
-        var len = natural.length;
-        var result = natural.substr(0, len % 3);
-        for(var i=len % 3; i<len; i+=3) {
-            if(result.length) {
-                result += args.thousands;
-            }
-            result += natural.substr(i, 3);
+    
+    function get_sign() {
+        if(parts[0].substr(0,1) == '-') {
+            sign = '-';
+            natural = parts[0].substr(1);
+        } else {
+            sign = '';
+            natural = parts[0];
         }
-        natural = result;
     }
+    
+    function get_decimals() {
+        if(parts.length > 1) {
+            decimals = parts[1];
+        } else {
+            decimals = '';
+        }
+    }
+
+    function round_decimals() {
+        if(args.decimals < decimals.length) {
+            var val = parseInt(decimals);
+            var precision = Math.pow(10, args.decimals-1);
+            decimals = ('' + Math.round(val/precision)*precision).substr(0,args.decimals);
+        }
+    }
+    
+    function leading_zeros() {
+        if(args.fixed && args.decimals > decimals.length) {
+            decimals += Array(args.decimals - decimals.length + 1).join("0");
+        }
+    }
+    
+    function trailing_zeros() {
+        if(args.zeros > natural.length) {
+            natural = Array(args.zeros - natural.length + 1).join("0") + natural;
+        }
+    }
+    
+    function thousands_separator() {
+        if(args.thousands.length) {
+            var len = natural.length;
+            var result = natural.substr(0, len % 3);
+            for(var i=len % 3; i<len; i+=3) {
+                if(result.length) {
+                    result += args.thousands;
+                }
+                result += natural.substr(i, 3);
+            }
+            natural = result;
+        }
+    }
+
+    get_sign();
+    get_decimals();
+    round_decimals();
+    leading_zeros();
+    trailing_zeros();
+    thousands_separator();
+
     return sign + args.prefix + natural + (decimals.length ? args.point + decimals + args.postfix : args.postfix);
 }
