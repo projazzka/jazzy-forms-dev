@@ -5,6 +5,10 @@ function jzzf_get_graph($elements) {
     $types = array();
     $dependencies = array();
     $formulas = array();
+    $params = array();
+    
+    $param_keys = array_flip(array('prefix', 'postfix', 'fixed', 'decimals', "zeros", "thousands", "point"));
+    
     foreach($elements as $elem) {
         $id = strtolower($elem->name);
         $type = $elem->type;
@@ -23,11 +27,12 @@ function jzzf_get_graph($elements) {
                     $dependencies[$dep][] = $id;
                 }
             }
+            $params[$id] = array_intersect_key((array) $elem, $param_keys);
         } elseif($values = jzzf_get_values($elem)) {
             $data[$id] = $values;
         }
     }
-    return compact('data', 'types', 'dependencies', 'formulas');
+    return compact('data', 'types', 'dependencies', 'formulas', 'params');
 }
 
 function jzzf_get_dependencies($formula) {

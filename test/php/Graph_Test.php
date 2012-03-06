@@ -13,7 +13,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 
     function test_empty() {
         $result = jzzf_get_graph(array());
-        $this->assertEquals(array('data'=>array(), 'types'=>array(), 'dependencies'=>array(), 'formulas'=>array()), $result);
+        $this->assertEquals(array('data'=>array(), 'types'=>array(), 'dependencies'=>array(), 'formulas'=>array(), 'params'=>array()), $result);
     }
 	
 	function test_simple() {
@@ -121,4 +121,29 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array(1,2,3), $data['vier']);
 		$this->assertEquals(array(5,10), $data['fuenf']);
 	}
+
+	function test_params() {
+		$elements = array(
+			(object) array('name'=> 'eins', 'type'=> 'n', 'value'=> 10, 'fixed'=>false, 'decimals'=>3, 'zeros'=>0, 'prefix'=>'', 'postfix'=>'', 'thousands'=>'', 'point'=>'.'),
+			(object) array('name'=> 'zwei', 'type'=> 'f','formula' => '3*x',  'fixed'=>false, 'decimals'=>3, 'zeros'=>0, 'prefix'=>'', 'postfix'=>'', 'thousands'=>'', 'point'=>'.')
+		);
+		$graph = jzzf_get_graph($elements);
+		$types = $graph['types'];
+		$params = $graph['params'];
+		$this->assertEquals(2, count($types));
+		$this->assertEquals(1, count($params));
+		$this->assertArrayHasKey('zwei', $params);
+		$this->assertSame(false, $params['zwei']['fixed']);
+		$this->assertSame(3, $params['zwei']['decimals']);
+		$this->assertSame(0, $params['zwei']['zeros']);
+		$this->assertSame('', $params['zwei']['prefix']);
+		$this->assertSame('', $params['zwei']['postfix']);
+		$this->assertSame('', $params['zwei']['thousands']);
+		$this->assertSame('.', $params['zwei']['point']);
+		$this->assertArrayNotHasKey('type', $params['zwei']);
+		$this->assertArrayNotHasKey('value', $params['zwei']);
+		$this->assertArrayNotHasKey('name', $params['zwei']);
+		$this->assertArrayNotHasKey('formula', $params['zwei']);
+	}
 }
+
