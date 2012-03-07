@@ -65,7 +65,7 @@ function jzzf_view_front($form) {
         }
         
         $element->classes = jzzf_get_classes($element, $ahead);
-        $tpl->before($element, $ahead);
+        $tpl->before($element, $ahead, ($element->break || $idx==0));
         
         switch($element->type) {
             case 'n':
@@ -99,7 +99,7 @@ function jzzf_view_front($form) {
                 $tpl->html($element);
                 break;
         }
-        $tpl->after($element);
+        $tpl->after($element, ($ahead && $ahead->break) || ($idx==count($form->elements)-1));
     }
     $tpl->foot($form);
     $output = ob_get_clean();

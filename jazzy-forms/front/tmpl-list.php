@@ -1,8 +1,10 @@
 <?php
 
 class Jzzf_List_Template {
+    
     function __construct($form) {
         $this->form = $form;
+        $first = true;
     }
 
     function id($element) {
@@ -48,13 +50,20 @@ class Jzzf_List_Template {
 <?php
     }
     
-    function before($element, $ahead) { ?>
-  <li class="<?php echo $element->classes ?>" "<?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
+    function before($element, $ahead, $first) { ?>
+    <?php if($first) : ?>
+  <li class="jzzf_row">
+    <?php endif ?>
+  <div class="<?php echo $element->classes ?>" "<?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
 <?php
     }
     
-    function after($element) { ?>
+    function after($element, $last) { ?>
+  </div>
+        <?php if($last) : ?>
+  <div class="clear"></div>
   </li>
+        <?php endif ?>
 <?php
     }
     

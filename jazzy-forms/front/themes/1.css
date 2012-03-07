@@ -60,10 +60,16 @@
     display: block;
 }
 
-li.jzzf_full { width: 392px; }
-li.jzzf_half { width: 192px; }
-li.jzzf_third { width: 125px; }
-li.jzzf_quarter { width: 92px; }
+div.jzzf_full { width: 392px; }
+div.jzzf_half { width: 192px; }
+div.jzzf_third { width: 125px; }
+div.jzzf_quarter { width: 92px; }
+
+.jzzf_row {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 
 .jzzf_form input[type=text], .jzzf_form select { width: 100%; }
 
