@@ -2,7 +2,7 @@
 /*
 Plugin Name: Jazzy Forms
 Plugin URI: http://www.jazzyforms.com/
-Description: Online form builder
+Description: Online form builder with an emphasis on calculation
 Version: 0.9.5
 Author: Igor Prochazka
 Author URI: http://www.l90r.com/
