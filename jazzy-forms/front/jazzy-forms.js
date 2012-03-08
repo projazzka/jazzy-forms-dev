@@ -1,3 +1,9 @@
+/*
+    This file is part of the WordPress plugin "Jazzy Forms"
+    Copyright (C) 2012 by Igor Prochazka. www.jazzyforms.com
+    Jazzy Forms is licensed under the GNU General Public License, version 3.
+*/
+
 function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas, jzzf_form, jzzf_params) {
     
     var all_ids = [];
