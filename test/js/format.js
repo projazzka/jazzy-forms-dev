@@ -6,6 +6,8 @@ test("normal", function() {
   params = {"prefix": "", "postfix": "", "fixed": false, "decimals": 9, "zeros": 0, "thousands": "", "point": "."}
   
   equal(jzzf_format(0                     , params), "0")
+  equal(jzzf_format(0.0000000001          , params), "0")
+  equal(jzzf_format(0.0000000009          , params), "0.000000001")
   equal(jzzf_format(0.1                   , params), "0.1")
   equal(jzzf_format(0.123                 , params), "0.123")
   equal(jzzf_format(0.123456789           , params), "0.123456789")
@@ -42,6 +44,8 @@ test("non-english", function() {
   params = {"prefix": "", "postfix": "", "fixed": false, "decimals": 9, "zeros": 0, "thousands": ".", "point": ","}
 
   equal(jzzf_format(0                     , params), "0")
+  equal(jzzf_format(0.0000000001          , params), "0")
+  equal(jzzf_format(0.0000000009          , params), "0,000000001")
   equal(jzzf_format(0.1                   , params), "0,1")
   equal(jzzf_format(0.123                 , params), "0,123")
   equal(jzzf_format(0.123456789           , params), "0,123456789")
@@ -78,6 +82,8 @@ test("units", function() {
 
   params = {"prefix": "$", "postfix": "avg", "fixed": false, "decimals": 9, "zeros": 0, "thousands": "", "point": "."}
   equal(jzzf_format(0                     , params), "$0avg")
+  equal(jzzf_format(0.0000000001          , params), "$0avg")
+  equal(jzzf_format(0.0000000009          , params), "$0.000000001avg")
   equal(jzzf_format(0.1                   , params), "$0.1avg")
   equal(jzzf_format(0.123                 , params), "$0.123avg")
   equal(jzzf_format(0.123456789           , params), "$0.123456789avg")
@@ -114,6 +120,8 @@ test("two decimals", function() {
   params = {"prefix": "", "postfix": "", "fixed": false, "decimals": 2, "zeros": 0, "thousands": "", "point": "."};
   
   equal(jzzf_format(0                     , params), "0")
+  equal(jzzf_format(0.0000000001          , params), "0")
+  equal(jzzf_format(0.0000000009          , params), "0")
   equal(jzzf_format(0.1                   , params), "0.1")
   equal(jzzf_format(0.123                 , params), "0.12")
   equal(jzzf_format(0.123456789           , params), "0.12")
@@ -150,6 +158,8 @@ test("cents", function() {
   params = {"prefix": "", "postfix": "", "fixed": true, "decimals": 2, "zeros": 0, "thousands": "", "point": "."}
 
   equal(jzzf_format(0                     , params), "0.00")
+  equal(jzzf_format(0.0000000001          , params), "0.00")
+  equal(jzzf_format(0.0000000009          , params), "0.00")
   equal(jzzf_format(0.1                   , params), "0.10")
   equal(jzzf_format(0.123                 , params), "0.12")
   equal(jzzf_format(0.123456789           , params), "0.12")
@@ -186,6 +196,8 @@ test("leading zeros", function() {
   params = {"prefix": "", "postfix": "", "fixed": false, "decimals": 9, "zeros": 4, "thousands": "", "point": "."}
   
   equal(jzzf_format(0                     , params), "0000")
+  equal(jzzf_format(0.0000000001          , params), "0000")
+  equal(jzzf_format(0.0000000009          , params), "0000.000000001")
   equal(jzzf_format(0.1                   , params), "0000.1")
   equal(jzzf_format(0.123                 , params), "0000.123")
   equal(jzzf_format(0.123456789           , params), "0000.123456789")
@@ -221,6 +233,8 @@ test("leading zeros", function() {
 test("mixed", function() {
   params = {"prefix": "~", "postfix": " EUR", "fixed": true, "decimals": 2, "zeros": 4, "thousands": " ", "point": ","}
   equal(jzzf_format(0                     , params), "~0 000,00 EUR")
+  equal(jzzf_format(0.0000000001          , params), "~0 000,00 EUR")
+  equal(jzzf_format(0.0000000009          , params), "~0 000,00 EUR")
   equal(jzzf_format(0.1                   , params), "~0 000,10 EUR")
   equal(jzzf_format(0.123                 , params), "~0 000,12 EUR")
   equal(jzzf_format(0.123456789           , params), "~0 000,12 EUR")

@@ -288,11 +288,6 @@ function jzzf_functions(id, args) {
 }
 
 function jzzf_format(input, args) {
-    var str = "" + input;
-    var parts = str.split('.');
-    var sign;
-    var natural;
-    var decimals;
     
     function get_sign() {
         if(parts[0].substr(0,1) == '-') {
@@ -312,12 +307,9 @@ function jzzf_format(input, args) {
         }
     }
 
-    function round_decimals() {
-        if(args.decimals < decimals.length) {
-            var val = parseInt(decimals);
-            var precision = Math.pow(10, args.decimals-1);
-            decimals = ('' + Math.round(val/precision)*precision).substr(0,args.decimals);
-        }
+    function round() {
+        var precision = Math.pow(10, args.decimals);
+        input = Math.round(input*precision)/precision;
     }
     
     function leading_zeros() {
@@ -345,10 +337,17 @@ function jzzf_format(input, args) {
             natural = result;
         }
     }
-
+    
+    round();
+    
+    var str = "" + input;
+    var parts = str.split('.');
+    var sign;
+    var natural;
+    var decimals;
+    
     get_sign();
     get_decimals();
-    round_decimals();
     leading_zeros();
     trailing_zeros();
     thousands_separator();
