@@ -34,7 +34,7 @@
             "prefix": {"type": "str", "len": 16},
             "postfix": {"type": "str", "len": 16},
             "zeros": {"type": "int", "len": 1},
-            "decimals": {"type": "int", "len": 1},
+            "decimals": {"type": "int", "len": 1, "default": 9},
             "fixed": {"type": "bool", "default": 0},
             "thousands": {"type": "str", "len": 1},
             "point": {"type": "str", "len": 1, "default": "."},
