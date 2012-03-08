@@ -10,7 +10,16 @@
         var id_helper = new jzzf_id(elements);
         var title = id_helper.suggest_title('Element');
         var name = id_helper.suggest_name(title);
-        return obj = {'title': title, 'name': name, 'type': type};
+        return obj = {
+            'title': title,
+            'name': name,
+            'type': type,
+            'decimals': 9,
+            'point': '.',
+            'visible': 1,
+            'divisions': 1,
+            'break': 1
+        };
     }
     
     function add_element(item, remove) {
