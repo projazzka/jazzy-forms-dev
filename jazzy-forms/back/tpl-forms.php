@@ -27,7 +27,7 @@
 </script>
 <script id="jzzf_tmpl_foot" type="text/html">
         <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
-            <h3><div class="jzzf_toggler"></div>Appearance</h3>
+            <h3 class="jzzf_toggler"><div></div>Appearance</h3>
             <div class="jzzf_collapsable_body">
                 <ul>
                     <li>
@@ -56,7 +56,7 @@
 </script>
 <script id="jzzf_tmpl_visibility" type="text/html">
         <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
-            <h3><div class="jzzf_toggler"></div>Visibility</h3>
+            <h3 class="jzzf_toggler"><div></div>Visibility</h3>
             <div class="jzzf_collapsable_body">
                 <ul>
                     <li>
@@ -73,7 +73,7 @@
 <script id="jzzf_tmpl_n" type="text/html">
 {{>common}}
         <fieldset class="jzzf_div_collapsable">
-            <h3><div class="jzzf_toggler"></div>Value</h3>
+            <h3 class="jzzf_toggler"><div></div>Value</h3>
             <div class="jzzf_collapsable_body">
                 <ul>
                     <li>
@@ -102,7 +102,7 @@
 <script id="jzzf_tmpl_c" type="text/html">
 {{>common}}
     <fieldset class="jzzf_div_collapsable">
-        <h3><div class="jzzf_toggler"></div>Values</h3>
+        <h3 class="jzzf_toggler"><div></div>Values</h3>
         <div class="jzzf_collapsable_body">
             <ul>
                 <li>
@@ -125,7 +125,7 @@
 <script id="jzzf_tmpl_f" type="text/html">
 {{>common}}
     <fieldset class="jzzf_div_collapsable">
-        <h3><div class="jzzf_toggler"></div>Formula</h3>
+        <h3 class="jzzf_toggler"><div></div>Formula</h3>
         <div class="jzzf_collapsable_body">
             <ul>
                 <li>
@@ -136,7 +136,7 @@
         </div>
     </fieldset>
         <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
-            <h3><div class="jzzf_toggler"></div>Number format</h3>
+            <h3 class="jzzf_toggler"><div></div>Number format</h3>
             <div class="jzzf_collapsable_body">
                 <ul>
                     <li>
@@ -232,7 +232,7 @@
 
 <script id="jzzf_tmpl_options" type="text/html">
         <fieldset class="jzzf_div_collapsable">
-            <h3><div class="jzzf_toggler"></div>Options</h3>
+            <h3 class="jzzf_toggler"><div></div>Options</h3>
             <div class="jzzf_collapsable_body">
                 <table class="jzzf_option_table">
                 <thead><tr>

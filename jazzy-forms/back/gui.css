@@ -240,6 +240,10 @@
 }
 
 .jzzf_toggler {
+    cursor: default;
+}
+
+.jzzf_toggler div {
     float: left;
     width: 16px;
     height: 16px;
@@ -258,7 +262,7 @@
     padding: 8px 12px;
 }
 
-.jzzf_div_collapsed .jzzf_toggler {
+.jzzf_div_collapsed .jzzf_toggler div {
     background-image: url('img/collapsed.png');
 }
 
