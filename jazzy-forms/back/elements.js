@@ -41,7 +41,7 @@ function jzzf_element($) {
         data.visible_never = (data.visible == 0);
         data.zeros_options = [];
         data.decimals_options = [];
-        for(var i=0; i<9; i++) {
+        for(var i=0; i<=9; i++) {
             data.zeros_options.push({"value": i, "selected": (data.zeros == i)});
             data.decimals_options.push({"value": i, "selected": (data.decimals == i)});
         }
