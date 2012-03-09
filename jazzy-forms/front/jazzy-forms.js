@@ -75,6 +75,10 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
     
     function sanitize_result(val, id) {
+        var f = parseFloat(val);
+        if(!isNaN(f)) {
+            val = f;
+        }
         switch(typeof val) {
             case 'undefined':
                 val = 'Invalid formula';
