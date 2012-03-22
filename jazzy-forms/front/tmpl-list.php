@@ -33,13 +33,15 @@ class Jzzf_List_Template {
     
     function graph($form, $graph) { extract($graph); ?>
     <script type="text/javascript">
-        jzzf_data_<?php echo $form->id ?> = <?php echo json_encode($data) ?>;
-        jzzf_types_<?php echo $form->id ?> = <?php echo json_encode($types) ?>;
-        jzzf_dependencies_<?php echo $form->id ?> = <?php echo json_encode($dependencies) ?>;
-        jzzf_formulas_<?php echo $form->id ?> = <?php echo json_encode($formulas) ?>;
-        jzzf_form_<?php echo $form->id ?> = <?php echo json_encode($form) ?>;
-        jzzf_params_<?php echo $form->id ?> = <?php echo json_encode($params) ?>;
-        jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_data_<?php echo $form->id ?>, jzzf_types_<?php echo $form->id ?>, jzzf_dependencies_<?php echo $form->id ?>, jzzf_formulas_<?php echo $form->id ?>, jzzf_form_<?php echo $form->id ?>, jzzf_params_<?php echo $form->id ?>);
+        var jzzf_graph_<?php echo $form->id ?> = {
+            "data": <?php echo json_encode($data) ?>,
+            "types": <?php echo json_encode($types) ?>,
+            "dependencies": <?php echo json_encode($dependencies) ?>,
+            "formulas": <?php echo json_encode($formulas) ?>,
+            "form": <?php echo json_encode($form) ?>,
+            "params": <?php echo json_encode($params) ?>
+        };
+        jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);
     </script>
 <?php
     }

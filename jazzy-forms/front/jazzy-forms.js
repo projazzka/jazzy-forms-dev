@@ -4,7 +4,7 @@
     Jazzy Forms is licensed under the GNU General Public License, version 3.
 */
 
-function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_formulas, jzzf_form, jzzf_params) {
+function jazzy_forms($, form_id, graph) {
     
     var all_ids = [];
     var cache = {};
@@ -15,7 +15,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
     
     function retrieve_all_ids() {
-        for(id in jzzf_types) {
+        for(id in graph.types) {
             all_ids.push(id);
         }
     }
@@ -37,11 +37,11 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     
     function bind() {
         var id;
-        for(id in jzzf_types) {
-            if(jzzf_form.realtime) {
+        for(id in graph.types) {
+            if(graph.form.realtime) {
                 bind_realtime_update(id);
             }
-            if(jzzf_types[id] == 'u') {
+            if(graph.types[id] == 'u') {
                 element(id).click(function() {
                     update(all_ids);
                 });
@@ -50,7 +50,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
 
     function bind_realtime_update(id) {
-        switch(jzzf_types[id]) {
+        switch(graph.types[id]) {
         case 'r':
             element(id).find('input:radio').bind('change ready', function() {
                 update([element_id($(this).parents('.jzzf_radio'))]);
@@ -85,7 +85,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
                 break;
             case 'number':
                 if(!isNaN(val)) {
-                    val = jzzf_format(val, jzzf_params[id]);
+                    val = jzzf_format(val, graph.params[id]);
                 }
                 break;
             case 'boolean':
@@ -97,7 +97,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     
     function updating_worker(id) {
         update_dependent(id);
-        if(jzzf_types[id] != 'f' || id in just_updated) {
+        if(graph.types[id] != 'f' || id in just_updated) {
             return;
         }
         element(id).val(sanitize_result(evaluate(id), id));
@@ -105,8 +105,8 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
 
     function update_dependent(id) {
-        if(id in jzzf_dependencies) {
-            var deps = jzzf_dependencies[id];
+        if(id in graph.dependencies) {
+            var deps = graph.dependencies[id];
             for(var i=0; i<deps.length; i++) {
                 updating_worker(deps[i]);
             }
@@ -115,7 +115,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     
     function evaluate(id) {
         var result;
-        if(!(id in cache) || (jzzf_types[id] == 'f' && !(id in just_updated))) {
+        if(!(id in cache) || (graph.types[id] == 'f' && !(id in just_updated))) {
             result = evaluation_worker(id);
             cache[id] = result;
         } else {
@@ -125,22 +125,22 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
     }
     
     function evaluation_worker(id) {
-        switch(jzzf_types[id]) {
+        switch(graph.types[id]) {
             case 'n':
-                return element(id).val() * jzzf_data[id];
+                return element(id).val() * graph.data[id];
             case 'r':
                 var idx = element(id).find('input:checked').parent().index();
                 if(idx>=0) {
-                    return jzzf_data[id][idx];
+                    return graph.data[id][idx];
                 } else {
                     return 0;
                 }
             case "c":
-                return element(id).is(':checked') ? jzzf_data[id][1] : jzzf_data[id][0];
+                return element(id).is(':checked') ? graph.data[id][1] : graph.data[id][0];
             case 'd':
                 var idx = element(id).find('option:selected').index();
                 if(idx>=0) {
-                    return jzzf_data[id][idx];
+                    return graph.data[id][idx];
                 } else {
                     return 0;
                 }
@@ -152,7 +152,7 @@ function jazzy_forms($, form_id, jzzf_data, jzzf_types, jzzf_dependencies, jzzf_
             
     function formula(id) {
         var stack = [];
-        var f = jzzf_formulas[id];
+        var f = graph.formulas[id];
         if(!f) {
             return undefined;
         }
