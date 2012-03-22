@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://blankito.local/workspace/wpbay/wp/" />
+<title>formatting</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">formatting</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/workspace/wpbay/wp/formatting/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_dollar</td>
+	<td>$1,234.57</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_propagated</td>
+	<td>00001234.567 PROP</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_sum</td>
+	<td>2469.134</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=jzzf_16_input</td>
+	<td>label=b) 1234.5</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_dollar</td>
+	<td>$1,234.50</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_propagated</td>
+	<td>00001234.5 PROP</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_sum</td>
+	<td>2469</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=jzzf_16_input</td>
+	<td>label=c) 1234</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_dollar</td>
+	<td>$1,234.00</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_propagated</td>
+	<td>00001234 PROP</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_sum</td>
+	<td>2468</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=jzzf_16_input</td>
+	<td>label=d) 1.234</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_dollar</td>
+	<td>$1.23</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_propagated</td>
+	<td>00000001.234 PROP</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_16_sum</td>
+	<td>2.468</td>
+</tr>
+
+</tbody></table>
+</body>
+</html>
