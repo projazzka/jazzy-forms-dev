@@ -39,7 +39,8 @@ class Jzzf_List_Template {
             "dependencies": <?php echo json_encode($dependencies) ?>,
             "formulas": <?php echo json_encode($formulas) ?>,
             "form": <?php echo json_encode($form) ?>,
-            "params": <?php echo json_encode($params) ?>
+            "params": <?php echo json_encode($params) ?>,
+            "email": <?php echo json_encode($email) ?>
         };
         jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);
     </script>

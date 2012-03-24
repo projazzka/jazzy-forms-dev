@@ -147,6 +147,7 @@ function jzzf_shortcode( $attr ) {
 	require_once(JZZF_CORE . 'Graph.php');
 	require_once(JZZF_CORE . 'Parser.php');
 	require_once(JZZF_CORE . 'Tokenizer.php');
+	require_once(JZZF_CORE . 'Template_Parser.php');
 	return jzzf_ctrl_shortcode($attr);
 }
 
