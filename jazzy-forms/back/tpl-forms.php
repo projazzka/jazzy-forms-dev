@@ -193,6 +193,15 @@
 {{>common}}
 {{>foot}}
 </script>
+<script id="jzzf_tmpl_x" type="text/html">
+{{>common}}
+{{>foot}}
+</script>
+<script id="jzzf_tmpl_e" type="text/html">
+{{>common}}
+<fieldset class="jzzf_div_fixed">See the Email tab for email settings.</fieldset>
+{{>foot}}
+</script>
 <script id="jzzf_tmpl_t" type="text/html">
 {{>common_raw}}
     <fieldset class="jzzf_div_fixed">
@@ -287,6 +296,7 @@
     <ul id="jzzf_tabs">
         <li jzzf_section="elements">Elements</li>
         <li jzzf_section="appearance">Appearance</li>
+        <li jzzf_section="email">Email</li>
         <li jzzf_section="general" >General</li>
     </ul>
     <div id="jzzf_main">
@@ -302,6 +312,8 @@
                 </ul>
                 <ul id="jzzf_toolbox_buttons" class="jzzf_elements_toolbox_items">
                     <li jzzf_type="u"><div class="jzzf_type jzzf_type_u"></div>Update Button</li>
+                    <li jzzf_type="x"><div class="jzzf_type jzzf_type_x"></div>Reset Button</li>
+                    <li jzzf_type="e"><div class="jzzf_type jzzf_type_e"></div>Email Button</li>
                 </ul>
                 <ul id="jzzf_toolbox_text" class="jzzf_elements_toolbox_items">
                     <li jzzf_type="t"><div class="jzzf_type jzzf_type_t"></div>Text</li>
@@ -324,6 +336,34 @@
                 <li>
                     <label for="jzzf_css">Custom CSS</label><br>
                     <textarea id="jzzf_css"></textarea>
+                </li>
+            </ul>
+        </div>
+        <div class="jzzf_section" id="jzzf_section_email">
+            <ul>
+                <li>
+                    <label for="jzzf_email_to">To</label>
+                    <input type="text" id="jzzf_email_to">
+                </li>
+                <li>
+                    <label for="jzzf_email_from">From</label>
+                    <input type="text" id="jzzf_email_from">
+                </li>
+                <li>
+                    <label for="jzzf_email_cc">CC</label>
+                    <input type="text" id="jzzf_email_cc">
+                </li>
+                <li>
+                    <label for="jzzf_email_bcc">BCC</label>
+                    <input type="text" id="jzzf_email_bcc">
+                </li>
+                <li>
+                    <label for="jzzf_email_subject">Subject</label>
+                    <input type="text" id="jzzf_email_subject">
+                </li>
+                <li>
+                    <label for="jzzf_email_message">Message</label><br>
+                    <textarea id="jzzf_email_message"></textarea>
                 </li>
             </ul>
         </div>

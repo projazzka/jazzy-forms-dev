@@ -178,8 +178,8 @@
     width: 280px;
 }
 
-#jzzf_css {
-    width: 400px;
+#jzzf_css, #jzzf_email_message {
+    width: 435px;
     height: 200px;
 }
 
@@ -221,6 +221,8 @@
 .jzzf_type_t { background-image: url('img/t.png'); }
 .jzzf_type_h { background-image: url('img/h.png'); }
 .jzzf_type_m { background-image: url('img/m.png'); }
+.jzzf_type_e { background-image: url('img/e.png'); }
+.jzzf_type_x { background-image: url('img/x.png'); }
 
 .jzzf_arrow {
     width: 32px;

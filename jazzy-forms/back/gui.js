@@ -145,6 +145,19 @@
                 var element = jzzf_element.create(form.elements[i].type)
                 element.add(form.elements[i], null);
             }
+            if(has_email(form.elements)) {
+                var email;
+                if((!(form.email instanceof Array) || form.email.length != 1)) {
+                    email = {"to": "", "from": "", "cc": "", "bcc": "", "subject": "", "message": ""};
+                }
+                email = form.email[0];
+                $('#jzzf_email_to').val(email.to);
+                $('#jzzf_email_from').val(email.from);
+                $('#jzzf_email_cc').val(email.cc);
+                $('#jzzf_email_bcc').val(email.bcc);
+                $('#jzzf_email_subject').val(email.subject);
+                $('#jzzf_email_message').val(email.message);
+            }
         }
         update_shortcode();
     }
@@ -160,16 +173,42 @@
         return elements;
     }
     
+    function has_email(elements) {
+        if(elements === null) {
+            elements = get_elements();
+        }
+        for(var i=0; i<elements.length; i++) {
+            if(elements[i].type == 'e') {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     function get_form() {
-        return {
+        var elements = get_elements();
+        var form = {
             "id": $('#jzzf_id').val(),
             "title": $('#jzzf_title').val(),
             "name": $('#jzzf_name').val(),
             "theme": $('#jzzf_default_css').is(':checked'),
             "realtime": $('#jzzf_realtime').is(':checked'),
             "css": $('#jzzf_css').val(),
-            "elements": get_elements()
+            "elements": elements
         };
+        if(has_email(elements)) {
+            form.email = [{
+                "to": $('#jzzf_email_to').val(),
+                "from": $('#jzzf_email_from').val(),
+                "cc": $('#jzzf_email_cc').val(),
+                "bcc": $('#jzzf_email_bcc').val(),
+                "subject": $('#jzzf_email_subject').val(),
+                "message": $('#jzzf_email_message').val()
+            }]
+        } else {
+            form.email = null;
+        }
+        return form;
     }
     
     function save() {
