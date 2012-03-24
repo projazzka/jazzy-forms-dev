@@ -52,7 +52,7 @@ function jzzf_view_front($form) {
     if(trim($form->css)) {
         $tpl->css($form->css);
     }
-    $graph = jzzf_get_graph($form->elements);
+    $graph = jzzf_get_graph($form);
     $tpl->graph(jzzf_form_params($form), $graph);
     $tpl->script($form);
     $tpl->head($form);

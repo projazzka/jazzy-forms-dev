@@ -1,6 +1,8 @@
 <?php
 
-function jzzf_get_graph($elements) {
+function jzzf_get_graph($form) {
+    $elements = $form->elements;
+    
     $data = array();
     $types = array();
     $dependencies = array();
@@ -32,7 +34,12 @@ function jzzf_get_graph($elements) {
             $data[$id] = $values;
         }
     }
-    return compact('data', 'types', 'dependencies', 'formulas', 'params');
+    $email = jzzf_get_email($form);
+    return compact('data', 'types', 'dependencies', 'formulas', 'params', 'email');
+}
+
+function jzzf_get_email($form) {
+    return null;
 }
 
 function jzzf_get_dependencies($formula) {
