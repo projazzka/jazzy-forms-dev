@@ -5,6 +5,50 @@ function jzzf_parse_template($input) {
     return $parser->parse();
 }
 
+function jzzf_formulas_from_formula($input, $prefix) {
+    return jzzf_formulas_from_chunks(jzzf_parse_template($input), $prefix);
+}
+
+function jzzf_formulas_from_chunks($chunks, $prefix) {
+    $formulas = array();
+    $counter = 0;
+    foreach($chunks as $chunk) {
+        if(jzzf_chunk_is_formula($chunk)) {
+            $name = jzzf_chunk_name($chunk, $counter, $prefix);
+            $formulas[$name] = $chunk;
+        }
+    }
+    return $formulas;
+}
+
+function jzzf_apply_template($chunks, $data, $prefix) {
+    $result = '';
+    $counter = 0;
+    foreach($chunks as $chunk) {
+        if(jzzf_chunk_is_formula($chunk)) {
+            $name = jzzf_chunk_name($chunk, $counter, $prefix);
+            $result .= $data[$name];
+        } else {
+            $result .= $chunk;
+        }
+    }
+    return $result;
+}
+
+function jzzf_chunk_is_formula($chunk) {
+    return is_array($chunk);
+}
+
+function jzzf_chunk_name($chunk, &$counter, $prefix) {
+    if(count($chunk)==1 && $chunk[0][0]=='v') {
+        $name = $chunk[0][1];                
+    } else {
+        $name = "_inline_${counter}_${prefix}";
+        $counter++;
+    }
+    return $name;
+}
+
 class Jzzf_Template_Parser {
     
     function __construct($input) {
