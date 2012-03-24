@@ -5,7 +5,7 @@ function jzzf_parse_template($input) {
     return $parser->parse();
 }
 
-function jzzf_formulas_from_formula($input, $prefix) {
+function jzzf_formulas_from_template($input, $prefix) {
     return jzzf_formulas_from_chunks(jzzf_parse_template($input), $prefix);
 }
 

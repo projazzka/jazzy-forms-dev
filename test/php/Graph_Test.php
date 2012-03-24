@@ -1,5 +1,6 @@
 <?php
 
+require('../../jazzy-forms/core/Template_Parser.php');
 require('../../jazzy-forms/core/Graph.php');
 require('../../jazzy-forms/core/Parser.php');
 require('../../jazzy-forms/core/Tokenizer.php');
@@ -148,6 +149,30 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertArrayNotHasKey('value', $params['zwei']);
 		$this->assertArrayNotHasKey('name', $params['zwei']);
 		$this->assertArrayNotHasKey('formula', $params['zwei']);
+	}
+	
+	function test_email() {
+		$form = (object) array(
+			"elements" => array(),
+			"email" => (object) array(
+				"to" => "User <{{user}}>",
+				"from" => "Company <{{id}}>",
+				"cc" =>  "User2 <{{user2}}>, <{{user}}>",
+				"bcc" =>  "User3 <{{a+b}}>",
+				"subject" => "Your inquiry {{count}}",
+				"message" => "Here goes some {{price1+price2}}"
+			)
+		);
+		$graph = jzzf_get_graph($form);
+		$email = $graph['email'];
+		$this->assertEquals(json_decode('{
+			"user": [["v", "user"]],
+			"id": [["v", "id"]],
+			"user2": [["v", "user2"]],
+			"_inline_0_bcc": [["v", "a"], ["v", "b"], ["o", "+"]],
+			"count": [["v", "count"]],
+			"_inline_0_message": [["v", "price1"], ["v", "price2"], ["o", "+"]]
+		}', true), $email);
 	}
 }
 

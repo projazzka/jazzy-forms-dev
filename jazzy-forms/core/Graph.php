@@ -39,7 +39,17 @@ function jzzf_get_graph($form) {
 }
 
 function jzzf_get_email($form) {
-    return null;
+    $formulas = null;
+    if(property_exists($form, 'email') && $form->email) {
+        $email = $form->email;
+        $formulas = jzzf_formulas_from_template($email->to, 'to') +
+            jzzf_formulas_from_template($email->from, 'form') +
+            jzzf_formulas_from_template($email->cc, 'cc') +
+            jzzf_formulas_from_template($email->bcc, 'bcc') +
+            jzzf_formulas_from_template($email->subject, 'subject') +
+            jzzf_formulas_from_template($email->message, 'message');
+    }
+    return $formulas;
 }
 
 function jzzf_get_dependencies($formula) {
