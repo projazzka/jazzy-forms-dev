@@ -8,7 +8,8 @@
             "realtime": {"type": "bool", "default": true}
         },
         "recursion": {
-            "elements": "element"
+            "elements": "element",
+            "email": "email"
         },
         "add": {
             "0.0904": ["realtime"]
@@ -50,6 +51,17 @@
         },
         "change": {
             "0.0905": ["title", "formula"]
+        }
+    },
+    "email": {
+        "columns": {
+            "form": {"type": "id"},
+            "to": {"type": "str", "text": true},
+            "cc": {"type": "str", "text": true},
+            "bcc": {"type": "str", "text": true},
+            "from": {"type": "str"},
+            "subject": {"type": "str", "text": true},
+            "message": {"type": "str", "longtext": true}
         }
     },
     "option": {
