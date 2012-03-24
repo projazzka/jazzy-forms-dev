@@ -154,14 +154,14 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 	function test_email() {
 		$form = (object) array(
 			"elements" => array(),
-			"email" => (object) array(
+			"email" => array((object) array(
 				"to" => "User <{{user}}>",
 				"from" => "Company <{{id}}>",
 				"cc" =>  "User2 <{{user2}}>, <{{user}}>",
 				"bcc" =>  "User3 <{{a+b}}>",
 				"subject" => "Your inquiry {{count}}",
 				"message" => "Here goes some {{price1+price2}}"
-			)
+			))
 		);
 		$graph = jzzf_get_graph($form);
 		$email = $graph['email'];
