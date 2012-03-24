@@ -118,6 +118,22 @@
     function update_shortcode() {
         $('#jzzf_shortcode').val('[jazzy form="' + $('#jzzf_name').val() + '"]');
     }
+    
+    function set_email(email_array) {
+        var email;
+        if((!(email_array instanceof Array) || email_array.length != 1)) {
+            email = {"to": "", "from": "", "cc": "", "bcc": "", "subject": "", "message": ""};
+        } else {
+            email = email_array[0];
+        }
+        $('#jzzf_email_to').val(email.to);
+        $('#jzzf_email_from').val(email.from);
+        $('#jzzf_email_cc').val(email.cc);
+        $('#jzzf_email_bcc').val(email.bcc);
+        $('#jzzf_email_subject').val(email.subject);
+        $('#jzzf_email_message').val(email.message);
+    }
+    
     function set_form(form) {
         if(form==null) {
             $('#jzzf_form,#jzzf_selection').hide();
@@ -146,17 +162,7 @@
                 element.add(form.elements[i], null);
             }
             if(has_email(form.elements)) {
-                var email;
-                if((!(form.email instanceof Array) || form.email.length != 1)) {
-                    email = {"to": "", "from": "", "cc": "", "bcc": "", "subject": "", "message": ""};
-                }
-                email = form.email[0];
-                $('#jzzf_email_to').val(email.to);
-                $('#jzzf_email_from').val(email.from);
-                $('#jzzf_email_cc').val(email.cc);
-                $('#jzzf_email_bcc').val(email.bcc);
-                $('#jzzf_email_subject').val(email.subject);
-                $('#jzzf_email_message').val(email.message);
+                set_email(form.email);
             }
         }
         update_shortcode();
@@ -185,6 +191,17 @@
         return false;
     }
     
+    function get_email() {
+        return {
+            "to": $('#jzzf_email_to').val(),
+            "from": $('#jzzf_email_from').val(),
+            "cc": $('#jzzf_email_cc').val(),
+            "bcc": $('#jzzf_email_bcc').val(),
+            "subject": $('#jzzf_email_subject').val(),
+            "message": $('#jzzf_email_message').val()
+        };    
+    }
+    
     function get_form() {
         var elements = get_elements();
         var form = {
@@ -197,14 +214,7 @@
             "elements": elements
         };
         if(has_email(elements)) {
-            form.email = [{
-                "to": $('#jzzf_email_to').val(),
-                "from": $('#jzzf_email_from').val(),
-                "cc": $('#jzzf_email_cc').val(),
-                "bcc": $('#jzzf_email_bcc').val(),
-                "subject": $('#jzzf_email_subject').val(),
-                "message": $('#jzzf_email_message').val()
-            }]
+            form.email = [get_email()];
         } else {
             form.email = null;
         }
