@@ -191,6 +191,17 @@ function jzzf_conditional_queuing($posts) {
 	return $posts;
 }
 
+function jzzf_email() {
+	require_once(JZZF_FRONT . 'ctrl-email.php');
+	require_once(JZZF_GENERATED . 'Basic_Model.php');
+	require_once(JZZF_CORE . 'Graph.php');
+	require_once(JZZF_CORE . 'Parser.php');
+	require_once(JZZF_CORE . 'Tokenizer.php');
+	require_once(JZZF_CORE . 'Template_Parser.php');
+	jzzf_ctrl_email();
+	exit;
+}
+
 /* register filter hook */
 
 register_activation_hook( JZZF_ROOT . 'jazzy-forms.php', 'jzzf_activate' );
@@ -200,5 +211,6 @@ add_shortcode( 'jazzy', 'jzzf_shortcode' );
 add_filter('the_posts', 'jzzf_conditional_queuing');
 add_action('jzzf_enqueue', 'jzzf_enqueue');
 add_action('jzzf_form', 'jzzf_form', 2);
-
+add_action('wp_ajax_jzzf_email', 'jzzf_email');
+ 
 ?>
