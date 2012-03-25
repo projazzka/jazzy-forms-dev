@@ -194,10 +194,10 @@ function jzzf_conditional_queuing($posts) {
 function jzzf_email() {
 	require_once(JZZF_FRONT . 'ctrl-email.php');
 	require_once(JZZF_GENERATED . 'Basic_Model.php');
-	require_once(JZZF_CORE . 'Graph.php');
 	require_once(JZZF_CORE . 'Parser.php');
 	require_once(JZZF_CORE . 'Tokenizer.php');
 	require_once(JZZF_CORE . 'Template_Parser.php');
+	require_once(JZZF_CORE . 'Mail.php');
 	jzzf_ctrl_email();
 	exit;
 }
