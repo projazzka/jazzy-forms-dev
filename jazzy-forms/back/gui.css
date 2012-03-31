@@ -174,7 +174,8 @@
     margin-right: 12px;
 }
 
-.jzzf_element_body fieldset ul li input[type=text], .jzzf_section > ul > li > input[type=text]  {
+.jzzf_element_body fieldset ul li input[type=text], .jzzf_section > ul > li > input[type=text],
+.jzzf_element_body fieldset ul li textarea, .jzzf_section > ul > li > textarea {
     width: 280px;
 }
 
