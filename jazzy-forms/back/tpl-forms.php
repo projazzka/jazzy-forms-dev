@@ -340,6 +340,9 @@
             </ul>
         </div>
         <div class="jzzf_section" id="jzzf_section_email">
+            <div class="jzzf_email_disclaimer">
+                Please add an Email button to activate Email.
+            </div>
             <ul>
                 <li>
                     <label for="jzzf_email_to">To</label>

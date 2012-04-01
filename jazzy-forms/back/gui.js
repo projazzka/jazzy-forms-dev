@@ -25,8 +25,9 @@
     function add_element(item, remove) {
         var type = item.attr('jzzf_type');
         var obj = new_element(type);
-        var gui = jzzf_element.create(type);
+        var gui = jzzf_element.create(type, adjust_email_tab);
         gui.add(obj, remove ? item : null, false);
+        adjust_email_tab();
     }
 
     function delete_form() {
@@ -158,9 +159,8 @@
                 var element = jzzf_element.create(form.elements[i].type)
                 element.add(form.elements[i], null);
             }
-            if(has_email(form.elements)) {
-                set_email(form.email);
-            }
+            adjust_email_tab(form.elements);
+            set_email(form.email);
         }
         update_shortcode();
     }
@@ -177,7 +177,7 @@
     }
     
     function has_email(elements) {
-        if(elements === null) {
+        if(elements == null) {
             elements = get_elements();
         }
         for(var i=0; i<elements.length; i++) {
@@ -262,6 +262,11 @@
             form = null;
             set_form(form);            
         }
+    }
+    
+    function adjust_email_tab(elements) {
+        var email = has_email(elements);
+        $('#jzzf_section_email').toggleClass('jzzf_enabled', email).toggleClass('jzzf_disabled', !email);
     }
     
     $(function() {

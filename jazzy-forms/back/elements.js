@@ -1,4 +1,4 @@
-function jzzf_element($) {
+function jzzf_element($, update_listener) {
     var partials = {};
     
     this.counter = function() {
@@ -82,6 +82,7 @@ function jzzf_element($) {
             if(confirm("Are you sure to delete this element?")) {
                 $(this).parentsUntil('#jzzf_elements_list').remove();
             }
+            update_listener();
         });
         var self = this;
         element.find('.jzzf_option_add').click(function() {
@@ -185,8 +186,8 @@ jzzf_element.from_index = function(idx) {
     return jQuery('#jzzf_elements_list > li:eq(' + idx + ')');
 }
 
-jzzf_element.create = function(type) {
-    return new jzzf_element(jQuery);
+jzzf_element.create = function(type, listener) {
+    return new jzzf_element(jQuery, listener);
 }
 
 jzzf_element.data_from_li = function(li) {

@@ -287,3 +287,19 @@
 .jzzf_element select {
     width: 160px;
 }
+
+#jzzf_section_email.jzzf_enabled ul {
+    display: block;
+}
+
+#jzzf_section_email.jzzf_disabled ul {
+    display: none;
+}
+
+#jzzf_section_email.jzzf_enabled .jzzf_email_disclaimer {
+    display: none;
+}
+
+#jzzf_section_email.jzzf_disabled .jzzf_email_disclaimer {
+    display: block;
+}
