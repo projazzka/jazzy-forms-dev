@@ -63,6 +63,10 @@ function jzzf_<?=$method?>($obj) {
             $obj-><?=$id?>-><?=$table?> = $obj->id;
             $obj-><?=$id?>->id = $previous ? $previous->id : 0;
             jzzf_set_<?=$child?>($obj-><?=$id?>);
+        } else {
+            if($previous) {
+                jzzf_delete_<?=$child?>($previous->id);
+            }
         }
 <? endforeach ?>
         return $id;
