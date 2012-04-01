@@ -5,7 +5,8 @@ function jzzf_<?=$method?>($id) {
     if(false === $wpdb->query($sql)) {
         return false;
     }
-<? foreach($recursion as $id => $child): ?>
+<? $children = $one_to_many + $one_to_one; ?>
+<? foreach($children as $id => $child): ?>
     $query = "SELECT id FROM {$wpdb->prefix}jzzf_<?=$child?> WHERE <?=$table?> = %d";
     $sql = $wpdb->prepare($query, $id);
     $children = $wpdb->get_col($sql);

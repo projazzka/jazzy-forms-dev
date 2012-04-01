@@ -31,9 +31,9 @@ function jzzf_<?=$method?>($obj) {
         $result = $wpdb->query($sql);
         $id = $wpdb->insert_id;
     }
-<? if($recursion): ?>
+<? if($one_to_many || $one_to_one): ?>
     if($result !== false) {
-<? foreach($recursion as $id => $child ) : ?>
+<? foreach($one_to_many as $id => $child ) : ?>
         if(is_array($obj-><?=$id?>)) {
             $placeholders = array();
             $values = array();
@@ -54,6 +54,18 @@ function jzzf_<?=$method?>($obj) {
             foreach($obj-><?=$id?> as $child) {
                 $child-><?=$table?> = $id;
                 jzzf_set_<?=$child?>($child);
+            }
+        }
+<? endforeach ?>
+<? foreach($one_to_one as $id => $child ) : ?>
+        $previous = jzzf_get_<?=$child?>($obj->id);
+        if($obj-><?=$id?>) {
+            $obj-><?=$id?>-><?=$table?> = $obj->id;
+            $obj-><?=$id?>->id = $previous ? $previous->id : 0;
+            jzzf_set_<?=$child?>($obj-><?=$id?>);
+        } else {
+            if($previous) {
+                jzzf_delete_<?=$child?>($previous->id);
             }
         }
 <? endforeach ?>

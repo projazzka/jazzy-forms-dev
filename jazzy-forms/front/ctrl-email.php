@@ -4,7 +4,7 @@ function jzzf_ctrl_email() {
     if(!($form = $_REQUEST['_form'])) {
         jzzf_error(403, "Invalid form");
     }
-    if(!($email = jzzf_get_email_by_form($form))) {
+    if(!($email = jzzf_get_email($form))) {
         jzzf_error(404, "Form Not Found");
     }
     $replaced = jzzf_apply_email_templates($email);
