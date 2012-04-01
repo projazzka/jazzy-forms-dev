@@ -7,7 +7,7 @@
             "css": {"type": "str", "longtext": true},
             "realtime": {"type": "bool", "default": true}
         },
-        "recursion": {
+        "one_to_many": {
             "elements": "element",
             "email": "email"
         },
@@ -43,7 +43,7 @@
             "divisions": {"type": "int", "len": 1, "default": 1},
             "break": {"type": "bool", "default": 1}
         },
-        "recursion": {
+        "one_to_many": {
             "options": "option"
         },
         "add": {

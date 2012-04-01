@@ -10,7 +10,7 @@ function jzzf_<?=$method?>($key) {
     $obj = $wpdb->get_row($sql);
     if($obj) {
 <?php include('sanitize.php') ?>
-<? foreach($recursion as $id => $child) : ?>
+<? foreach($one_to_many as $id => $child) : ?>
         $obj-><?=$id?> = jzzf_list_<?=$child?>($obj->id);
 <? endforeach ?>
     }

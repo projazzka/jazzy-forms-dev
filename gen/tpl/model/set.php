@@ -31,9 +31,9 @@ function jzzf_<?=$method?>($obj) {
         $result = $wpdb->query($sql);
         $id = $wpdb->insert_id;
     }
-<? if($recursion): ?>
+<? if($one_to_many): ?>
     if($result !== false) {
-<? foreach($recursion as $id => $child ) : ?>
+<? foreach($one_to_many as $id => $child ) : ?>
         if(is_array($obj-><?=$id?>)) {
             $placeholders = array();
             $values = array();

@@ -7,7 +7,7 @@ function jzzf_<?=$method?>($parent) {
     if($results) {
         foreach($results as $obj) {
 <? include('sanitize.php') ?>
-<? foreach($recursion as $id => $child) : ?>
+<? foreach($one_to_many as $id => $child) : ?>
             $obj-><?=$id?> = jzzf_list_<?=$child?>($obj->id);
 <? endforeach ?>
         }
