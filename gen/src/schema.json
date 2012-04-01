@@ -8,7 +8,9 @@
             "realtime": {"type": "bool", "default": true}
         },
         "one_to_many": {
-            "elements": "element",
+            "elements": "element"
+        },
+        "one_to_one": {
             "email": "email"
         },
         "add": {

@@ -10,6 +10,9 @@ function jzzf_<?=$method?>($parent) {
 <? foreach($one_to_many as $id => $child) : ?>
             $obj-><?=$id?> = jzzf_list_<?=$child?>($obj->id);
 <? endforeach ?>
+<? foreach($one_to_one as $id => $child) : ?>
+            $obj-><?=$id?> = jzzf_get_<?=$child?>($obj->id);
+<? endforeach ?>
         }
     }
     return $results;

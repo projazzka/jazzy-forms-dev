@@ -31,7 +31,7 @@ function jzzf_<?=$method?>($obj) {
         $result = $wpdb->query($sql);
         $id = $wpdb->insert_id;
     }
-<? if($one_to_many): ?>
+<? if($one_to_many || $one_to_one): ?>
     if($result !== false) {
 <? foreach($one_to_many as $id => $child ) : ?>
         if(is_array($obj-><?=$id?>)) {
@@ -55,6 +55,14 @@ function jzzf_<?=$method?>($obj) {
                 $child-><?=$table?> = $id;
                 jzzf_set_<?=$child?>($child);
             }
+        }
+<? endforeach ?>
+<? foreach($one_to_one as $id => $child ) : ?>
+        $previous = jzzf_get_<?=$child?>($obj->id);
+        if($obj-><?=$id?>) {
+            $obj-><?=$id?>-><?=$table?> = $obj->id;
+            $obj-><?=$id?>->id = $previous ? $previous->id : 0;
+            jzzf_set_<?=$child?>($obj-><?=$id?>);
         }
 <? endforeach ?>
         return $id;
