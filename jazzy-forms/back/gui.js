@@ -119,12 +119,9 @@
         $('#jzzf_shortcode').val('[jazzy form="' + $('#jzzf_name').val() + '"]');
     }
     
-    function set_email(email_array) {
-        var email;
-        if((!(email_array instanceof Array) || email_array.length != 1)) {
+    function set_email(email) {
+        if(!email) {
             email = {"to": "", "from": "", "cc": "", "bcc": "", "subject": "", "message": ""};
-        } else {
-            email = email_array[0];
         }
         $('#jzzf_email_to').val(email.to);
         $('#jzzf_email_from').val(email.from);
@@ -214,7 +211,7 @@
             "elements": elements
         };
         if(has_email(elements)) {
-            form.email = [get_email()];
+            form.email = get_email();
         } else {
             form.email = null;
         }
