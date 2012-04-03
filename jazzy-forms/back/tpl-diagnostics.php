@@ -19,6 +19,12 @@ Forms:
 
 Plugins: <?php echo htmlentities(json_encode(get_plugins())); ?>
 
+<form method="post">
+Tweaks:
+<input type="checkbox" name="tweak_fake_email"<?php if($tweak_fake_email): ?> checked="checked" <?php endif ?> value="1"> Fake Email (writes to /tmp/jzzf_email.txt)
+
+<input type="submit" name="tweaks" value="Save" class="button-secondary">
+</form>
 </pre>
 <h2>Panic</h2>
 <form method="post" action="#">
