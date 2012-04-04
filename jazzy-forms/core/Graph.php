@@ -40,7 +40,7 @@ function jzzf_get_graph($form) {
 
 function jzzf_get_email_formulas($form) {
     $formulas = null;
-    if(property_exists($form, 'email') && is_array($form->email)) {
+    if(property_exists($form, 'email') && is_object($form->email)) {
         $email = $form->email;
         $formulas = jzzf_formulas_from_template($email->to, 'to') +
             jzzf_formulas_from_template($email->from, 'form') +
