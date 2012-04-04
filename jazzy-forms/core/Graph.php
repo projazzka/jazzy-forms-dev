@@ -34,11 +34,11 @@ function jzzf_get_graph($form) {
             $data[$id] = $values;
         }
     }
-    $email = jzzf_get_email($form);
+    $email = jzzf_get_email_formulas($form);
     return compact('data', 'types', 'dependencies', 'formulas', 'params', 'email');
 }
 
-function jzzf_get_email($form) {
+function jzzf_get_email_formulas($form) {
     $formulas = null;
     if(property_exists($form, 'email') && is_array($form->email)) {
         $email = $form->email;
