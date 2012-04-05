@@ -44,10 +44,6 @@ function jzzf_set_version($float) {
     update_option(JZZF_OPTION_VERSION, JZZF_VERSION);
 }
 
-function jzzf_delete_version() {
-	delete_option(JZZF_OPTION_VERSION);
-}
-
 function jzzf_head() {
 	wp_register_script( 'mustache', plugins_url('jazzy-forms/3rdparty/mustache.js', null, '0.3.0'));
 	wp_register_script( 'jzzf-tabs', plugins_url('jazzy-forms/back/tabs.js', null, '1.0'));
@@ -88,7 +84,7 @@ function jzzf_activate() {
 }
 
 function jzzf_create_tables() {
-	jzzf_execute_sql('schema.sql');
+	jzzf_execute_sql(JZZF_GENERATED . 'schema.sql');
 }
 
 function jzzf_execute_sql($filename) {
@@ -96,7 +92,7 @@ function jzzf_execute_sql($filename) {
 	
 	$charset_collate = jzzf_charset_collate();
 
-	$file = file( dirname(__FILE__) . '/generated/' . $filename );
+	$file = file( $filename );
 	foreach($file as $line) {
 		$sql = trim($line);
 		if($sql && $sql[0] != '#') {
@@ -108,8 +104,8 @@ function jzzf_execute_sql($filename) {
 }
 
 function jzzf_panic() {
-	jzzf_execute_sql('drop.sql');
-	jzzf_delete_version();
+	jzzf_execute_sql(JZZF_GENERATED . 'drop.sql');
+	jzzf_execute_sql(JZZF_ROOT . 'panic.sql');
 	deactivate_plugins(JZZF_ROOT . 'jazzy-forms.php');
 }
 
@@ -137,7 +133,7 @@ function jzzf_charset_collate() {
 
 
 function jzzf_update() {	
-	jzzf_execute_sql('update.sql');
+	jzzf_execute_sql(JZZF_GENERATED . 'update.sql');
 	jzzf_set_version(JZZF_VERSION);
 }
 
