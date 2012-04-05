@@ -21,9 +21,10 @@ Plugins: <?php echo htmlentities(json_encode(get_plugins())); ?>
 
 <form method="post">
 Tweaks:
-<input type="checkbox" name="tweak_fake_email"<?php if($tweak_fake_email): ?> checked="checked" <?php endif ?> value="1"> Fake Email (writes to /tmp/jzzf_email.txt)
-
-<input type="submit" name="tweaks" value="Save" class="button-secondary">
+<input type="checkbox" name="tweak_suppress_email"<?php if($tweak_suppress_email): ?> checked="checked" <?php endif ?> value="1"> Suppress email
+Log file    <input type="text" name="log_file" value="<?php esc_attr_e($log_file) ?>">
+Log level   <input type="text" name="log_level" value="<?php esc_attr_e($log_level) ?>"> (0: off, 10-50: debug-critical)
+<input type="submit" name="tweaks" value="Save tweaks" class="button-secondary">
 </form>
 </pre>
 <h2>Panic</h2>

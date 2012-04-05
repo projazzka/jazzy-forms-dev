@@ -202,6 +202,8 @@ function jzzf_email() {
 	exit;
 }
 
+require_once(JZZF_CORE . 'Log.php');
+
 /* register filter hook */
 
 register_activation_hook( JZZF_ROOT . 'jazzy-forms.php', 'jzzf_activate' );

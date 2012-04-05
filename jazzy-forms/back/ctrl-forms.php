@@ -28,12 +28,16 @@ function jzzf_ctrl_diagnostics() {
         jzzf_panic();
         return;
     } elseif($_POST['tweaks']) {
-        update_option('jzzf_tweak_fake_email', $_POST['tweak_fake_email']);
+        update_option('jzzf_tweak_suppress_email', $_POST['tweak_suppress_email']);
+        update_option('jzzf_log_level', $_POST['log_level']);
+        update_option('jzzf_log_file', $_POST['log_file']);
     }
     $db_version = jzzf_get_version();
     $version = JZZF_VERSION;
     $forms = jzzf_list_form();
-    $tweak_fake_email = get_option('jzzf_tweak_fake_email', false);
+    $tweak_suppress_email = get_option('jzzf_tweak_suppress_email', false);
+    $log_level = jzzf_log_level();
+    $log_file = jzzf_log_file();
     include('tpl-diagnostics.php');
     return;
 }
