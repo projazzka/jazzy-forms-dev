@@ -48,7 +48,7 @@ class Jzzf_List_Template {
     }
     
     function head($form) { ?>
-<div class="jzzf_form">
+<form class="jzzf_form">
 <ul class="jzzf_form_elements">
 <?php
     }
@@ -117,7 +117,17 @@ class Jzzf_List_Template {
     }
 
     function update($element) { ?>
-        <input type="submit" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->title) ?>">
+        <input type="button" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->title) ?>">
+<?php
+    }
+
+    function email($element) { ?>
+        <input type="button" class="jzzf_email_button" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->title) ?>">
+<?php
+    }
+
+    function reset($element) { ?>
+        <input type="reset" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->title) ?>">
 <?php
     }
 
@@ -139,7 +149,7 @@ class Jzzf_List_Template {
 
     function foot($form) { ?>
 </ul>
-</div>
+</form>
 <?php
     }
     

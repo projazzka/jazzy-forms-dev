@@ -98,6 +98,12 @@ function jzzf_view_front($form) {
             case 'm':
                 $tpl->html($element);
                 break;
+            case 'x':
+                $tpl->reset($element);
+                break;
+            case 'e':
+                $tpl->email($element);
+                break;
         }
         $tpl->after($element, ($ahead && $ahead->break) || ($idx==count($form->elements)-1));
     }
