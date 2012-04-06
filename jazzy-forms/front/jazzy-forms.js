@@ -41,14 +41,21 @@ function jazzy_forms($, form_id, graph) {
             if(graph.form.realtime) {
                 bind_realtime_update(id);
             }
-            if(graph.types[id] == 'u') {
-                element(id).click(function() {
-                    update(all_ids);
-                });
+            switch(graph.types[id]) {
+                case 'u':
+                    element(id).click(function() {
+                        update(all_ids);
+                    });
+                    break;
+                case 'e':
+                    element(id).click(function() {
+                        send_email();
+                    });
+                    break;
             }
         }
     }
-
+    
     function bind_realtime_update(id) {
         switch(graph.types[id]) {
         case 'r':
@@ -72,6 +79,22 @@ function jazzy_forms($, form_id, graph) {
             delete cache[id]
             updating_worker(id);
         }
+    }
+    
+    function send_email() {
+        var values = {};
+        for(key in graph.email) {
+            values[key] = evaluate(key);
+        }
+        $.ajax(jzzf_ajax_url, {
+            "data": {
+                "form": form_id,
+                "values": values,
+                "action": "jzzf_email"
+            },
+            "error": function() { alert("error"); },
+            "success": function() { alert("success"); }
+        });
     }
     
     function sanitize_result(val, id) {
