@@ -57,7 +57,7 @@ class Jzzf_List_Template {
     <?php if($first) : ?>
   <li class="jzzf_row">
     <?php endif ?>
-  <div class="<?php echo $element->classes ?>" "<?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
+  <div class="<?php echo $element->classes ?>" <?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
 <?php
     }
     
