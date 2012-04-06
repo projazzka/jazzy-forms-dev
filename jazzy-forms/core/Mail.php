@@ -8,6 +8,7 @@ function jzzf_send_email($email) {
         jzzf_debug("Email headers: $headers");
         jzzf_debug("Email to: {$email['to']}");
         jzzf_debug("Email subject: {$email['subject']}");
+        jzzf_debug("Email message: {$message}");
     }
     if(get_option('jzzf_tweak_suppress_email', false)) {
         jzzf_info('Emails are suppressed. Not sending.');
