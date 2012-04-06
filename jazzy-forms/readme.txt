@@ -60,7 +60,7 @@ Replace FORM_ID with the ID of the form you want to add. The complete shortcode 
 The short code is useful for posts or pages, without the need of any coding. Alternatively programmers and theme designers can also use the corresponding PHP functions to do so.
 
 Place the following code in the header, before a call to wp_head(), in order to queue Jazzy Forms' JavaScript scripts:
-`<?php jzzf_queue() ?>`
+`<?php jzzf_enqueue() ?>`
 
 To insert a form with ID "form_id" do the following:
 `<?php jzzf_form('form_id') ?>`
@@ -69,7 +69,7 @@ This prints out the form to the screen. If you need to process the output in any
 `<?php echo jzzf_form('form_id', null, true) ?>`
 
 There are also corresponding WordPress actions:
-`<?php do_action('jzzf_queue') ?>`
+`<?php do_action('jzzf_enqueue') ?>`
 `<?php do_action('jzzf_form', 'form_id') ?>`
 
 = Is there a way to use a Jazzy Form within a widget? =
