@@ -71,8 +71,6 @@ function jzzf_get_values($element) {
         case 'n':
             if($val = $element->value) {
                 $values = $val;
-            } else {
-                $values = 1;
             }
             break;
         case 'c':

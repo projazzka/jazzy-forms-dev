@@ -304,7 +304,7 @@
             <div class="jzzf_elements_toolbox">
             <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
                 <ul id="jzzf_toolbox_input" class="jzzf_elements_toolbox_items">
-                    <li jzzf_type="n"><div class="jzzf_type jzzf_type_n"></div>Number Entry</li>
+                    <li jzzf_type="n"><div class="jzzf_type jzzf_type_n"></div>Input</li>
                     <li jzzf_type="d"><div class="jzzf_type jzzf_type_d"></div>Drop-down Menu</li>
                     <li jzzf_type="r"><div class="jzzf_type jzzf_type_r"></div>Radio Buttons</li>
                     <li jzzf_type="c"><div class="jzzf_type jzzf_type_c"></div>Checkbox</li>

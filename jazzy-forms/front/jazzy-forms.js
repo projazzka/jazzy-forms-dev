@@ -150,7 +150,17 @@ function jazzy_forms($, form_id, graph) {
     function evaluation_worker(id) {
         switch(graph.types[id]) {
             case 'n':
-                return element(id).val() * graph.data[id];
+                var input = element(id).val();
+                if(id in graph.data) {
+                    var factor = parseFloat(graph.data[id]);
+                    if(!isNaN(factor)) {
+                        return input*factor;
+                    } else {
+                        return input;
+                    }
+                } else {
+                    return input;
+                }
             case 'r':
                 var idx = element(id).find('input:checked').parent().index();
                 if(idx>=0) {
