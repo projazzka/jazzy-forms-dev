@@ -3,7 +3,7 @@
 function jzzf_send_email($email) {
     $message = $email["message"] . "\r\n\r\n";
     $headers = 'From: '. $email["from"] . "\r\n" .
-    "Content-type: text/html";
+        "Content-type: text/plain; charset=utf-8";
     if(jzzf_log_enabled()) {
         jzzf_debug("Email headers: $headers");
         jzzf_debug("Email to: {$email['to']}");
