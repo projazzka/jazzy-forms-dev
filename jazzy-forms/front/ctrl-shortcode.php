@@ -115,7 +115,14 @@ function jzzf_view_front($form) {
 function jzzf_form_params($form) {
     $params = clone $form;
     unset($params->elements);
-    unset($params->css);    
+    unset($params->css);
+    if(property_exists($params, 'email') && $params->email) {
+        $params->email = (object) array(
+            "sending" => $form->email->sending,
+            "ok" => $form->email->ok,
+            "fail" => $form->fail
+        );
+    }
     return $params;
 
 }

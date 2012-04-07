@@ -94,7 +94,7 @@ function jazzy_forms($, form_id, graph) {
     }
     
     function send_email(button) {
-        set_message(button, "Sending...");
+        set_message(button, graph.form.email.sending);
         var values = {};
         for(key in graph.email) {
             values[key] = evaluate(key);
@@ -105,8 +105,8 @@ function jazzy_forms($, form_id, graph) {
                 "values": values,
                 "action": "jzzf_email"
             },
-            "error": function() { set_message(button, "Could not send the message."); },
-            "success": function() { set_message(button, "Message sent."); }
+            "error": function() { set_message(button, graph.form.email.fail); },
+            "success": function() { set_message(button, graph.form.email.ok); }
         });
     }
     
