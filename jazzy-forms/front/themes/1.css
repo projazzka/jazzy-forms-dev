@@ -11,7 +11,7 @@
 }
 
 .jzzf_form_elements {
-    width: 420px;
+    width: 530px;
 }
 
 .jzzf_form input, .jzzf_form select {
@@ -79,5 +79,10 @@ div.jzzf_quarter { width: 92px; }
 }
 
 .jzzf_no_break {
+    float: left;
+}
+
+.jzzf_message {
+    width: 125px;
     float: left;
 }

@@ -49,9 +49,13 @@ function jazzy_forms($, form_id, graph) {
                     break;
                 case 'e':
                     element(id).click(function() {
-                        send_email();
+                        send_email(this);
                     });
                     break;
+                case 'x':
+                    element(id).click(function() {
+                        reset_messages();
+                    })
             }
         }
     }
@@ -81,7 +85,16 @@ function jazzy_forms($, form_id, graph) {
         }
     }
     
-    function send_email() {
+    function set_message(node, msg) {
+        $(node).parentsUntil('.jzzf_row').siblings('.jzzf_message').text(msg);    
+    }
+    
+    function reset_messages() {
+        $('.jzzf_form_' + form_id + ' .jzzf_message').text('');
+    }
+    
+    function send_email(button) {
+        set_message(button, "Sending...");
         var values = {};
         for(key in graph.email) {
             values[key] = evaluate(key);
@@ -92,8 +105,8 @@ function jazzy_forms($, form_id, graph) {
                 "values": values,
                 "action": "jzzf_email"
             },
-            "error": function() { alert("error"); },
-            "success": function() { alert("success"); }
+            "error": function() { set_message(button, "Could not send the message."); },
+            "success": function() { set_message(button, "Message sent."); }
         });
     }
     

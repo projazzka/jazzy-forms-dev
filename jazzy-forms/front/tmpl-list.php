@@ -49,7 +49,7 @@ class Jzzf_List_Template {
     }
     
     function head($form) { ?>
-<form class="jzzf_form">
+<form class="jzzf_form jzzf_form_<?php echo $form->id ?>">
 <ul class="jzzf_form_elements">
 <?php
     }
@@ -66,6 +66,7 @@ class Jzzf_List_Template {
   </div>
         <?php if($last) : ?>
   <div class="clear"></div>
+  <div class="jzzf_message"></div>
   </li>
         <?php endif ?>
 <?php
