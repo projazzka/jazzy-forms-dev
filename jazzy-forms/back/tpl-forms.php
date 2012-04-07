@@ -369,6 +369,21 @@
                     <textarea id="jzzf_email_message"></textarea>
                 </li>
             </ul>
+            <div class="jzzf_subsection_heading">Status messages</div>
+            <ul>
+                <li>
+                    <label for="jzzf_email_sending">Sending</label>
+                    <input type="text" id="jzzf_email_sending">
+                </li>
+                <li>
+                    <label for="jzzf_email_ok">Success</label>
+                    <input type="text" id="jzzf_email_ok">
+                </li>
+                <li>
+                    <label for="jzzf_email_fail">Failure</label>
+                    <input type="text" id="jzzf_email_fail">
+                </li>
+            </ul>
         </div>
         <div class="jzzf_section" id="jzzf_section_general">
             <input type="hidden" id="jzzf_id">

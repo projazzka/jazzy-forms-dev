@@ -5,6 +5,8 @@
     var text_unload = "The current form has unsaved changes.";
     var text_dirty = text_unload + "\nAre you sure you want to discard them?";
     
+    var email_fields = ['to', 'from', 'cc', 'bcc', 'subject', 'message', 'sending', 'ok', 'fail'];
+
     function new_element(type) {
         var elements = get_elements(); // need existing elements to suggest a valid name/title
         var id_helper = new jzzf_id(elements);
@@ -124,12 +126,9 @@
         if(!email) {
             email = {"to": "", "from": "", "cc": "", "bcc": "", "subject": "", "message": ""};
         }
-        $('#jzzf_email_to').val(email.to);
-        $('#jzzf_email_from').val(email.from);
-        $('#jzzf_email_cc').val(email.cc);
-        $('#jzzf_email_bcc').val(email.bcc);
-        $('#jzzf_email_subject').val(email.subject);
-        $('#jzzf_email_message').val(email.message);
+        for(var idx = 0; idx<email_fields.length; idx++) {
+            $('#jzzf_email_' + email_fields[idx]).val(email[email_fields[idx]]);
+        }
     }
     
     function set_form(form) {
@@ -189,14 +188,11 @@
     }
     
     function get_email() {
-        return {
-            "to": $('#jzzf_email_to').val(),
-            "from": $('#jzzf_email_from').val(),
-            "cc": $('#jzzf_email_cc').val(),
-            "bcc": $('#jzzf_email_bcc').val(),
-            "subject": $('#jzzf_email_subject').val(),
-            "message": $('#jzzf_email_message').val()
-        };    
+        var result = {};
+        for(var idx=0; idx<email_fields.length; idx++) {
+            result[email_fields[idx]] = $('#jzzf_email_' + email_fields[idx]).val();
+        };
+        return result;
     }
     
     function get_form() {
@@ -230,7 +226,18 @@
         var title = $('#jzzf_new_form_title').val();
         var id_helper = new jzzf_id(jzzf_forms);
         var name = id_helper.suggest_name(title);
-        form = {'title': title, 'name': name, 'elements': [], 'theme': 1, 'realtime': true};
+        form = {
+            'title': title,
+            'name': name,
+            'elements': [],
+            'theme': 1,
+            'realtime': true,
+            'email': {
+                'sending': 'Sending...',
+                'ok': "Can't send the message",
+                'fail': 'Message sent.'
+            }
+        };
         elements = [];
         $('#jzzf_form').show();
         var option = $('<option>');

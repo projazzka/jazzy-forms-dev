@@ -63,7 +63,10 @@
             "bcc": {"type": "str", "text": true},
             "from": {"type": "str"},
             "subject": {"type": "str", "text": true},
-            "message": {"type": "str", "longtext": true}
+            "message": {"type": "str", "longtext": true},
+            "sending": {"type": "str", "text": true},
+            "ok": {"type": "str", "text": true},
+            "fail": {"type": "str", "text": true}
         }
     },
     "option": {
