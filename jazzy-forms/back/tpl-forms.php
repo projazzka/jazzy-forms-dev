@@ -343,47 +343,57 @@
             <div class="jzzf_email_disclaimer">
                 Please add an Email button to activate Email.
             </div>
-            <ul>
-                <li>
-                    <label for="jzzf_email_to">To</label>
-                    <input type="text" id="jzzf_email_to">
-                </li>
-                <li>
-                    <label for="jzzf_email_from">From</label>
-                    <input type="text" id="jzzf_email_from">
-                </li>
-                <li>
-                    <label for="jzzf_email_cc">CC</label>
-                    <input type="text" id="jzzf_email_cc">
-                </li>
-                <li>
-                    <label for="jzzf_email_bcc">BCC</label>
-                    <input type="text" id="jzzf_email_bcc">
-                </li>
-                <li>
-                    <label for="jzzf_email_subject">Subject</label>
-                    <input type="text" id="jzzf_email_subject">
-                </li>
-                <li>
-                    <label for="jzzf_email_message">Message</label><br>
-                    <textarea id="jzzf_email_message"></textarea>
-                </li>
-            </ul>
-            <div class="jzzf_subsection_heading">Status messages</div>
-            <ul>
-                <li>
-                    <label for="jzzf_email_sending">Sending</label>
-                    <input type="text" id="jzzf_email_sending">
-                </li>
-                <li>
-                    <label for="jzzf_email_ok">Success</label>
-                    <input type="text" id="jzzf_email_ok">
-                </li>
-                <li>
-                    <label for="jzzf_email_fail">Failure</label>
-                    <input type="text" id="jzzf_email_fail">
-                </li>
-            </ul>
+            <div class="jzzf_email_settings">
+                <div class="jzzf_help">
+                    You can use placeholders enclosed by double curly braces here to display user input or calculated values referenced by their IDs, or even the results of inline formulas. <br/><br/> Examples:<br/><br/>
+                    <ul class="jzzf_examples">
+                        <li><pre>Hello {{name}}!</pre></li>
+                        <li><pre>From: {{name}} <{{email}}></pre></li>
+                        <li><pre>The sum of {{a}} and {{b}} is {{a+b}}</pre></li>
+                    </ul>
+                </div>
+                <ul>
+                    <li>
+                        <label for="jzzf_email_to">To</label>
+                        <input type="text" id="jzzf_email_to">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_from">From</label>
+                        <input type="text" id="jzzf_email_from">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_cc">CC</label>
+                        <input type="text" id="jzzf_email_cc">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_bcc">BCC</label>
+                        <input type="text" id="jzzf_email_bcc">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_subject">Subject</label>
+                        <input type="text" id="jzzf_email_subject">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_message">Message</label><br>
+                        <textarea id="jzzf_email_message"></textarea>
+                    </li>
+                </ul>
+                <div class="jzzf_subsection_heading">Status messages</div>
+                <ul>
+                    <li>
+                        <label for="jzzf_email_sending">Sending</label>
+                        <input type="text" id="jzzf_email_sending">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_ok">Success</label>
+                        <input type="text" id="jzzf_email_ok">
+                    </li>
+                    <li>
+                        <label for="jzzf_email_fail">Failure</label>
+                        <input type="text" id="jzzf_email_fail">
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="jzzf_section" id="jzzf_section_general">
             <input type="hidden" id="jzzf_id">

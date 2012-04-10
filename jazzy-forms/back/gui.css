@@ -160,7 +160,7 @@
     height: 30px;
 }
 
-.jzzf_element_body label, .jzzf_section > ul > li > label {
+.jzzf_element_body label, .jzzf_section > ul > li > label, .jzzf_section > div > ul > li > label {
     display: inline-block;
     width: 140px;
     margin-right: 12px;
@@ -174,7 +174,9 @@
     margin-right: 12px;
 }
 
-.jzzf_element_body fieldset ul li input[type=text], .jzzf_section > ul > li > input[type=text]  {
+.jzzf_element_body fieldset ul li input[type=text],
+.jzzf_section > ul > li > input[type=text],
+.jzzf_section > div > ul > li > input[type=text]    {
     width: 280px;
 }
 
@@ -288,11 +290,11 @@
     width: 160px;
 }
 
-#jzzf_section_email.jzzf_enabled ul {
+#jzzf_section_email.jzzf_enabled .jzzf_email_settings {
     display: block;
 }
 
-#jzzf_section_email.jzzf_disabled ul {
+#jzzf_section_email.jzzf_disabled .jzzf_email_settings {
     display: none;
 }
 
@@ -302,4 +304,9 @@
 
 #jzzf_section_email.jzzf_disabled .jzzf_email_disclaimer {
     display: block;
+}
+
+.jzzf_help {
+    float: right;
+    width: 500px;
 }
