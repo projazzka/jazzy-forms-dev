@@ -208,7 +208,7 @@
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">Text</label>
-                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+                <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title">{{title}}</textarea>
             </li>
         </ul>
     </fieldset>
@@ -232,7 +232,7 @@
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">HTML code</label>
-                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+                <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title">{{title}}</textarea>
             </li>
         </ul>
     </fieldset>

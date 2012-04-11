@@ -133,6 +133,15 @@
     border-bottom: none;
 }
 
+.jzzf_element label {
+    vertical-align: top;
+}
+
+.jzzf_element_body ul li {
+    overflow: hidden;
+    height: 1%;
+}
+
 .jzzf_element_header:hover {
     background-color: #e8e8e8;
 }
@@ -176,8 +185,11 @@
 
 .jzzf_element_body fieldset ul li input[type=text],
 .jzzf_section > ul > li > input[type=text],
-.jzzf_section > div > ul > li > input[type=text]    {
+.jzzf_section > div > ul > li > input[type=text],
+.jzzf_section > ul > li > textarea {
     width: 280px;
+    display: inline-block;
+    float: none;
 }
 
 #jzzf_css, #jzzf_email_message {
