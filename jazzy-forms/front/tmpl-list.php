@@ -139,7 +139,7 @@ class Jzzf_List_Template {
     }
 
     function text($element) { ?>
-        <?php esc_html_e($element->title) ?>
+        <?php echo str_replace("\n", "<br />", esc_html($element->title)) ?>
 <?php
     }
 
