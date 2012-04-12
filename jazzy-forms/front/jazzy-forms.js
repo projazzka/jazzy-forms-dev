@@ -165,7 +165,7 @@ function jazzy_forms($, form_id, graph) {
             case 'n':
                 var input = element(id).val();
                 if(id in graph.data) {
-                    var factor = parseFloat(graph.data[id]);
+                    var factor = to_float_for_factor(graph.data[id]);
                     if(!isNaN(factor)) {
                         return input*factor;
                     } else {
@@ -195,7 +195,19 @@ function jazzy_forms($, form_id, graph) {
         }
         return 0;
     }
-            
+    
+    function to_float_for_calculation(val) {
+        return Number(val);
+    }
+
+    function to_float_for_factor(val) {
+        if(typeof val == 'string' && val.match(/^\s*$/)) {
+            return 1;
+        } else {
+            return Number(val);
+        }
+    }
+    
     function formula(id) {
         var stack = [];
         var f = graph.formulas[id];
@@ -205,14 +217,15 @@ function jazzy_forms($, form_id, graph) {
         for(var i=0; i<f.length; i++) {
             switch(f[i][0]) {
                 case 'n':
+                case 's':
                     stack.push(f[i][1]);
                     break;
                 case 'v':
                     stack.push(evaluate(f[i][1]));
                     break;
                 case 'o':
-                    var right = parseFloat(stack.pop());
-                    var left = parseFloat(stack.pop());
+                    var right = to_float_for_calculation(stack.pop());
+                    var left = to_float_for_calculation(stack.pop());
                     var result;
                     switch(f[i][1]) {
                         case '+':
@@ -274,47 +287,51 @@ function jzzf_functions(id, args) {
         return args[idx];
     }
 
+    function numarg(idx, def) {
+        return Number(arg(idx, def));
+    }
+
     var all = {
         'abs': function() {
-            return Math.abs(arg(0));
+            return Math.abs(numarg(0));
         },
         'round': function() {
-            var digits = arg(1, 0);
+            var digits = numarg(1, 0);
             var decimal = Math.pow(10, digits);
-            return Math.round(arg(0)*decimal)/decimal;
+            return Math.round(numarg(0)*decimal)/decimal;
         },
         'roundup': function() {
-            var digits = arg(1, 0);
+            var digits = numarg(1, 0);
             var decimal = Math.pow(10, digits);
-            var x = arg(0);
-            return (x > 0) ? Math.ceil(arg(0)*decimal)/decimal : Math.floor(arg(0)*decimal)/decimal;
+            var x = numarg(0);
+            return (x > 0) ? Math.ceil(numarg(0)*decimal)/decimal : Math.floor(numarg(0)*decimal)/decimal;
         },
         'rounddown': function() {
-            var digits = arg(1, 0);
+            var digits = numarg(1, 0);
             var decimal = Math.pow(10, digits);
-            var x = arg(0);
-            return (x > 0) ? Math.floor(arg(0)*decimal)/decimal : Math.ceil(arg(0)*decimal)/decimal;
+            var x = numarg(0);
+            return (x > 0) ? Math.floor(numarg(0)*decimal)/decimal : Math.ceil(numarg(0)*decimal)/decimal;
         },
         'sqrt': function() {
-            return Math.sqrt(arg(0));
+            return Math.sqrt(numarg(0));
         },
         'sin': function() {
-            return Math.sin(arg(0));
+            return Math.sin(numarg(0));
         },
         'cos': function() {
-            return Math.cos(arg(0));
+            return Math.cos(numarg(0));
         },
         'tan': function() {
-            return Math.tan(arg(0));
+            return Math.tan(numarg(0));
         },
         'asin': function() {
-            return Math.asin(arg(0));
+            return Math.asin(numarg(0));
         },
         'acos': function() {
-            return Math.acos(arg(0));
+            return Math.acos(numarg(0));
         },
         'atan': function() {
-            return Math.atan(arg(0));
+            return Math.atan(numarg(0));
         },
         'pi': function() {
             return Math.PI;
