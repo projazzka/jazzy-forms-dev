@@ -58,9 +58,9 @@ function jzzf_<?=$method?>($obj) {
         }
 <? endforeach ?>
 <? foreach($one_to_one as $id => $child ) : ?>
-        $previous = jzzf_get_<?=$child?>($obj->id);
+        $previous = jzzf_get_<?=$child?>($id);
         if($obj-><?=$id?>) {
-            $obj-><?=$id?>-><?=$table?> = $obj->id;
+            $obj-><?=$id?>-><?=$table?> = $id;
             $obj-><?=$id?>->id = $previous ? $previous->id : 0;
             jzzf_set_<?=$child?>($obj-><?=$id?>);
         } else {
