@@ -97,7 +97,12 @@ function jazzy_forms($, form_id, graph) {
         set_message(button, graph.form.email.sending);
         var values = {};
         for(key in graph.email) {
-            values[key] = evaluate_formula(graph.email[key]);
+            var value = evaluate_formula(graph.email[key]);
+            if(graph.email[key].length == 1) {
+                values[key] = sanitize_result(value, key);
+            } else {
+                values[key] = value;
+            }
         }
         $.ajax(jzzf_ajax_url, {
             "data": {
