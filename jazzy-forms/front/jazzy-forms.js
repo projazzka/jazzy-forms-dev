@@ -97,7 +97,7 @@ function jazzy_forms($, form_id, graph) {
         set_message(button, graph.form.email.sending);
         var values = {};
         for(key in graph.email) {
-            values[key] = evaluate(key);
+            values[key] = evaluate_formula(graph.email[key]);
         }
         $.ajax(jzzf_ajax_url, {
             "data": {
@@ -209,11 +209,15 @@ function jazzy_forms($, form_id, graph) {
     }
     
     function formula(id) {
-        var stack = [];
         var f = graph.formulas[id];
         if(!f) {
             return undefined;
         }
+        return evaluate_formula(f);
+    }
+    
+    function evaluate_formula(f) {
+        var stack = [];
         for(var i=0; i<f.length; i++) {
             switch(f[i][0]) {
                 case 'n':
