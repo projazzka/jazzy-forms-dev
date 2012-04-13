@@ -234,8 +234,8 @@
             'realtime': true,
             'email': {
                 'sending': 'Sending...',
-                'ok': "Can't send the message",
-                'fail': 'Message sent.'
+                'ok': "Message sent",
+                'fail': "Can't send the message"
             }
         };
         elements = [];
