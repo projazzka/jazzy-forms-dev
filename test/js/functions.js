@@ -220,6 +220,55 @@ test("false", function() {
   equal(jzzf_functions('false', []), false);
 });
 
+
+test("ln(1)", function() {
+  equal(jzzf_functions('ln', [1]), 0);
+});
+
+test("log(1)", function() {
+  equal(jzzf_functions('log', [1]), 0);
+});
+
+test("log10(1)", function() {
+  equal(jzzf_functions('log10', [1]), 0);
+});
+
+test("log(1, 2)", function() {
+  equal(jzzf_functions('log', [1, 2]), 0);
+});
+
+test("ln(e)", function() {
+  equal(jzzf_functions('ln', [Math.exp(1)]), 1);
+});
+
+test("log(10)", function() {
+  equal(jzzf_functions('log', [10]), 1);
+});
+
+test("log10(10)", function() {
+  equal(jzzf_functions('log10', [10]), 1);
+});
+
+test("log(256, 2)", function() {
+  equal(jzzf_functions('log', [256, 2]), 8);
+});
+
+test("exp(0)", function() {
+  equal(jzzf_functions('exp', [0]), 1);
+});
+
+test("exp(1)", function() {
+  equal(jzzf_functions('exp', [1]), Math.exp(1));
+});
+
+test("power(17, 0)", function() {
+  equal(jzzf_functions('power', [17, 0]), 1);
+});
+
+test("power(2, 8)", function() {
+  equal(jzzf_functions('power', [2, 8]), 256);
+});
+
 });
 
 function prcsn(x) {

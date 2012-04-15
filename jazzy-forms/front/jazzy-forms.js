@@ -321,6 +321,28 @@ function jzzf_functions(id, args) {
             var x = numarg(0);
             return (x > 0) ? Math.floor(numarg(0)*decimal)/decimal : Math.ceil(numarg(0)*decimal)/decimal;
         },
+        'ln': function() {
+            var x = numarg(0);
+            return Math.log(x);
+        },
+        'log': function() {
+            var x = numarg(0);
+            var b = numarg(1, 10);
+            return Math.log(x) / Math.log(b);
+        },
+        'log10': function() {
+            var x = numarg(0);
+            return Math.log(x) / Math.log(10);
+        },
+        'exp': function() {
+            var x = numarg(0);
+            return Math.exp(x);
+        },
+        'power': function() {
+            var x = numarg(0);
+            var y = numarg(1);
+            return Math.pow(x, y);
+        },
         'sqrt': function() {
             return Math.sqrt(numarg(0));
         },
