@@ -19,6 +19,12 @@ Forms:
 
 Plugins: <?php echo htmlentities(json_encode(get_plugins())); ?>
 
+<form method="post" action="#">
+        Panic!
+        <input type="submit" name="panic" value="DON'T PRESS THIS!" class="button-primary">
+        This completely deletes any Jazzy Forms configuration and deactives the plugin, without any confirmation.
+</form>
+                    
 <form method="post">
 Tweaks:
 <input type="checkbox" name="tweak_suppress_email"<?php if($tweak_suppress_email): ?> checked="checked" <?php endif ?> value="1"> Suppress email
@@ -27,7 +33,3 @@ Log level   <input type="text" name="log_level" value="<?php esc_attr_e($log_lev
 <input type="submit" name="tweaks" value="Save tweaks" class="button-secondary">
 </form>
 </pre>
-<h2>Panic</h2>
-<form method="post" action="#">
-    <input type="submit" name="panic" value="DON'T PRESS THIS!" class="button-primary">
-        <p>This completely deletes any Jazzy Forms configuration and deactives the plugin.</p>
