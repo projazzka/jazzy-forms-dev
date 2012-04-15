@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2012 at 08:40 PM
+-- Generation Time: Apr 15, 2012 at 09:09 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.1
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `wp_jzzf_element` (
   `divisions` int(1) NOT NULL DEFAULT '1',
   `break` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=100 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=107 ;
 
 --
 -- Dumping data for table `wp_jzzf_element`
@@ -63,28 +63,28 @@ INSERT INTO `wp_jzzf_element` (`id`, `form`, `order`, `type`, `title`, `name`, `
 (16, 3, 2, 'n', 'Third: Default 10, factor 1.12', 'element_number_three', '', '1.12', '', '10', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
 (15, 3, 1, 'n', 'Second: Default 10, no factor', 'element_2', '', '', '', '10', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
 (14, 3, 0, 'n', 'First: No Default, no factor', 'first', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
-(21, 4, 0, 'd', 'No Options', 'first', '', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(22, 4, 1, 'd', 'Two Options, default first, no values', 'second', '', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(23, 4, 2, 'd', 'Two Options, default second, values', 'third', '', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(24, 4, 3, 'd', 'Three Options', 'fourth', '', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(25, 4, 4, 'f', 'First', 'first_out', 'first', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(26, 4, 5, 'f', 'Second', 'second_out', 'second', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(27, 4, 6, 'f', 'Third', 'third_out', 'third', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(28, 4, 7, 'f', 'Fourth', 'fourth_out', 'fourth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(21, 4, 0, 'd', 'No Options', 'first', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(22, 4, 1, 'd', 'Two Options, default first, no values', 'second', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(23, 4, 2, 'd', 'Two Options, default second, values', 'third', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(24, 4, 3, 'd', 'Three Options', 'fourth', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(25, 4, 5, 'f', 'First', 'first_out', 'first', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(26, 4, 6, 'f', 'Second', 'second_out', 'second', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(27, 4, 7, 'f', 'Third', 'third_out', 'third', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(28, 4, 8, 'f', 'Fourth', 'fourth_out', 'fourth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (29, 5, 0, 'r', 'No options', 'first', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
 (30, 5, 1, 'r', 'Two options, default first, no values', 'element_2', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
 (31, 5, 2, 'r', 'Two options, default second, values', 'element_number_three', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
 (32, 5, 3, 'r', 'Three options, default third, values', 'fourth', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
-(33, 5, 4, 'f', 'First', 'first_out', 'first', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(34, 5, 5, 'f', 'Second', 'second_out', 'element_2', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(35, 5, 6, 'f', 'Third', 'third_out', 'element_number_three', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(36, 5, 7, 'f', 'Fourth', 'fourth_out', 'fourth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(33, 5, 5, 'f', 'First', 'first_out', 'first', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(34, 5, 6, 'f', 'Second', 'second_out', 'element_2', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(35, 5, 7, 'f', 'Third', 'third_out', 'element_number_three', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(36, 5, 8, 'f', 'Fourth', 'fourth_out', 'fourth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (37, 6, 0, 'c', 'No values, default checked', 'first', '', '', '', '1', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
 (38, 6, 1, 'f', 'First', 'first_out', 'first', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (39, 6, 2, 'c', 'No unchecked value, default unchecked', 'element_2nd', '', '10', '', '0', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
-(40, 6, 3, 'f', 'Second', 'second_out', 'element_2nd', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(41, 6, 4, 'c', 'Normal', 'element_three', '', '20', '10', '1', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
-(42, 6, 5, 'f', 'Third', 'third_out', 'element_three', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(40, 6, 4, 'f', 'Second', 'second_out', 'element_2nd', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(41, 6, 5, 'c', 'Normal', 'element_three', '', '20', '10', '1', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(42, 6, 6, 'f', 'Third', 'third_out', 'element_three', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (43, 7, 0, 'n', 'Number entry (ID=id1)', 'id1', '', '1', '', '100', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (44, 7, 1, 'r', 'Radio buttons (ID=id2)', 'id2', '', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (45, 7, 2, 'f', 'Output (id3)', 'id3', 'id1*id2', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
@@ -130,7 +130,14 @@ INSERT INTO `wp_jzzf_element` (`id`, `form`, `order`, `type`, `title`, `name`, `
 (96, 17, 2, 'f', 'out 2 (missing summand)', 'o2', 'a+', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (97, 17, 3, 'f', 'out 3 (unknown operand)', 'o3', 'i?1', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
 (98, 17, 4, 'f', 'out 4 (unclosed paranthesis)', 'o4', '(i+1', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
-(99, 17, 5, 'f', 'out 5 (unclosed quote)', 'o5', '"abc', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1);
+(99, 17, 5, 'f', 'out 5 (unclosed quote)', 'o5', '"abc', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(100, 6, 3, 'c', '"yes" or "no"', 'fourth', '', 'yes', 'no', '0', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(101, 6, 7, 'f', 'Fourth', 'fourth_out', 'fourth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(102, 5, 4, 'r', 'String values', 'fifth', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(103, 5, 9, 'f', 'Fifth', 'fifth_out', 'fifth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(104, 4, 4, 'd', 'String values', 'fifth', '', '', '', '', 0, '', 1, '', '', 0, 0, 0, '', '', '', 1, 1),
+(105, 4, 9, 'f', 'Fifth', 'fifth_out', 'fifth', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1),
+(106, 12, 10, 'f', 'String', 'string', 'if(first=10, "Ten", if(first=30, "Thirty", "Other"))', '', '', '', 0, '', 1, '', '', 0, 9, 0, '', '.', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -211,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `wp_jzzf_option` (
   `name` varchar(1024) NOT NULL,
   `value` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `wp_jzzf_option`
@@ -241,4 +248,10 @@ INSERT INTO `wp_jzzf_option` (`id`, `order`, `element`, `default`, `title`, `nam
 (21, 0, 90, 1, 'a) 1234.57', '', '1234.567'),
 (22, 1, 90, 0, 'b) 1234.5', '', '1234.5'),
 (23, 2, 90, 0, 'c) 1234', '', '1234'),
-(24, 3, 90, 0, 'd) 1.234', '', '1.234');
+(24, 3, 90, 0, 'd) 1.234', '', '1.234'),
+(25, 0, 102, 1, 'Yes', '', 'yes'),
+(26, 1, 102, 0, 'No', '', 'no'),
+(27, 2, 102, 0, 'Not sure', '', 'not sure'),
+(28, 0, 104, 0, 'Yes', '', 'Yes'),
+(29, 1, 104, 0, 'No', '', 'No'),
+(30, 2, 104, 0, 'Not sure', '', 'Not sure');

@@ -47,6 +47,11 @@
 	<td>20</td>
 </tr>
 <tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_6_fourth_out</td>
+	<td>no</td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>id=jzzf_6_first</td>
 	<td></td>
@@ -75,6 +80,16 @@
 	<td>verifyValue</td>
 	<td>id=jzzf_6_third_out</td>
 	<td>10</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=jzzf_6_fourth</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_6_fourth_out</td>
+	<td>yes</td>
 </tr>
 </tbody></table>
 </body>

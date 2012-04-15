@@ -67,6 +67,11 @@
 	<td>10</td>
 </tr>
 <tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_12_string</td>
+	<td>Ten</td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=jzzf_12_first</td>
 	<td>30</td>
@@ -112,6 +117,11 @@
 	<td>10</td>
 </tr>
 <tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_12_string</td>
+	<td>Thirty</td>
+</tr>
+<tr>
 	<td>type</td>
 	<td>id=jzzf_12_second</td>
 	<td>29.9999999999</td>
@@ -155,6 +165,16 @@
 	<td>verifyValue</td>
 	<td>id=jzzf_12_if_default</td>
 	<td>0</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=jzzf_12_first</td>
+	<td>15</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=jzzf_12_string</td>
+	<td>Other</td>
 </tr>
 </tbody></table>
 </body>
