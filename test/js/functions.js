@@ -269,6 +269,38 @@ test("power(2, 8)", function() {
   equal(jzzf_functions('power', [2, 8]), 256);
 });
 
+test("mround(0.2, 0.5)", function() {
+  equal(jzzf_functions('mround', [0.2, 0.5]), 0);
+});
+
+test("mround(0.5, 0.5)", function() {
+  equal(jzzf_functions('mround', [0.4, 0.5]), 0.5);
+});
+
+test("mround(0.6, 0.5)", function() {
+  equal(jzzf_functions('mround', [0.6, 0.5]), 0.5);
+});
+
+test("mround(-0.2, 0.5)", function() {
+  equal(jzzf_functions('mround', [-0.2, 0.5]), 0);
+});
+
+test("mround(-0.5, 0.5)", function() {
+  equal(jzzf_functions('mround', [-0.4, 0.5]), -0.5);
+});
+
+test("mround(-0.6, 0.5)", function() {
+  equal(jzzf_functions('mround', [-0.6, 0.5]), -0.5);
+});
+
+test("mround(-5, 5)", function() {
+  equal(jzzf_functions('mround', [-5, 5]), -5);
+});
+
+test("mround(-7, 5)", function() {
+  equal(jzzf_functions('mround', [-8.5, 5]), -10);
+});
+
 });
 
 function prcsn(x) {

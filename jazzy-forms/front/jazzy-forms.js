@@ -309,6 +309,10 @@ function jzzf_functions(id, args) {
             var decimal = Math.pow(10, digits);
             return Math.round(numarg(0)*decimal)/decimal;
         },
+        'mround': function() {
+            var multiple = numarg(1);
+            return Math.round(numarg(0)/multiple)*multiple;
+        },
         'roundup': function() {
             var digits = numarg(1, 0);
             var decimal = Math.pow(10, digits);
