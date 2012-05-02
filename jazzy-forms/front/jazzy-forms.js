@@ -96,7 +96,7 @@ function jazzy_forms($, form_id, graph) {
     function send_email(button) {
         set_message(button, graph.form.email.sending);
         var values = {};
-        for(key in graph.email) {
+        for(var key in graph.email) {
             var value = evaluate_formula(graph.email[key]);
             if(graph.email[key].length == 1) {
                 values[key] = sanitize_result(value, key);
