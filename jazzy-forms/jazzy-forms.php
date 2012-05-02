@@ -110,6 +110,9 @@ function jzzf_panic() {
 }
 
 function jzzf_sanitize_db() {
+	if(function_exists('is_multisite') && is_multisite()) {
+		jzzf_create_tables();
+	}
 	$current = jzzf_get_version();
 	if($current < JZZF_VERSION) {
 		jzzf_update();
