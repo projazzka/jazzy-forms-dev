@@ -18,6 +18,37 @@ function jzzf_log_file() {
     return sys_get_temp_dir() . '/jazzy-forms.log';
 }
 
+function jzzf_log_level_string($level) {
+    switch($level) {
+        case 10:
+            return 'DEBUG';
+        case 20:
+            return 'INFO';
+        case 30:
+            return 'WARNING';
+        case 40:
+            return 'ERROR';
+        case 50:
+            return 'CRITICAL';
+    }
+    return '';
+}
+
+function jzzf_format_output($level, $msg) {
+    $lines = explode("\n", $msg);
+    $output = '';
+    $first = true;
+    foreach($lines as $line) {
+        if($first) {
+            $first = false;
+        } else {
+            $line = '->' . $line;
+        }
+        $output .= '[' . $level . '|' . date(DATE_ISO8601) . '|' . $_SERVER['REMOTE_ADDR'] . ']' . "$line\n";
+    }
+    return $output;
+}
+
 function jzzf_debug($msg) { jzzf_log(10, $msg); }
 function jzzf_info($msg) { jzzf_log(20, $msg); }
 function jzzf_warning($msg) { jzzf_log(30, $msg); }
@@ -30,14 +61,8 @@ function jzzf_log($level, $msg) {
         if(!$file) {
             return;
         }
-        switch($level) {
-            case 10: $importance = 'DEBUG'; break;
-            case 20: $importance = 'INFO'; break;
-            case 30: $importance = 'WARNING'; break;
-            case 40: $importance = 'ERROR'; break;
-            case 50: $importance = 'CRITICAL'; break;
-        }
-        $output = '[' . $importance . '|' . date(DATE_ISO8601) . '|' . $_SERVER['REMOTE_ADDR'] . ']' . "$msg\n";
+        $importance = jzzf_log_level_string($level);
+        $output = jzzf_format_output($importance, $msg);
         file_put_contents($file, $output, FILE_APPEND);
     }
 }
