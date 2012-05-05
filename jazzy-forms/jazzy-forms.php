@@ -213,5 +213,6 @@ add_filter('the_posts', 'jzzf_conditional_queuing');
 add_action('jzzf_enqueue', 'jzzf_enqueue');
 add_action('jzzf_form', 'jzzf_form', 2);
 add_action('wp_ajax_jzzf_email', 'jzzf_email');
- 
+add_action('wp_ajax_nopriv_jzzf_email', 'jzzf_email');
+
 ?>

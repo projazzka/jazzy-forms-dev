@@ -1,6 +1,7 @@
 <?php
 
 function jzzf_ctrl_email() {
+    jzzf_info("Processing email request");
     if(!($form = $_REQUEST['form'])) {
         jzzf_http_error(403, "Invalid form");
     }
