@@ -98,7 +98,7 @@ function jazzy_forms($, form_id, graph) {
         var values = {};
         for(var key in graph.email) {
             var value = evaluate_formula(graph.email[key]);
-            if(graph.email[key].length == 1) {
+            if(graph.email[key].length == 1 && graph.types[key] == 'f') {
                 values[key] = sanitize_result(value, key);
             } else {
                 values[key] = value;

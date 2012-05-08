@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from log_analyzer import Log_Analyzer
-import unittest, re, time
+import unittest, re, time, string
 
 class Mail(unittest.TestCase):
     def setUp(self):
@@ -40,6 +40,42 @@ your price is $10.00.
 I will call you at 
 Bye,
 Mark.""")
+
+    def test_number_input(self):
+        number = "902365247";
+        
+        driver = self.driver
+        driver.get(self.base_url + "mail/")
+
+        name = driver.find_element_by_id("jzzf_15_phone")
+        
+        name.clear()
+        name.send_keys(number)
+
+        driver.find_element_by_id("jzzf_15_send").click()
+        
+        time.sleep(10)
+        
+        message = self.log.extract("Email message: ")
+        self.assertTrue(string.find(message, number) > 0)
+
+    def test_number_input(self):
+        number = "902 365 247";
+        
+        driver = self.driver
+        driver.get(self.base_url + "mail/")
+
+        name = driver.find_element_by_id("jzzf_15_phone")
+        
+        name.clear()
+        name.send_keys(number)
+
+        driver.find_element_by_id("jzzf_15_send").click()
+        
+        time.sleep(10)
+        
+        message = self.log.extract("Email message: ")
+        self.assertTrue(string.find(message, number) > 0)
 
     def tearDown(self):
         self.driver.quit()
