@@ -120,7 +120,7 @@ function jzzf_form_params($form) {
         $params->email = (object) array(
             "sending" => $form->email->sending,
             "ok" => $form->email->ok,
-            "fail" => $form->fail
+            "fail" => $form->email->fail
         );
     }
     return $params;
