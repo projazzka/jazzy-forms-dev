@@ -9,7 +9,12 @@ function jzzf_ctrl_email() {
         jzzf_http_error(404, "Form Not Found");
     }
     $replaced = jzzf_apply_email_templates($email, $_REQUEST['values']);
-    jzzf_send_email($replaced);
+    if(jzzf_send_email($replaced))
+    {
+        echo 1;
+    } else {
+        echo 0;
+    }
 }
 
 function jzzf_apply_email_templates($email, $values) {

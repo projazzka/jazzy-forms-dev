@@ -111,7 +111,13 @@ function jazzy_forms($, form_id, graph) {
                 "action": "jzzf_email"
             },
             "error": function() { set_message(button, graph.form.email.fail); },
-            "success": function() { set_message(button, graph.form.email.ok); }
+            "success": function(data) {
+                if(data == "1") {
+                    set_message(button, graph.form.email.ok);
+                } else {
+                    set_message(button, graph.form.email.fail);
+                }
+            }
         });
     }
     

@@ -16,11 +16,14 @@ function jzzf_send_email($email) {
         jzzf_debug("Email subject: {$email['subject']}");
         jzzf_debug("Email message: {$email['message']}");
     }
+    $result = false;
     if(get_option('jzzf_tweak_suppress_email', false)) {
         jzzf_info('Emails are suppressed. Not sending.');
-        return true;
+        $result = strpos($email['to'], "@") !== false;
     } else {
         jzzf_info('Sending email');
-        return wp_mail($email["to"], $email["subject"], $message, $headers);
+        $result = wp_mail($email["to"], $email["subject"], $message, $headers);
     }
+    jzzf_info('Email return value:' . (int) $result);
+    return $result;
 }
