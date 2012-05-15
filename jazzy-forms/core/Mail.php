@@ -9,7 +9,7 @@ function jzzf_send_email($email) {
     if($email['bcc']) {
         $headers .= 'Bcc: '. $email["bcc"] . "\r\n";
     }
-    $header .= "Content-type: text/plain; charset=utf-8";
+    $headers .= "Content-type: text/plain; charset=utf-8";
     if(jzzf_log_enabled()) {
         jzzf_debug("Email headers: $headers");
         jzzf_debug("Email to: {$email['to']}");
