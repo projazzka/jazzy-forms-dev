@@ -117,7 +117,7 @@ I would love to gain insight about the way you are using this software and the t
 * Email fix: send emails for users that are not logged in (!)
 * Email fix: respect wp_mail()'s return value
 * Improve compatibility with WPMU
-* New functions: MROUND and logarithm functions
+* New functions: MROUND, logarithm and exponential functions
 
 = 0.9.7 =
 * Emergency update (missing file in v0.9.6)
