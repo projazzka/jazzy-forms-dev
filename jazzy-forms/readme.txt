@@ -4,7 +4,7 @@ Donate link: http://www.jazzyforms.com/
 Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
 Tested up to: 3.3.1
-Stable tag: 0.9.7
+Stable tag: 0.9.8
 
 Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators and for sending out cost estimates by email.
 
@@ -110,6 +110,14 @@ I would love to gain insight about the way you are using this software and the t
 == Screenshots ==
 
 == Changelog ==
+
+= 0.9.8 =
+* Email fix: complete Cc and Bcc implementation
+* Email fix: don't fail for numeric values
+* Email fix: send emails for users that are not logged in (!)
+* Email fix: respect wp_mail()'s return value
+* Improve compatibility with WPMU
+* New functions: MROUND and logarithm functions
 
 = 0.9.7 =
 * Emergency update (missing file in v0.9.6)
