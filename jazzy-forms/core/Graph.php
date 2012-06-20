@@ -1,42 +1,80 @@
 <?php
 
-function jzzf_get_graph($form) {
-    $elements = $form->elements;
-    
-    $data = array();
-    $types = array();
-    $dependencies = array();
-    $formulas = array();
-    $params = array();
-    
-    $param_keys = array_flip(array('prefix', 'postfix', 'fixed', 'decimals', "zeros", "thousands", "point"));
-    
-    foreach($elements as $elem) {
-        $id = strtolower($elem->name);
-        $type = $elem->type;
-        $types[$id] = $type;
-        if($type == "f") {
-            $formula = null;
-            try {
-                $formula = jzzf_parse($elem->formula);
-            } catch(Exception $e) {
-                
-            }
-            if($formula) {
-                $formulas[$id] = $formula;
-                $deps = jzzf_get_dependencies($formula);
-                foreach($deps as $dep) {
-                    $dependencies[$dep][] = $id;
-                }
-            }
-            $params[$id] = array_intersect_key((array) $elem, $param_keys);
-        } elseif($values = jzzf_get_values($elem)) {
-            $data[$id] = $values;
-        }
-    }
-    $email = jzzf_get_email_formulas($form);
-    return compact('data', 'types', 'dependencies', 'formulas', 'params', 'email');
+function jzzf_get_graph($form) {    
+    $generator = new Jzzf_Graph_Generator();
+    // TODO: remove temporary to_array() method
+    return $generator->generate($form)->to_array();
 }
+
+class Jzzf_Graph {
+    public $data;
+    public $types;
+    public $dependencies;
+    public $formulas;
+    public $params;
+    public $email;
+    
+    public function __construct() {
+        $this->data = array();
+        $this->types = array();
+        $this->dependencies = array();
+        $this->formulas = array();
+        $this->params = array();
+        $this->email = array();
+    }
+    
+    // TODO: remove temporary to_array() method
+    public function to_array() {
+        return array(
+            "data" => $this->data,
+            "types" => $this->types,
+            "dependencies" => $this->dependencies,
+            "formulas" => $this->formulas,
+            "params" => $this->params,
+            "email" => $this->email
+        );
+    }
+}
+
+class Jzzf_Graph_Generator {
+    public function __construct() {
+        $this->graph = new Jzzf_Graph();
+    }
+    
+    public function generate($form) {
+        $elements = $form->elements;
+        $graph = $this->graph;
+
+        $param_keys = array_flip(array('prefix', 'postfix', 'fixed', 'decimals', "zeros", "thousands", "point"));
+        
+        foreach($elements as $elem) {
+            $id = strtolower($elem->name);
+            $type = $elem->type;
+            $graph->types[$id] = $type;
+            if($type == "f") {
+                $formula = null;
+                try {
+                    $formula = jzzf_parse($elem->formula);
+                } catch(Exception $e) {
+                    
+                }
+                if($formula) {
+                    $graph->formulas[$id] = $formula;
+                    $deps = jzzf_get_dependencies($formula);
+                    foreach($deps as $dep) {
+                        $graph->dependencies[$dep][] = $id;
+                    }
+                }
+                $graph->params[$id] = array_intersect_key((array) $elem, $param_keys);
+            } elseif($values = jzzf_get_values($elem)) {
+                $graph->data[$id] = $values;
+            }
+        }
+        $graph->email = jzzf_get_email_formulas($form);
+        return $graph;
+    }
+}
+    
 
 function jzzf_get_email_formulas($form) {
     $formulas = null;
