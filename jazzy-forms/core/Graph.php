@@ -46,36 +46,39 @@ class Jzzf_Graph_Generator {
     
     public function generate($form) {
         $this->form = $form;
-        $elements = $form->elements;
-        $graph = $this->graph;
 
+        foreach($form->elements as $elem) {
+            $this->process_element($elem);
+        }
+        $this->graph->email = $this->get_email_formulas();
+        return $this->graph;
+    }
+    
+    function process_element($elem) {
+        $id = strtolower($elem->name);
+        $type = $elem->type;
+        $this->graph->types[$id] = $type;
+        if($type == "f") {
+            $this->process_output_element($id, $elem);
+        } elseif($values = $this->get_values($elem)) {
+            $this->graph->data[$id] = $values;
+        }
+    }
+    
+    function process_output_element($id, $elem) {
         $param_keys = array_flip(array('prefix', 'postfix', 'fixed', 'decimals', "zeros", "thousands", "point"));
         
-        foreach($elements as $elem) {
-            $id = strtolower($elem->name);
-            $type = $elem->type;
-            $graph->types[$id] = $type;
-            if($type == "f") {
-                $formula = null;
-                try {
-                    $formula = jzzf_parse($elem->formula);
-                } catch(Exception $e) {
-                    
-                }
-                if($formula) {
-                    $graph->formulas[$id] = $formula;
-                    $deps = $this->get_dependencies($formula);
-                    foreach($deps as $dep) {
-                        $graph->dependencies[$dep][] = $id;
-                    }
-                }
-                $graph->params[$id] = array_intersect_key((array) $elem, $param_keys);
-            } elseif($values = $this->get_values($elem)) {
-                $graph->data[$id] = $values;
-            }
+        try {
+            $formula = jzzf_parse($elem->formula);
+        } catch(Exception $e) {
+            return;
         }
-        $graph->email = $this->get_email_formulas();
-        return $graph;
+        $this->graph->formulas[$id] = $formula;
+        $deps = $this->get_dependencies($formula);
+        foreach($deps as $dep) {
+            $this->graph->dependencies[$dep][] = $id;
+        }
+        $this->graph->params[$id] = array_intersect_key((array) $elem, $param_keys);        
     }
     
     function get_email_formulas() {
