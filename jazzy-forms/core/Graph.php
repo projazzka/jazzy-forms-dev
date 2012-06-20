@@ -37,11 +37,15 @@ class Jzzf_Graph {
 }
 
 class Jzzf_Graph_Generator {
+    private $form;
+    private $graph;
+
     public function __construct() {
         $this->graph = new Jzzf_Graph();
     }
     
     public function generate($form) {
+        $this->form = $form;
         $elements = $form->elements;
         $graph = $this->graph;
 
@@ -60,73 +64,74 @@ class Jzzf_Graph_Generator {
                 }
                 if($formula) {
                     $graph->formulas[$id] = $formula;
-                    $deps = jzzf_get_dependencies($formula);
+                    $deps = $this->get_dependencies($formula);
                     foreach($deps as $dep) {
                         $graph->dependencies[$dep][] = $id;
                     }
                 }
                 $graph->params[$id] = array_intersect_key((array) $elem, $param_keys);
-            } elseif($values = jzzf_get_values($elem)) {
+            } elseif($values = $this->get_values($elem)) {
                 $graph->data[$id] = $values;
             }
         }
-        $graph->email = jzzf_get_email_formulas($form);
+        $graph->email = $this->get_email_formulas();
         return $graph;
+    }
+    
+    function get_email_formulas() {
+        $formulas = null;
+        if(property_exists($this->form, 'email') && is_object($this->form->email)) {
+            $email = $this->form->email;
+            $formulas = jzzf_formulas_from_template($email->to, 'to') +
+                jzzf_formulas_from_template($email->from, 'form') +
+                jzzf_formulas_from_template($email->cc, 'cc') +
+                jzzf_formulas_from_template($email->bcc, 'bcc') +
+                jzzf_formulas_from_template($email->subject, 'subject') +
+                jzzf_formulas_from_template($email->message, 'message');
+        }
+        return $formulas;
+    }
+    
+    function get_dependencies($formula) {
+        $deps = array();
+        foreach($formula as $token) {
+            if($token[0] == 'v') {
+                $id = $token[1];
+                if(!in_array($id, $deps)) {
+                    $deps[] = $id;
+                }
+            }
+        }
+        return $deps;
+    }
+
+    function get_values($element) {
+        $values = null;
+        switch($element->type) {
+            case 'n':
+                if($val = $element->value) {
+                    $values = $val;
+                }
+                break;
+            case 'c':
+                $val = $element->value ? $element->value : 1;
+                $val2 = $element->value2 ? $element->value2 : 0;
+                $values = array($val2, $val);
+                break;
+            case 'r':
+            case 'd':
+                $values = array();
+                foreach($element->options as $opt) {
+                    if($opt->value) {
+                        $values[] = $opt->value;
+                    } else {
+                        $values[] = 0;
+                    }
+                }
+                break;
+        }
+        return $values;
     }
 }
     
 
-function jzzf_get_email_formulas($form) {
-    $formulas = null;
-    if(property_exists($form, 'email') && is_object($form->email)) {
-        $email = $form->email;
-        $formulas = jzzf_formulas_from_template($email->to, 'to') +
-            jzzf_formulas_from_template($email->from, 'form') +
-            jzzf_formulas_from_template($email->cc, 'cc') +
-            jzzf_formulas_from_template($email->bcc, 'bcc') +
-            jzzf_formulas_from_template($email->subject, 'subject') +
-            jzzf_formulas_from_template($email->message, 'message');
-    }
-    return $formulas;
-}
-
-function jzzf_get_dependencies($formula) {
-    $deps = array();
-    foreach($formula as $token) {
-        if($token[0] == 'v') {
-            $id = $token[1];
-            if(!in_array($id, $deps)) {
-                $deps[] = $id;
-            }
-        }
-    }
-    return $deps;
-}
-
-function jzzf_get_values($element) {
-    $values = null;
-    switch($element->type) {
-        case 'n':
-            if($val = $element->value) {
-                $values = $val;
-            }
-            break;
-        case 'c':
-            $val = $element->value ? $element->value : 1;
-            $val2 = $element->value2 ? $element->value2 : 0;
-            $values = array($val2, $val);
-            break;
-        case 'r':
-        case 'd':
-            $values = array();
-            foreach($element->options as $opt) {
-                if($opt->value) {
-                    $values[] = $opt->value;
-                } else {
-                    $values[] = 0;
-                }
-            }
-            break;
-    }
-    return $values;
-}
