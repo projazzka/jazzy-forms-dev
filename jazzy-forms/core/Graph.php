@@ -2,8 +2,7 @@
 
 function jzzf_get_graph($form) {    
     $generator = new Jzzf_Graph_Generator();
-    // TODO: remove temporary to_array() method
-    return $generator->generate($form)->to_array();
+    return $generator->generate($form);
 }
 
 class Jzzf_Graph {
@@ -23,7 +22,6 @@ class Jzzf_Graph {
         $this->email = array();
     }
     
-    // TODO: remove temporary to_array() method
     public function to_array() {
         return array(
             "data" => $this->data,

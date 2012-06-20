@@ -31,16 +31,16 @@ class Jzzf_List_Template {
 <?php
     }
     
-    function graph($form, $graph) { extract($graph); ?>
+    function graph($form, $graph) {  ?>
     <script type="text/javascript">
         var jzzf_graph_<?php echo $form->id ?> = {
-            "data": <?php echo json_encode($data) ?>,
-            "types": <?php echo json_encode($types) ?>,
-            "dependencies": <?php echo json_encode($dependencies) ?>,
-            "formulas": <?php echo json_encode($formulas) ?>,
+            "data": <?php echo json_encode($graph->data) ?>,
+            "types": <?php echo json_encode($graph->types) ?>,
+            "dependencies": <?php echo json_encode($graph->dependencies) ?>,
+            "formulas": <?php echo json_encode($graph->formulas) ?>,
             "form": <?php echo json_encode($form) ?>,
-            "params": <?php echo json_encode($params) ?>,
-            "email": <?php echo json_encode($email) ?>
+            "params": <?php echo json_encode($graph->params) ?>,
+            "email": <?php echo json_encode($graph->email) ?>
         };
         var jzzf_ajax_url = "<?php esc_attr_e(admin_url('admin-ajax.php'))  ?>";
         jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);

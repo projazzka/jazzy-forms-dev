@@ -72,7 +72,7 @@ function jzzf_view_front($form) {
                 $tpl->number($element);
                 break;
             case 'f':
-                if(!in_array($element->name, $graph['formulas'])) {
+                if(!in_array($element->name, $graph->formulas)) {
                     $element->invalid = true;
                 }
                 $tpl->output($element);
