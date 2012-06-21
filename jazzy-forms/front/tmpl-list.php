@@ -38,6 +38,7 @@ class Jzzf_List_Template {
             "types": <?php echo json_encode($graph->types) ?>,
             "dependencies": <?php echo json_encode($graph->dependencies) ?>,
             "formulas": <?php echo json_encode($graph->formulas) ?>,
+            "templates": <?php echo json_encode($graph->templates) ?>,
             "form": <?php echo json_encode($form) ?>,
             "params": <?php echo json_encode($graph->params) ?>,
             "email": <?php echo json_encode($graph->email) ?>
