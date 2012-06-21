@@ -65,7 +65,8 @@ function jzzf_view_front($form) {
         }
         
         $element->classes = jzzf_get_classes($element, $ahead);
-        $tpl->before($element, $ahead, ($element->break || $idx==0));
+        $is_template = in_array($element->type, array("m", "t", "h"));
+        $tpl->before($element, $ahead, ($element->break || $idx==0), $is_template);
         
         switch($element->type) {
             case 'n':

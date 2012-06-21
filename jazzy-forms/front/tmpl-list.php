@@ -55,11 +55,12 @@ class Jzzf_List_Template {
 <?php
     }
     
-    function before($element, $ahead, $first) { ?>
+    function before($element, $ahead, $first, $is_template) { ?>
     <?php if($first) : ?>
   <li class="jzzf_row">
     <?php endif ?>
-  <div class="<?php echo $element->classes ?>" <?php if($element->visible===0): ?> style="display:none;"<?php endif ?>>
+  <div class="<?php echo $element->classes ?>" <?php if($element->visible===0): ?> style="display:none;"<?php endif ?><?php
+  if($is_template): ?> id="<?php $this->id($element) ?>"<?php endif ?>>
 <?php
     }
     

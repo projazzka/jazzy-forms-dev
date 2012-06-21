@@ -210,6 +210,10 @@
                 <label for="jzzf_element_{{counter}}_title">Text</label>
                 <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title">{{title}}</textarea>
             </li>
+            <li>
+                <label for="jzzf_element_{{counter}}_name">ID</label>
+                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
+            </li>
         </ul>
     </fieldset>
 {{>foot}}
@@ -222,6 +226,10 @@
                 <label for="jzzf_element_{{counter}}_title">Heading</label>
                 <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
             </li>
+            <li>
+                <label for="jzzf_element_{{counter}}_name">ID</label>
+                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
+            </li>
         </ul>
     </fieldset>
 {{>foot}}
@@ -233,6 +241,10 @@
             <li>
                 <label for="jzzf_element_{{counter}}_title">HTML code</label>
                 <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title">{{title}}</textarea>
+            </li>
+            <li>
+                <label for="jzzf_element_{{counter}}_name">ID</label>
+                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
             </li>
         </ul>
     </fieldset>

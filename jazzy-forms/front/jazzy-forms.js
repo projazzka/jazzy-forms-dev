@@ -144,10 +144,22 @@ function jazzy_forms($, form_id, graph) {
     
     function updating_worker(id) {
         update_dependent(id);
-        if(graph.types[id] != 'f' || id in just_updated) {
+        if(id in just_updated) {
             return;
         }
-        element(id).val(sanitize_result(evaluate(id), id));
+        var value = evaluate(id);
+        switch(graph.types[id]) {
+            case 'f':
+                element(id).val(sanitize_result(value, id));
+                break;
+            case 'm':
+                element(id).html(value);
+                break;
+            case 't':
+            case 'h':
+                element(id).text(value);
+                break;
+        }
         just_updated.push(id);        
     }
 
@@ -162,11 +174,25 @@ function jazzy_forms($, form_id, graph) {
     
     function evaluate(id) {
         var result;
-        if(!(id in cache) || (graph.types[id] == 'f' && !(id in just_updated))) {
+        if(!(id in cache) || !(id in just_updated)) {
             result = evaluation_worker(id);
             cache[id] = result;
         } else {
             result = cache[id];
+        }
+        return result;
+    }
+    
+    function template(id) {
+        var result = '';
+        var chunks = graph.templates[id];
+        for(var i=0; i<chunks.length; i++) {
+            var chunk = chunks[i];
+            if(typeof chunk == 'object') {
+                result += evaluate_formula(chunk);
+            } else {
+                result += chunk;
+            }
         }
         return result;
     }
@@ -203,6 +229,10 @@ function jazzy_forms($, form_id, graph) {
                 }
             case 'f':
                 return formula(id);
+            case 'm':
+            case 't':
+            case 'h':
+                return template(id);
         }
         return 0;
     }
