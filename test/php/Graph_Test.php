@@ -22,6 +22,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array(), $graph->types);
 		$this->assertEquals(array(), $graph->dependencies);
 		$this->assertEquals(array(), $graph->formulas);
+		$this->assertEquals(array(), $graph->templates);
 		$this->assertEquals(array(), $graph->params);
 		$this->assertEquals(null, $graph->email);
     }
@@ -174,5 +175,38 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 			"_inline_0_message": [["v", "price1"], ["v", "price2"], ["o", "+"]]
 		}', true), $email);
 	}
+
+	function test_no_template() {
+		$elements = array(
+			(object) array('name'=> 'a', 'type'=> 't', 'title'=>'Pure text.')
+		);
+		$graph = $this->get_graph_from_elements($elements);
+		$this->assertEquals(array(), $graph->templates);
+	}
+
+	function test_template_variable_only() {
+		$elements = array(
+			(object) array('name'=> 'out', 'type'=> 't', 'title'=>'{{a}}')
+		);
+		$graph = $this->get_graph_from_elements($elements);
+		$templates = $graph->templates;
+		$this->assertEquals(json_decode('{
+			"out": [[["v", "a"]]]}', true), $graph->templates);
+		$this->assertEquals(json_decode('{
+			"a": ["out"]}', true), $graph->dependencies);
+	}
+
+	function test_template_mixed() {
+		$elements = array(
+			(object) array('name'=> 'out', 'type'=> 't', 'title'=>'The result is {{a}}')
+		);
+		$graph = $this->get_graph_from_elements($elements);
+		$templates = $graph->templates;
+		$this->assertEquals(json_decode('{
+			"out": ["The result is ", [["v", "a"]]]}', true), $graph->templates);
+		$this->assertEquals(json_decode('{
+			"a": ["out"]}', true), $graph->dependencies);
+	}
+
 }
 

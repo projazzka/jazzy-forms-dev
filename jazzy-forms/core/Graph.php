@@ -10,6 +10,7 @@ class Jzzf_Graph {
     public $types;
     public $dependencies;
     public $formulas;
+    public $templates;
     public $params;
     public $email;
     
@@ -18,6 +19,7 @@ class Jzzf_Graph {
         $this->types = array();
         $this->dependencies = array();
         $this->formulas = array();
+        $this->templates = array();
         $this->params = array();
         $this->email = array();
     }
@@ -58,6 +60,8 @@ class Jzzf_Graph_Generator {
         $this->graph->types[$id] = $type;
         if($type == "f") {
             $this->process_output_element($id, $elem);
+        } elseif($this->is_template($type)) {
+            $this->process_template_element($id, $elem);
         } elseif($values = $this->get_values($elem)) {
             $this->graph->data[$id] = $values;
         }
@@ -73,10 +77,22 @@ class Jzzf_Graph_Generator {
         }
         $this->graph->formulas[$id] = $formula;
         $deps = $this->get_dependencies($formula);
-        foreach($deps as $dep) {
-            $this->graph->dependencies[$dep][] = $id;
-        }
+        $this->add_dependencies($deps, $id);
         $this->graph->params[$id] = array_intersect_key((array) $elem, $param_keys);        
+    }
+
+    function process_template_element($id, $elem) {
+        $parsed = jzzf_parse_template($elem->title);
+        if(!$parsed || (count($parsed)==1 && !is_array($parsed[0]))) {
+            return;
+        }
+        $this->graph->templates[$id] = $parsed;
+        $deps = $this->get_template_dependencies($parsed);
+        $this->add_dependencies($deps, $id);        
+    }
+    
+    function is_template($type) {
+        return in_array($type, array('m', 't', 'h'));
     }
     
     function get_email_formulas() {
@@ -106,6 +122,29 @@ class Jzzf_Graph_Generator {
         return $deps;
     }
 
+    function get_template_dependencies($template) {
+        $dependencies = array();
+        
+        foreach($template as $chunk) {
+            if(jzzf_chunk_is_formula($chunk)) {
+                $deps = $this->get_dependencies($chunk);
+                foreach($deps as $dep) {
+                    if(!in_array($dep, $dependencies)) {
+                        $dependencies[] = $dep;
+                    }
+                }
+            }
+        }
+        
+        return $dependencies;
+    }
+    
+    function add_dependencies($dependencies, $id) {
+        foreach($dependencies as $dep) {
+            $this->graph->dependencies[$dep][] = $id;
+        }
+    }
+    
     function get_values($element) {
         $values = null;
         switch($element->type) {
