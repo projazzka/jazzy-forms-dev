@@ -27,6 +27,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>verifyText</td>
+	<td>id=jzzf_18_element_1</td>
+	<td>exact:1.002*2=2.004</td>
+</tr>
+<tr>
 	<td>verifyTextPresent</td>
 	<td>Result for 1</td>
 	<td></td>
