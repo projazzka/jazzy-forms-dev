@@ -189,12 +189,29 @@ function jazzy_forms($, form_id, graph) {
         for(var i=0; i<chunks.length; i++) {
             var chunk = chunks[i];
             if(typeof chunk == 'object') {
-                result += evaluate_formula(chunk);
+                if(is_formatted_variable(chunk)) {
+                    result += evaluate_formatted_variable(chunk);
+                } else {
+                    result += evaluate_formula(chunk);
+                }
             } else {
                 result += chunk;
             }
         }
         return result;
+    }
+    
+    function is_formatted_variable(formula) {
+        if(formula && formula.length == 1 && formula[0][0] == 'v') {
+            return graph.types[formula[0][1]] == 'f';
+        } else {
+            return false;
+        }
+    }
+    
+    function evaluate_formatted_variable(formula) {
+        var id = formula[0][1];
+        return sanitize_result(evaluate(id), id);
     }
     
     function evaluation_worker(id) {
