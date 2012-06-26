@@ -36,7 +36,7 @@ class Mail(unittest.TestCase):
         self.assertEquals(subject, "From Mark. Hi!")
         self.assertEquals(message, """Hello Igor Prochazka,
 your price is $10.00.
-0.5
+Inline: 0.5. Direct: 9.00
 I will call you at 
 Bye,
 Mark.""")
