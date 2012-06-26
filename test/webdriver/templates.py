@@ -10,28 +10,36 @@ class Templates(unittest.TestCase):
         self.driver.implicitly_wait(30)
         self.base_url = "http://blankito.local/workspace/wpbay/wp/"
         self.verificationErrors = []
-    
-    def test_templates(self):
+        self.driver.get(self.base_url + "/templates")
+
+    def input(self, input, radio):
         driver = self.driver
-        driver.get(self.base_url + "/templates")
         driver.find_element_by_id("jzzf_18_a").clear()
-        driver.find_element_by_id("jzzf_18_a").send_keys("1\t")
+        driver.find_element_by_id("jzzf_18_a").send_keys("%s\t" % input)
+        driver.find_element_by_id("jzzf_18_b-%d" % radio).click()
+
+    def test_basic(self):
+        driver = self.driver
+        self.input(1, 1)
 
         self.assertEqual("Result for 1", driver.find_element_by_id("jzzf_18_element").text)
         self.assertEqual("1*1=1", driver.find_element_by_id("jzzf_18_element_1").text)
         self.assertEqual("More info about 1", driver.find_element_by_id("jzzf_18_element_2").text)
         self.assertEqual("about 1", driver.find_element_by_link_text("about 1").text)
 
-        driver.find_element_by_id("jzzf_18_b-1").click()
-        driver.find_element_by_id("jzzf_18_a").clear()
-        driver.find_element_by_id("jzzf_18_a").send_keys("1.1\t")
-        
+    def test_float(self):
+        driver = self.driver
+        self.input(1.1, 1)
+                
         self.assertEqual("Result for 1.1", driver.find_element_by_id("jzzf_18_element").text)
         self.assertEqual("1.1*1=1.1", driver.find_element_by_id("jzzf_18_element_1").text)
         self.assertEqual("More info about 1.1", driver.find_element_by_id("jzzf_18_element_2").text)
         self.assertEqual("about 1.1", driver.find_element_by_link_text("about 1.1").text)
 
-        driver.find_element_by_id("jzzf_18_b-2").click()
+    def test_float2(self):
+        driver = self.driver
+        self.input(1.1, 2)
+
         self.assertEqual("Result for 1.1", driver.find_element_by_id("jzzf_18_element").text)
         self.assertEqual("1.1*2=2.2", driver.find_element_by_id("jzzf_18_element_1").text)
         self.assertEqual("More info about 2.2", driver.find_element_by_id("jzzf_18_element_2").text)
