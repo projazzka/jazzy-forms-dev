@@ -41,6 +41,7 @@ function jzzf_ctrl_diagnostics() {
         update_option('jzzf_tweak_suppress_email', $_POST['tweak_suppress_email']);
         update_option('jzzf_log_level', $_POST['log_level']);
         update_option('jzzf_log_file', $_POST['log_file']);
+        update_option('jzzf_tweak_log_public', $_POST['tweak_log_public']);
     }
     $db_version = jzzf_get_version();
     $version = JZZF_VERSION;
@@ -48,6 +49,7 @@ function jzzf_ctrl_diagnostics() {
     $tweak_suppress_email = get_option('jzzf_tweak_suppress_email', false);
     $log_level = jzzf_log_level();
     $log_file = jzzf_log_file();
+    $tweak_log_public = get_option('jzzf_tweak_log_public', false);
     include('tpl-diagnostics.php');
     return;
 }
