@@ -36,6 +36,8 @@ define(JZZF_CORE, JZZF_ROOT . 'core/');
 define(JZZF_BACK, JZZF_ROOT . 'back/');
 define(JZZF_FRONT, JZZF_ROOT . 'front/');
 
+require_once(JZZF_CORE . 'Log.php');
+
 function jzzf_get_version() {
     return get_option(JZZF_OPTION_VERSION, 0.0);
 }
@@ -201,7 +203,15 @@ function jzzf_email() {
 	exit;
 }
 
-require_once(JZZF_CORE . 'Log.php');
+function jzzf_log_exposure($public=false) {
+	require_once(JZZF_FRONT . 'ctrl-log.php');
+	jzzf_ctrl_log($public);
+	exit;
+}
+
+function jzzf_log_public_exposure() {
+	jzzf_log_exposure(true);
+}
 
 /* register filter hook */
 
@@ -214,5 +224,7 @@ add_action('jzzf_enqueue', 'jzzf_enqueue');
 add_action('jzzf_form', 'jzzf_form', 2);
 add_action('wp_ajax_jzzf_email', 'jzzf_email');
 add_action('wp_ajax_nopriv_jzzf_email', 'jzzf_email');
+add_action('wp_ajax_jzzf_log', 'jzzf_log_exposure');
+add_action('wp_ajax_nopriv_jzzf_log', 'jzzf_log_public_exposure');
 
 ?>

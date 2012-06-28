@@ -18,6 +18,14 @@ function jzzf_log_file() {
     return sys_get_temp_dir() . '/jazzy-forms.log';
 }
 
+function jzzf_dump_log() {
+    print @file_get_contents(jzzf_log_file());
+}
+
+function jzzf_log_clear() {
+    file_put_contents(jzzf_log_file(), "");    
+}
+
 function jzzf_log_level_string($level) {
     switch($level) {
         case 10:
