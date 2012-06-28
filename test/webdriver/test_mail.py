@@ -59,7 +59,7 @@ Mark.""")
         message = self.log.extract("Email message: ")
         self.assertTrue(string.find(message, number) > 0)
 
-    def test_number_input(self):
+    def test_number_input2(self):
         number = "902 365 247";
         
         driver = self.driver
