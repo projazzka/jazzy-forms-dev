@@ -1,5 +1,21 @@
 <?php
 
+/* (* Extended Backus-Naur Form (EBNF): *)
+  
+formula = comparison;
+comparison = concatenation, [("<" | ">" | "<=" | "=>" | "<>"), comparison];
+concatenation = sum, [ "&", concatenation ];
+sum = product, [("+" | "-"), sum];
+product = exponentiation, [("*" | "/"), term];
+exponentiation = term, ["^", exponentiation];
+term = number | identifier | function | string;
+
+arguments = comparison, { ",", comparison};
+function = identifier, "(", arguments ")";
+
+*/
+
+
 function jzzf_parse($notation) {
     try {
         $tokens = jzzf_tokenize($notation);
@@ -32,7 +48,11 @@ class Jzzf_Parser {
     }
 
     private function comparison() {
-        return $this->operation('comparison', array('<=', '>=', '<', '>', '=', '<>'), 'sum');
+        return $this->operation('comparison', array('<=', '>=', '<', '>', '=', '<>'), 'concatenation');
+    }
+    
+    private function concatenation() {
+        return $this->operation('concatenation', array('&'), 'sum');
     }
 
     private function sum() {
