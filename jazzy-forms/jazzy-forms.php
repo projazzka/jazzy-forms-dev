@@ -28,6 +28,7 @@ Author URI: http://www.l90r.com/
 */
 
 define(JZZF_VERSION, 0.0908);
+define(JZZF_VERSION_STRING, "0.0908");
 define(JZZF_OPTION_VERSION, 'jzzf_version');
 
 define(JZZF_ROOT, WP_PLUGIN_DIR . '/jazzy-forms/');
@@ -47,15 +48,18 @@ function jzzf_set_version($float) {
 }
 
 function jzzf_head() {
-	wp_register_script( 'mustache', plugins_url('jazzy-forms/3rdparty/mustache.js', null, '0.3.0'));
-	wp_register_script( 'jzzf-tabs', plugins_url('jazzy-forms/back/tabs.js', null, '1.0'));
-	wp_register_script( 'jzzf-elements', plugins_url('jazzy-forms/back/elements.js', null, '1.0'));
-	wp_register_script( 'jzzf-id', plugins_url('jazzy-forms/back/id.js', null, '1.0'));
-	wp_register_script( 'jzzf-admin-js', plugins_url('jazzy-forms/back/gui.js'), array('mustache', 'jzzf-id', 'jzzf-elements', 'jzzf-tabs', 'jquery-ui-draggable'), '1.0' );
-	wp_register_style( 'jzzf-admin-css', plugins_url('jazzy-forms/back/gui.css'));
-	wp_enqueue_script('jquery-ui-sortable');
-	wp_enqueue_script('jzzf-admin-js');
-	wp_enqueue_style('jzzf-admin-css');
+	wp_register_script( 'mustache', plugins_url('jazzy-forms/3rdparty/mustache.js'), null, '0.3.0');
+	wp_register_script( 'jzzf-tabs', plugins_url('jazzy-forms/back/tabs.js'), null, JZZF_VERSION_STRING);
+	wp_register_script( 'jzzf-elements', plugins_url('jazzy-forms/back/elements.js'), null, JZZF_VERSION_STRING);
+	wp_register_script( 'jzzf-id', plugins_url('jazzy-forms/back/id.js'), null, JZZF_VERSION_STRING);
+	wp_register_script( 'jzzf-admin-js', plugins_url('jazzy-forms/back/gui.js'), array('jquery-ui-draggable', 'jquery-ui-sortable'), JZZF_VERSION_STRING );
+	wp_register_style( 'jzzf-admin-css', plugins_url('jazzy-forms/back/gui.css'), null, JZZF_VERSION_STRING);
+	wp_enqueue_script('mustache', '0.3.0');
+	wp_enqueue_script('jzzf-id', null, null, JZZF_VERSION_STRING);
+	wp_enqueue_script('jzzf-elements', null, null, JZZF_VERSION_STRING);
+	wp_enqueue_script('jzzf-tabs', null, null, JZZF_VERSION_STRING);
+	wp_enqueue_script('jzzf-admin-js', null, null, JZZF_VERSION_STRING);
+	wp_enqueue_style('jzzf-admin-css', null, null, JZZF_VERSION_STRING);
 }
 
 function jzzf_admin() {
@@ -153,9 +157,9 @@ function jzzf_shortcode( $attr ) {
 }
 
 function jzzf_enqueue() {
-	wp_register_script('jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), '1.0');
+	wp_register_script('jazzy-forms', plugins_url('jazzy-forms/front/jazzy-forms.js'), array('jquery'), JZZF_VERSION_STRING);
 	wp_enqueue_script('jquery');
-	wp_enqueue_script('jazzy-forms');
+	wp_enqueue_script('jazzy-forms', null, null, JZZF_VERSION_STRING);
 }
 
 function jzzf_form($id, $attr=null, $return=false) {
