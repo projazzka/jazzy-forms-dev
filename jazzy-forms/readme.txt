@@ -3,8 +3,8 @@ Contributors: jazzigor
 Donate link: http://www.jazzyforms.com/
 Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
-Tested up to: 3.3.1
-Stable tag: 0.9.8
+Tested up to: 3.4.1
+Stable tag: 0.9.9
 
 Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
 
@@ -20,7 +20,7 @@ Features:
 * Hidden elements
 * Rich number formatting
 * Flexible (vertical or side-by-side) layout
-* Real-time templating
+* Formula placeholders in text output elements
 * Email
 
 Form elements:
@@ -93,6 +93,12 @@ Formulas are thought to have a similar notation to what you are probably used to
 
 where "base_price", "price", "quantity" and "tax" are IDs of other existing form elements.
 While the author is still working on a proper documentation, you can preview a list of available functions at https://gist.github.com/1779127
+
+= Can I use results in text output fields? =
+
+Yes, you can use text, heading and HTML elements with formulas. Wrap these formulas in double curly braces like in the following example:
+
+`Dear {{name}}, your cost estimate is {{total+fee}}.`
 
 = Do you accept donations? =
 
