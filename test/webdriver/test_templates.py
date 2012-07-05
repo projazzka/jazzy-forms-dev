@@ -15,8 +15,6 @@ class Templates(unittest.TestCase):
 
     def input(self, input, radio):
         driver = self.driver
-        driver.get(self.base_url + "/templates")
-
         driver.find_element_by_id("jzzf_18_a").clear()
         driver.find_element_by_id("jzzf_18_a").send_keys("%s\t" % input)
         driver.find_element_by_id("jzzf_18_b-%d" % radio).click()
@@ -56,12 +54,14 @@ class Templates(unittest.TestCase):
         driver = self.driver
         self.driver.get(self.base_url + "/bug82")
 
-        self.assertTrue(string.find(driver.find_element_by_id("jzzf_22_element").text, "No placeholders here"))
+        self.assertGreaterEqual(string.find(driver.find_element_by_id("jzzf_22_element").text, "No placeholders here"), 0)
+        driver.find_element_by_id("jzzf_22_element_1").clear()
         driver.find_element_by_id("jzzf_22_element_1").send_keys("abc\t")
-        self.assertEqual("abc", driver.find_element_by_id("jzzf_22_element_1_1").text)
+        self.assertEqual("abc", driver.find_element_by_id("jzzf_22_element_1_1").get_attribute("value"))
+        driver.find_element_by_id("jzzf_22_element_1").clear()
         driver.find_element_by_id("jzzf_22_element_1").send_keys("123\t")
-        self.assertEqual("123", driver.find_element_by_id("jzzf_22_element_1_1").text)
-        self.assertTrue(string.find(driver.find_element_by_id("jzzf_22_element").text, "No placeholders here"))
+        self.assertEqual("123", driver.find_element_by_id("jzzf_22_element_1_1").get_attribute("value"))
+        self.assertGreaterEqual(string.find(driver.find_element_by_id("jzzf_22_element").text, "No placeholders here"), 0)
         
     def tearDown(self):
         self.driver.quit()

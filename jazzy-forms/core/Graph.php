@@ -111,7 +111,7 @@ class Jzzf_Graph_Generator {
     
     function get_dependencies($formula) {
         $deps = array();
-        foreach($formula as $token) {
+        if(is_array($formula)) foreach($formula as $token) {
             if($token[0] == 'v') {
                 $id = $token[1];
                 if(!in_array($id, $deps)) {

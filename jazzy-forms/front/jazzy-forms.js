@@ -153,11 +153,15 @@ function jazzy_forms($, form_id, graph) {
                 element(id).val(sanitize_result(value, id));
                 break;
             case 'm':
-                element(id).html(value);
+                if(value!==false) {
+                    element(id).html(value);
+                }
                 break;
             case 't':
             case 'h':
-                element(id).text(value);
+                if(value!==false) {
+                    element(id).text(value);
+                }
                 break;
         }
         just_updated.push(id);        
@@ -186,19 +190,22 @@ function jazzy_forms($, form_id, graph) {
     function template(id) {
         var result = '';
         var chunks = graph.templates[id];
-        for(var i=0; i<chunks.length; i++) {
-            var chunk = chunks[i];
-            if(typeof chunk == 'object') {
-                if(is_formatted_variable(chunk)) {
-                    result += evaluate_formatted_variable(chunk);
+        if(chunks) {
+            for(var i=0; i<chunks.length; i++) {
+                var chunk = chunks[i];
+                if(typeof chunk == 'object') {
+                    if(is_formatted_variable(chunk)) {
+                        result += evaluate_formatted_variable(chunk);
+                    } else {
+                        result += evaluate_formula(chunk);
+                    }
                 } else {
-                    result += evaluate_formula(chunk);
+                    result += chunk;
                 }
-            } else {
-                result += chunk;
             }
+            return result;
         }
-        return result;
+        return false;
     }
     
     function is_formatted_variable(formula) {
