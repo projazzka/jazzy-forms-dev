@@ -4,7 +4,7 @@ Donate link: http://www.jazzyforms.com/
 Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
 Tested up to: 3.4.1
-Stable tag: 0.9.9
+Stable tag: 0.9.10
 
 Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
 
@@ -117,6 +117,9 @@ I would love to gain insight about the way you are using this software and the t
 == Screenshots ==
 
 == Changelog ==
+
+= 0.9.10 =
+* Take into account text elements without placeholders (urgent fix)
 
 = 0.9.9 =
 * Real-time templating (evaluate placeholders in text/heading/html elements)
