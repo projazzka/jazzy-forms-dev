@@ -522,3 +522,50 @@ function jzzf_format(input, args) {
 
     return sign + args.prefix + natural + (decimals.length ? args.point + decimals + args.postfix : args.postfix);
 }
+
+function Jzzf_Ref(id, engine) { this.ref_id = id; this.engine = engine; }
+Jzzf_Ref.prototype.value = function() { return this.engine.evaluate(this.ref_id); }
+Jzzf_Ref.prototype.text = function() { return this.value().text(); }
+Jzzf_Ref.prototype.number = function() { return this.value().number(); }
+Jzzf_Ref.prototype.bool = function() { return this.value().bool(); }
+Jzzf_Ref.prototype.id = function() { return this.ref_id; }
+
+function Jzzf_Value(value) { this.value = value; }
+Jzzf_Value.prototype.text = function() { return String(this.value); }
+Jzzf_Value.prototype.number = function() {
+    var x = Number(this.value);
+    if(isNaN()) {
+        throw new Jzzf_Error(jzzf_error.VALUE);
+    }
+    return x;
+}
+Jzzf_Value.prototype.bool = function() { return this.number() != 0; }
+Jzzf_Value.prototype.id = function() { throw Jzzf_Error(jzzf_error.VALUE); }
+
+function Jzzf_Error(code) { this.code = code; }
+Jzzf_Error.NULL = 1;
+Jzzf_Error.DIV0 = 2;
+Jzzf_Error.VALUE = 3;
+Jzzf_Error.REF = 4;
+Jzzf_Error.NAME = 5;
+Jzzf_Error.NUM = 6;
+Jzzf_Error.NA = 7;
+Jzzf_Error.GETTING_DATA = 8;
+Jzzf_Error.prototype.message = function() {
+    var messages = {
+        1: "#NULL!",
+        2: "#DIV/0!",
+        3: "#VALUE!",
+        4: "#REF!",
+        5: "#NAME?",
+        6: "#NUM!",
+        7: "#N/A",
+        8: "#GETTING_DATA"
+    };
+    if(this.code in messages) {
+        return messages[this.code];
+    } else {
+        return "#N/A";
+    }
+}
+
