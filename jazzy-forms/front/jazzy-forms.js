@@ -523,12 +523,12 @@ function jzzf_format(input, args) {
     return sign + args.prefix + natural + (decimals.length ? args.point + decimals + args.postfix : args.postfix);
 }
 
-function Jzzf_Ref(id, engine) { this.ref_id = id; this.engine = engine; }
-Jzzf_Ref.prototype.value = function() { return this.engine.evaluate(this.ref_id); }
-Jzzf_Ref.prototype.text = function() { return this.value().text(); }
-Jzzf_Ref.prototype.number = function() { return this.value().number(); }
-Jzzf_Ref.prototype.bool = function() { return this.value().bool(); }
-Jzzf_Ref.prototype.id = function() { return this.ref_id; }
+function Jzzf_Reference(id, engine) { this.ref_id = id; this.engine = engine; }
+Jzzf_Reference.prototype.value = function() { return new Jzzf_Value(this.engine.evaluate(this.ref_id)); }
+Jzzf_Reference.prototype.text = function() { return this.value().text(); }
+Jzzf_Reference.prototype.number = function() { return this.value().number(); }
+Jzzf_Reference.prototype.bool = function() { return this.value().bool(); }
+Jzzf_Reference.prototype.id = function() { return this.ref_id; }
 
 function Jzzf_Value(value) { this.value = value; }
 Jzzf_Value.prototype.text = function() {
@@ -554,7 +554,7 @@ Jzzf_Value.prototype.bool = function() {
     }
     return this.number() != 0;
 }
-Jzzf_Value.prototype.id = function() { throw Jzzf_Error(Jzzf_Error.VALUE); }
+Jzzf_Value.prototype.id = function() { throw new Jzzf_Error(Jzzf_Error.VALUE); }
 
 function Jzzf_Error(code) { this.code = code; }
 Jzzf_Error.NULL = 1;

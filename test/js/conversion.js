@@ -164,4 +164,34 @@ test('true to bool', function() {
   strictEqual(val.bool(), true);
 });
 
+module("Reference");
+
+test('unknown', function() {
+  function Engine() {
+    this.evaluate = function(id) {
+        return undefined;
+    }
+  }
+  var ref = new Jzzf_Reference("igor", new Engine());
+  raises(function() { var val = ref.number(); }, "#REF!");
+});
+
+test('success', function() {
+  function Engine() {
+    this.evaluate = function(id) {
+        return 0.123;
+    }
+  }
+  var ref = new Jzzf_Reference("igor", new Engine());
+  strictEqual(ref.bool(), true);
+  strictEqual(ref.number(), 0.123);
+  strictEqual(ref.text(), "0.123");
+  strictEqual(ref.id(), "igor");
+});
+
+test('dereference value', function() {
+  var ref = new Jzzf_Value("whatever");
+  raises(function() { var id = ref.id(); }, "#VALUE!");
+});
+
 });
