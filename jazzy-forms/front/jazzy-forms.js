@@ -534,13 +534,13 @@ function Jzzf_Value(value) { this.value = value; }
 Jzzf_Value.prototype.text = function() { return String(this.value); }
 Jzzf_Value.prototype.number = function() {
     var x = Number(this.value);
-    if(isNaN()) {
-        throw new Jzzf_Error(jzzf_error.VALUE);
+    if(isNaN(x)) {
+        throw new Jzzf_Error(Jzzf_Error.VALUE);
     }
     return x;
 }
 Jzzf_Value.prototype.bool = function() { return this.number() != 0; }
-Jzzf_Value.prototype.id = function() { throw Jzzf_Error(jzzf_error.VALUE); }
+Jzzf_Value.prototype.id = function() { throw Jzzf_Error(Jzzf_Error.VALUE); }
 
 function Jzzf_Error(code) { this.code = code; }
 Jzzf_Error.NULL = 1;
@@ -551,7 +551,7 @@ Jzzf_Error.NAME = 5;
 Jzzf_Error.NUM = 6;
 Jzzf_Error.NA = 7;
 Jzzf_Error.GETTING_DATA = 8;
-Jzzf_Error.prototype.message = function() {
+Jzzf_Error.prototype.toString = function() {
     var messages = {
         1: "#NULL!",
         2: "#DIV/0!",
