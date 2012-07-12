@@ -531,7 +531,11 @@ Jzzf_Ref.prototype.bool = function() { return this.value().bool(); }
 Jzzf_Ref.prototype.id = function() { return this.ref_id; }
 
 function Jzzf_Value(value) { this.value = value; }
-Jzzf_Value.prototype.text = function() { return String(this.value); }
+Jzzf_Value.prototype.text = function() {
+    if(typeof this.value == 'boolean') {
+        return this.value ? "TRUE" : "FALSE";
+    }
+    return String(this.value); }
 Jzzf_Value.prototype.number = function() {
     var x = Number(this.value);
     if(isNaN(x)) {
@@ -539,7 +543,17 @@ Jzzf_Value.prototype.number = function() {
     }
     return x;
 }
-Jzzf_Value.prototype.bool = function() { return this.number() != 0; }
+Jzzf_Value.prototype.bool = function() {
+    if(typeof this.value == 'string') {
+        var trimmed = this.value.replace(/^\s\s*/, '').replace(/\s\s*$/, '').toUpperCase();
+        if(trimmed == 'TRUE') {
+            return true;
+        } else if(trimmed == 'FALSE') {
+            return false;
+        }
+    }
+    return this.number() != 0;
+}
 Jzzf_Value.prototype.id = function() { throw Jzzf_Error(Jzzf_Error.VALUE); }
 
 function Jzzf_Error(code) { this.code = code; }

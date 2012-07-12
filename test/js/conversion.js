@@ -146,12 +146,12 @@ test('false to text', function() {
 
 test('false to number', function() {
   var val = new Jzzf_Value(false);
-  strictEqual(val.text(), 0);
+  strictEqual(val.number(), 0);
 });
 
 test('true to number', function() {
   var val = new Jzzf_Value(true);
-  strictEqual(val.text(), 1);
+  strictEqual(val.number(), 1);
 });
 
 test('false to bool', function() {
