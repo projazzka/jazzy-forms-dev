@@ -524,7 +524,8 @@ function jzzf_format(input, args) {
 }
 
 function Jzzf_Reference(id, engine) { this.ref_id = id; this.engine = engine; }
-Jzzf_Reference.prototype.value = function() { return new Jzzf_Value(this.engine.evaluate(this.ref_id)); }
+Jzzf_Reference.prototype.raw = function() { return this.engine.evaluate(this.ref_id); }
+Jzzf_Reference.prototype.value = function() { return new Jzzf_Value(this.raw()); }
 Jzzf_Reference.prototype.text = function() { return this.value().text(); }
 Jzzf_Reference.prototype.number = function() { return this.value().number(); }
 Jzzf_Reference.prototype.bool = function() { return this.value().bool(); }
@@ -555,6 +556,7 @@ Jzzf_Value.prototype.bool = function() {
     return this.number() != 0;
 }
 Jzzf_Value.prototype.id = function() { throw new Jzzf_Error(Jzzf_Error.VALUE); }
+Jzzf_Value.prototype.raw = function() { return this.value; }
 
 function Jzzf_Error(code) { this.code = code; }
 Jzzf_Error.NULL = 1;

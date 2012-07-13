@@ -194,4 +194,48 @@ test('dereference value', function() {
   raises(function() { var id = ref.id(); }, "#VALUE!");
 });
 
+test('raw text', function() {
+  var val = new Jzzf_Value("text");
+  strictEqual(val.raw(), "text");
+});
+
+test('raw number', function() {
+  var val = new Jzzf_Value(123);
+  strictEqual(val.raw(), 123);
+});
+
+test('raw zero', function() {
+  var val = new Jzzf_Value(0);
+  strictEqual(val.raw(), 0);
+});
+
+test('raw bool', function() {
+  var val = new Jzzf_Value(false);
+  strictEqual(val.raw(), false);
+});
+
+test('raw ref text', function() {
+  var engine = new function() { this.evaluate = function() { return "text"; }};
+  var val = new Jzzf_Reference("id", engine);
+  strictEqual(val.raw(), "text");
+});
+
+test('raw ref number', function() {
+  var engine = new function() { this.evaluate = function() { return 123; }};
+  var val = new Jzzf_Reference("id", engine);
+  strictEqual(val.raw(), 123);
+});
+
+test('raw ref zero', function() {
+  var engine = new function() { this.evaluate = function() { return 0; }};
+  var val = new Jzzf_Reference("id", engine);
+  strictEqual(val.raw(), 0);
+});
+
+test('raw ref bool', function() {
+  var engine = new function() { this.evaluate = function() { return false; }};
+  var val = new Jzzf_Reference("id", engine);
+  strictEqual(val.raw(), false);
+});
+
 });
