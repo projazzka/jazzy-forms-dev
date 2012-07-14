@@ -523,65 +523,67 @@ function jzzf_format(input, args) {
     return sign + args.prefix + natural + (decimals.length ? args.point + decimals + args.postfix : args.postfix);
 }
 
-function Jzzf_Reference(id, engine) { this.ref_id = id; this.engine = engine; }
-Jzzf_Reference.prototype.raw = function() { return this.engine.evaluate(this.ref_id); }
-Jzzf_Reference.prototype.value = function() { return new Jzzf_Value(this.raw()); }
-Jzzf_Reference.prototype.text = function() { return this.value().text(); }
-Jzzf_Reference.prototype.number = function() { return this.value().number(); }
-Jzzf_Reference.prototype.bool = function() { return this.value().bool(); }
-Jzzf_Reference.prototype.id = function() { return this.ref_id; }
-
-function Jzzf_Value(value) { this.value = value; }
-Jzzf_Value.prototype.text = function() {
-    if(typeof this.value == 'boolean') {
-        return this.value ? "TRUE" : "FALSE";
-    }
-    return String(this.value); }
-Jzzf_Value.prototype.number = function() {
-    var x = Number(this.value);
-    if(isNaN(x)) {
-        throw new Jzzf_Error(Jzzf_Error.VALUE);
-    }
-    return x;
+function Jzzf_Error(code) {
+    this.code = code;
+    this.toString = function() { return this.code; }
 }
-Jzzf_Value.prototype.bool = function() {
-    if(typeof this.value == 'string') {
-        var trimmed = this.value.replace(/^\s\s*/, '').replace(/\s\s*$/, '').toUpperCase();
-        if(trimmed == 'TRUE') {
-            return true;
-        } else if(trimmed == 'FALSE') {
-            return false;
+
+function Jzzf_Types(engine) {
+    var types = this;
+    
+    this.raise_null = function() { throw new Jzzf_Error("#NULL!") };
+    this.raise_div0 = function() { throw new Jzzf_Error("#DIV/0!") };
+    this.raise_value = function() { throw new Jzzf_Error("#VALUE!") };
+    this.raise_ref = function() { throw new Jzzf_Error("#REF!"); };
+    this.raise_name = function() { throw new Jzzf_Error("#NAME?"); };
+    this.raise_num = function() { throw new Jzzf_Error("#NUM!"); };
+    this.raise_na = function() { throw new Jzzf_Error("#N/A!") };
+    
+    function Value(data) { this.data = data; }
+    Value.prototype.text = function() {
+        if(typeof this.data == 'boolean') {
+            return this.data ? "TRUE" : "FALSE";
         }
+        return String(this.data);
     }
-    return this.number() != 0;
-}
-Jzzf_Value.prototype.id = function() { throw new Jzzf_Error(Jzzf_Error.VALUE); }
-Jzzf_Value.prototype.raw = function() { return this.value; }
+    Value.prototype.number = function() {
+        var x = Number(this.data);
+        if(isNaN(x)) {
+            types.raise_value();
+        }
+        return x;
+    }
+    Value.prototype.bool = function() {
+        if(typeof this.data == 'string') {
+            var trimmed = this.data.replace(/^\s\s*/, '').replace(/\s\s*$/, '').toUpperCase();
+            if(trimmed == 'TRUE') {
+                return true;
+            } else if(trimmed == 'FALSE') {
+                return false;
+            }
+        }
+        return this.number() != 0;
+    }
+    Value.prototype.id = function() { types.raise_value(); }
+    Value.prototype.raw = function() { return this.data; }
 
-function Jzzf_Error(code) { this.code = code; }
-Jzzf_Error.NULL = 1;
-Jzzf_Error.DIV0 = 2;
-Jzzf_Error.VALUE = 3;
-Jzzf_Error.REF = 4;
-Jzzf_Error.NAME = 5;
-Jzzf_Error.NUM = 6;
-Jzzf_Error.NA = 7;
-Jzzf_Error.GETTING_DATA = 8;
-Jzzf_Error.prototype.toString = function() {
-    var messages = {
-        1: "#NULL!",
-        2: "#DIV/0!",
-        3: "#VALUE!",
-        4: "#REF!",
-        5: "#NAME?",
-        6: "#NUM!",
-        7: "#N/A",
-        8: "#GETTING_DATA"
-    };
-    if(this.code in messages) {
-        return messages[this.code];
-    } else {
-        return "#N/A";
+    function Reference(id) {
+        this.ref_id = id;
     }
+    Reference.prototype.raw = function() {
+        var val = engine.evaluate(this.ref_id);
+        if(val === undefined) {
+            types.raise_ref();
+        }
+        return val;
+    }
+    Reference.prototype.value = function() { return types.value(this.raw()); }
+    Reference.prototype.text = function() { return this.value().text(); }
+    Reference.prototype.number = function() { return this.value().number(); }
+    Reference.prototype.bool = function() { return this.value().bool(); }
+    Reference.prototype.id = function() { return this.ref_id; }
+    
+    this.value = function(val) { return new Value(val); }
+    this.reference = function(id) { return new Reference(id); }
 }
 
