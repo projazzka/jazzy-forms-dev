@@ -636,10 +636,18 @@ function Jzzf_Types(engine) {
     this.raise_num = function() { throw new Jzzf_Error("#NUM!"); };
     this.raise_na = function() { throw new Jzzf_Error("#N/A!") };
     
+    var precision = Math.pow(10,9);
+
+    this.precise = function(x) {
+        return Math.round(x*precision)/precision;
+    }
+
     function Value(data) { this.data = data; }
     Value.prototype.text = function() {
         if(typeof this.data == 'boolean') {
             return this.data ? "TRUE" : "FALSE";
+        } else if(typeof this.data == 'number') {
+            return String(types.precise(this.data));
         }
         return String(this.data);
     }
@@ -650,6 +658,10 @@ function Jzzf_Types(engine) {
         }
         return x;
     }
+    Value.prototype.precise_number = function() {
+        return types.precise(this.number());
+    }
+
     Value.prototype.bool = function() {
         if(typeof this.data == 'string') {
             var trimmed = this.data.replace(/^\s\s*/, '').replace(/\s\s*$/, '').toUpperCase();
@@ -677,6 +689,7 @@ function Jzzf_Types(engine) {
     Reference.prototype.value = function() { return types.value(this.raw()); }
     Reference.prototype.text = function() { return this.value().text(); }
     Reference.prototype.number = function() { return this.value().number(); }
+    Reference.prototype.precise_number = function() { return this.value().precise_number(); }
     Reference.prototype.bool = function() { return this.value().bool(); }
     Reference.prototype.id = function() { return this.ref_id; }
     

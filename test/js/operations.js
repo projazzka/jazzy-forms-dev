@@ -5,9 +5,10 @@ module("Operations");
 var types = new Jzzf_Types();
 var lib = new Jzzf_Library(types);
 function op(name, left, right) { return lib.operation(name, types.value(left), types.value(right)); }
+function numop(name, left, right) { return types.precise(op(name, left, right)); }
 
 test("sum", function() {
-  equal(op("+", 10.123, -11), -0.877);
+  equal(numop("+", 10.123, -11), -0.877);
 });
 
 test("sum text", function() {
@@ -15,7 +16,7 @@ test("sum text", function() {
 });
 
 test("product", function() {
-  equal(op("*", "10", 1.11), 11.1);
+  equal(numop("*", "10", 1.11), 11.1);
 });
 
 test("product text", function() {
@@ -23,7 +24,7 @@ test("product text", function() {
 });
 
 test("division", function() {
-  equal(op("/", 50, 2), 25);
+  equal(numop("/", 50, 2), 25);
 });
 
 test("division by zero", function() {
@@ -44,6 +45,10 @@ test("less or equal", function() {
 
 test("identity", function() {
   equal(op("=", 123, 123), true);
+});
+
+test("identity precision", function() {
+  equal(op("=", 0.12345678911, 0.123456789), true);
 });
 
 });

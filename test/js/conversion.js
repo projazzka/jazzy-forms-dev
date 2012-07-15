@@ -311,4 +311,23 @@ test('raw ref bool', function() {
   strictEqual(ref.raw(), false);
 });
 
+module("Precision");
+
+test('max precision', function() {
+  var types = new Jzzf_Types();
+  var val = types.value(0.123456789);
+  strictEqual(val.number(), 0.123456789);
+  strictEqual(val.precise_number(), 0.123456789);
+  strictEqual(val.text(), '0.123456789');
+});
+
+test('precision', function() {
+  var types = new Jzzf_Types();
+  var val = types.value(0.123456789111);
+  strictEqual(val.number(), 0.123456789111);
+  strictEqual(val.precise_number(), 0.123456789);
+  strictEqual(val.text(), '0.123456789');
+});
+
+
 });
