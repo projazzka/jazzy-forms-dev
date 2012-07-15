@@ -20,7 +20,7 @@ function jazzy_forms($, form_id, graph) {
         }
     }
     
-    $(function() {
+    $(function(args) {
         retrieve_all_ids();
         update(all_ids);
         bind();
@@ -347,112 +347,162 @@ function jazzy_forms($, form_id, graph) {
     
 }
 
-function jzzf_functions(id, args) {
+function Jzzf_Library(types) {
     
-    function arg(idx, def) {
-        if(idx >= args.length) {
-            return def;
+    function _default(def) {
+        if(def === undefined) {
+            types.raise_name();
         }
-        return args[idx];
+        return def;
+    }
+    
+    function _number(args, def) {
+        if(!args.length) {
+            return _default(def);
+        }
+        return args.shift().number();
     }
 
-    function numarg(idx, def) {
-        return Number(arg(idx, def));
+    function _bool(args, def) {
+        if(!args.length) {
+            return _default(def);
+        }
+        return args.shift().bool();
     }
 
+    function _raw(args, def) {
+        if(!args.length) {
+            return _default(def);
+        }
+        return args.shift().raw(args);
+    }
+    
     var all = {
-        'abs': function() {
-            return Math.abs(numarg(0));
+        'abs': function(args) {
+            var x = _number(args);
+            return Math.abs(x);
         },
-        'round': function() {
-            var digits = numarg(1, 0);
+        'round': function(args) {
+            var x = _number(args);
+            var digits = _number(args, 0);
+            
             var decimal = Math.pow(10, digits);
-            return Math.round(numarg(0)*decimal)/decimal;
+            return Math.round(x*decimal)/decimal;
         },
-        'mround': function() {
-            var multiple = numarg(1);
-            return Math.round(numarg(0)/multiple)*multiple;
+        'mround': function(args) {
+            var x = _number(args);
+            var multiple = _number(args);
+            
+            return Math.round(x/multiple)*multiple;
         },
-        'roundup': function() {
-            var digits = numarg(1, 0);
+        'roundup': function(args) {
+            var x = _number(args);
+            var digits = _number(args, 0);
+            
             var decimal = Math.pow(10, digits);
-            var x = numarg(0);
-            return (x > 0) ? Math.ceil(numarg(0)*decimal)/decimal : Math.floor(numarg(0)*decimal)/decimal;
+            return (x > 0) ? Math.ceil(x*decimal)/decimal : Math.floor(x*decimal)/decimal;
         },
-        'rounddown': function() {
-            var digits = numarg(1, 0);
+        'rounddown': function(args) {
+            var x = _number(args);
+            var digits = _number(args, 0);
+            
             var decimal = Math.pow(10, digits);
-            var x = numarg(0);
-            return (x > 0) ? Math.floor(numarg(0)*decimal)/decimal : Math.ceil(numarg(0)*decimal)/decimal;
+            return (x > 0) ? Math.floor(x*decimal)/decimal : Math.ceil(x*decimal)/decimal;
         },
-        'ln': function() {
-            var x = numarg(0);
+        'ln': function(args) {
+            var x = _number(args);
+            
             return Math.log(x);
         },
-        'log': function() {
-            var x = numarg(0);
-            var b = numarg(1, 10);
+        'log': function(args) {
+            var x = _number(args);
+            var b = _number(args, 10);
             return Math.log(x) / Math.log(b);
         },
-        'log10': function() {
-            var x = numarg(0);
+        'log10': function(args) {
+            var x = _number(args);
             return Math.log(x) / Math.log(10);
         },
-        'exp': function() {
-            var x = numarg(0);
+        'exp': function(args) {
+            var x = _number(args);
             return Math.exp(x);
         },
-        'power': function() {
-            var x = numarg(0);
-            var y = numarg(1);
+        'power': function(args) {
+            var x = _number(args);
+            var y = _number(args);
             return Math.pow(x, y);
         },
-        'sqrt': function() {
-            return Math.sqrt(numarg(0));
+        'sqrt': function(args) {
+            var x = _number(args);
+            return Math.sqrt(x);
         },
-        'sin': function() {
-            return Math.sin(numarg(0));
+        'sin': function(args) {
+            var x = _number(args);
+            return Math.sin(x);
         },
-        'cos': function() {
-            return Math.cos(numarg(0));
+        'cos': function(args) {
+            var x = _number(args);
+            return Math.cos(x);
         },
-        'tan': function() {
-            return Math.tan(numarg(0));
+        'tan': function(args) {
+            var x = _number(args);
+            return Math.tan(x);
         },
-        'asin': function() {
-            return Math.asin(numarg(0));
+        'asin': function(args) {
+            var x = _number(args);
+            return Math.asin(x);
         },
-        'acos': function() {
-            return Math.acos(numarg(0));
+        'acos': function(args) {
+            var x = _number(args);
+            return Math.acos(x);
         },
-        'atan': function() {
-            return Math.atan(numarg(0));
+        'atan': function(args) {
+            var x = _number(args);
+            return Math.atan(x);
         },
-        'pi': function() {
+        'pi': function(args) {
             return Math.PI;
         },
-        'not': function() {
-            return !arg(0);
+        'not': function(args) {
+            var e = _bool(args);
+            return !e;
         },
-        'and': function() {
-            return arg(0) && arg(1);
+        'and': function(args) {
+            var e = _bool(args);
+            var f = _bool(args);
+            return e && f;
         },
-        'or': function() {
-            return arg(0) || arg(1);
+        'or': function(args) {
+            var e = _bool(args);
+            var f = _bool(args);
+            return e || f;
         },
-        'if': function() {
-            return arg(0) ? arg(1) : arg(2, false);
+        'if': function(args) {
+            var c = _bool(args);
+            var y = _raw(args, 0);
+            var n = _raw(args, 0);
+            return c ? y : n;
         },
-        'true': function() {
+        'true': function(args) {
             return true;
         },
-        'false': function() {
+        'false': function(args) {
             return false;
         }
         
     };
 
-    return (all[id])();        
+    this.execute = function(name, args) {
+        if(!(name in all)) {
+            types.raise_name();
+        }
+        var result = all[name](args);
+        
+        if(args.length) {
+            types.raise_name();
+        }
+        return result;
+    }
 }
 
 function jzzf_format(input, args) {
