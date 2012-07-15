@@ -377,7 +377,7 @@ function Jzzf_Library(types) {
         return args.shift().raw(args);
     }
     
-    var all = {
+    var functions = {
         'abs': function(args) {
             var x = _number(args);
             return Math.abs(x);
@@ -491,17 +491,64 @@ function Jzzf_Library(types) {
         }
         
     };
+    
+    var operations = {
+        "+": function(left, right) {
+            return left.number() + right.number();
+        },
+        "-": function(left, right) {
+            return left.number() - right.number();
+        },
+        "*": function(left, right) {
+            return left.number() * right.number();
+        },
+        "/": function(left, right) {
+            var divisor = right.number();
+            if(divisor == 0) {
+                types.raise_div0();
+            }
+            return left.number() / right.number();
+        },
+        "^": function(left, right) {
+            return Math.pow(left.number(), right.number());
+        },
+        "<": function(left, right) {
+            return prcsn(left.number()) < prcsn(right.number());
+        },
+        ">": function(left, right) {
+            return prcsn(left.number()) > prcsn(right.number());
+        },
+        "<>": function(left, right) {
+            return prcsn(left.number()) != prcsn(right.number());
+        },
+        "<=": function(left, right) {
+            return prcsn(left.number()) <= prcsn(right.number());
+        },
+        ">=": function(left, right) {
+            return prcsn(left.number()) >= prcsn(right.number());
+        },
+        "=": function(left, right) {
+            return prcsn(left.number()) == prcsn(right.number());
+        }
+    }
 
     this.execute = function(name, args) {
-        if(!(name in all)) {
+        if(!(name in functions)) {
             types.raise_name();
         }
-        var result = all[name](args);
+        var result = functions[name](args);
         
         if(args.length) {
             types.raise_name();
         }
         return result;
+    }
+    
+    this.operation = function(name, left, right) {
+        if(!(name in operations)) {
+            types.raise_name();
+        }
+        return operations[name](left, right);
     }
 }
 
