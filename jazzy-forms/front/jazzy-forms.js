@@ -697,3 +697,35 @@ function Jzzf_Types(engine) {
     this.reference = function(id) { return new Reference(id); }
 }
 
+function Jzzf_Cache(dependencies) {
+    var data = {}
+    var dirty = {}
+    
+    this.get = function(id) {
+        return data[id];
+    }
+    
+    this.set = function(id, value) {
+        data[id] = value;
+        delete dirty[id];
+    }
+    
+    this.mark_dirty = function(id) {
+        var dependent = dependencies[id];
+        if(dependent) {
+            for(var idx=0; idx<dependent.length; idx++) {
+                this.mark_dirty(dependent[idx]); // TODO: prevent infinite loop
+            }
+        }
+        delete data[id];
+        dirty[id] = true;
+    }
+    
+    this.get_dirty = function() {
+        var result = [];
+        for(key in dirty) {
+            result.push(key);
+        }
+        return result;
+    }
+}

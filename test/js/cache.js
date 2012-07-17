@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-module("Maths");
+module("Get/Set");
 
 test("not found", function() {
   var dependencies = {};
@@ -17,6 +17,8 @@ test("found", function() {
   equal(cache.get("b"), 20);
 });
 
+module("Mark dirty");
+
 test("mark dirty, single", function() {
   var dependencies = {};
   var cache = new Jzzf_Cache(dependencies);
@@ -25,6 +27,8 @@ test("mark dirty, single", function() {
   cache.mark_dirty("a");
   strictEqual(cache.get("a"), undefined);
   strictEqual(cache.get("b"), 20);
+  equal(cache.get_dirty().length, 1);
+  ok(cache.get_dirty().indexOf("a") >= 0);
 });
 
 test("mark dirty, recursive dependency", function() {
@@ -41,6 +45,11 @@ test("mark dirty, recursive dependency", function() {
   strictEqual(cache.get("c"), undefined);
   strictEqual(cache.get("d"), undefined);
   strictEqual(cache.get("e"), 50);
+  equal(cache.get_dirty().length, 4);
+  ok(cache.get_dirty().indexOf("a") >= 0);
+  ok(cache.get_dirty().indexOf("b") >= 0);
+  ok(cache.get_dirty().indexOf("c") >= 0);
+  ok(cache.get_dirty().indexOf("d") >= 0);
 });
 
 });
