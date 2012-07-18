@@ -223,7 +223,7 @@ function jazzy_forms($, form_id, graph) {
     
     function evaluate_formatted_variable(formula) {
         var id = formula[0][1];
-        return sanitize_result(this.evaluate(id), id);
+        return sanitize_result(self.evaluate(id), id);
     }
     
     function evaluation_worker(id) {
