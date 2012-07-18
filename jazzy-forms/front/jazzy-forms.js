@@ -298,44 +298,9 @@ function jazzy_forms($, form_id, graph) {
                     stack.push(types.reference(f[i][1]));
                     break;
                 case 'o':
-                    var right = to_float_for_calculation(stack.pop().number());
-                    var left = to_float_for_calculation(stack.pop().number());
-                    var result;
-                    switch(f[i][1]) {
-                        case '+':
-                            result = left + right;
-                            break;
-                        case '-':
-                            result = left - right;
-                            break;
-                        case '*':
-                            result = left * right;
-                            break;
-                        case '/':
-                            result = left / right;
-                            break;
-                        case '^':
-                            result = Math.pow(left, right);
-                            break;
-                        case '<':
-                            result = prcsn(left) < prcsn(right);
-                            break;
-                        case '>':
-                            result = prcsn(left) > prcsn(right);
-                            break;
-                        case '<>':
-                            result = prcsn(left) != prcsn(right);
-                            break;
-                        case '<=':
-                            result = prcsn(left) <= prcsn(right);
-                            break;
-                        case '>=':
-                            result = prcsn(left) >= prcsn(right);
-                            break;
-                        case '=':
-                            result = prcsn(left) == prcsn(right);
-                            break;
-                    }
+                    var right = stack.pop();
+                    var left = stack.pop();
+                    var result = library.operation(f[i][1], left, right);
                     stack.push(types.value(result));
                     break;
                 case 'f':
