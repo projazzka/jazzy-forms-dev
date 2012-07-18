@@ -152,7 +152,7 @@ function jazzy_forms($, form_id, graph) {
         if(id in just_updated) {
             return;
         }
-        var value = evaluate(id);
+        var value = self.evaluate(id);
         switch(graph.types[id]) {
             case 'f':
                 element(id).val(sanitize_result(value, id));
@@ -181,7 +181,7 @@ function jazzy_forms($, form_id, graph) {
         }
     }
     
-    function evaluate(id) {
+    this.evaluate = function(id) {
         var result;
         if(!(id in cache) || !(id in just_updated)) {
             result = evaluation_worker(id);
@@ -223,7 +223,7 @@ function jazzy_forms($, form_id, graph) {
     
     function evaluate_formatted_variable(formula) {
         var id = formula[0][1];
-        return sanitize_result(evaluate(id), id);
+        return sanitize_result(this.evaluate(id), id);
     }
     
     function evaluation_worker(id) {
@@ -292,14 +292,14 @@ function jazzy_forms($, form_id, graph) {
             switch(f[i][0]) {
                 case 'n':
                 case 's':
-                    stack.push(f[i][1]);
+                    stack.push(types.value(f[i][1]));
                     break;
                 case 'v':
-                    stack.push(evaluate(f[i][1]));
+                    stack.push(types.reference(f[i][1]));
                     break;
                 case 'o':
-                    var right = to_float_for_calculation(stack.pop());
-                    var left = to_float_for_calculation(stack.pop());
+                    var right = to_float_for_calculation(stack.pop().number());
+                    var left = to_float_for_calculation(stack.pop().number());
                     var result;
                     switch(f[i][1]) {
                         case '+':
@@ -336,18 +336,18 @@ function jazzy_forms($, form_id, graph) {
                             result = prcsn(left) == prcsn(right);
                             break;
                     }
-                    stack.push(result);
+                    stack.push(types.value(result));
                     break;
                 case 'f':
                     var args=[];
                     for(var j=0; j<f[i][2]; j++) {
                         args.unshift(stack.pop());
                     }
-                    stack.push(jzzf_functions(f[i][1], args));
+                    stack.push(types.value(library.execute(f[i][1], args)));
                     break;
             }
         }
-        return stack.pop();
+        return stack.pop().number();
     }
     
 }
