@@ -9,6 +9,11 @@ function jazzy_forms($, form_id, graph) {
     var all_ids = [];
     var cache = {};
     
+    var types = new Jzzf_Types(this);
+    var library = new Jzzf_Library(types);
+    
+    var self = this;
+    
     jzzf_precision = Math.pow(10,9);
     function prcsn(x) {
         return Math.round(x*jzzf_precision)/jzzf_precision;

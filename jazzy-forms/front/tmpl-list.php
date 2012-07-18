@@ -44,7 +44,7 @@ class Jzzf_List_Template {
             "email": <?php echo json_encode($graph->email) ?>
         };
         var jzzf_ajax_url = "<?php esc_attr_e(admin_url('admin-ajax.php'))  ?>";
-        jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);
+        var jzzf = new jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);
     </script>
 <?php
     }
