@@ -668,16 +668,30 @@ function Jzzf_Types(engine) {
 }
 
 function Jzzf_Cache(dependencies) {
-    var data = {}
-    var dirty = {}
+    var data = {};
+    var dirty = {};
+    var errors = {};
     
     this.get = function(id) {
-        return data[id];
+        var result = data[id];
+        if(result === null) {
+            var error = errors[id];
+            if(error) {
+                throw error;
+            }
+        }
+        return result;
     }
     
     this.set = function(id, value) {
         data[id] = value;
         delete dirty[id];
+        delete errors[id];
+    }
+    
+    this.set_error = function(id, err) {
+        data[id] = null;
+        errors[id] = err;
     }
     
     this.mark_dirty = function(id) {

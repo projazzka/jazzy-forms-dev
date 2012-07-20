@@ -54,5 +54,17 @@ test("mark dirty, dependencies", function() {
   ok(cache.get_dirty().indexOf("d") >= 0);
 });
 
+module("Errors");
+
+test("error", function() {
+  var dependencies = {};
+  var cache = new Jzzf_Cache(dependencies);
+  cache.set_error("a", new Jzzf_Error("#SOMEERROR!"));
+  cache.set("b", 10);
+  equal(cache.get("b"), 10);
+  raises(function() { cache.get("a") }, Jzzf_Error, "#SOMEERROR!");
+});
+
+
 });
 
