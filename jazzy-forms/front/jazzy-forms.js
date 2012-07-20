@@ -683,12 +683,14 @@ function Jzzf_Cache(dependencies) {
     this.mark_dirty = function(id) {
         var dependent = dependencies[id];
         if(dependent) {
-            for(var idx=0; idx<dependent.length; idx++) {
-                this.mark_dirty(dependent[idx]); // TODO: prevent infinite loop
-            }
+            dependent.push(id);
+        } else {
+            dependent = [id];
         }
-        delete data[id];
-        dirty[id] = true;
+        for(var idx=0; idx<dependent.length; idx++) {
+            delete data[dependent[idx]];
+            dirty[dependent[idx]] = true;
+        }
     }
     
     this.get_dirty = function() {

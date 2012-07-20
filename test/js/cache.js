@@ -31,8 +31,10 @@ test("mark dirty, single", function() {
   ok(cache.get_dirty().indexOf("a") >= 0);
 });
 
-test("mark dirty, recursive dependency", function() {
-  var dependencies = {"a": ["b", "c"], "c": ["d"]};
+module("Mark dirty");
+
+test("mark dirty, dependencies", function() {
+  var dependencies = {"a": ["b", "c", "d"]};
   var cache = new Jzzf_Cache(dependencies);
   cache.set("a", 10);
   cache.set("b", 20);
