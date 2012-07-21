@@ -699,4 +699,9 @@ function Jzzf_Cache(dependencies) {
         }
     }
     
+    this.reset = function() {
+        data = {};
+        errors = {};
+    }
+    
 }

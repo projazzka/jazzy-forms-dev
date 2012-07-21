@@ -15,6 +15,20 @@ test("found", function() {
   equal(cache.get("b"), 20);
 });
 
+test("reset empty", function() {
+  var cache = new Jzzf_Cache();
+  cache.reset();
+});
+
+test("reset", function() {
+  var cache = new Jzzf_Cache();
+  cache.set("a", 10);
+  cache.set("b", 20);
+  cache.reset();
+  strictEqual(cache.get("a"), undefined);
+  strictEqual(cache.get("b"), undefined);
+});
+
 module("Mark dirty");
 
 test("mark dirty, single", function() {
@@ -41,6 +55,11 @@ test("mark dirty, dependencies", function() {
   strictEqual(cache.get("c"), undefined);
   strictEqual(cache.get("d"), undefined);
   strictEqual(cache.get("e"), 50);
+});
+
+test("mark dirty unknown", function() {
+  var cache = new Jzzf_Cache();
+  cache.mark_dirty(["igor"]);
 });
 
 module("Errors");
