@@ -669,7 +669,6 @@ function Jzzf_Types(engine) {
 
 function Jzzf_Cache(dependencies) {
     var data = {};
-    var dirty = {};
     var errors = {};
     
     this.get = function(id) {
@@ -685,7 +684,6 @@ function Jzzf_Cache(dependencies) {
     
     this.set = function(id, value) {
         data[id] = value;
-        delete dirty[id];
         delete errors[id];
     }
     
@@ -694,24 +692,11 @@ function Jzzf_Cache(dependencies) {
         errors[id] = err;
     }
     
-    this.mark_dirty = function(id) {
-        var dependent = dependencies[id];
-        if(dependent) {
-            dependent.push(id);
-        } else {
-            dependent = [id];
-        }
-        for(var idx=0; idx<dependent.length; idx++) {
-            delete data[dependent[idx]];
-            dirty[dependent[idx]] = true;
+    this.mark_dirty = function(ids) {
+        for(var idx=0; idx<ids.length; idx++) {
+            delete data[ids[idx]];
+            delete errors[ids[idx]];
         }
     }
     
-    this.get_dirty = function() {
-        var result = [];
-        for(key in dirty) {
-            result.push(key);
-        }
-        return result;
-    }
 }
