@@ -11,6 +11,7 @@ function jazzy_forms($, form_id, graph) {
     
     var types = new Jzzf_Types(this);
     var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator(this);
     
     var self = this;
     
@@ -102,7 +103,7 @@ function jazzy_forms($, form_id, graph) {
         set_message(button, graph.form.email.sending);
         var values = {};
         for(var key in graph.email) {
-            var value = evaluate_formula(graph.email[key]);
+            var value = calculator.formula(graph.email[key]);
             if(graph.email[key].length == 1 && graph.types[key] == 'f') {
                 values[key] = sanitize_result(value, key);
             } else {
@@ -182,51 +183,29 @@ function jazzy_forms($, form_id, graph) {
     }
     
     this.evaluate = function(id) {
-        var result;
-        if(!(id in cache) || !(id in just_updated)) {
-            result = evaluation_worker(id);
-            cache[id] = result;
-        } else {
-            result = cache[id];
+        var result = cache.get(id);
+        if(result !== undefined) {
+            return result;
+        }
+        try {
+            result = this.evaluation_worker(id);
+            cache.set(result);
+        } catch(err) {
+            if(err instanceof Jzzf_Error) {
+                cache.set_error(err);
+                result = err;
+            }
+            throw err;
         }
         return result;
     }
-    
-    function template(id) {
-        var result = '';
-        var chunks = graph.templates[id];
-        if(chunks) {
-            for(var i=0; i<chunks.length; i++) {
-                var chunk = chunks[i];
-                if(typeof chunk == 'object') {
-                    if(is_formatted_variable(chunk)) {
-                        result += evaluate_formatted_variable(chunk);
-                    } else {
-                        result += evaluate_formula(chunk);
-                    }
-                } else {
-                    result += chunk;
-                }
-            }
-            return result;
-        }
-        return false;
-    }
-    
-    function is_formatted_variable(formula) {
-        if(formula && formula.length == 1 && formula[0][0] == 'v') {
-            return graph.types[formula[0][1]] == 'f';
-        } else {
-            return false;
-        }
-    }
-    
+            
     function evaluate_formatted_variable(formula) {
         var id = formula[0][1];
         return sanitize_result(self.evaluate(id), id);
     }
     
-    function evaluation_worker(id) {
+    this.evaluation_worker = function(id) {
         switch(graph.types[id]) {
             case 'n':
                 var input = element(id).val();
@@ -261,58 +240,17 @@ function jazzy_forms($, form_id, graph) {
             case 'm':
             case 't':
             case 'h':
-                return template(id);
+                return calculator.template(id);
         }
         return 0;
     }
     
-    function to_float_for_calculation(val) {
-        return Number(val);
-    }
-
     function to_float_for_factor(val) {
         if(typeof val == 'string' && val.match(/^\s*$/)) {
             return 1;
         } else {
             return Number(val);
         }
-    }
-    
-    function formula(id) {
-        var f = graph.formulas[id];
-        if(!f) {
-            return undefined;
-        }
-        return evaluate_formula(f);
-    }
-    
-    function evaluate_formula(f) {
-        var stack = [];
-        for(var i=0; i<f.length; i++) {
-            switch(f[i][0]) {
-                case 'n':
-                case 's':
-                    stack.push(types.value(f[i][1]));
-                    break;
-                case 'v':
-                    stack.push(types.reference(f[i][1]));
-                    break;
-                case 'o':
-                    var right = stack.pop();
-                    var left = stack.pop();
-                    var result = library.operation(f[i][1], left, right);
-                    stack.push(types.value(result));
-                    break;
-                case 'f':
-                    var args=[];
-                    for(var j=0; j<f[i][2]; j++) {
-                        args.unshift(stack.pop());
-                    }
-                    stack.push(types.value(library.execute(f[i][1], args)));
-                    break;
-            }
-        }
-        return stack.pop().number();
     }
     
 }
@@ -704,4 +642,75 @@ function Jzzf_Cache(dependencies) {
         errors = {};
     }
     
+}
+
+function Jzzf_Calculator(engine, types, library) {
+    this.formula = function(f) {
+        var stack = [];
+        for(var i=0; i<f.length; i++) {
+            switch(f[i][0]) {
+                case 'n':
+                case 's':
+                    stack.push(types.value(f[i][1]));
+                    break;
+                case 'v':
+                    stack.push(types.reference(f[i][1]));
+                    break;
+                case 'o':
+                    var right = stack.pop();
+                    var left = stack.pop();
+                    if(left === undefined || right === undefined) {
+                        types.raise_name();
+                    }
+                    var result = library.operation(f[i][1], left, right);
+                    stack.push(types.value(result));
+                    break;
+                case 'f':
+                    var args=[];
+                    for(var j=0; j<f[i][2]; j++) {
+                        args.unshift(stack.pop());
+                    }
+                    stack.push(types.value(library.execute(f[i][1], args)));
+                    break;
+            }
+        }
+        return stack.pop();
+    }
+    
+    this.template = function(chunks) {
+        for(var i=0; i<chunks.length; i++) {
+            var chunk = chunks[i];
+            if(typeof chunk == 'object') {
+                this.placeholder(chunk);
+            } else {
+                result += chunk;
+            }
+        }
+    }
+    
+    this.placeholder = function(formula) {
+        try {
+            if(is_reference_placeholder(formula)) {
+                result += engine.evaluate_and_present(formula[0][1]);
+            } else {
+                result += this.formula(formula).text();
+            }
+            return result;
+        } catch(err) {
+            if(err instanceof Jzzf_Error) {
+                return err.toString();
+            } else {
+                throw(err);
+            }
+        }
+    }
+    
+    this.is_reference_placeholder = function(formula) {
+        if(formula && formula.length == 1 && formula[0][0] == 'v') {
+            return engine.is_output(formula[0][1]);
+        } else {
+            return false;
+        }
+    }
+        
 }
