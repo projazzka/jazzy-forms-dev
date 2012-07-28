@@ -1,5 +1,28 @@
 $(document).ready(function(){
 
+module("Formatter class");
+
+test("formatting output element", function() {
+  var types = { "igor": "o", "resig": "n" };
+  var funny_format = {
+    "prefix": "%(",
+    "postfix": ")",
+    "fixed": false,
+    "decimals": 9,
+    "zeros": 0,
+    "thousands": ".",
+    "point": ","
+  };
+  var params = {
+    "igor": funny_format,
+    "resig": funny_format
+  };
+  var formatter = new Jzzf_Formatter(types, params);
+  equal(formatter.format("igor", 123.4), "%(123,4)");
+  equal(formatter.format("resig", 123.4), "123.4");
+  equal(formatter.format("stranger", 123.4), "123.4");
+});
+
 module("Format");
 
 test("normal", function() {

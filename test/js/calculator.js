@@ -3,12 +3,13 @@ $(document).ready(function(){
 module("Formula");
 
 function mock_engine1(map) {
+    var types = new Jzzf_Types();
     this.evaluate = function(id) {
         var result = map[id];
         if(result === undefined) {
             throw new Jzzf_Error("#REF!");
         }
-        return result;
+        return types.value(result);
     }
 }
     
@@ -149,8 +150,6 @@ test("Single reference, propagated exception", function() {
 });
 
 test("Single reference", function() {
-    var used_formatter = false;
-    var used_engine = false;
     var engine = new function() {
         this.evaluate = function(id) {
             equal(id, "igor");
@@ -160,20 +159,10 @@ test("Single reference", function() {
     }
     var types = new Jzzf_Types(engine);
     var library = new Jzzf_Library(types);
-    var formatter = new function() {
-        this.format = function(id, value) {
-            equal(id, 'igor');
-            equal(value.text(), "123");
-            used_formatter = true;
-            return "123.00";
-        }
-    }
-    var calculator = new Jzzf_Calculator(engine, types, library, formatter);
+    var calculator = new Jzzf_Calculator(engine, types, library);
     var f = [['v', 'igor']];
     var result = calculator.placeholder(f);
-    equals(result, "123.00");
-    ok(used_formatter);
-    ok(used_engine, "used engine");
+    equals(result, "123");
 });
 
 });

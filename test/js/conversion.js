@@ -1,5 +1,16 @@
 $(document).ready(function(){
 
+function mock_engine1(map) {
+    var types = new Jzzf_Types();
+    this.evaluate = function(id) {
+        var result = map[id];
+        if(result === undefined) {
+            throw new Jzzf_Error("#REF!");
+        }
+        return types.value(result);
+    }
+}
+
 module("Error");
 
 test("err div/0", function() {
@@ -237,8 +248,10 @@ test('unknown', function() {
 
 test('success', function() {
   function Engine() {
+    var types = new Jzzf_Types();
     this.evaluate = function(id) {
-        return 0.123;
+        ok(id, "igor");
+        return types.value(0.123);
     }
   }
   var types = new Jzzf_Types(new Engine());
@@ -284,28 +297,28 @@ test('raw bool', function() {
 });
 
 test('raw ref text', function() {
-  var engine = new function() { this.evaluate = function() { return "text"; }};
+  var engine = new mock_engine1({"id": "text"});
   var types = new Jzzf_Types(engine);
   var ref = types.reference("id", engine);
   strictEqual(ref.raw(), "text");
 });
 
 test('raw ref number', function() {
-  var engine = new function() { this.evaluate = function() { return 123; }};
+  var engine = new mock_engine1({"id": 123});
   var types = new Jzzf_Types(engine);
   var ref = types.reference("id", engine);
   strictEqual(ref.raw(), 123);
 });
 
 test('raw ref zero', function() {
-  var engine = new function() { this.evaluate = function() { return 0; }};
+  var engine = new mock_engine1({"id": 0});
   var types = new Jzzf_Types(engine);
   var ref = types.reference("id", engine);
   strictEqual(ref.raw(), 0);
 });
 
 test('raw ref bool', function() {
-  var engine = new function() { this.evaluate = function() { return false; }};
+  var engine = new mock_engine1({"id": false});
   var types = new Jzzf_Types(engine);
   var ref = types.reference("id", engine);
   strictEqual(ref.raw(), false);

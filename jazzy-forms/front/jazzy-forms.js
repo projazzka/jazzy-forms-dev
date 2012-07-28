@@ -209,40 +209,46 @@ function jazzy_forms($, form_id, graph) {
         switch(graph.types[id]) {
             case 'n':
                 var input = element(id).val();
+                var result;
                 if(id in graph.data) {
                     var factor = to_float_for_factor(graph.data[id]);
                     if(!isNaN(factor)) {
-                        return input*factor;
+                        result = input*factor;
                     } else {
-                        return input;
+                        result = input;
                     }
                 } else {
-                    return input;
+                    result = input;
                 }
+                return types.value(result);
             case 'r':
                 var idx = element(id).find('input:checked').parent().index();
+                var result;
                 if(idx>=0) {
-                    return graph.data[id][idx];
+                    result = graph.data[id][idx];
                 } else {
-                    return 0;
+                    result = 0;
                 }
+                return types.value(result);
             case "c":
-                return element(id).is(':checked') ? graph.data[id][1] : graph.data[id][0];
+                return types.value(element(id).is(':checked') ? graph.data[id][1] : graph.data[id][0]);
             case 'd':
                 var idx = element(id).find('option:selected').index();
+                var result;
                 if(idx>=0) {
-                    return graph.data[id][idx];
+                    result = graph.data[id][idx];
                 } else {
-                    return 0;
+                    result = 0;
                 }
+                return types.value(result);
             case 'f':
                 return formula(id);
             case 'm':
             case 't':
             case 'h':
-                return calculator.template(id);
+                return types.value(calculator.template(id));
         }
-        return 0;
+        return types.value("");
     }
     
     function to_float_for_factor(val) {
@@ -588,14 +594,14 @@ function Jzzf_Types(engine) {
     function Reference(id) {
         this.ref_id = id;
     }
-    Reference.prototype.raw = function() {
+    Reference.prototype.value = function() {
         var val = engine.evaluate(this.ref_id);
         if(val === undefined) {
             types.raise_ref();
         }
         return val;
     }
-    Reference.prototype.value = function() { return types.value(this.raw()); }
+    Reference.prototype.raw = function() { return this.value().raw(); }
     Reference.prototype.text = function() { return this.value().text(); }
     Reference.prototype.number = function() { return this.value().number(); }
     Reference.prototype.precise_number = function() { return this.value().precise_number(); }
@@ -645,16 +651,16 @@ function Jzzf_Cache(dependencies) {
     
 }
 
-function Jzzf_Formatter(element_types, params) {
+function Jzzf_Formatter(types, element_types, params) {
     this.format = function(id, value) {
         if(element_types[id] != 'o') {
-            return values;
+            return types.value(value).text();
         }
         return jzzf_format(value, params[id]);
     }
 }
 
-function Jzzf_Calculator(engine, types, library, formatter) {
+function Jzzf_Calculator(engine, types, library) {
     this.formula = function(f) {
         var stack = [];
         for(var i=0; i<f.length; i++) {
@@ -700,12 +706,7 @@ function Jzzf_Calculator(engine, types, library, formatter) {
     
     this.placeholder = function(formula) {
         try {
-            var result = this.formula(formula).raw();
-            if(this.is_reference_placeholder(formula)) {
-                return formatter.format(formula[0][1], result);
-            } else {
-                return types.value(result).text();
-            }
+            return this.formula(formula).text();
         } catch(err) {
             if(err instanceof Jzzf_Error) {
                 return err.toString();
@@ -713,10 +714,5 @@ function Jzzf_Calculator(engine, types, library, formatter) {
                 throw(err);
             }
         }
-    }
-       
-    this.is_reference_placeholder = function(formula) {
-        return (formula && formula.length == 1 && formula[0][0] == 'v');
-    }
-    
+    }    
 }
