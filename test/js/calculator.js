@@ -165,4 +165,42 @@ test("Single reference", function() {
     equals(result, "123");
 });
 
+module("Templates");
+
+test("Empty", function() {
+    var calculator = new Jzzf_Calculator();
+    var result = calculator.template([]);
+    strictEqual(result, "");
+});
+
+test("String only", function() {
+    var calculator = new Jzzf_Calculator();
+    var result = calculator.template(["text"]);
+    strictEqual(result, "text");
+});
+
+test("Formula only", function() {
+    var types = new Jzzf_Types({});
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var result = calculator.template([[["n", 10], ["n", 20], ["o", "+"]]]);
+    strictEqual(result, "30");
+});
+
+test("String, formula", function() {
+    var types = new Jzzf_Types({});
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var result = calculator.template(["10 + 20 = ", [["n", 10], ["n", 20], ["o", "+"]]]);
+    strictEqual(result, "10 + 20 = 30");
+});
+
+test("Formula, string", function() {
+    var types = new Jzzf_Types({});
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var result = calculator.template([[["s", "formula "]], "string"]);
+    strictEqual(result, "formula string");
+});
+
 });

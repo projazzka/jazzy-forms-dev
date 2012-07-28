@@ -694,6 +694,7 @@ function Jzzf_Calculator(engine, types, library) {
     }
     
     this.template = function(chunks) {
+        var result = "";
         for(var i=0; i<chunks.length; i++) {
             var chunk = chunks[i];
             if(typeof chunk == 'object') {
@@ -702,6 +703,7 @@ function Jzzf_Calculator(engine, types, library) {
                 result += chunk;
             }
         }
+        return result;
     }
     
     this.placeholder = function(formula) {
