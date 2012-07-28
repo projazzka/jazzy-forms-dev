@@ -11,8 +11,8 @@ function jazzy_forms($, form_id, graph) {
     
     var types = new Jzzf_Types(this);
     var library = new Jzzf_Library(types);
-    var calculator = new Jzzf_Calculator(this);
-    
+    var formatter = new Jzzf_Formatter(graph.types, graph.params);
+    var calculator = new Jzzf_Calculator(this, types, library, formatter);
     var self = this;
     
     jzzf_precision = Math.pow(10,9);
@@ -583,6 +583,7 @@ function Jzzf_Types(engine) {
     }
     Value.prototype.id = function() { types.raise_value(); }
     Value.prototype.raw = function() { return this.data; }
+    Value.prototype.value = function() { return this; }
 
     function Reference(id) {
         this.ref_id = id;
@@ -644,7 +645,16 @@ function Jzzf_Cache(dependencies) {
     
 }
 
-function Jzzf_Calculator(engine, types, library) {
+function Jzzf_Formatter(element_types, params) {
+    this.format = function(id, value) {
+        if(element_types[id] != 'o') {
+            return values;
+        }
+        return jzzf_format(value, params[id]);
+    }
+}
+
+function Jzzf_Calculator(engine, types, library, formatter) {
     this.formula = function(f) {
         var stack = [];
         for(var i=0; i<f.length; i++) {
@@ -681,7 +691,7 @@ function Jzzf_Calculator(engine, types, library) {
         for(var i=0; i<chunks.length; i++) {
             var chunk = chunks[i];
             if(typeof chunk == 'object') {
-                this.placeholder(chunk);
+                result += this.placeholder(chunk);
             } else {
                 result += chunk;
             }
@@ -690,12 +700,12 @@ function Jzzf_Calculator(engine, types, library) {
     
     this.placeholder = function(formula) {
         try {
-            if(is_reference_placeholder(formula)) {
-                result += engine.evaluate_and_present(formula[0][1]);
+            var result = this.formula(formula).raw();
+            if(this.is_reference_placeholder(formula)) {
+                return formatter.format(formula[0][1], result);
             } else {
-                result += this.formula(formula).text();
+                return types.value(result).text();
             }
-            return result;
         } catch(err) {
             if(err instanceof Jzzf_Error) {
                 return err.toString();
@@ -704,13 +714,9 @@ function Jzzf_Calculator(engine, types, library) {
             }
         }
     }
-    
+       
     this.is_reference_placeholder = function(formula) {
-        if(formula && formula.length == 1 && formula[0][0] == 'v') {
-            return engine.is_output(formula[0][1]);
-        } else {
-            return false;
-        }
+        return (formula && formula.length == 1 && formula[0][0] == 'v');
     }
-        
+    
 }
