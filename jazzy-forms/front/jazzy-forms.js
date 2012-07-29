@@ -421,22 +421,22 @@ function Jzzf_Library(types) {
             return Math.pow(left.number(), right.number());
         },
         "<": function(left, right) {
-            return prcsn(left.number()) < prcsn(right.number());
+            return left.number() < right.number();
         },
         ">": function(left, right) {
-            return prcsn(left.number()) > prcsn(right.number());
+            return left.number() > right.number();
         },
         "<>": function(left, right) {
-            return prcsn(left.number()) != prcsn(right.number());
+            return left.number() != right.number();
         },
         "<=": function(left, right) {
-            return prcsn(left.number()) <= prcsn(right.number());
+            return left.number() <= right.number();
         },
         ">=": function(left, right) {
-            return prcsn(left.number()) >= prcsn(right.number());
+            return left.number() >= right.number();
         },
         "=": function(left, right) {
-            return prcsn(left.number()) == prcsn(right.number());
+            return left.number() == right.number();
         }
     }
 
@@ -656,6 +656,9 @@ function Jzzf_Formatter(types, element_types, params) {
 
 function Jzzf_Calculator(engine, types, library) {
     this.formula = function(f) {
+        if(f === null) {
+            types.raise_name();
+        }
         var stack = [];
         for(var i=0; i<f.length; i++) {
             switch(f[i][0]) {
