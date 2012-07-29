@@ -70,7 +70,7 @@ function jazzy_forms($, form_id, graph) {
         switch(graph.types[id]) {
         case 'r':
             element(id).find('input:radio').bind('change', function() {
-                change([element_id($(this).parents('.jzzf_radio'))]);
+                change(element_id($(this).parents('.jzzf_radio')));
             });
             break;
         case 'n':
@@ -78,7 +78,7 @@ function jazzy_forms($, form_id, graph) {
         case 'r':
         case 'c':
             element(id).bind('change', function() {
-                change([element_id($(this))]);
+                change(element_id($(this)));
             });
         }
     }
