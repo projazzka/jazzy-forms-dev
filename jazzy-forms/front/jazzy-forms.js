@@ -125,11 +125,11 @@ function jazzy_forms($, form_id, graph) {
                 update_output(id);
                 break;
             case 'm':
-                update_html(id);
+                update_template(id, true);
                 break;
             case 't':
             case 'h':
-                update_text(id);
+                update_template(id, false);
                 break;
         }
     }
@@ -149,14 +149,19 @@ function jazzy_forms($, form_id, graph) {
         element(id).val(result);
     }
 
-    function update_html(id) {
-        var value = self.evaluate(id).text();
-        element(id).html(value);
+    function update_template(id, html) {
+        if(graph.templates[id]) {
+            var value = self.evaluate(id).text();
+            if(html) {
+                element(id).html(value);
+            } else {
+                element(id).text(value);
+            }
+        }
     }
 
     function update_text(id) {
         var value = self.evaluate(id).text();
-        element(id).text(value);
     }
     
     function change(id) {
