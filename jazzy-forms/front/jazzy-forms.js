@@ -7,11 +7,11 @@
 function jazzy_forms($, form_id, graph) {
     
     var all_ids = [];
-    var cache = {};
     
+    var cache = new Jzzf_Cache();
     var types = new Jzzf_Types(this);
     var library = new Jzzf_Library(types);
-    var formatter = new Jzzf_Formatter(graph.types, graph.params);
+    var formatter = new Jzzf_Formatter(types, graph.types, graph.params);
     var calculator = new Jzzf_Calculator(this, types, library, formatter);
     var self = this;
     
@@ -28,7 +28,7 @@ function jazzy_forms($, form_id, graph) {
     
     $(function(args) {
         retrieve_all_ids();
-        update(all_ids);
+        update_all();
         bind();
     });
     
@@ -50,7 +50,7 @@ function jazzy_forms($, form_id, graph) {
             switch(graph.types[id]) {
                 case 'u':
                     element(id).click(function() {
-                        update(all_ids);
+                        update_all();
                     });
                     break;
                 case 'e':
@@ -69,28 +69,20 @@ function jazzy_forms($, form_id, graph) {
     function bind_realtime_update(id) {
         switch(graph.types[id]) {
         case 'r':
-            element(id).find('input:radio').bind('change ready', function() {
-                update([element_id($(this).parents('.jzzf_radio'))]);
+            element(id).find('input:radio').bind('change', function() {
+                change([element_id($(this).parents('.jzzf_radio'))]);
             });
             break;
-        default:
-            element(id).bind('change ready', function() {
-                update([element_id($(this))]);
+        case 'n':
+        case 'd':
+        case 'r':
+        case 'c':
+            element(id).bind('change', function() {
+                change([element_id($(this))]);
             });
         }
     }
-    
-    var just_updated;
-    
-    function update(ids) {
-        just_updated = [];
-        for(var i=0; i<ids.length; i++) {
-            var id = ids[i];
-            delete cache[id]
-            updating_worker(id);
-        }
-    }
-    
+            
     function set_message(node, msg) {
         $(node).parentsUntil('.jzzf_row').siblings('.jzzf_message').text(msg);    
     }
@@ -127,58 +119,60 @@ function jazzy_forms($, form_id, graph) {
         });
     }
     
-    function sanitize_result(val, id) {
-        var f = parseFloat(val);
-        if(!isNaN(f)) {
-            val = f;
-        }
-        switch(typeof val) {
-            case 'undefined':
-                val = 'Invalid formula';
-                break;
-            case 'number':
-                if(!isNaN(val)) {
-                    val = jzzf_format(val, graph.params[id]);
-                }
-                break;
-            case 'boolean':
-                val = val ? 1 : 0;
-                break;
-        }
-        return val;
-    }
-    
-    function updating_worker(id) {
-        update_dependent(id);
-        if(id in just_updated) {
-            return;
-        }
-        var value = self.evaluate(id);
+    function update(id) {
         switch(graph.types[id]) {
             case 'f':
-                element(id).val(sanitize_result(value, id));
+                update_output(id);
                 break;
             case 'm':
-                if(value!==false) {
-                    element(id).html(value);
-                }
+                update_html(id);
                 break;
             case 't':
             case 'h':
-                if(value!==false) {
-                    element(id).text(value);
-                }
+                update_text(id);
                 break;
         }
-        just_updated.push(id);        
     }
 
-    function update_dependent(id) {
-        if(id in graph.dependencies) {
-            var deps = graph.dependencies[id];
-            for(var i=0; i<deps.length; i++) {
-                updating_worker(deps[i]);
+    function update_output(id) {
+        var result;
+        try {
+            var value = self.evaluate(id).value();
+            result = formatter.format(id, value);
+        } catch(err) {
+            if(err instanceof Jzzf_Error) {
+                result = err.toString();
+            } else {
+                throw(err);
             }
+        }
+        element(id).val(result);
+    }
+
+    function update_html(id) {
+        var value = self.evaluate(id).text();
+        element(id).html(value);
+    }
+
+    function update_text(id) {
+        var value = self.evaluate(id).text();
+        element(id).text(value);
+    }
+    
+    function change(id) {
+        var dependencies = graph.dependencies[id];
+        if(dependencies) {
+            cache.mark_dirty(dependencies);
+            for(var idx=0; idx<dependencies.length; idx++) {
+                update(dependencies[idx]);
+            }
+        }
+    }
+    
+    function update_all() {
+        cache.reset();
+        for(var idx=0; idx<all_ids.length; idx++) {
+            update(all_ids[idx]);
         }
     }
     
@@ -242,7 +236,7 @@ function jazzy_forms($, form_id, graph) {
                 }
                 return types.value(result);
             case 'f':
-                return formula(id);
+                return calculator.formula(graph.formulas[id]);
             case 'm':
             case 't':
             case 'h':
@@ -612,7 +606,7 @@ function Jzzf_Types(engine) {
     this.reference = function(id) { return new Reference(id); }
 }
 
-function Jzzf_Cache(dependencies) {
+function Jzzf_Cache() {
     var data = {};
     var errors = {};
     
@@ -653,10 +647,10 @@ function Jzzf_Cache(dependencies) {
 
 function Jzzf_Formatter(types, element_types, params) {
     this.format = function(id, value) {
-        if(element_types[id] != 'o') {
-            return types.value(value).text();
+        if(element_types[id] != 'f') {
+            return value.text();
         }
-        return jzzf_format(value, params[id]);
+        return jzzf_format(value.number(), params[id]);
     }
 }
 
