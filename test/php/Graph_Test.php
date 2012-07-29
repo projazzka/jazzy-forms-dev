@@ -47,7 +47,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array('num'=>array('result')), $graph->dependencies);
 		$this->assertEquals(array('result'=>array(array('v', 'num'), array('n', '2'), array('o', '*'))), $graph->formulas);
 	}
-
+	
 	function test_repeated_dependency() {
 		$elements = array(
 			(object) array('name'=> 'num', 'type'=> 'n', 'value' => 10),
@@ -78,10 +78,45 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		);
 		$graph = $this->get_graph_from_elements($elements);
 		$this->assertEquals(array('num'=>'n', 'subtotal'=>'f', 'total'=>'f'), $graph->types);
-		$this->assertEquals(array('num'=>array('subtotal'), 'subtotal'=>array('total')), $graph->dependencies);
+		$this->assertEquals(array('num'=>array('subtotal', 'total')), $graph->dependencies);
 		$this->assertEquals(
 			array(
 				'subtotal' => array(array('v', 'num'), array('n', '2'), array('o', '*')),
+				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
+			$graph->formulas
+		);
+	}
+
+	function test_dependency_no_input() {
+		$elements = array(
+			(object) array('name'=> 'num', 'type'=> 'f', 'formula' => "10"),
+			(object) array('name'=> 'subtotal', 'type'=> 'f', 'formula' => 'num*2'),
+			(object) array('name'=> 'total', 'type'=> 'f', 'formula' => 'subtotal+1')
+		);
+		$graph = $this->get_graph_from_elements($elements);
+		$this->assertEquals(array('num'=>'f', 'subtotal'=>'f', 'total'=>'f'), $graph->types);
+		$this->assertEquals(array(), $graph->dependencies);
+		$this->assertEquals(
+			array(
+				'num' => array(array('n', 10)),
+				'subtotal' => array(array('v', 'num'), array('n', '2'), array('o', '*')),
+				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
+			$graph->formulas
+		);
+	}
+
+	function test_dependency_circular_dependency() {
+		$elements = array(
+			(object) array('name'=> 'num', 'type'=> 'n', 'value' => 10),
+			(object) array('name'=> 'subtotal', 'type'=> 'f', 'formula' => 'num+total'),
+			(object) array('name'=> 'total', 'type'=> 'f', 'formula' => 'subtotal+1')
+		);
+		$graph = $this->get_graph_from_elements($elements);
+		$this->assertEquals(array('num'=>'n', 'subtotal'=>'f', 'total'=>'f'), $graph->types);
+		$this->assertEquals(array('num'=>array('subtotal', 'total')), $graph->dependencies);
+		$this->assertEquals(
+			array(
+				'subtotal' => array(array('v', 'num'), array('v', 'total'), array('o', '+')),
 				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
 			$graph->formulas
 		);
@@ -186,6 +221,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 
 	function test_template_variable_only() {
 		$elements = array(
+			(object) array('name'=> 'a', 'type'=> 'n', 'title'=>'A', 'value'=>''),
 			(object) array('name'=> 'out', 'type'=> 't', 'title'=>'{{a}}')
 		);
 		$graph = $this->get_graph_from_elements($elements);
@@ -198,6 +234,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 
 	function test_template_mixed() {
 		$elements = array(
+			(object) array('name'=> 'a', 'type'=> 'n', 'title'=>'A', 'value'=>''),
 			(object) array('name'=> 'out', 'type'=> 't', 'title'=>'The result is {{a}}')
 		);
 		$graph = $this->get_graph_from_elements($elements);

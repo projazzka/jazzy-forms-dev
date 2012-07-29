@@ -39,6 +39,7 @@ class Jzzf_Graph {
 class Jzzf_Graph_Generator {
     private $form;
     private $graph;
+    private $direct_dependencies = array();
 
     public function __construct() {
         $this->graph = new Jzzf_Graph();
@@ -47,11 +48,54 @@ class Jzzf_Graph_Generator {
     public function generate($form) {
         $this->form = $form;
 
-        foreach($form->elements as $elem) {
-            $this->process_element($elem);
-        }
+        $this->elements();
+        $this->dependencies();
         $this->graph->email = $this->get_email_formulas();
         return $this->graph;
+    }
+    
+    function elements() {
+        foreach($this->form->elements as $elem) {
+            $this->process_element($elem);
+        }        
+    }
+    
+    function dependencies() {
+        foreach($this->direct_dependencies as $id => $directs) {
+            $this->get_recursive_dependencies($id);
+        }
+        $this->clean_dependencies();
+    }
+
+    // remove empty dependencies and dependencies for output fields
+    function clean_dependencies() {
+        foreach($this->graph->dependencies as $id => $dependent) {
+            if(!array_key_exists($id, $this->graph->types) || $this->is_output($this->graph->types[$id]) || !$dependent) {
+                unset($this->graph->dependencies[$id]);
+            }
+        }        
+    }
+    
+    function get_recursive_dependencies($id) {
+        if(array_key_exists($id, $this->graph->dependencies)) {
+            return $this->graph->dependencies[$id];
+        }
+        $this->graph->dependencies[$id] = array(); // this avoids endless recursion
+        $dependencies = array();
+        if(array_key_exists($id, $this->direct_dependencies)) {
+            $directs = $this->direct_dependencies[$id];
+            foreach($directs as $direct) {
+                $recursive = $this->get_recursive_dependencies($direct);
+                $dependencies[] = $direct;
+                foreach($recursive as $r) {
+                    if(!in_array($r, $dependencies)) {
+                        $dependencies[] = $r;
+                    }
+                }
+            }
+        }
+        $this->graph->dependencies[$id] = $dependencies;
+        return $dependencies;
     }
     
     function process_element($elem) {
@@ -93,6 +137,10 @@ class Jzzf_Graph_Generator {
     
     function is_template($type) {
         return in_array($type, array('m', 't', 'h'));
+    }
+    
+    function is_output($type) {
+        return in_array($type, array('f', 'm', 't', 'h'));
     }
     
     function get_email_formulas() {
@@ -141,7 +189,7 @@ class Jzzf_Graph_Generator {
     
     function add_dependencies($dependencies, $id) {
         foreach($dependencies as $dep) {
-            $this->graph->dependencies[$dep][] = $id;
+            $this->direct_dependencies[$dep][] = $id;
         }
     }
     
