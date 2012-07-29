@@ -240,7 +240,12 @@ function jazzy_forms($, form_id, graph) {
             case 'm':
             case 't':
             case 'h':
-                return types.value(calculator.template(id));
+                var chunks = graph.templates[id];
+                if(chunks) {
+                    return types.value(calculator.template(chunks));
+                } else {
+                    return types.value("");
+                }
         }
         return types.value("");
     }
