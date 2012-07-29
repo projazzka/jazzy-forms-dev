@@ -437,6 +437,9 @@ function Jzzf_Library(types) {
         },
         "=": function(left, right) {
             return left.number() == right.number();
+        },
+        "&": function(left, right) {
+            return left.text() + right.text();
         }
     }
 

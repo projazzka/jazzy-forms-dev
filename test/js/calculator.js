@@ -100,6 +100,34 @@ test("Function call, 1 argument", function() {
     equals(result.number(), 2);
 });
 
+test("Concatenation. number & text.", function() {
+    var types = new Jzzf_Types();
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var f = [['n', 100], ['s', '2'], ['o', '&']];
+    var result = calculator.formula(f);
+    equals(result.number(), 1002);
+    equals(result.text(), "1002");
+});
+
+test("Concatenation. text & number.", function() {
+    var types = new Jzzf_Types();
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var f = [['s', 'txt'], ['n', 100], ['o', '&']];
+    var result = calculator.formula(f);
+    equals(result.text(), "txt100");
+});
+
+test("Concatenation. number & number.", function() {
+    var types = new Jzzf_Types();
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var f = [['n', 123], ['n', 100], ['o', '&']];
+    var result = calculator.formula(f);
+    equals(result.text(), "123100");
+});
+
 module("Placeholder");
 
 test("Formula placeholder, single number", function() {
@@ -202,5 +230,6 @@ test("Formula, string", function() {
     var result = calculator.template([[["s", "formula "]], "string"]);
     strictEqual(result, "formula string");
 });
+
 
 });
