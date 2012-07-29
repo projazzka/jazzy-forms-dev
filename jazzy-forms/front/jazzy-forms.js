@@ -587,6 +587,10 @@ function Jzzf_Types(engine) {
     Value.prototype.id = function() { types.raise_value(); }
     Value.prototype.raw = function() { return this.data; }
     Value.prototype.value = function() { return this; }
+    Value.prototype.is_numeric = function() {
+        var x = Number(this.data);
+        return !isNaN(x);
+    }
 
     function Reference(id) {
         this.ref_id = id;
@@ -604,6 +608,7 @@ function Jzzf_Types(engine) {
     Reference.prototype.precise_number = function() { return this.value().precise_number(); }
     Reference.prototype.bool = function() { return this.value().bool(); }
     Reference.prototype.id = function() { return this.ref_id; }
+    Reference.prototype.is_numeric = function() { return this.value().is_numeric(); }
     
     this.value = function(val) { return new Value(val); }
     this.reference = function(id) { return new Reference(id); }
@@ -653,7 +658,11 @@ function Jzzf_Formatter(types, element_types, params) {
         if(element_types[id] != 'f') {
             return value.text();
         }
-        return jzzf_format(value.number(), params[id]);
+        if(value.is_numeric()) {
+            return jzzf_format(value.number(), params[id]);
+        } else {
+            return value.text();
+        }
     }
 }
 
