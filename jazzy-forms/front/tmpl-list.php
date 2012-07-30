@@ -75,8 +75,8 @@ class Jzzf_List_Template {
     }
     
     function number($element) { ?>
-    <label class="jzzf_number_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
-    <input type="text" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->default) ?>">
+    <label class="jzzf_number_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+    ?><input type="text" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->default) ?>">
 <?php
     }
     
@@ -85,8 +85,8 @@ class Jzzf_List_Template {
     <ul id="<?php $this->id($element) ?>" class="jzzf_radio">
     <?php $idx = 0; foreach($element->options as $option) { $idx++; ?>
     <li>
-        <input type="radio" name="<?php $this->id($element) ?>" id="<?php echo $this->id($element) . '-' . $idx ?>"<?php if($option->default): ?> checked="checked"<?php endif ?>>
-        <label class="jzzf_radio_option_label" for="<?php echo $this->id($element) . '-' . $idx ?>"><?php esc_html_e($option->title) ?></label>
+        <input type="radio" name="<?php $this->id($element) ?>" id="<?php echo $this->id($element) . '-' . $idx ?>"<?php if($option->default): ?> checked="checked"<?php endif ?>><?php // avoid line-feed
+        ?><label class="jzzf_radio_option_label" for="<?php echo $this->id($element) . '-' . $idx ?>"><?php esc_html_e($option->title) ?></label>
     </li>
 <?php
         } ?>
@@ -94,8 +94,8 @@ class Jzzf_List_Template {
     }
     
     function dropdown($element) { ?>
-    <label class="jzzf_element_label jzzf_dropdown_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
-    <select id="<?php $this->id($element) ?>">
+    <label class="jzzf_element_label jzzf_dropdown_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+    ?><select id="<?php $this->id($element) ?>">
     <?php foreach($element->options as $option) : ?>
     <option<?php if($option->default): ?> selected="selected"<?php endif ?>><?php esc_html_e($option->title) ?></option>
     <?php endforeach ?>
@@ -104,8 +104,8 @@ class Jzzf_List_Template {
     }
 
     function checkbox($element) { ?>
-    <input type="checkbox" id="<?php $this->id($element) ?>"<?php if($element->default): ?> checked="checked"<?php endif ?>>
-    <label class="jzzf_checkbox_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
+    <input type="checkbox" id="<?php $this->id($element) ?>"<?php if($element->default): ?> checked="checked"<?php endif ?>><?php // avoid line-feed
+    ?><label class="jzzf_checkbox_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
 <?php
     }
     
@@ -115,8 +115,8 @@ class Jzzf_List_Template {
     }
     
     function output($element) { ?>
-        <label class="jzzf_element_label jzzf_output_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label>
-        <input type="text" readonly="readonly" id="<?php $this->id($element) ?>"<?php if($element->invalid) : ?> value="Invalid formula"<?php endif ?>>
+        <label class="jzzf_element_label jzzf_output_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+        ?><input type="text" readonly="readonly" id="<?php $this->id($element) ?>"<?php if($element->invalid) : ?> value="Invalid formula"<?php endif ?>>
 <?php
     }
 
