@@ -48,7 +48,7 @@ class Templates(unittest.TestCase):
         self.assertEqual("1.1*2=2.2", driver.find_element_by_id("jzzf_18_element_1").text)
         self.assertEqual("More info about 2.2", driver.find_element_by_id("jzzf_18_element_2").text)
         self.assertEqual("about 2.2", driver.find_element_by_link_text("about 2.2").text)
-        self.assertEqual("Leading Zeros Propagated: 0001.1", driver.find_element_by_id("jzzf_18_propagated").text)
+        self.assertEqual("Leading Zeros Propagated: 1.1", driver.find_element_by_id("jzzf_18_propagated").text)
 
     def test_bug82(self):
         driver = self.driver
