@@ -563,6 +563,23 @@ function Jzzf_Types(engine) {
         return Math.round(x*precision)/precision;
     }
 
+    var breadcrumbs = {};
+    
+    function place_breadcrumb(id) {
+        if(id in breadcrumbs) {
+            types.raise_ref();
+        }
+        breadcrumbs[id] = true;
+    }
+    
+    function withdraw_breadcrumb(id) {
+        delete breadcrumbs[id];
+    }
+    
+    function wipe_away_breadcrumbs() {
+        breadcrumbs = {};
+    }
+
     function Value(data) { this.data = data; }
     Value.prototype.text = function() {
         if(typeof this.data == 'boolean') {
@@ -601,15 +618,20 @@ function Jzzf_Types(engine) {
         var x = Number(this.data);
         return !isNaN(x);
     }
+    Value.prototype.is_reference = function() { return false; }
 
     function Reference(id) {
         this.ref_id = id;
     }
     Reference.prototype.value = function() {
+        place_breadcrumb(this.ref_id);
         var val = engine.evaluate(this.ref_id);
         if(val === undefined) {
+            wipe_away_breadcrumbs();
             types.raise_ref();
         }
+        val = val.value();
+        withdraw_breadcrumb(this.ref_id);
         return val;
     }
     Reference.prototype.raw = function() { return this.value().raw(); }
@@ -619,6 +641,7 @@ function Jzzf_Types(engine) {
     Reference.prototype.bool = function() { return this.value().bool(); }
     Reference.prototype.id = function() { return this.ref_id; }
     Reference.prototype.is_numeric = function() { return this.value().is_numeric(); }
+    Reference.prototype.is_reference = function() { return true; }
     
     this.value = function(val) { return new Value(val); }
     this.reference = function(id) { return new Reference(id); }
@@ -680,6 +703,9 @@ function Jzzf_Calculator(engine, types, library) {
     this.formula = function(f) {
         if(f === null) {
             types.raise_name();
+        }
+        if(f.length == 0) {
+            return types.value("");
         }
         var stack = [];
         for(var i=0; i<f.length; i++) {
