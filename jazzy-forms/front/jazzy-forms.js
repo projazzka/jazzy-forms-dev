@@ -95,12 +95,7 @@ function jazzy_forms($, form_id, graph) {
         set_message(button, graph.form.email.sending);
         var values = {};
         for(var key in graph.email) {
-            var value = calculator.formula(graph.email[key]);
-            if(graph.email[key].length == 1 && graph.types[key] == 'f') {
-                values[key] = sanitize_result(value, key);
-            } else {
-                values[key] = value;
-            }
+            values[key] = calculator.placeholder(graph.email[key]);
         }
         $.ajax(jzzf_ajax_url, {
             "data": {
