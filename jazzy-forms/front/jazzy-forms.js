@@ -193,12 +193,7 @@ function jazzy_forms($, form_id, graph) {
         }
         return result;
     }
-            
-    function evaluate_formatted_variable(formula) {
-        var id = formula[0][1];
-        return sanitize_result(self.evaluate(id), id);
-    }
-    
+                
     this.evaluation_worker = function(id) {
         switch(graph.types[id]) {
             case 'n':
