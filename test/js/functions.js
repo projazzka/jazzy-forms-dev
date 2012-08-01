@@ -310,6 +310,44 @@ test("mround(-7, 5)", function() {
   equal(lib.execute('mround', [v(-8.5), v(5)]), -10);
 });
 
+module("referencing");
+
+test("formatted(number)", function() {
+  var engine = new function() {
+    this.formatted = function(id) {
+      ok(id, "igor");
+      return "$123.40";
+    }
+  }
+  var lib = new Jzzf_Library(types, engine);
+  equal(lib.execute('formatted', [types.reference("igor")]), "$123.40");
+});
+
+test("formatted(unknown)", function() {
+  var engine = new function() {
+    this.formatted = function(id) {
+      ok(id, "unknown");
+      types.raise_ref();
+    }
+  }
+  var lib = new Jzzf_Library(types, engine);
+  
+  raises(function() {
+    lib.execute('formatted', [types.reference("igor")]);
+  }, Jzzf_Error);
+});
+
+test("label()", function() {
+  var engine = new function() {
+    this.label = function(id) {
+      ok(id, "igor");
+      return "apples";
+    }
+  }
+  var lib = new Jzzf_Library(types, engine);
+  equal(lib.execute('label', [types.reference("igor")]), "apples");
+});
+
 });
 
 function prcsn(x) {

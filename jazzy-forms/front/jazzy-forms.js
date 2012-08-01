@@ -10,7 +10,7 @@ function jazzy_forms($, form_id, graph) {
     
     var cache = new Jzzf_Cache();
     var types = new Jzzf_Types(this);
-    var library = new Jzzf_Library(types);
+    var library = new Jzzf_Library(types, this);
     var formatter = new Jzzf_Formatter(types, graph.types, graph.params);
     var calculator = new Jzzf_Calculator(this, types, library, formatter);
     var self = this;
@@ -132,8 +132,7 @@ function jazzy_forms($, form_id, graph) {
     function update_output(id) {
         var result;
         try {
-            var value = self.evaluate(id).value();
-            result = formatter.format(id, value);
+            result = self.formatted(id);
         } catch(err) {
             if(err instanceof Jzzf_Error) {
                 result = err.toString();
@@ -253,9 +252,26 @@ function jazzy_forms($, form_id, graph) {
         }
     }
     
+    this.formatted = function(id) {
+        var value = self.evaluate(id).value();
+        return formatter.format(id, value);
+    }
+
+    this.label = function(id) {
+        var type = graph.types[id];
+        switch(type) {
+            case "d":
+                return element(id).find('option:selected').text();
+            case "r":
+                return element(id).find('input:checked').siblings("label").text();
+            default:
+                types.raise_ref();
+        }
+    }
+    
 }
 
-function Jzzf_Library(types) {
+function Jzzf_Library(types, engine) {
     
     function _default(def) {
         if(def === undefined) {
@@ -283,6 +299,13 @@ function Jzzf_Library(types) {
             return _default(def);
         }
         return args.shift().raw(args);
+    }
+
+    function _id(args, def) {
+        if(!args.length) {
+            return _default(def);
+        }
+        return args.shift().id();
     }
     
     var functions = {
@@ -396,6 +419,14 @@ function Jzzf_Library(types) {
         },
         'false': function(args) {
             return false;
+        },
+        'formatted': function(args) {
+            var id = _id(args);
+            return engine.formatted(id);
+        },
+        'label': function(args) {
+            var id = _id(args);
+            return engine.label(id);
         }
         
     };
