@@ -240,6 +240,9 @@ function jazzy_forms($, form_id, graph) {
                 } else {
                     return types.value("");
                 }
+            default:
+                types.raise_ref();
+                break;
         }
         return types.value("");
     }
