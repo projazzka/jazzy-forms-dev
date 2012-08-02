@@ -89,6 +89,21 @@
         </fieldset>
 {{>foot}}
 </script>
+<script id="jzzf_tmpl_a" type="text/html">
+{{>common}}
+        <fieldset class="jzzf_div_collapsable">
+            <h3 class="jzzf_toggler"><div></div>Value</h3>
+            <div class="jzzf_collapsable_body">
+                <ul>
+                    <li>
+                        <label for="jzzf_element_{{id}}_default">Default text</label>
+                        <input type="text" id="jzzf_element_{{id}}_default" class="jzzf_element_default" value="{{default}}">
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
+{{>foot}}
+</script>
 <script id="jzzf_tmpl_d" type="text/html">
 {{>common}}
 {{>options}}
@@ -317,6 +332,7 @@
             <div class="jzzf_column_heading" id="jzzf_elements_toolbox_description">Available form elements</div>
                 <ul id="jzzf_toolbox_input" class="jzzf_elements_toolbox_items">
                     <li jzzf_type="n"><div class="jzzf_type jzzf_type_n"></div>Input</li>
+                    <li jzzf_type="a"><div class="jzzf_type jzzf_type_a"></div>Text Area</li>
                     <li jzzf_type="d"><div class="jzzf_type jzzf_type_d"></div>Drop-down Menu</li>
                     <li jzzf_type="r"><div class="jzzf_type jzzf_type_r"></div>Radio Buttons</li>
                     <li jzzf_type="c"><div class="jzzf_type jzzf_type_c"></div>Checkbox</li>
