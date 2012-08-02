@@ -74,6 +74,7 @@ function jazzy_forms($, form_id, graph) {
             });
             break;
         case 'n':
+        case 'a':
         case 'd':
         case 'r':
         case 'c':
@@ -209,6 +210,9 @@ function jazzy_forms($, form_id, graph) {
                     result = input;
                 }
                 return types.value(result);
+            case 'a':
+                var input = element(id).val();
+                return types.value(input);
             case 'r':
                 var idx = element(id).find('input:checked').parent().index();
                 var result;
