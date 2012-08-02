@@ -79,6 +79,12 @@ class Jzzf_List_Template {
     ?><input type="text" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->default) ?>">
 <?php
     }
+
+    function textarea($element) { ?>
+    <label class="jzzf_textarea_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+    ?><textarea id="<?php $this->id($element) ?>"><?php esc_html_e($element->default) ?></textarea>
+<?php
+    }
     
     function radio($element) { ?>
     <label class="jzzf_radio_label jzzf_element_label"><?php esc_html_e($element->title) ?></label>
