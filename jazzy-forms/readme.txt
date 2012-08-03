@@ -118,6 +118,18 @@ I would love to gain insight about the way you are using this software and the t
 
 == Changelog ==
 
+= 0.10 =
+* performance improvements
+* label(id) function to access the label of currently selected dropdown option/radio button
+* formatted(id) function to get the textual representation of a field's formatted content
+* text concatenation operator (&) and support for formulas with text output
+* mitigate the risk of extra linebreaks being introduced by external text filters
+* new textarea element
+* fix number formatting for very large and small numbers
+* detect circular dependencies
+* spreadsheet-like error codes
+* fixed 3w validation
+
 = 0.9.10 =
 * Take into account text elements without placeholders (urgent fix)
 
