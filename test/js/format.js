@@ -22,6 +22,7 @@ test("formatting output element", function() {
   equal(formatter.format("igor", types.value(123.4)), "%(123,4)");
   equal(formatter.format("resig", types.value(123.4)), "123.4");
   equal(formatter.format("stranger", types.value(123.4)), "123.4");
+  equal(formatter.format("igor", types.value("")), ""); // no conversion "" => 0!
 });
 
 test("format non-numeric", function() {

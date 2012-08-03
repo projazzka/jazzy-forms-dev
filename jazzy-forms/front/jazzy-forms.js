@@ -661,6 +661,9 @@ function Jzzf_Types(engine) {
     Value.prototype.raw = function() { return this.data; }
     Value.prototype.value = function() { return this; }
     Value.prototype.is_numeric = function() {
+        if(this.data === "") {
+            return false;
+        }
         var x = Number(this.data);
         return !isNaN(x);
     }

@@ -30,9 +30,9 @@ class Referencing(unittest.TestCase):
         input = driver.find_element_by_id("jzzf_24_a")
         input.clear()
         
-        self.assertEqual("0", driver.find_element_by_id("jzzf_24_b").get_attribute("value"))
-        self.assertEqual("0.00", driver.find_element_by_id("jzzf_24_c").get_attribute("value"))
-        self.assertEqual("0.00 total", driver.find_element_by_id("jzzf_24_d").get_attribute("value"))
+        self.assertEqual("", driver.find_element_by_id("jzzf_24_b").get_attribute("value"))
+        self.assertEqual("", driver.find_element_by_id("jzzf_24_c").get_attribute("value"))
+        self.assertEqual(" total", driver.find_element_by_id("jzzf_24_d").get_attribute("value"))
         self.assertEqual("#REF!", driver.find_element_by_id("jzzf_24_e").get_attribute("value"))
 
 
