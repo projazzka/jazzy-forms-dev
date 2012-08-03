@@ -459,22 +459,22 @@ function Jzzf_Library(types, engine) {
             return Math.pow(left.number(), right.number());
         },
         "<": function(left, right) {
-            return left.number() < right.number();
+            return left.precise_number() < right.precise_number();
         },
         ">": function(left, right) {
-            return left.number() > right.number();
+            return left.precise_number() > right.precise_number();
         },
         "<>": function(left, right) {
-            return left.number() != right.number();
+            return left.precise_number() != right.precise_number();
         },
         "<=": function(left, right) {
-            return left.number() <= right.number();
+            return left.precise_number() <= right.precise_number();
         },
         ">=": function(left, right) {
-            return left.number() >= right.number();
+            return left.precise_number() >= right.precise_number();
         },
         "=": function(left, right) {
-            return left.number() == right.number();
+            return left.precise_number() == right.precise_number();
         },
         "&": function(left, right) {
             return left.text() + right.text();
