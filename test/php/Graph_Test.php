@@ -45,7 +45,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$graph = $this->get_graph_from_elements($elements);
 		$this->assertEquals(array('num'=>'n', 'result'=>'f'), $graph->types);
 		$this->assertEquals(array('num'=>array('result')), $graph->dependencies);
-		$this->assertEquals(array('result'=>array(array('v', 'num'), array('n', '2'), array('o', '*'))), $graph->formulas);
+		$this->assertEquals(array('result'=>array('o', '*', array('v', 'num'), array('n', '2'))), $graph->formulas);
 	}
 	
 	function test_repeated_dependency() {
@@ -56,7 +56,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$graph = $this->get_graph_from_elements($elements);
 		$this->assertEquals(array('num'=>'n', 'result'=>'f'), $graph->types);
 		$this->assertEquals(array('num'=>array('result')), $graph->dependencies);
-		$this->assertEquals(array('result'=>array(array('v', 'num'), array('v', 'num'), array('v', 'num'), array('o', '*'), array('o', '*'))), $graph->formulas);
+		$this->assertEquals(array('result'=>array('o', '*', array('v', 'num'), array('o', '*', array('v', 'num'), array('v', 'num')))), $graph->formulas);
 	}
 
 	function test_single_dependency_ugly_characters() {
@@ -67,7 +67,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$graph = $this->get_graph_from_elements($elements);
 		$this->assertEquals(array('num1'=>'n', 'out_put'=>'f'), $graph->types);
 		$this->assertEquals(array('num1'=>array('out_put')), $graph->dependencies);
-		$this->assertEquals(array('out_put'=>array(array('v', 'num1'), array('n', '2'), array('o', '*'))), $graph->formulas);
+		$this->assertEquals(array('out_put'=>array('o', '*', array('v', 'num1'), array('n', '2'))), $graph->formulas);
 	}
 	
 	function test_multiple_dependency() {
@@ -81,8 +81,8 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array('num'=>array('subtotal', 'total')), $graph->dependencies);
 		$this->assertEquals(
 			array(
-				'subtotal' => array(array('v', 'num'), array('n', '2'), array('o', '*')),
-				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
+				'subtotal' => array('o', '*', array('v', 'num'), array('n', '2')),
+				'total'=> array('o', '+', array('v', 'subtotal'), array('n', '1'))),
 			$graph->formulas
 		);
 	}
@@ -98,9 +98,9 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array(), $graph->dependencies);
 		$this->assertEquals(
 			array(
-				'num' => array(array('n', 10)),
-				'subtotal' => array(array('v', 'num'), array('n', '2'), array('o', '*')),
-				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
+				'num' => array('n', 10),
+				'subtotal' => array('o', '*', array('v', 'num'), array('n', '2')),
+				'total'=> array('o', '+', array('v', 'subtotal'), array('n', '1'))),
 			$graph->formulas
 		);
 	}
@@ -116,8 +116,8 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array('num'=>array('subtotal', 'total')), $graph->dependencies);
 		$this->assertEquals(
 			array(
-				'subtotal' => array(array('v', 'num'), array('v', 'total'), array('o', '+')),
-				'total'=> array(array('v', 'subtotal'), array('n', '1'), array('o', '+'))),
+				'subtotal' => array('o', '+', array('v', 'num'), array('v', 'total')),
+				'total'=> array('o', '+', array('v', 'subtotal'), array('n', '1'))),
 			$graph->formulas
 		);
 	}
@@ -202,12 +202,12 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$graph = jzzf_get_graph($form);
 		$email = $graph->email;
 		$this->assertEquals(json_decode('{
-			"user": [["v", "user"]],
-			"id": [["v", "id"]],
-			"user2": [["v", "user2"]],
-			"_inline_0_bcc": [["v", "a"], ["v", "b"], ["o", "+"]],
-			"count": [["v", "count"]],
-			"_inline_0_message": [["v", "price1"], ["v", "price2"], ["o", "+"]]
+			"user": ["v", "user"],
+			"id": ["v", "id"],
+			"user2": ["v", "user2"],
+			"_inline_0_bcc": ["o", "+", ["v", "a"], ["v", "b"]],
+			"count": ["v", "count"],
+			"_inline_0_message": ["o", "+", ["v", "price1"], ["v", "price2"]]
 		}', true), $email);
 	}
 
@@ -227,7 +227,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$graph = $this->get_graph_from_elements($elements);
 		$templates = $graph->templates;
 		$this->assertEquals(json_decode('{
-			"out": [[["v", "a"]]]}', true), $graph->templates);
+			"out": [["v", "a"]]}', true), $graph->templates);
 		$this->assertEquals(json_decode('{
 			"a": ["out"]}', true), $graph->dependencies);
 	}
@@ -240,7 +240,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$graph = $this->get_graph_from_elements($elements);
 		$templates = $graph->templates;
 		$this->assertEquals(json_decode('{
-			"out": ["The result is ", [["v", "a"]]]}', true), $graph->templates);
+			"out": ["The result is ", ["v", "a"]]}', true), $graph->templates);
 		$this->assertEquals(json_decode('{
 			"a": ["out"]}', true), $graph->dependencies);
 	}

@@ -40,8 +40,8 @@ function jzzf_chunk_is_formula($chunk) {
 }
 
 function jzzf_chunk_name($chunk, &$counter, $prefix) {
-    if(count($chunk)==1 && $chunk[0][0]=='v') {
-        $name = $chunk[0][1];                
+    if($chunk[0]=='v') {
+        $name = $chunk[1];                
     } else {
         $name = "_inline_${counter}_${prefix}";
         $counter++;

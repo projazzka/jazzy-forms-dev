@@ -159,11 +159,18 @@ class Jzzf_Graph_Generator {
     
     function get_dependencies($formula) {
         $deps = array();
-        if(is_array($formula)) foreach($formula as $token) {
-            if($token[0] == 'v') {
-                $id = $token[1];
-                if(!in_array($id, $deps)) {
-                    $deps[] = $id;
+        $nodes = array($formula);
+        while(count($nodes)) {
+            $node = array_pop($nodes);
+            if(is_array($node)) {
+                if($node[0] == 'v') {
+                    if(!in_array($node[1], $deps)) {
+                        $deps[] = $node[1];
+                    }
+                } elseif($node[0] == 'f' || $node[0] == 'o') {
+                    for($i=2; $i<count($node); $i++) {
+                        $nodes[] = $node[$i];
+                    }
                 }
             }
         }
