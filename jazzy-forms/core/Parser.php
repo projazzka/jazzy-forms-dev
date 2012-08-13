@@ -79,7 +79,7 @@ class Jzzf_Parser {
                 throw new Exception('missing right operand');
                 return array();
             }
-            return array_merge($left,$right,array(array('o', $op[0])));
+            return array('o', $op[0], $left, $right);
         }
         return $left;
     }
@@ -113,9 +113,10 @@ class Jzzf_Parser {
 
     private function arguments() {
         $num = 0;
-        $result = $this->comparison();
-        if($result) {
-            $num++;
+        $result = array();
+        $first = $this->comparison();
+        if($first) {
+            $result[] = $first;
         }
         while(true) {
             if($this->ahead(')')) {
@@ -124,26 +125,26 @@ class Jzzf_Parser {
             if($this->ahead(',')) {
                 $this->consume();
                 $next = $this->comparison();
-                $result = array_merge($result, $next);
+                $result[] = $next;
                 $num++;
             } else {
                 throw new Exception("Closing bracket or comma expected");
             }
         }
         $this->consume(); // closing bracket
-        return array($num, $result);
+        return $result;
     }
 
     private function func() {
         $id = $this->consume();
         $this->consume();
-        list($num, $args) = $this->arguments();
-        return array_merge($args, array(array('f', strtolower($id[1]), $num)));
+        $args = $this->arguments();
+        return array_merge(array('f', strtolower($id[1])), $args);
     }
     
     private function variable() {
         $id = $this->consume();
-        return array(array('v', strtolower($id[1])));
+        return array('v', strtolower($id[1]));
     }
         
     private function association() {
@@ -164,8 +165,7 @@ class Jzzf_Parser {
         if($this->ahead('n')) {
             $num = $this->consume();
             $num[1] *= (-1);
-            return array($num);
-        return $this->sum();
+            return $num;
         }
     }
         
@@ -179,7 +179,7 @@ class Jzzf_Parser {
             }
         }
         else if($this->ahead(array('n', 's'))) { // number or string
-            return array($this->consume());
+            return $this->consume();
         }
         else if($this->ahead('i')) { // identifier
             if($this->ahead('(', 1)) {
