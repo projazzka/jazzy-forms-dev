@@ -17,7 +17,7 @@ test("Arithmetic operation", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 10], ['n', 20], ['o', '+']];
+    var f = ['o', '+', ['n', 10], ['n', 20]];
     var result = calculator.formula(f);
     strictEqual(result.text(), '30');
     strictEqual(result.number(), 30);
@@ -28,7 +28,7 @@ test("Dereferencing", function() {
     var types = new Jzzf_Types(engine);
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator(engine, types, library);
-    var f = [['v', "a"], ['v', "b"], ['o', '+']];
+    var f = ['o', '+', ['v', "a"], ['v', "b"]];
     var result = calculator.formula(f);
     strictEqual(result.text(), '30');
     strictEqual(result.number(), 30);
@@ -39,7 +39,7 @@ test("Dereferencing exception", function() {
     var types = new Jzzf_Types(engine);
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator(engine, types, library);
-    var f = [['v', "a"], ['v', "b"], ['o', '+']];
+    var f = ['o', '+', ['v', "a"], ['v', "b"]];
     try {
         var result = calculator.formula(f);
         ok(false);
@@ -53,7 +53,7 @@ test("Missing operand", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 20], ['o', '+']];
+    var f = ['o', '+', ['n', 20]];
     try {
         var result = calculator.formula(f);
         ok(false);
@@ -67,7 +67,7 @@ test("Division by zero", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 20], ['n', '0'], ['o', '/']];
+    var f = ['o', '/', ['n', 20], ['n', '0']];
     try {
         var result = calculator.formula(f);
         ok(false);
@@ -81,7 +81,7 @@ test("Number conversion exception", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['s', "10k"], ['n', '0'], ['o', '+']];
+    var f = ['o', '+', ['s', "10k"], ['n', '0']];
     try {
         var result = calculator.formula(f);
         ok(false);
@@ -95,7 +95,7 @@ test("Function call, 1 argument", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 100], ['f', 'log', 1]];
+    var f = ['f', 'log', ['n', 100]];
     var result = calculator.formula(f);
     equals(result.number(), 2);
 });
@@ -104,7 +104,7 @@ test("Concatenation. number & text.", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 100], ['s', '2'], ['o', '&']];
+    var f = ['o', '&', ['n', 100], ['s', '2']];
     var result = calculator.formula(f);
     equals(result.number(), 1002);
     equals(result.text(), "1002");
@@ -114,7 +114,7 @@ test("Concatenation. text & number.", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['s', 'txt'], ['n', 100], ['o', '&']];
+    var f = ['o', '&', ['s', 'txt'], ['n', 100]];
     var result = calculator.formula(f);
     equals(result.text(), "txt100");
 });
@@ -123,7 +123,7 @@ test("Concatenation. number & number.", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 123], ['n', 100], ['o', '&']];
+    var f = ['o', '&', ['n', 123], ['n', 100]];
     var result = calculator.formula(f);
     equals(result.text(), "123100");
 });
@@ -137,7 +137,7 @@ test("Formula placeholder, single number", function() {
         this.format = function(id, value) { ok(false); }
     }
     var calculator = new Jzzf_Calculator({}, types, library, formatter);
-    var f = [['n', 100]];
+    var f = ['n', 100];
     var result = calculator.placeholder(f);
     equals(result, "100");
 });
@@ -149,7 +149,7 @@ test("Single string (formula)", function() {
         this.format = function(id, value) { ok(false); }
     }
     var calculator = new Jzzf_Calculator({}, types, library, formatter);
-    var f = [['s', '123']];
+    var f = ['s', '123'];
     var result = calculator.placeholder(f);
     equals(result, "123");
 });
@@ -158,7 +158,7 @@ test("Division by zero", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var f = [['n', 10], ['n', 0], ['o', '/']];
+    var f = ['o', '/', ['n', 10], ['n', 0]];
     var result = calculator.placeholder(f);
     equals(result, "#DIV/0!");
 });
@@ -172,7 +172,7 @@ test("Single reference, propagated exception", function() {
     var types = new Jzzf_Types(engine);
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator(engine, types, library);
-    var f = [['v', 'unknown']];
+    var f = ['v', 'unknown'];
     var result = calculator.placeholder(f);
     equals(result, "#NAME?");
 });
@@ -188,7 +188,7 @@ test("Single reference", function() {
     var types = new Jzzf_Types(engine);
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator(engine, types, library);
-    var f = [['v', 'igor']];
+    var f = ['v', 'igor'];
     var result = calculator.placeholder(f);
     equals(result, "123");
 });
@@ -211,7 +211,7 @@ test("Formula only", function() {
     var types = new Jzzf_Types({});
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var result = calculator.template([[["n", 10], ["n", 20], ["o", "+"]]]);
+    var result = calculator.template([["o", "+", ["n", 10], ["n", 20]]]);
     strictEqual(result, "30");
 });
 
@@ -219,7 +219,7 @@ test("String, formula", function() {
     var types = new Jzzf_Types({});
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var result = calculator.template(["10 + 20 = ", [["n", 10], ["n", 20], ["o", "+"]]]);
+    var result = calculator.template(["10 + 20 = ", ["o", "+", ["n", 10], ["n", 20]]]);
     strictEqual(result, "10 + 20 = 30");
 });
 
@@ -227,7 +227,7 @@ test("Formula, string", function() {
     var types = new Jzzf_Types({});
     var library = new Jzzf_Library(types);
     var calculator = new Jzzf_Calculator({}, types, library);
-    var result = calculator.template([[["s", "formula "]], "string"]);
+    var result = calculator.template([["s", "formula "], "string"]);
     strictEqual(result, "formula string");
 });
 

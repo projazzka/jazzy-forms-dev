@@ -756,35 +756,44 @@ function Jzzf_Calculator(engine, types, library) {
         if(f.length == 0) {
             return types.value("");
         }
-        var stack = [];
-        for(var i=0; i<f.length; i++) {
-            switch(f[i][0]) {
-                case 'n':
-                case 's':
-                    stack.push(types.value(f[i][1]));
-                    break;
-                case 'v':
-                    stack.push(types.reference(f[i][1]));
-                    break;
-                case 'o':
-                    var right = stack.pop();
-                    var left = stack.pop();
-                    if(left === undefined || right === undefined) {
-                        types.raise_name();
+        var node_stack = [f];
+        var arg_idx_stack = [0];
+        var result_stack = [];
+        while(node_stack.length) {
+            var node = node_stack.pop();
+            var arg_idx = arg_idx_stack.pop();
+            var type = node[0];
+            if(type == 'n' || type == 's') {
+                result_stack.push(types.value(node[1]));
+            } else if(type == 'v') {
+                result_stack.push(types.reference(node[1]));
+            } else if(type == 'o' || type == 'f') {
+                if(arg_idx < node.length-2) {
+                    node_stack.push(node);
+                    arg_idx_stack.push(arg_idx+1);
+                    node_stack.push(node[arg_idx+2]);
+                    arg_idx_stack.push(0)
+                } else {
+                    var args = [];
+                    var result;
+                    for(var i=0; i<arg_idx; i++) {
+                        args.unshift(result_stack.pop());
                     }
-                    var result = library.operation(f[i][1], left, right);
-                    stack.push(types.value(result));
-                    break;
-                case 'f':
-                    var args=[];
-                    for(var j=0; j<f[i][2]; j++) {
-                        args.unshift(stack.pop());
+                    if(type == 'o') {
+                        var left = args[0];
+                        var right = args[1];
+                        if(left === undefined || right === undefined) {
+                            types.raise_name();
+                        }
+                        result = library.operation(node[1], left, right);
+                    } else {
+                        result = library.execute(node[1], args);
                     }
-                    stack.push(types.value(library.execute(f[i][1], args)));
-                    break;
+                    result_stack.push(types.value(result));
+                }
             }
         }
-        return stack.pop();
+        return result_stack.pop();
     }
     
     this.template = function(chunks) {
