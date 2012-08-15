@@ -77,6 +77,38 @@ test("Division by zero", function() {
     }
 });
 
+test("Lazy evaluation, if false", function() {
+    var types = new Jzzf_Types();
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var f = ['f', 'if', ['n', 0], ['o', '/', ['n', 10], ['n', '0']], ['n', 123]];
+    var result = calculator.formula(f);
+    equals(result.number(), 123);
+});
+
+test("Lazy evaluation, if true", function() {
+    var types = new Jzzf_Types();
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var f = ['f', 'if', ['n', 1], ['n', 123], ['o', '/', ['n', 10], ['n', '0']]];
+    var result = calculator.formula(f);
+    equals(result.number(), 123);
+});
+
+test("Lazy evaluation, exception expected anyway", function() {
+    var types = new Jzzf_Types();
+    var library = new Jzzf_Library(types);
+    var calculator = new Jzzf_Calculator({}, types, library);
+    var f = ['f', 'if', ['n', 0], ['n', 123], ['o', '/', ['n', 10], ['n', '0']]];
+    try {
+        var result = calculator.formula(f);
+        ok(false);
+    } catch(err) {
+        ok(err instanceof Jzzf_Error);
+        equals(err.toString(), "#DIV/0!");
+    }
+});
+
 test("Number conversion exception", function() {
     var types = new Jzzf_Types();
     var library = new Jzzf_Library(types);

@@ -769,10 +769,27 @@ function Jzzf_Calculator(engine, types, library) {
                 result_stack.push(types.reference(node[1]));
             } else if(type == 'o' || type == 'f') {
                 if(arg_idx < node.length-2) {
-                    node_stack.push(node);
-                    arg_idx_stack.push(arg_idx+1);
-                    node_stack.push(node[arg_idx+2]);
-                    arg_idx_stack.push(0)
+                    if(node[1] == 'if') {
+                        if(arg_idx == 0) {
+                            node_stack.push(node);
+                            arg_idx_stack.push(1);
+                            node_stack.push(node[2]);
+                            arg_idx_stack.push(0);                            
+                        } else {
+                            var condition = result_stack.pop();
+                            if(condition.bool()) {
+                                node_stack.push(node[3]);
+                            } else {
+                                node_stack.push(node[4]);                                
+                            }
+                            arg_idx_stack.push(0);                         
+                        }
+                    } else {
+                        node_stack.push(node);
+                        arg_idx_stack.push(arg_idx+1);
+                        node_stack.push(node[arg_idx+2]);
+                        arg_idx_stack.push(0)
+                    }
                 } else {
                     var args = [];
                     var result;
