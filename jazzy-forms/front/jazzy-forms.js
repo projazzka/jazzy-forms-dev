@@ -61,7 +61,10 @@ function jazzy_forms($, form_id, graph) {
                 case 'x':
                     element(id).click(function() {
                         reset_messages();
-                    })
+                        this.form.reset();
+                        update_all();
+                        return false;
+                    });
             }
         }
     }
