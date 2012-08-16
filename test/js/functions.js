@@ -28,7 +28,11 @@ test("sqrt positive", function() {
 });
 
 test("sqrt negative", function() {
-  same(lib.execute('sqrt', [v(-1)]), NaN);
+  try{
+    var x = lib.execute('sqrt', [v(-1)]);
+  } catch(e) {
+    equal(e.toString(), "#NUM!");
+  }
 });
 
 test("round pos", function() {
@@ -291,23 +295,39 @@ test("mround(0.6, 0.5)", function() {
 });
 
 test("mround(-0.2, 0.5)", function() {
-  equal(lib.execute('mround', [v(-0.2), v(0.5)]), 0);
+  try {
+    var x = lib.execute('mround', [v(-0.2), v(0.5)]);
+  } catch(e) {
+    equal(e.toString(), "#NUM!");
+  }
 });
 
-test("mround(-0.5, 0.5)", function() {
-  equal(lib.execute('mround', [v(-0.4), v(0.5)]), -0.5);
+test("mround(0.2, -0.5)", function() {
+  try {
+    var x = lib.execute('mround', [v(0.2), v(-0.5)]);
+  } catch(e) {
+    equal(e.toString(), "#NUM!");
+  }
 });
 
-test("mround(-0.6, 0.5)", function() {
-  equal(lib.execute('mround', [v(-0.6), v(0.5)]), -0.5);
+test("mround(-0.2, -0.5)", function() {
+    equal(lib.execute('mround', [v(-0.2), v(-0.5)]), 0);
 });
 
-test("mround(-5, 5)", function() {
-  equal(lib.execute('mround', [v(-5), v(5)]), -5);
+test("mround(-0.4, -0.5)", function() {
+  equal(lib.execute('mround', [v(-0.4), v(-0.5)]), -0.5);
 });
 
-test("mround(-7, 5)", function() {
-  equal(lib.execute('mround', [v(-8.5), v(5)]), -10);
+test("mround(-0.6, -0.5)", function() {
+  equal(lib.execute('mround', [v(-0.6), v(-0.5)]), -0.5);
+});
+
+test("mround(-5, -5)", function() {
+  equal(lib.execute('mround', [v(-5), v(-5)]), -5);
+});
+
+test("mround(-7, -5)", function() {
+  equal(lib.execute('mround', [v(-8.5), v(-5)]), -10);
 });
 
 module("referencing");

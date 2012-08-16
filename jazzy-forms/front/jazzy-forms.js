@@ -333,7 +333,9 @@ function Jzzf_Library(types, engine) {
         'mround': function(args) {
             var x = _number(args);
             var multiple = _number(args);
-            
+            if((x>0 && multiple<0) || (x<0 && multiple>0)) {
+                types.raise_num();
+            }
             return Math.round(x/multiple)*multiple;
         },
         'roundup': function(args) {
@@ -353,15 +355,27 @@ function Jzzf_Library(types, engine) {
         'ln': function(args) {
             var x = _number(args);
             
+            if(x<=0) {
+                types.raise_num();
+            }
             return Math.log(x);
         },
         'log': function(args) {
             var x = _number(args);
             var b = _number(args, 10);
+            if(x<=0 || b<=0) {
+                types.raise_num();
+            }
+            if(b==1) {
+                types.raise_div0();
+            }
             return Math.log(x) / Math.log(b);
         },
         'log10': function(args) {
             var x = _number(args);
+            if(x<=0) {
+                types.raise_num();
+            }
             return Math.log(x) / Math.log(10);
         },
         'exp': function(args) {
@@ -375,6 +389,9 @@ function Jzzf_Library(types, engine) {
         },
         'sqrt': function(args) {
             var x = _number(args);
+            if(x<0) {
+                types.raise_num();
+            }
             return Math.sqrt(x);
         },
         'sin': function(args) {
