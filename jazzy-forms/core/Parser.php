@@ -7,11 +7,13 @@ comparison = concatenation, [("<" | ">" | "<=" | "=>" | "<>"), comparison];
 concatenation = sum, [ "&", concatenation ];
 sum = product, [("+" | "-"), sum];
 product = exponentiation, [("*" | "/"), term];
-exponentiation = term, ["^", exponentiation];
-term = number | identifier | function | string;
+exponentiation = negation, ["^", exponentiation];
+negation = ["-"], term
+term = negation | number | string | function | identifier | association;
 
-arguments = comparison, { ",", comparison};
+arguments = comparison, { ",", comparison };
 function = identifier, "(", arguments ")";
+association = "(", comparison, ")"
 
 */
 
@@ -64,7 +66,7 @@ class Jzzf_Parser {
     }
     
     private function exponentiation() {
-        return $this->operation('exponentiation', '^', 'term');
+        return $this->operation('exponentiation', '^', 'negation');
     }
     
     private function operation($name, $operators, $subordinate) {
@@ -160,23 +162,29 @@ class Jzzf_Parser {
         return $content;
     }
 
-    private function negative() {
-        $this->consume();
-        if($this->ahead('n')) {
-            $num = $this->consume();
-            $num[1] *= (-1);
-            return $num;
+    private function negation() {
+        if($this->ahead('-')) {
+            $this->consume();
+            if($this->ahead('n')) {
+                $num = $this->consume();
+                $num[1] *= (-1);
+                return $num;
+            } else {
+                $positive = $this->term();
+                    if(!$positive) {
+                    throw new Exception('missing negation operand');
+                    return array();
+                }
+                return array("o", "-", array("n", 0), $positive);
+            }
+        } else {
+            return $this->term();
         }
     }
         
     private function term() {
         if($this->complete()) {
             return array();
-        }
-        else if($this->ahead('-')) {
-            if($this->ahead('n', 1)) {
-                return $this->negative();
-            }
         }
         else if($this->ahead(array('n', 's'))) { // number or string
             return $this->consume();
