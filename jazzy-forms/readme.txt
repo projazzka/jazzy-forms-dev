@@ -4,7 +4,7 @@ Donate link: http://www.jazzyforms.com/
 Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
 Tested up to: 3.4.1
-Stable tag: 0.9.10
+Stable tag: 0.10.1
 
 Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
 
@@ -16,16 +16,17 @@ Features:
 
 * Form insertion into posts or pages
 * Easy form set-up with drag and drop
+* Email
 * Real-time formula evaluation
+* Comprehensive functions library
 * Hidden elements
 * Rich number formatting
 * Flexible (vertical or side-by-side) layout
 * Formula placeholders in text output elements
-* Email
 
 Form elements:
 
-* Number entry
+* Single/Multi-line input
 * Radio buttons
 * Drop-down menu
 * Check-boxes
@@ -36,6 +37,8 @@ Form elements:
 * Text/Heading/HTML
 
 This is an early release. Features like input validation, anti-spam measures or data collection are still being worked on.
+
+[www.jazzyforms.com](http://www.jazzyforms.com/)
 
 == Installation ==
 
@@ -85,6 +88,10 @@ With this line the Text widget handles shortcodes.
 
 Each element is assigned a so called ID (identifier) that you can choose. These IDs are used to reference the form elements' values in formulas. IDs must start with a letter (a-z) and be all lower-case characters or numbers. Special characters or white space are not permitted.
 
+= Is there any documentation? =
+
+It is in the works. You can take a look at its current state [here](http://www.jazzyforms.com/documentation/)
+
 = What's the format or syntax of a formula ? =
 
 Formulas are thought to have a similar notation to what you are probably used to from popular spreadsheet programs. An example could be:
@@ -92,7 +99,7 @@ Formulas are thought to have a similar notation to what you are probably used to
 `(base_price + price * quantity) * (1 + tax/100)`
 
 where "base_price", "price", "quantity" and "tax" are IDs of other existing form elements.
-While the author is still working on a proper documentation, you can preview a list of available functions at https://gist.github.com/1779127
+You can see a list of available functions at http://www.jazzyforms.com/documentation/functions
 
 = Can I use results in text output fields? =
 
@@ -117,6 +124,12 @@ I would love to gain insight about the way you are using this software and the t
 == Screenshots ==
 
 == Changelog ==
+
+= 0.10.1 =
+* Negation operation to work with non-numbers, e.g. -x
+* Re-calculate formula when reset button is hit
+* Allow the IF function to circumvent errors (lazy evaluation)
+* Logarithm, square root and rounding functions to throw appropriate errors
 
 = 0.10 =
 * performance improvements
