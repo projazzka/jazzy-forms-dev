@@ -452,5 +452,6 @@
         <input type="hidden" id="jzzf_form_data" name="form">
         <input id="jzzf_form_save" name="save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Discard changes</a>
     </form>
+    <div class="jzzf_doculink">For documentation and more click <a href="http://www.jazzyforms.com/?from=adminpanel">here</a></div>
 </div>
 
