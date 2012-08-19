@@ -101,7 +101,9 @@ function jazzy_forms($, form_id, graph) {
         for(var key in graph.email) {
             values[key] = calculator.placeholder(graph.email[key]);
         }
-        $.ajax(jzzf_ajax_url, {
+        var obj = $.ajax({
+            "type": "POST",
+            "url": jzzf_ajax_url,
             "data": {
                 "form": form_id,
                 "values": values,
