@@ -130,6 +130,7 @@ I would love to gain insight about the way you are using this software and the t
 * Re-calculate formula when reset button is hit
 * Allow the IF function to circumvent errors (lazy evaluation)
 * Logarithm, square root and rounding functions to throw appropriate errors
+* Improve email compatibility
 
 = 0.10 =
 * performance improvements
