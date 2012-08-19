@@ -6,7 +6,7 @@ Requires at least: 3.2.1
 Tested up to: 3.4.1
 Stable tag: 0.10.1
 
-Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators.
+Online form generator, ideal for cost-estimates and calculations
 
 == Description ==
 
@@ -17,7 +17,7 @@ Features:
 * Form insertion into posts or pages
 * Easy form set-up with drag and drop
 * Email
-* Real-time formula evaluation
+* Real-time evaluation of spreadsheet-like formulas
 * Comprehensive functions library
 * Hidden elements
 * Rich number formatting
@@ -36,7 +36,7 @@ Form elements:
 * Email button
 * Text/Heading/HTML
 
-This is an early release. Features like input validation, anti-spam measures or data collection are still being worked on.
+Features like input validation, anti-spam measures or data collection are coming soon.
 
 [www.jazzyforms.com](http://www.jazzyforms.com/)
 
