@@ -1,6 +1,6 @@
 === Jazzy Forms ===
 Contributors: jazzigor
-Donate link: http://www.jazzyforms.com/
+Donate link: http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=donate
 Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
 Tested up to: 3.4.1
@@ -38,7 +38,7 @@ Form elements:
 
 Features like input validation, anti-spam measures or data collection are coming soon.
 
-[www.jazzyforms.com](http://www.jazzyforms.com/)
+[Official web site](http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=official)
 
 == Installation ==
 
@@ -90,7 +90,7 @@ Each element is assigned a so called ID (identifier) that you can choose. These 
 
 = Is there any documentation? =
 
-It is in the works. You can take a look at its current state [here](http://www.jazzyforms.com/documentation/)
+It is in the works. You can take a look at its current state [here](http://www.jazzyforms.com/documentation/?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=faq_docu)
 
 = What's the format or syntax of a formula ? =
 
@@ -99,7 +99,7 @@ Formulas are thought to have a similar notation to what you are probably used to
 `(base_price + price * quantity) * (1 + tax/100)`
 
 where "base_price", "price", "quantity" and "tax" are IDs of other existing form elements.
-You can see a list of available functions at http://www.jazzyforms.com/documentation/functions
+You can see a list of available functions [here](http://www.jazzyforms.com/documentation/functions?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=faq_functions)
 
 = Can I use results in text output fields? =
 
