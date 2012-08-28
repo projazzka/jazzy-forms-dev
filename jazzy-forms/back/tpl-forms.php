@@ -7,6 +7,7 @@
         <div class="jzzf_type jzzf_type_{{type}}"></div>
         <span class="jzzf_header_title">{{display_title}}</span>
         <a href="#" class="jzzf_element_delete" title="Delete Element"></a>
+        <a href="#" class="jzzf_element_clone" title="Clone Element"></a>
     </div>
     <div class="jzzf_element_body">
 </script>
@@ -310,7 +311,7 @@
 <?php endforeach; ?>
     </select>
     <input id="jzzf_delete" name="delete" type="hidden" value="0">
-    <a id="jzzf_selector_new" href="">New</a> <a id="jzzf_selector_delete" href="">Delete</a>
+    <a id="jzzf_selector_new" href="">New</a> <a id="jzzf_selector_clone" href="">Clone</a> <a id="jzzf_selector_delete" href="">Delete</a>
     </form>
 </div>
 <div id="jzzf_new_form">

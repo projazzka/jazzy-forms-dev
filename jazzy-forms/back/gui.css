@@ -146,11 +146,18 @@
     background-color: #e8e8e8;
 }
 
-.jzzf_element_header .jzzf_element_delete {
+.jzzf_element_header .jzzf_element_delete, .jzzf_element_header .jzzf_element_clone {
     width: 16px;
     height: 16px;
-    background: url('img/del.png') no-repeat center;
     float: right;
+}
+
+.jzzf_element_header .jzzf_element_delete {
+    background: url('img/del.png') no-repeat center;
+}
+
+.jzzf_element_header .jzzf_element_clone {
+    background: url('img/clone.png') no-repeat center;
 }
 
 .jzzf_element_header .jzzf_element_delete:hover {
