@@ -23,6 +23,7 @@ function jzzf_<?=$method?>($obj) {
     if($obj->id) {
         $query = "UPDATE {$wpdb->prefix}jzzf_<?=$table?> SET <?=$assignments?> WHERE id=%d";
         $sql = $wpdb->prepare($query, <?=$members?>, $obj->id);
+        jzzf_debug("SQL (<?=$method?>): " . $sql);
         $result = $wpdb->query($sql);
         $id = $obj->id;
     } else {
@@ -47,6 +48,7 @@ function jzzf_<?=$method?>($obj) {
             }
             array_unshift($values, $obj->id);
             $sql = $wpdb->prepare($query, $values);
+            jzzf_debug("SQL2 (<?=$method?>): " . $sql);
             $orphans = $wpdb->get_col($sql);
             foreach($orphans as $orphan) {
                 jzzf_delete_<?=$child?>($orphan);

@@ -7,6 +7,7 @@ function jzzf_<?=$method?>($key) {
     global $wpdb;
     $query = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?> WHERE `<?=$column?>`=<?=$placeholder?>";
     $sql = $wpdb->prepare($query, $key);
+    jzzf_debug("SQL (<?=$method?>): " . $sql);
     $obj = $wpdb->get_row($sql);
     if($obj) {
 <?php include('sanitize.php') ?>

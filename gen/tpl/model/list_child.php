@@ -3,6 +3,7 @@ function jzzf_<?=$method?>($parent) {
     global $wpdb;
     $query = "SELECT * FROM {$wpdb->prefix}jzzf_<?=$table?> WHERE <?=$parent?>='%d' ORDER BY `<?=$order?>`";
     $sql = $wpdb->prepare($query, $parent);
+    jzzf_debug("SQL (<?=$method?>): " . $sql);
     $results = $wpdb->get_results($sql);
     if($results) {
         foreach($results as $obj) {
