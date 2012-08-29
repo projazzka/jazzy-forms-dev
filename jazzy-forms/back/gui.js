@@ -275,23 +275,34 @@
     function set_cloned_form() {
         $('#message').hide();
         mark_dirty();
-        var new_form = jQuery.extend(true, {}, form);
-        new_form.title = "Copy of " + new_form.title;
-        new_form.id = 0;
-        for(var i=0; i<new_form.elements.length; i++) {
-            var element = new_form.elements[i];
-            element.id = 0;
-            if(element.options) {
-                for(var j=0; j<element.options.length; j++) {
-                    element.options[j].id = 0;
-                }
+        form = clone_form(form);
+        reset_form_ids(form);
+        set_form(form);
+    }
+
+    function reset_form_ids(form) {
+        form.id = 0;
+        for(var i=0; i<form.elements.length; i++) {
+            reset_element_ids(form.elements[i]);
+        }
+        if(form.email) {
+            form.email.id = 0;
+        }
+    }
+
+    function reset_element_ids(element) {
+        element.id = 0;
+        if(element.options) {
+            for(var j=0; j<element.options.length; j++) {
+                element.options[j].id = 0;
             }
         }
-        if(new_form.email) {
-            new_form.email.id = 0;
-        }
-        form = new_form;
-        set_form(form);            
+    }
+    
+    function clone_form(form) {
+        var new_form = jQuery.extend(true, {}, form);
+        new_form.title = "Copy of " + new_form.title;
+        return new_form;
     }
     
     function adjust_email_tab(elements) {
