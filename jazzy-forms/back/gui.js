@@ -97,6 +97,7 @@
 
         $('#jzzf_selector_new').click(function() { new_form(); return false; });
         $('#jzzf_selector_delete').click(function() { delete_form(); return false; });
+        $('#jzzf_selector_clone').click(function() { set_cloned_form(); return false; });
         $('#jzzf_new_form_add').click(function() { add_form(); return false; });
         $('#jzzf_new_form_cancel').click(function() { cancel_form(); return false; });
                                               
@@ -269,6 +270,28 @@
             form = null;
             set_form(form);            
         }
+    }
+    
+    function set_cloned_form() {
+        $('#message').hide();
+        mark_dirty();
+        var new_form = jQuery.extend(true, {}, form);
+        new_form.title = "Copy of " + new_form.title;
+        new_form.id = 0;
+        for(var i=0; i<new_form.elements.length; i++) {
+            var element = new_form.elements[i];
+            element.id = 0;
+            if(element.options) {
+                for(var j=0; j<element.options.length; j++) {
+                    element.options[j].id = 0;
+                }
+            }
+        }
+        if(new_form.email) {
+            new_form.email.id = 0;
+        }
+        form = new_form;
+        set_form(form);            
     }
     
     function adjust_email_tab(elements) {
