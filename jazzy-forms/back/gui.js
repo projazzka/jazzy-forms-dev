@@ -27,7 +27,7 @@
     function add_element(item, remove) {
         var type = item.attr('jzzf_type');
         var obj = new_element(type);
-        var gui = jzzf_element.create(type, adjust_email_tab);
+        var gui = jzzf_element.create(type, adjust_email_tab, reset_element_ids);
         gui.add(obj, remove ? item : null, false);
         adjust_email_tab();
     }
@@ -280,25 +280,16 @@
         set_form(form);
     }
 
-    function reset_form_ids(form) {
+    function reset_ids(form) {
         form.id = 0;
         for(var i=0; i<form.elements.length; i++) {
-            reset_element_ids(form.elements[i]);
+            jzzf_element.reset_ids(form.elements[i]);
         }
         if(form.email) {
             form.email.id = 0;
         }
     }
 
-    function reset_element_ids(element) {
-        element.id = 0;
-        if(element.options) {
-            for(var j=0; j<element.options.length; j++) {
-                element.options[j].id = 0;
-            }
-        }
-    }
-    
     function clone_form(form) {
         var new_form = jQuery.extend(true, {}, form);
         new_form.title = "Copy of " + new_form.title;

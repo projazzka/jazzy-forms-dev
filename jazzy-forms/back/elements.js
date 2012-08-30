@@ -75,6 +75,7 @@ function jzzf_element($, update_listener) {
     
     this.bind = function(li) {
         var element = li;
+        var self = this;
         element.find('.jzzf_element_header').click(function() {
             $(this).parent().toggleClass('jzzf_collapsed');
         });
@@ -84,7 +85,15 @@ function jzzf_element($, update_listener) {
             }
             update_listener();
         });
-        var self = this;
+        element.find('.jzzf_element_clone').click(function() {
+            var placeholder = $('<div class="jzzf_element"></div>');
+            li.after(placeholder);
+            var data = self.data(li);
+            jzzf_element.reset_ids(data);
+            self.add(data, placeholder, false);
+            update_listener();
+            return false;
+        });
         element.find('.jzzf_option_add').click(function() {
             var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
             $(this).parent().find('.jzzf_option_table tbody').append(self.html_option({}, counter));
@@ -198,3 +207,13 @@ jzzf_element.data_from_li = function(li) {
     }
     return null;
 }
+
+jzzf_element.reset_ids = function(element) {
+    element.id = 0;
+    if(element.options) {
+        for(var j=0; j<element.options.length; j++) {
+            element.options[j].id = 0;
+        }
+    }
+}
+    
