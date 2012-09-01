@@ -240,11 +240,14 @@
             }
         };
         elements = [];
-        $('#jzzf_form').show();
+        add_selector_option(title);
+        set_form(form);
+    }
+
+    function add_selector_option(title) {
         var option = $('<option>');
         option.text(title);
         $('#jzzf_selector').append(option).children('option:last').attr('selected', 'selected');
-        set_form(form);
     }
     
     function reset_current_form() {
@@ -276,7 +279,8 @@
         $('#message').hide();
         mark_dirty();
         form = clone_form(form);
-        reset_form_ids(form);
+        reset_ids(form);
+        add_selector_option(form.title);
         set_form(form);
     }
 
