@@ -58,15 +58,6 @@ class Parser_Test extends Test_Common {
 		$this->assertEquals("antonbertacaesar", $result);
 	}
 	
-	function test_direct_id() {
-		$chunks = json_decode('[[["v", "id"]]]');
-		$formulas = jzzf_formulas_from_chunks($chunks, 'foo');
-		$this->assertEquals(array("id"=>json_decode('[["v", "id"]]')), $formulas);
-
-		$result = jzzf_apply_template($chunks, array("id"=>123), 'foo');
-		$this->assertEquals("123", $result);
-	}
-	
 	function test_inline() {
 		$chunks = json_decode('[[["v", "a"], ["v", "b"], ["o", "+"]]]');
 		$formulas = jzzf_formulas_from_chunks($chunks, 'foo');
