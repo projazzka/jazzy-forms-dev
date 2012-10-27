@@ -247,7 +247,7 @@
     function add_selector_option(title) {
         var option = $('<option>');
         option.text(title);
-        $('#jzzf_selector').append(option).children('option:last').attr('selected', 'selected');
+        $('#jzzf_selector').html(option).children('option:last').attr('selected', 'selected');
     }
     
     function reset_current_form() {
