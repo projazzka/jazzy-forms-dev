@@ -27,7 +27,7 @@
     function add_element(item, remove) {
         var type = item.attr('jzzf_type');
         var obj = new_element(type);
-        var gui = jzzf_element.create(type, adjust_email_tab, reset_element_ids);
+        var gui = jzzf_element.create(type, adjust_email_tab);
         gui.add(obj, remove ? item : null, false);
         adjust_email_tab();
     }
