@@ -1,4 +1,4 @@
-<?php require_once('config.php'); ?>
+<?php $config = parse_ini_file('config.ini', false); ?>
 <html>
 <body>
 <h1>DB reset script</h1>
@@ -13,8 +13,8 @@
 <?php if($_POST) : ?>
 <?php
 
-    $db = new mysqli(DB_HOST, DB_USER, DB_PASSWD, DB_TABLE);
-    $file = DUMP_FILE_DIR . '/dump-' . $_POST['type'] . '.sql';
+    $db = new mysqli($config['DB_HOST'], $config['DB_USER'], $config['DB_PASSWD'], $config['DB_TABLE']);
+    $file = $config['DUMP_FILE_DIR'] . '/dump-' . $_POST['type'] . '.sql';
     echo "Applying file $file\n";
     
     $sql = file_get_contents($file);
