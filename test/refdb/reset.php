@@ -4,10 +4,10 @@
 <h1>DB reset script</h1>
 <form method="post" action="#">
     <ul>
-        <li><input type="radio" name="type" value="blank" checked="checked">Blank WP installation</input></li>
-        <li><input type="radio" name="type" value="installed">WP, Jazzy Forms installed</input></li>
+        <li><input id="blank" type="radio" name="type" value="blank" checked="checked">Blank WP installation</input></li>
+        <li><input id="installed" type="radio" name="type" value="installed">WP, Jazzy Forms installed</input></li>
     </ul>
-    <input type="submit" name="load" value="Reset DB">
+    <input id="submit" type="submit" name="load" value="Reset DB">
 </form>
 <pre>
 <?php if($_POST) : ?>
