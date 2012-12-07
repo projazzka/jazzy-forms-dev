@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.wait import WebDriverWait
 import unittest, time, re
 
 class Backend(unittest.TestCase):
@@ -19,12 +20,15 @@ class Backend(unittest.TestCase):
         self.driver.find_element_by_id('submit').click()
         
     def _login(self):
-        self.driver.get(self.base_url + 'wptest/wp-login.php')
-        self.driver.find_element_by_id("user_login").clear()
-        self.driver.find_element_by_id("user_login").send_keys("admin")
-        self.driver.find_element_by_id("user_pass").clear()
-        self.driver.find_element_by_id("user_pass").send_keys("admin123")
-        self.driver.find_element_by_id("wp-submit").click()
+        driver = self.driver
+        driver.get(self.base_url + 'wptest/wp-login.php')
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(lambda driver: driver.find_element_by_id('user_login'))
+        driver.find_element_by_id("user_login").clear()
+        driver.find_element_by_id("user_login").send_keys("admin")
+        driver.find_element_by_id("user_pass").clear()
+        driver.find_element_by_id("user_pass").send_keys("admin123")
+        driver.find_element_by_id("wp-submit").click()
 
     def test_single_empty_form(self):
         driver = self.driver
