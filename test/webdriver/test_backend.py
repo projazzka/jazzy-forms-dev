@@ -66,6 +66,49 @@ class Backend(unittest.TestCase):
         self.assertEqual('r', elements[3].get_attribute('value'))
         self.assertEqual('c', elements[4].get_attribute('value'))
         self.assertEqual('f', elements[5].get_attribute('value'))
+
+    def test_two_forms(self):
+        driver = self.driver
+        driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
+        
+        # save 1st form
+        driver.find_element_by_id("jzzf_new_form_title").clear()
+        driver.find_element_by_id("jzzf_new_form_title").send_keys("1 form")
+        driver.find_element_by_id("jzzf_new_form_add").click()
+        driver.find_element_by_css_selector('li[jzzf_type="n"]').click()
+        driver.find_element_by_css_selector('li[jzzf_type="a"]').click()
+        driver.find_element_by_id("jzzf_form_save").click()
+        
+        # save 2nd form 
+        driver.find_element_by_id("jzzf_selector_new").click()
+        driver.find_element_by_id("jzzf_new_form_title").clear()
+        driver.find_element_by_id("jzzf_new_form_title").send_keys("2 form")
+        driver.find_element_by_id("jzzf_new_form_add").click()
+        driver.find_element_by_css_selector('li[jzzf_type="d"]').click()
+        driver.find_element_by_css_selector('li[jzzf_type="r"]').click()
+        driver.find_element_by_id("jzzf_form_save").click()
+        
+        # check form selector
+        options = driver.find_elements_by_css_selector("#jzzf_selector option")
+        self.assertEqual(len(options), 2)
+        self.assertEqual('1 form', options[0].text)
+        self.assertEqual('2 form', options[1].text)
+        selected = driver.find_element_by_css_selector('#jzzf_selector option[selected="selected"]')
+        self.assertEqual('2 form', selected.text)
+        
+        # check 2nd form's elements
+        self.assertEqual('2 form', driver.find_element_by_id("jzzf_title").get_attribute('value'))
+        elements = driver.find_elements_by_css_selector('#jzzf_elements_list input.jzzf_element_type')
+        self.assertEqual('d', elements[0].get_attribute('value'))
+        self.assertEqual('r', elements[1].get_attribute('value'))
+        
+        # check 1st form's elements
+        Select(driver.find_element_by_id('jzzf_selector')).select_by_index(0)
+        self.assertEqual('1 form', driver.find_element_by_id("jzzf_title").get_attribute('value'))
+        elements = driver.find_elements_by_css_selector('#jzzf_elements_list input.jzzf_element_type')
+        self.assertEqual('n', elements[0].get_attribute('value'))
+        self.assertEqual('a', elements[1].get_attribute('value'))
+        
     
     def tearDown(self):
         self.driver.quit()
