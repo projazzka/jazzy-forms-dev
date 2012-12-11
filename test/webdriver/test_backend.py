@@ -109,6 +109,47 @@ class Backend(unittest.TestCase):
         self.assertEqual('n', elements[0].get_attribute('value'))
         self.assertEqual('a', elements[1].get_attribute('value'))
         
+    def test_clone_form(self):
+        driver = self.driver
+        driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
+        
+        # original form
+        driver.find_element_by_id("jzzf_new_form_title").clear()
+        driver.find_element_by_id("jzzf_new_form_title").send_keys("1st form")
+        driver.find_element_by_id("jzzf_new_form_add").click()
+        driver.find_element_by_css_selector('li[jzzf_type="n"]').click()
+        driver.find_element_by_css_selector('li[jzzf_type="a"]').click()
+        title = driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_title")
+        title.clear()
+        title.send_keys("Titulus")
+        driver.find_element_by_id("jzzf_form_save").click()
+        
+        # clone form
+        driver.find_element_by_id("jzzf_selector_clone").click()
+        driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_header").click()
+        title = driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_title")
+        title.clear()
+        title.send_keys("Titulus Tituli")
+        driver.find_element_by_id("jzzf_form_save").click()
+
+        # check cloned form's elements
+        self.assertEqual('Copy of 1st form', driver.find_element_by_id("jzzf_title").get_attribute('value'))
+        elements = driver.find_elements_by_css_selector('#jzzf_elements_list input.jzzf_element_type')
+        self.assertEqual('n', elements[0].get_attribute('value'))
+        self.assertEqual('a', elements[1].get_attribute('value'))
+        driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_header").click()
+        title = driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_title")
+        self.assertEqual('Titulus Tituli', title.get_attribute('value'))
+        
+        # check 1st form's elements
+        Select(driver.find_element_by_id('jzzf_selector')).select_by_index(0)
+        self.assertEqual('1st form', driver.find_element_by_id("jzzf_title").get_attribute('value'))
+        elements = driver.find_elements_by_css_selector('#jzzf_elements_list input.jzzf_element_type')
+        self.assertEqual('n', elements[0].get_attribute('value'))
+        self.assertEqual('a', elements[1].get_attribute('value'))
+        driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_header").click()
+        title = driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_title")
+        self.assertEqual('Titulus', title.get_attribute('value'))
     
     def tearDown(self):
         self.driver.quit()
