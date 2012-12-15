@@ -140,6 +140,29 @@ class Backend(unittest.TestCase):
         self._toggle_element(0)
         self._assert_element_attribute(0, 'title', 'Titulus')
  
+    def test_clone_element(self):
+        self._jazzy()
+        
+        self._add_form("My Form")
+        self._add_element('n')
+        self._edit_element(0, "title", "Number Element")
+        self.driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_clone").click()
+        self._assert_element_attribute(1, 'type', 'n')
+        self._assert_element_attribute(1, 'title', 'Number Element')
+
+        self._save_form()
+        self._assert_element_attribute(0, 'type', 'n')
+        self._assert_element_attribute(0, 'title', 'Number Element')
+        self._assert_element_attribute(1, 'type', 'n')
+        self._assert_element_attribute(1, 'title', 'Number Element')
+        self._toggle_element(1)
+        self._edit_element(1, "title", "Number Element 2")
+
+        self._save_form()
+        self._assert_element_attribute(0, 'title', 'Number Element')
+        self._assert_element_attribute(1, 'title', 'Number Element 2')
+
+
     def _add_form(self, title):
         self.driver.find_element_by_id("jzzf_new_form_title").clear()
         self.driver.find_element_by_id("jzzf_new_form_title").send_keys(title)
