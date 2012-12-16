@@ -116,19 +116,28 @@ class Backend(unittest.TestCase):
         self._add_form("1st form")
         self._add_element("n")
         self._add_element("a")
+        self._add_element("e") # email
         self._edit_element(0, "title", "Titulus")
+        self._select_tab("email")
+        self._edit_form("email_to", "michael@jacksons.com")
+        self._edit_form("email_message", "Hello,\nGood Bye")
         self._save_form()
         
         # clone form
         self.driver.find_element_by_id("jzzf_selector_clone").click()
         self._toggle_element(0)
         self._edit_element(0, "title", "Titulus Tituli")
+        self._select_tab("email")
+        self._edit_form("email_message", "Brand new form!")
         self._save_form()
 
         # check cloned form's elements
         self._assert_form_attribute('title', 'Copy of 1st form')
         self._assert_element_attribute(0, 'type', 'n')
         self._assert_element_attribute(1, 'type', 'a')
+        self._assert_element_attribute(2, 'type', 'e')
+        self._assert_form_attribute("email_to", "michael@jacksons.com")
+        self._assert_form_attribute("email_message", "Brand new form!")
         self._toggle_element(0)
         self._assert_element_attribute(0, 'title', 'Titulus Tituli')
         
@@ -137,6 +146,8 @@ class Backend(unittest.TestCase):
         self._assert_form_attribute('title', '1st form')
         self._assert_element_attribute(0, 'type', 'n')
         self._assert_element_attribute(1, 'type', 'a')
+        self._assert_form_attribute("email_to", "michael@jacksons.com")
+        self._assert_form_attribute("email_message", "Hello,\nGood Bye")
         self._toggle_element(0)
         self._assert_element_attribute(0, 'title', 'Titulus')
  
@@ -188,6 +199,14 @@ class Backend(unittest.TestCase):
     def _assert_element_attribute(self, index, type, value):
         field = self.driver.find_element_by_css_selector('#jzzf_elements_list > li:nth-child({0}) .jzzf_element_{1}'.format(index+1, type))
         self.assertEqual(value, field.get_attribute('value'))
+
+    def _select_tab(self, type):
+        self.driver.find_element_by_css_selector("#jzzf_tabs > li[jzzf_section=\"{0}\"]".format(type)).click()
+
+    def _edit_form(self, type, value):
+        field = self.driver.find_element_by_id("jzzf_{0}".format(type))
+        field.clear()
+        field.send_keys(value)
 
     def _jazzy(self):
         self.driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
