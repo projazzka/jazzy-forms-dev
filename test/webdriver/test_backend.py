@@ -132,7 +132,7 @@ class Backend(unittest.TestCase):
         self._save_form()
 
         # check cloned form's elements
-        self._assert_form_attribute('title', 'Copy of 1st form')
+        self._assert_form_attribute('title', '1st form 2')
         self._assert_element_attribute(0, 'type', 'n')
         self._assert_element_attribute(1, 'type', 'a')
         self._assert_element_attribute(2, 'type', 'e')
