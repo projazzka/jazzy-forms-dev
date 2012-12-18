@@ -293,33 +293,11 @@
             form.email.id = 0;
         }
     }
-
-    function clone_title(title, existing) {
-        var matches = /^(.*) ([0-9]*)$/.exec(title)
-        if(matches) {
-            var root = matches[1]
-            var number = Number(matches[2]) + 1
-        } else {
-            var root = title
-            number = 2
-        }
-        var found;
-        do {
-            occupied = false;
-            result = root + " " + number
-            for(var i=0; i<existing.length; i++) {
-                if(existing[i].title == result) {
-                    occupied = true;
-                    number++;
-                }
-            }
-        } while(occupied);
-        return result
-    }
     
     function clone_form(form) {
         var new_form = jQuery.extend(true, {}, form);
-        new_form.title = clone_title(new_form.title, jzzf_forms)
+        var helper = new jzzf_id(jzzf_forms)
+        new_form.title = helper.suggest_title(new_form.title)
         return new_form;
     }
     

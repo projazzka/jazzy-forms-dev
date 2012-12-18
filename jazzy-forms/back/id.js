@@ -21,13 +21,20 @@ function jzzf_id(arr) {
     }
     
     this.suggest_title = function(base) {
-        var title = base;
-        var idx = 1;
-        while(this.column_occupied(title, 'title')) {
-            title = base + ' (' + idx + ')';
-            idx++;
+        var matches = /^(.*) ([0-9]*)$/.exec(base)
+        if(matches) {
+            var root = matches[1]
+            var number = Number(matches[2])
+        } else {
+            var root = base
+            number = 1
         }
-        return title;
+        var found;
+        do {
+            number++;
+            result = root + " " + number
+        } while(this.column_occupied(result, 'title'))
+        return result
     }
     
     this.title_to_name = function(title) {
