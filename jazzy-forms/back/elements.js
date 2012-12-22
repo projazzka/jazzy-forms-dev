@@ -86,12 +86,7 @@ function jzzf_element($, update_listener) {
             update_listener();
         });
         element.find('.jzzf_element_clone').click(function() {
-            var placeholder = $('<div class="jzzf_element"></div>');
-            li.after(placeholder);
-            var data = self.data(li);
-            jzzf_element.reset_ids(data);
-            self.add(data, placeholder, false);
-            update_listener();
+            jzzf_element.clone(li, update_listener);
             return false;
         });
         element.find('.jzzf_option_add').click(function() {
@@ -216,4 +211,13 @@ jzzf_element.reset_ids = function(element) {
         }
     }
 }
-    
+
+jzzf_element.clone = function(li, update_listener) {
+    var element = new jzzf_element(jQuery, update_listener)
+    var placeholder = jQuery('<div class="jzzf_element"></div>');
+    li.after(placeholder);
+    var data = element.data(li);
+    jzzf_element.reset_ids(data);
+    element.add(data, placeholder, false);
+    update_listener();
+}
