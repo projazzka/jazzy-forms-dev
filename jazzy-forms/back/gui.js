@@ -84,7 +84,19 @@
         });
         
         $('#jzzf_elements_list').delegate('.jzzf_element_clone', 'click', function() {
-            jzzf_element.clone($(this).closest('li'));
+            var li = $(this).closest('li');
+            var element = new jzzf_element($);
+            var placeholder = $('<div class="jzzf_element"></div>');
+            li.after(placeholder);
+            var data = element.data(li);
+            var elements = get_elements();
+            var id_helper = new jzzf_id(elements);
+            var title = id_helper.suggest_title(data.title);
+            var name = id_helper.suggest_name(title);
+            data.title = title;
+            data.name = name;
+            jzzf_element.reset_ids(data);
+            element.add(data, placeholder, false);
             return false;
         });
         

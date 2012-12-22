@@ -207,13 +207,3 @@ jzzf_element.reset_ids = function(element) {
         }
     }
 }
-
-jzzf_element.clone = function(li, update_listener) {
-    var element = new jzzf_element(jQuery, update_listener)
-    var placeholder = jQuery('<div class="jzzf_element"></div>');
-    li.after(placeholder);
-    var data = element.data(li);
-    jzzf_element.reset_ids(data);
-    element.add(data, placeholder, false);
-    update_listener();
-}
