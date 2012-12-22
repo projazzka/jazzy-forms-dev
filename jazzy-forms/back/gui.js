@@ -83,6 +83,11 @@
             return false;
         });
         
+        $('#jzzf_elements_list').delegate('.jzzf_element_clone', 'click', function() {
+            jzzf_element.clone($(this).closest('li'));
+            return false;
+        });
+        
         $('#jzzf_elements_list').sortable({
             update: function(event, ui) {
                 add_element(ui.item, true);

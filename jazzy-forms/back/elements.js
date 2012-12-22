@@ -85,10 +85,6 @@ function jzzf_element($, update_listener) {
             }
             update_listener();
         });
-        element.find('.jzzf_element_clone').click(function() {
-            jzzf_element.clone(li, update_listener);
-            return false;
-        });
         element.find('.jzzf_option_add').click(function() {
             var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
             $(this).parent().find('.jzzf_option_table tbody').append(self.html_option({}, counter));
