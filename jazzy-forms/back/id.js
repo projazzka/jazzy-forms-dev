@@ -21,13 +21,13 @@ function jzzf_id(arr) {
     }
     
     this.suggest_title = function(base) {
-        var matches = /^(.*) ([0-9]*)$/.exec(base)
+        var matches = /^(.+) ([0-9]+)$/.exec(base)
         if(matches) {
             var root = matches[1]
             var number = Number(matches[2])
         } else {
             var root = base
-            number = 1
+            number = 0
         }
         var found;
         do {
@@ -39,7 +39,7 @@ function jzzf_id(arr) {
     
     this.title_to_name = function(title) {
         title = title.toLowerCase();
-        title = title.replace(/ /, "_");
+        title = title.replace(/ /g, "_");
         return title.replace(/[^a-zA-Z0-9_]/g, "");
     }
 }
