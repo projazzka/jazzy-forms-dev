@@ -32,7 +32,7 @@ class Backend(unittest.TestCase):
 
     def test_single_empty_form(self):
         driver = self.driver
-        driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
+        self._jazzy()
         driver.find_element_by_id("jzzf_new_form_title").clear()
         driver.find_element_by_id("jzzf_new_form_title").send_keys("A new form")
         driver.find_element_by_id("jzzf_new_form_add").click()
@@ -44,7 +44,7 @@ class Backend(unittest.TestCase):
 
     def test_add_elements(self):
         driver = self.driver
-        driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
+        self._jazzy()
         driver.find_element_by_id("jzzf_new_form_title").clear()
         driver.find_element_by_id("jzzf_new_form_title").send_keys("Form1")
         driver.find_element_by_id("jzzf_new_form_add").click()
@@ -69,7 +69,7 @@ class Backend(unittest.TestCase):
 
     def test_two_forms(self):
         driver = self.driver
-        driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
+        self._jazzy()
         
         # save 1st form
         driver.find_element_by_id("jzzf_new_form_title").clear()
@@ -214,7 +214,7 @@ class Backend(unittest.TestCase):
         field.send_keys(value)
 
     def _jazzy(self):
-        self.driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top img").click()
+        self.driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top a").click()
 
     def tearDown(self):
         self.driver.quit()

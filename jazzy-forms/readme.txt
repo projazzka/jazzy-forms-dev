@@ -3,7 +3,7 @@ Contributors: jazzigor
 Donate link: http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=donate
 Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
-Tested up to: 3.4.1
+Tested up to: 3.5
 Stable tag: 0.10.1
 
 Online form generator, ideal for cost-estimates and calculations
