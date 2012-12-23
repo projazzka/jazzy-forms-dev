@@ -32,7 +32,11 @@ function jzzf_id(arr) {
         var found;
         do {
             number++;
-            result = root + " " + number
+            if(number == 1) {
+                result = root;
+            } else {
+                result = root + " " + number
+            }
         } while(this.column_occupied(result, 'title'))
         return result
     }

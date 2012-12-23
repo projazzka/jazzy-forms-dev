@@ -160,23 +160,23 @@ class Backend(unittest.TestCase):
         self._edit_element(0, "name", "number_element")
         self.driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_clone").click()
         self._assert_element_attribute(1, 'type', 'n')
-        self._assert_element_attribute(1, 'title', 'Number Element 1')
-        self._assert_element_attribute(1, 'name', 'number_element_1')
+        self._assert_element_attribute(1, 'title', 'Number Element 2')
+        self._assert_element_attribute(1, 'name', 'number_element_2')
 
         self._save_form()
         self._assert_element_attribute(0, 'type', 'n')
         self._assert_element_attribute(0, 'title', 'Number Element')
         self._assert_element_attribute(0, 'name', 'number_element')
         self._assert_element_attribute(1, 'type', 'n')
-        self._assert_element_attribute(1, 'title', 'Number Element 1')
-        self._assert_element_attribute(1, 'name', 'number_element_1')
+        self._assert_element_attribute(1, 'title', 'Number Element 2')
+        self._assert_element_attribute(1, 'name', 'number_element_2')
         self._toggle_element(1)
         self._edit_element(1, "title", "New Number Element")
 
         self._save_form()
         self._assert_element_attribute(0, 'title', 'Number Element')
         self._assert_element_attribute(1, 'title', 'New Number Element')
-        self._assert_element_attribute(1, 'id', 'number_element_1')
+        self._assert_element_attribute(1, 'name', 'number_element_2')
 
 
     def _add_form(self, title):
