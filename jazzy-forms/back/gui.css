@@ -158,6 +158,11 @@
 
 .jzzf_element_header .jzzf_element_clone {
     background: url('img/clone.png') no-repeat center;
+    margin-right: 5px;
+}
+
+.jzzf_element_header .jzzf_element_clone:hover {
+    background: url('img/clone_hi.png') no-repeat center;
 }
 
 .jzzf_element_header .jzzf_element_delete:hover {
