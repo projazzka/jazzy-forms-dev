@@ -295,7 +295,7 @@
                     <td class="jzzf_column_default"><input type="radio" name="jzzf_radio_{{counter}}" class="jzzf_option_default" {{#default}}checked="checked"{{/default}}></td>
                     <td class="jzzf_column_title"><input type="hidden" value="{{id}}" class="jzzf_option_id"><input type="text" value="{{title}}" class="jzzf_option_title"></td>
                     <td class="jzzf_column_value"><input type="text" value="{{value}}" class="jzzf_option_value"></td>
-                    <td><a href="" class="jzzf_option_delete">(x)</a></td>
+                    <td><a href="" class="jzzf_option_delete"></a></td>
                 </tr>
 </script>
 <script type="text/javascript">//<![CDATA[

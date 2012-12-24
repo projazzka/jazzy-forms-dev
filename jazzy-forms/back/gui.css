@@ -169,6 +169,17 @@
     background: url('img/del_hi.png') no-repeat center;
 }
 
+.jzzf_option_delete {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('img/del.png') no-repeat center;
+}
+
+.jzzf_option_delete:hover {
+    background: url('img/del_hi.png') no-repeat center;
+}
+
 .jzzf_element_body {
     background: #fff;
     padding: 0;
