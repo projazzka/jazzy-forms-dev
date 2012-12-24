@@ -178,6 +178,78 @@ class Backend(unittest.TestCase):
         self._assert_element_attribute(1, 'title', 'New Number Element')
         self._assert_element_attribute(1, 'name', 'number_element_2')
 
+    def test_options(self):
+        self._jazzy()
+        
+        self._add_form("Form")
+        self._add_element('r')
+        self._assert_option(0, 0, 'Option', '', True)
+        self._assert_option_count(0, 1)
+        self._add_option(0)
+        self._assert_option(0, 1, 'Option', '', False)
+        self._edit_option(0, 0, 'Eins', '10')
+        self._edit_option(0, 1, 'Zwei', '20')
+        self._assert_option_count(0, 2)
+        self._add_option(0)
+        self._edit_option(0, 2, 'Drei', '30')
+        self._assert_option(0, 0, 'Eins', '10', True)
+        self._assert_option(0, 1, 'Zwei', '20', False)
+        self._assert_option(0, 2, 'Drei', '30', False)
+        self._assert_option_count(0, 3)
+        self._select_option(0, 1)
+        self._assert_option(0, 0, 'Eins', '10', False)
+        self._assert_option(0, 1, 'Zwei', '20', True)
+        self._delete_option(0, 1)
+        self._assert_option(0, 0, 'Eins', '10', True)
+        self._assert_option(0, 1, 'Drei', '30', False)
+        self._assert_option_count(0, 2)
+
+        self._save_form()
+        self._assert_option(0, 0, 'Eins', '10', True)
+        self._assert_option(0, 1, 'Drei', '30', False)
+        
+    def test_clone_options(self):
+        self._jazzy()
+        
+        self._add_form("Form")
+
+        self._add_element('d')
+        self._assert_option(0, 0, 'Option', '', True)
+        self._assert_option_count(0, 1)
+        self._add_option(0)
+        self._assert_option(0, 1, 'Option', '', False)
+        self._edit_option(0, 0, 'Eins', '10')
+        self._edit_option(0, 1, 'Zwei', '20')
+        self._select_option(0, 1)
+        self._assert_option(0, 0, 'Eins', '10', False)
+        self._assert_option(0, 1, 'Zwei', '20', True)
+        self._assert_option_count(0, 2)
+
+        self.driver.find_element_by_css_selector("#jzzf_elements_list > li:first-child .jzzf_element_clone").click()
+        self._assert_option(1, 0, 'Eins', '10', False)
+        self._assert_option(1, 1, 'Zwei', '20', True)
+        self._assert_option_count(0, 2)
+
+        self._save_form()
+        self._assert_option(0, 0, 'Eins', '10', False)
+        self._assert_option(0, 1, 'Zwei', '20', True)
+        self._assert_option_count(0, 2)
+        self._assert_option(1, 0, 'Eins', '10', False)
+        self._assert_option(1, 1, 'Zwei', '20', True)
+        self._assert_option_count(0, 2)
+
+        self._toggle_element(0)
+        self._edit_option(0, 0, 'A', '1')
+        self._edit_option(0, 1, 'B', '2')
+        self._toggle_element(1)
+        self._edit_option(1, 0, 'C', '3')
+        self._edit_option(1, 1, 'D', '4')
+        self._save_form()
+               
+        self._assert_option(0, 0, 'A', '1', False)
+        self._assert_option(0, 1, 'B', '2', True)
+        self._assert_option(1, 0, 'C', '3', False)
+        self._assert_option(1, 1, 'D', '4', True)
 
     def _add_form(self, title):
         self.driver.find_element_by_id("jzzf_new_form_title").clear()
@@ -212,7 +284,38 @@ class Backend(unittest.TestCase):
         field = self.driver.find_element_by_id("jzzf_{0}".format(type))
         field.clear()
         field.send_keys(value)
+        
+    def _edit_option(self, element, option, label, value):
+        row = ".jzzf_element:nth-child({0}) .jzzf_option:nth-child({1})".format(element+1, option+1)
+        label_element = self.driver.find_element_by_css_selector(row + ' .jzzf_option_title')
+        label_element.clear()
+        label_element.send_keys(label)
+        value_element = self.driver.find_element_by_css_selector(row + ' .jzzf_option_value')
+        value_element.clear()
+        value_element.send_keys(value)
 
+    def _assert_option(self, element, option, label, value, default):
+        row = ".jzzf_element:nth-child({0}) .jzzf_option:nth-child({1})".format(element+1, option+1)
+        self.assertEqual(self.driver.find_element_by_css_selector(row + ' .jzzf_option_title').get_attribute('value'), label)
+        self.assertEqual(self.driver.find_element_by_css_selector(row + ' .jzzf_option_value').get_attribute('value'), value)
+        self.assertEqual(self.driver.find_element_by_css_selector(row + ' .jzzf_option_default').is_selected(), default)
+
+    def _assert_option_count(self, element, number):
+        options = self.driver.find_elements_by_css_selector(".jzzf_element:nth-child({0}) .jzzf_option".format(element+1))
+        self.assertEqual(len(options), number)
+        
+    def _add_option(self, element):
+        self.driver.find_element_by_css_selector("#jzzf_elements_list > li:nth-child({0}) .jzzf_option_add".format(element+1)).click()
+        
+    def _select_option(self, element, option):
+        self.driver.find_element_by_css_selector(".jzzf_element:nth-child({0}) .jzzf_option:nth-child({1}) .jzzf_option_default"
+            .format(element+1, option+1)).click()
+
+    def _delete_option(self, element, option):
+        self.driver.find_element_by_css_selector(".jzzf_element:nth-child({0}) .jzzf_option:nth-child({1}) .jzzf_option_delete"
+            .format(element+1, option+1)).click()
+        self.driver.switch_to_alert().accept();
+        
     def _jazzy(self):
         self.driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top a").click()
 
