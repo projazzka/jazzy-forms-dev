@@ -12,7 +12,7 @@
         var id_helper = new jzzf_id(elements);
         var title = id_helper.suggest_title('Element');
         var name = id_helper.suggest_name(title);
-        return obj = {
+        var obj = {
             'title': title,
             'name': name,
             'type': type,
@@ -22,6 +22,10 @@
             'divisions': 1,
             'break': 1
         };
+        if(type == 'r' || type == 'd') {
+            obj.options = [{'title': 'Option', 'default': true}];
+        }
+        return obj;
     }
     
     function add_element(item, remove) {

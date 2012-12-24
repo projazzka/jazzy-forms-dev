@@ -87,24 +87,33 @@ function jzzf_element($, update_listener) {
         });
         element.find('.jzzf_option_add').click(function() {
             var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
-            $(this).parent().find('.jzzf_option_table tbody').append(self.html_option({}, counter));
-            self.bind_options();
+            var data = {}
+            var option_table = $(this).parent().find('.jzzf_option_table tbody')
+            if(option_table.find('.jzzf_option').length == 0) {
+                data.default = true;
+            }
+            option_table.append(self.html_option(data, counter));
             return false;
         });
         element.find('.jzzf_element_title').change(function() {
            element.find('.jzzf_header_title').text(self.display_title($(this).val())); 
         });
         element.find('.jzzf_option_table tbody').sortable();
-        this.bind_options();
+        element.delegate('.jzzf_option_delete', 'click', self.delete_option);
     }
 
-    this.bind_options = function() {
-        $('.jzzf_option_delete').unbind('click').click(function() {
-            if(confirm("Are you sure to delete this option?")) {
-                $(this).parentsUntil('table', 'tr').remove();
+    this.delete_option = function() {
+        var row = $(this).parentsUntil('table', 'tr');
+        var was_checked = row.find('.jzzf_option_default').is(':checked');
+            
+        if(confirm("Are you sure to delete this option?")) {
+            if(was_checked) {
+                var table = row.parentsUntil('table');
+                table.find('.jzzf_option_default').first().attr('checked','checked');                    
             }
-            return false;
-        });
+            row.remove();
+        }
+        return false;
     }
     
     this.data = function(li) {
