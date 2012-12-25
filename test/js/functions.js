@@ -193,6 +193,23 @@ test("true and true", function() {
   equal(lib.execute('and', [v(true), v(true)]), true);
 });
 
+test("true and true and true", function() {
+  equal(lib.execute('and', [v(true), v(true), v(true)]), true);
+});
+
+test("false and true and true", function() {
+  equal(lib.execute('and', [v(false), v(true), v(true)]), false);
+});
+
+test("empty and", function() {
+  try {
+    lib.execute('and', []);
+    ok(false); // shouldn't reach here
+  } catch(e) {
+    equal(e.toString(), "#N/A");
+  }
+});
+
 test("true or false", function() {
   equal(lib.execute('or', [v(true), v(false)]), true);
 });
@@ -203,6 +220,23 @@ test("false or true", function() {
 
 test("false or false", function() {
   equal(lib.execute('or', [v(false), v(false)]), false);
+});
+
+test("false or false or true", function() {
+  equal(lib.execute('or', [v(false), v(false), v(true)]), true);
+});
+
+test("false or false or false", function() {
+  equal(lib.execute('or', [v(false), v(false), v(false)]), false);
+});
+
+test("empty or", function() {
+  try {
+    lib.execute('or', []);
+    ok(false); // shouldn't reach here
+  } catch(e) {
+    equal(e.toString(), "#N/A");
+  }
 });
 
 test("true or true", function() {

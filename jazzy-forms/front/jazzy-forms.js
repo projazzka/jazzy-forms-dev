@@ -428,14 +428,26 @@ function Jzzf_Library(types, engine) {
             return !e;
         },
         'and': function(args) {
-            var e = _bool(args);
-            var f = _bool(args);
-            return e && f;
+            if(!args.length)
+                return types.raise_na();
+            while(args.length) {
+                if(!args.pop().bool()) {
+                    args.length = 0;
+                    return false;
+                }
+            }
+            return true;
         },
         'or': function(args) {
-            var e = _bool(args);
-            var f = _bool(args);
-            return e || f;
+            if(!args.length)
+                return types.raise_na();
+            while(args.length) {
+                if(args.pop().bool()) {
+                    args.length = 0;
+                    return true;
+                }
+            }
+            return false;
         },
         'if': function(args) {
             var c = _bool(args);
@@ -623,7 +635,7 @@ function Jzzf_Types(engine) {
     this.raise_ref = function() { throw new Jzzf_Error("#REF!"); };
     this.raise_name = function() { throw new Jzzf_Error("#NAME?"); };
     this.raise_num = function() { throw new Jzzf_Error("#NUM!"); };
-    this.raise_na = function() { throw new Jzzf_Error("#N/A!") };
+    this.raise_na = function() { throw new Jzzf_Error("#N/A") };
     
     var precision = Math.pow(10,9);
 
