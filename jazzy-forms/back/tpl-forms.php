@@ -302,7 +302,7 @@
     var jzzf_forms = <?php echo json_encode($forms) ?>;
 //]]></script>
 <h2>Jazzy Forms</h2>
-<div id="jzzf_selection">
+<div class="jzzf_head" id="jzzf_selection">
     <div class="jzzf_selection_label">
         Select a form:
     </div>
@@ -320,7 +320,7 @@
     </div>
     </form>
 </div>
-<div id="jzzf_new_form">
+<div class="jzzf_head" id="jzzf_new_form">
     <div class="jzzf_selection_label">
         New Form Title:
     </div>
@@ -328,7 +328,7 @@
         <input type="text" id="jzzf_new_form_title" name="jzzf_new_form_title" value="New Form">
     </div>
     <div class="jzzf_selection_action">
-        <input id="jzzf_new_form_add" type="button" value="Add"><a href="" id="jzzf_new_form_cancel">Cancel</a>
+        <a href="" id="jzzf_new_form_cancel">Cancel</a>
     </div>
 </div>
 <div id="message" class="updated" <?php if(!$msg): ?>style="display:none"<?php endif ?>><p><?php esc_html_e($msg) ?></p></div>
