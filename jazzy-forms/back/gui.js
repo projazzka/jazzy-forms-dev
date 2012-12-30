@@ -137,6 +137,16 @@
         
         $('#jzzf_name').change(update_shortcode);
         $('#jzzf_form_save').click(save);
+        
+        $('#jzzf_new_form_title').bind('change keyup', function() {
+            $('#jzzf_title').val($('#jzzf_new_form_title').val());
+            return true;
+        });
+        $('#jzzf_title').bind('change keyup', function() {
+            $('#jzzf_new_form_title').val($('#jzzf_title').val());
+            return true;
+        });
+        
     }
     
     function update_shortcode() {
