@@ -813,10 +813,15 @@ function Jzzf_Calculator(engine, types, library) {
                             var condition = result_stack.pop();
                             if(condition.bool()) {
                                 node_stack.push(node[3]);
+                                arg_idx_stack.push(0);                         
                             } else {
-                                node_stack.push(node[4]);                                
+                                if(node.length > 4) { 
+                                    node_stack.push(node[4]);                                
+                                    arg_idx_stack.push(0);                         
+                                } else {
+                                    result_stack.push(types.value(0));
+                                }
                             }
-                            arg_idx_stack.push(0);                         
                         }
                     } else {
                         node_stack.push(node);
