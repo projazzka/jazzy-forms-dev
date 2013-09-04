@@ -23,7 +23,8 @@ class Backend(unittest.TestCase):
         driver = self.driver
         driver.get(self.base_url + 'wptest/wp-login.php')
         wait = WebDriverWait(self.driver, 10)
-        wait.until(lambda driver: driver.find_element_by_id('user_login'))
+        wait.until(lambda driver: driver.find_element_by_id('wp-submit'))
+        time.sleep(2)
         driver.find_element_by_id("user_login").clear()
         driver.find_element_by_id("user_login").send_keys("admin")
         driver.find_element_by_id("user_pass").clear()
@@ -35,8 +36,8 @@ class Backend(unittest.TestCase):
         self._jazzy()
         driver.find_element_by_id("jzzf_new_form_title").clear()
         driver.find_element_by_id("jzzf_new_form_title").send_keys("A new form")
-        driver.find_element_by_id("jzzf_new_form_add").click()
         driver.find_element_by_id("jzzf_form_save").click()
+        self.assertEqual(driver.find_element_by_id('message').text, "Form Saved.")
         options = driver.find_elements_by_css_selector("#jzzf_selector option")
         self.assertEqual(len(options), 1)
         self.assertEqual('A new form', options[0].text)
@@ -47,7 +48,6 @@ class Backend(unittest.TestCase):
         self._jazzy()
         driver.find_element_by_id("jzzf_new_form_title").clear()
         driver.find_element_by_id("jzzf_new_form_title").send_keys("Form1")
-        driver.find_element_by_id("jzzf_new_form_add").click()
         driver.find_element_by_css_selector('li[jzzf_type="n"]').click()
         driver.find_element_by_css_selector('li[jzzf_type="a"]').click()
         driver.find_element_by_css_selector('li[jzzf_type="d"]').click()
@@ -55,6 +55,7 @@ class Backend(unittest.TestCase):
         driver.find_element_by_css_selector('li[jzzf_type="c"]').click()
         driver.find_element_by_css_selector('li[jzzf_type="f"]').click()
         driver.find_element_by_id("jzzf_form_save").click()
+        self.assertEqual(driver.find_element_by_id('message').text, "Form Saved.")
         options = driver.find_elements_by_css_selector("#jzzf_selector option")
         self.assertEqual(len(options), 1)
         self.assertEqual('Form1', options[0].text)
@@ -74,7 +75,6 @@ class Backend(unittest.TestCase):
         # save 1st form
         driver.find_element_by_id("jzzf_new_form_title").clear()
         driver.find_element_by_id("jzzf_new_form_title").send_keys("1 form")
-        driver.find_element_by_id("jzzf_new_form_add").click()
         driver.find_element_by_css_selector('li[jzzf_type="n"]').click()
         driver.find_element_by_css_selector('li[jzzf_type="a"]').click()
         driver.find_element_by_id("jzzf_form_save").click()
@@ -83,7 +83,6 @@ class Backend(unittest.TestCase):
         driver.find_element_by_id("jzzf_selector_new").click()
         driver.find_element_by_id("jzzf_new_form_title").clear()
         driver.find_element_by_id("jzzf_new_form_title").send_keys("2 form")
-        driver.find_element_by_id("jzzf_new_form_add").click()
         driver.find_element_by_css_selector('li[jzzf_type="d"]').click()
         driver.find_element_by_css_selector('li[jzzf_type="r"]').click()
         driver.find_element_by_id("jzzf_form_save").click()
@@ -251,10 +250,11 @@ class Backend(unittest.TestCase):
         self._assert_option(1, 0, 'C', '3', False)
         self._assert_option(1, 1, 'D', '4', True)
 
-    def _add_form(self, title):
+    def _add_form(self, title, first=True):
+        if not first:
+            self.driver.find_element_by_id("jzzf_form_new").click()
         self.driver.find_element_by_id("jzzf_new_form_title").clear()
         self.driver.find_element_by_id("jzzf_new_form_title").send_keys(title)
-        self.driver.find_element_by_id("jzzf_new_form_add").click()
 
     def _save_form(self):
         self.driver.find_element_by_id("jzzf_form_save").click()
@@ -317,6 +317,7 @@ class Backend(unittest.TestCase):
         self.driver.switch_to_alert().accept();
         
     def _jazzy(self):
+        """Go to Jazzy Forms main screen"""
         self.driver.find_element_by_css_selector("#toplevel_page_jzzf_forms_top a").click()
 
     def tearDown(self):
