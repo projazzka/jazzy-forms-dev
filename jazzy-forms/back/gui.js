@@ -171,6 +171,7 @@
         $('#jzzf_css').val(form.css);
         $('#jzzf_id').val(form.id);
         $('#jzzf_title').val(form.title);
+        $('#jzzf_new_form_title').val(form.title);
         $('#jzzf_name').val(form.name);
         $('#jzzf_elements_list').html('');
         if(form.realtime == 1) {
@@ -296,12 +297,14 @@
     }
     
     function set_cloned_form() {
-        $('#message').hide();
         mark_dirty();
-        form = clone_form(form);
-        reset_ids(form);
-        add_selector_option(form.title);
-        set_form(form);
+        var new_form = clone_form(form);
+        reset_ids(new_form);
+        set_form(new_form);
+
+        $('#message').hide();
+        $('#jzzf_selection').hide();
+        $('#jzzf_new_form').show();
     }
 
     function reset_ids(form) {
