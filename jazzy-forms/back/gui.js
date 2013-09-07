@@ -250,8 +250,8 @@
         $('#jzzf_selection').hide();
         $('#jzzf_new_form').show();
 
-        var title = $('#jzzf_new_form_title').val();
         var id_helper = new jzzf_id(jzzf_forms);
+        var title = id_helper.suggest_title('New Form');
         var name = id_helper.suggest_name(title);
         form = {
             'title': title,
