@@ -119,7 +119,7 @@
         $('#jzzf_selector_new').click(function() { new_form(); return false; });
         $('#jzzf_selector_delete').click(function() { delete_form(); return false; });
         $('#jzzf_selector_clone').click(function() { set_cloned_form(); return false; });
-        $('#jzzf_new_form_cancel').click(function() { cancel_form(); return false; });
+        $('#jzzf_form_cancel').click(function() { form_cancel(); return false; });
                                               
         $('#jzzf_selector').change(function() {
             if(warn_dirty()) {
@@ -186,6 +186,11 @@
         adjust_email_tab(form.elements);
         set_email(form.email);
         update_shortcode();
+        mark_clean();
+    }
+    
+    function form_cancel() {
+        location.reload();    
     }
     
     function get_elements() {
@@ -247,8 +252,7 @@
     }
     
     function add_form() {
-        $('#jzzf_selection').hide();
-        $('#jzzf_new_form').show();
+        switch_head(true);
 
         var id_helper = new jzzf_id(jzzf_forms);
         var title = id_helper.suggest_title('New Form');
@@ -274,18 +278,14 @@
     }
     
     function set_current_form(idx) {
-        $('#jzzf_new_form').hide();
-        $('#jzzf_selection').show();
+        if(idx === undefined) {
+            idx = $('#jzzf_selector option:selected').index();
+        }
+        switch_head(false);
         mark_clean();
         form = jzzf_forms[idx];
         form_index = idx;
         set_form(form);
-    }
-    
-    function cancel_form() {
-        $('#jzzf_new_form_title, #jzzf_new_form_name').val('');
-        $('#jzzf_new_form').hide();
-        $('#jzzf_selection').show();
     }
     
     function new_form() {
@@ -302,11 +302,20 @@
         reset_ids(new_form);
         set_form(new_form);
 
+        switch_head(true);
         $('#message').hide();
-        $('#jzzf_selection').hide();
-        $('#jzzf_new_form').show();
     }
 
+    function switch_head(show_new_form) {
+        if(show_new_form) {
+            $('#jzzf_selection').hide();
+            $('#jzzf_new_form').show();
+        } else {
+            $('#jzzf_selection').show();
+            $('#jzzf_new_form').hide();            
+        }
+    }
+    
     function reset_ids(form) {
         form.id = 0;
         for(var i=0; i<form.elements.length; i++) {
@@ -330,11 +339,10 @@
     }
     
     $(function() {
-        form_index = $('#jzzf_selector option:selected').index();
         if(jzzf_forms.length == 0) {
             new_form();
         } else {
-            set_current_form(form_index);
+            set_current_form();
         }
         bind();
     });

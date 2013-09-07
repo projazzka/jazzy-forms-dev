@@ -124,6 +124,12 @@ class Backend(unittest.TestCase):
         
         # clone form
         self.driver.find_element_by_id("jzzf_selector_clone").click()
+        
+        # suggested title
+        self.assertTrue(self.driver.find_element_by_id('jzzf_new_form_title').is_displayed());
+        self.assertEqual('1st form 2', self.driver.find_element_by_id('jzzf_new_form_title').get_attribute('value'))
+        
+        # edit form
         self._toggle_element(0)
         self._edit_element(0, "title", "Titulus Tituli")
         self._select_tab("email")

@@ -327,9 +327,6 @@
     <div class="jzzf_selection_main">
         <input type="text" id="jzzf_new_form_title" name="jzzf_new_form_title" value="New Form">
     </div>
-    <div class="jzzf_selection_action">
-        <a href="" id="jzzf_new_form_cancel">Cancel</a>
-    </div>
 </div>
 <div id="message" class="updated" <?php if(!$msg): ?>style="display:none"<?php endif ?>><p><?php esc_html_e($msg) ?></p></div>
 <div id="jzzf_form">
@@ -463,7 +460,7 @@
     </div>
     <form id="jzzf_form_form" method="post" action="#">
         <input type="hidden" id="jzzf_form_data" name="form">
-        <input id="jzzf_form_save" name="save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Discard changes</a>
+        <input id="jzzf_form_save" name="save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Cancel</a>
     </form>
     <div class="jzzf_doculink">For documentation and more click <a href="http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=admin_panel&utm_term=&utm_content=&utm_campaign=footer_<?php echo JZZF_VERSION_STRING ?>">here</a></div>
 </div>
