@@ -302,22 +302,31 @@
     var jzzf_forms = <?php echo json_encode($forms) ?>;
 //]]></script>
 <h2>Jazzy Forms</h2>
-<div id="jzzf_selection">
+<div class="jzzf_head" id="jzzf_selection">
+    <div class="jzzf_selection_label">
+        Select a form:
+    </div>
     <form id="jzzf_delete_form" method="post" action="#">
-    <h3 for="jzzf_selector">Form:</h3>
-    <select id="jzzf_selector">
-<?php $i=0; foreach($forms as $form) : ?>
-        <option value="<?php echo $i++ ?>"<?php if($form->id == $current) :?> selected="selected"<?php endif ?>><?php echo esc_attr($form->title) ?></option>
-<?php endforeach; ?>
-    </select>
-    <input id="jzzf_delete" name="delete" type="hidden" value="0">
-    <a id="jzzf_selector_new" href="">New</a> <a id="jzzf_selector_clone" href="">Clone</a> <a id="jzzf_selector_delete" href="">Delete</a>
+    <div class="jzzf_selection_main">
+        <select id="jzzf_selector">
+    <?php $i=0; foreach($forms as $form) : ?>
+            <option value="<?php echo $i++ ?>"<?php if($form->id == $current) :?> selected="selected"<?php endif ?>><?php echo esc_attr($form->title) ?></option>
+    <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="jzzf_selection_action">
+        <input id="jzzf_delete" name="delete" type="hidden" value="0">
+        <a id="jzzf_selector_new" href="">New</a> <a id="jzzf_selector_clone" href="">Clone</a> <a id="jzzf_selector_delete" href="">Delete</a>
+    </div>
     </form>
 </div>
-<div id="jzzf_new_form">
-    <h3>New Form</h3>
-    <label for="jzzf_new_form_title">Title</label><input type="text" id="jzzf_new_form_title" name="jzzf_new_form_title" value="New Form">
-    <input id="jzzf_new_form_add" type="button" value="Add"><a href="" id="jzzf_new_form_cancel">Cancel</a>
+<div class="jzzf_head" id="jzzf_new_form">
+    <div class="jzzf_selection_label">
+        New Form Title:
+    </div>
+    <div class="jzzf_selection_main">
+        <input type="text" id="jzzf_new_form_title" name="jzzf_new_form_title" value="New Form">
+    </div>
 </div>
 <div id="message" class="updated" <?php if(!$msg): ?>style="display:none"<?php endif ?>><p><?php esc_html_e($msg) ?></p></div>
 <div id="jzzf_form">
@@ -451,7 +460,7 @@
     </div>
     <form id="jzzf_form_form" method="post" action="#">
         <input type="hidden" id="jzzf_form_data" name="form">
-        <input id="jzzf_form_save" name="save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Discard changes</a>
+        <input id="jzzf_form_save" name="save" type="button" value="Save" class="button-primary"><a href="" id="jzzf_form_cancel">Cancel</a>
     </form>
     <div class="jzzf_doculink">For documentation and more click <a href="http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=admin_panel&utm_term=&utm_content=&utm_campaign=footer_<?php echo JZZF_VERSION_STRING ?>">here</a></div>
 </div>

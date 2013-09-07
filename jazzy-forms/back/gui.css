@@ -1,10 +1,27 @@
 
-#jzzf_selection select {
-    width: 500px;
+.jzzf_selection_main {
+    float: left;
+    width: 312px;
 }
 
-#jzzf_selection label {
-    margin-right: 12px;    
+#jzzf_selector, #jzzf_new_form_title {
+    width: 300px;
+}
+
+.jzzf_selection_label {
+    float: left;
+    margin-right: 12px;
+    width: 90px;
+}
+
+.jzzf_selection_action {
+    float: left;
+    width: 300px;
+}
+
+.jzzf_head {
+    overflow: hidden;
+    clear: both;    
 }
 
 #jzzf_selection a {
