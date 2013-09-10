@@ -433,16 +433,16 @@
                 </ul>
             </div>
         </div>
-        <div class="jzzf_section" id="jzzf_section_general">
+        <div class="jzzf_section" id="jzzf_section_general" class="jzzf_smartid_section">
             <input type="hidden" id="jzzf_id">
             <ul>
                 <li>
                     <label for="jzzf_title">Form Title</label>
-                    <input type="text" id="jzzf_title">
+                    <input type="text" id="jzzf_title" class="jzzf_smartid_source">
                 </li>
                 <li>
                     <label for="jzzf_name">Form ID</label>
-                    <input type="text" id="jzzf_name">
+                    <input type="text" id="jzzf_name" class="jzzf_smartid">
                 </li>
                 <li>
                     <label for="jzzf_shortcode">Shortcode</label>
