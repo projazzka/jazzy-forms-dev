@@ -74,7 +74,19 @@
         }
         return true;
     }
-    
+
+    function handle_smartid_source_keyup() {
+        var smarttitle = $(this);
+        var smartid = $('.jzzf_smartid');
+        if(smartid.hasClass('jzzf_smartid_clean')) {
+            var id_helper = new jzzf_id(jzzf_forms);
+            var name = id_helper.suggest_name(smarttitle.val());
+            smartid.val(name);
+            smartid.change();
+        }
+        return true;
+    }
+        
     function bind() {
         $('#jzzf_main').delegate('input', 'change', mark_dirty);
         
@@ -155,18 +167,7 @@
             return true;
         });
         
-        $('.jzzf_smartid_source').keyup(function() {
-            var smarttitle = $(this);
-            var smartid = $('.jzzf_smartid');
-            if(smartid.hasClass('jzzf_smartid_clean')) {
-                var id_helper = new jzzf_id(jzzf_forms);
-                var name = id_helper.suggest_name(smarttitle.val());
-                smartid.val(name);
-            }
-            return true;
-        });
-        
-        $('.jzzf_smartid_source').keyup();
+        $('.jzzf_smartid_source').keyup(handle_smartid_source_keyup);
     }
     
     function update_shortcode() {
@@ -208,6 +209,8 @@
         set_email(form.email);
         update_shortcode();
         mark_clean();
+
+        $('.jzzf_smartid_source').each(handle_smartid_source_keyup);
     }
     
     function form_cancel() {
@@ -345,6 +348,7 @@
         if(form.email) {
             form.email.id = 0;
         }
+        form.name = '';
     }
     
     function clone_form(form) {
