@@ -75,14 +75,14 @@
         return true;
     }
 
-    function handle_smartid_source_keyup() {
+    function handle_smartid_source_change() {
         var smarttitle = $(this);
         var smartid = $('.jzzf_smartid');
         if(smartid.hasClass('jzzf_smartid_clean')) {
             var id_helper = new jzzf_id(jzzf_forms);
             var name = id_helper.suggest_name(smarttitle.val());
             smartid.val(name);
-            smartid.change();
+            smartid.trigger("jzzf_smartid_change");
         }
         return true;
     }
@@ -147,11 +147,11 @@
             $('#message').hide();
         });
         
-        $('#jzzf_name').change(update_shortcode);
+        $('#jzzf_name').bind('keyup change jzzf_smartid_change', update_shortcode);
         $('#jzzf_form_save').click(save);
         
         $('#jzzf_new_form_title').bind('change keyup', function() {
-            $('#jzzf_title').val($('#jzzf_new_form_title').val());
+            $('#jzzf_title').val($('#jzzf_new_form_title').val()).change();
             return true;
         });
         $('#jzzf_title').bind('change keyup', function() {
@@ -159,7 +159,7 @@
             return true;
         });
         
-        $('.jzzf_smartid').keydown(function() {
+        $('.jzzf_smartid').bind('change keyup', function() {
             var elem = $(this);
             if(elem.hasClass('jzzf_smartid_clean')) {
                 elem.removeClass('jzzf_smartid_clean');
@@ -167,7 +167,7 @@
             return true;
         });
         
-        $('.jzzf_smartid_source').keyup(handle_smartid_source_keyup);
+        $('.jzzf_smartid_source').bind("keyup change", handle_smartid_source_change);
     }
     
     function update_shortcode() {
@@ -210,7 +210,7 @@
         update_shortcode();
         mark_clean();
 
-        $('.jzzf_smartid_source').each(handle_smartid_source_keyup);
+        $('.jzzf_smartid_source').each(handle_smartid_source_change);
     }
     
     function form_cancel() {
