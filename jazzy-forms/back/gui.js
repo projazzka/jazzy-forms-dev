@@ -7,6 +7,9 @@
     
     var email_fields = ['to', 'from', 'cc', 'bcc', 'subject', 'message', 'sending', 'ok', 'fail'];
 
+    var form_id_helper = null;
+    var form_smartid_helper = null;
+
     function new_element(type) {
         var elements = get_elements(); // need existing elements to suggest a valid name/title
         var id_helper = new jzzf_id(elements);
@@ -75,17 +78,6 @@
         return true;
     }
 
-    function handle_smartid_source_change() {
-        var smarttitle = $(this);
-        var smartid = $('.jzzf_smartid');
-        if(smartid.hasClass('jzzf_smartid_clean')) {
-            var id_helper = new jzzf_id(jzzf_forms);
-            var name = id_helper.suggest_name(smarttitle.val());
-            smartid.val(name);
-            smartid.trigger("jzzf_smartid_change");
-        }
-        return true;
-    }
         
     function bind() {
         $('#jzzf_main').delegate('input', 'change', mark_dirty);
@@ -158,16 +150,9 @@
             $('#jzzf_new_form_title').val($('#jzzf_title').val());
             return true;
         });
+
+        form_smartid_helper.bind();
         
-        $('.jzzf_smartid').bind('change keyup', function() {
-            var elem = $(this);
-            if(elem.hasClass('jzzf_smartid_clean')) {
-                elem.removeClass('jzzf_smartid_clean');
-            }
-            return true;
-        });
-        
-        $('.jzzf_smartid_source').bind("keyup change", handle_smartid_source_change);
     }
     
     function update_shortcode() {
@@ -210,7 +195,7 @@
         update_shortcode();
         mark_clean();
 
-        $('.jzzf_smartid_source').each(handle_smartid_source_change);
+        form_smartid_helper.init();
     }
     
     function form_cancel() {
@@ -364,6 +349,9 @@
     }
     
     $(function() {
+        form_id_helper = new jzzf_id(jzzf_forms);
+        form_smartid_helper = new jzzf_smartid(form_id_helper);
+
         if(jzzf_forms.length == 0) {
             new_form();
         } else {

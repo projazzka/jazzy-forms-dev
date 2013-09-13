@@ -52,10 +52,12 @@ function jzzf_head() {
 	wp_register_script( 'jzzf-tabs', plugins_url('jazzy-forms/back/tabs.js'), null, JZZF_VERSION_STRING);
 	wp_register_script( 'jzzf-elements', plugins_url('jazzy-forms/back/elements.js'), null, JZZF_VERSION_STRING);
 	wp_register_script( 'jzzf-id', plugins_url('jazzy-forms/back/id.js'), null, JZZF_VERSION_STRING);
+	wp_register_script( 'jzzf-smartid', plugins_url('jazzy-forms/back/smartid.js'), null, JZZF_VERSION_STRING);
 	wp_register_script( 'jzzf-admin-js', plugins_url('jazzy-forms/back/gui.js'), array('jquery-ui-draggable', 'jquery-ui-sortable'), JZZF_VERSION_STRING );
 	wp_register_style( 'jzzf-admin-css', plugins_url('jazzy-forms/back/gui.css'), null, JZZF_VERSION_STRING);
 	wp_enqueue_script('mustache', '0.3.0');
 	wp_enqueue_script('jzzf-id', null, null, JZZF_VERSION_STRING);
+	wp_enqueue_script('jzzf-smartid', null, null, JZZF_VERSION_STRING);
 	wp_enqueue_script('jzzf-elements', null, null, JZZF_VERSION_STRING);
 	wp_enqueue_script('jzzf-tabs', null, null, JZZF_VERSION_STRING);
 	wp_enqueue_script('jzzf-admin-js', null, null, JZZF_VERSION_STRING);
