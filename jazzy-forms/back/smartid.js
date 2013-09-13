@@ -15,9 +15,7 @@ function jzzf_smartid(id_helper) {
     this.bind = function() {
         $('.jzzf_smartid').bind('change keyup', function() {
             var elem = $(this);
-            if(elem.hasClass('jzzf_smartid_clean')) {
-                elem.removeClass('jzzf_smartid_clean');
-            }
+            elem.toggleClass('jzzf_smartid_clean', elem.val() == '');
             return true;
         });
         
