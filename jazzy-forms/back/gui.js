@@ -349,7 +349,7 @@
     
     $(function() {
         form_id_helper = new jzzf_id(jzzf_forms);
-        form_smartid_helper = new jzzf_smartid(form_id_helper);
+        form_smartid_helper = new jzzf_smartid(form_id_helper, $('#jzzf_section_general'));
 
         if(jzzf_forms.length == 0) {
             new_form();
