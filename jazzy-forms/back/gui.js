@@ -179,7 +179,6 @@
         $('#jzzf_title').val(form.title);
         $('#jzzf_new_form_title').val(form.title);
         $('#jzzf_name').val(form.name);
-        $('#jzzf_name').toggleClass('jzzf_smartid_clean', !form.name);
         $('#jzzf_elements_list').html('');
         if(form.realtime == 1) {
             $('#jzzf_realtime').attr('checked', 'checked');

@@ -12,17 +12,19 @@ function jzzf_smartid(id_helper) {
         return true;
     }
 
+    var handle_id_change = function() {
+        var elem = $(this);
+        elem.toggleClass('jzzf_smartid_clean', elem.val() == '');
+    }
+
+
     this.bind = function() {
-        $('.jzzf_smartid').bind('change keyup', function() {
-            var elem = $(this);
-            elem.toggleClass('jzzf_smartid_clean', elem.val() == '');
-            return true;
-        });
-        
+        $('.jzzf_smartid').bind('change keyup', handle_id_change);
         $('.jzzf_smartid_source').bind("keyup change", handle_source_change);
     }
 
     this.init = function() {
+        $('.jzzf_smartid').each(handle_id_change);
         $('.jzzf_smartid_source').each(handle_source_change);
     }
 }
