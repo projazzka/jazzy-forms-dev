@@ -93,7 +93,7 @@
         
         $('#jzzf_elements_list').delegate('.jzzf_element_clone', 'click', function() {
             var li = $(this).closest('li');
-            var element = new jzzf_element($);
+            var element = new jzzf_element($, adjust_email_tab);
             var placeholder = $('<div class="jzzf_element"></div>');
             li.after(placeholder);
             var data = element.data(li);
@@ -186,7 +186,7 @@
             $('#jzzf_realtime').removeAttr('checked');
         }
         for(var i=0; i<form.elements.length; i++) {
-            var element = jzzf_element.create(form.elements[i].type)
+            var element = jzzf_element.create(form.elements[i].type, adjust_email_tab);
             element.add(form.elements[i], null);
         }
         adjust_email_tab(form.elements);
