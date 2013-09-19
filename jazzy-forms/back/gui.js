@@ -9,12 +9,15 @@
 
     var form_id_helper = null;
     var form_smartid_helper = null;
+    
+    var element_names = [];
+    var element_id_helper = new jzzf_id(element_names);
 
     function new_element(type) {
         var elements = get_elements(); // need existing elements to suggest a valid name/title
         var id_helper = new jzzf_id(elements);
         var title = id_helper.suggest_title('Element');
-        var name = id_helper.suggest_name(title);
+        var name = '';
         var obj = {
             'title': title,
             'name': name,
@@ -34,7 +37,7 @@
     function add_element(item, remove) {
         var type = item.attr('jzzf_type');
         var obj = new_element(type);
-        var gui = jzzf_element.create(type, adjust_email_tab);
+        var gui = jzzf_element.create(type, element_id_helper, adjust_email_tab, update_element_names);
         gui.add(obj, remove ? item : null, false);
         adjust_email_tab();
     }
@@ -93,7 +96,7 @@
         
         $('#jzzf_elements_list').delegate('.jzzf_element_clone', 'click', function() {
             var li = $(this).closest('li');
-            var element = new jzzf_element($, adjust_email_tab);
+            var element = new jzzf_element($, element_id_helper, adjust_email_tab, update_element_names);
             var placeholder = $('<div class="jzzf_element"></div>');
             li.after(placeholder);
             var data = element.data(li);
@@ -186,7 +189,7 @@
             $('#jzzf_realtime').removeAttr('checked');
         }
         for(var i=0; i<form.elements.length; i++) {
-            var element = jzzf_element.create(form.elements[i].type, adjust_email_tab);
+            var element = jzzf_element.create(form.elements[i].type, element_id_helper, adjust_email_tab, update_element_names);
             element.add(form.elements[i], null);
         }
         adjust_email_tab(form.elements);
@@ -340,6 +343,13 @@
         var helper = new jzzf_id(jzzf_forms)
         new_form.title = helper.suggest_title(new_form.title)
         return new_form;
+    }
+    
+    function update_element_names() {
+        element_names.length = 0;
+        $('.jzzf_element_name').each(function() {
+            element_names.push($(this).val());
+        });
     }
     
     function adjust_email_tab(elements) {

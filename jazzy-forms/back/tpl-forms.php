@@ -17,11 +17,11 @@
             <ul class="jzzf_element_parameters">
                 <li>
                     <label for="jzzf_element_{{counter}}_title">Title</label>
-                    <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+                    <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title jzzf_smartid_source" value="{{title}}">
                 </li>
                 <li>
                     <label for="jzzf_element_{{counter}}_name">ID</label>
-                    <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
+                    <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name jzzf_smartid" value="{{name}}">
                 </li>
             </ul>
         </fieldset>
@@ -224,11 +224,11 @@
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">Text</label>
-                <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title">{{title}}</textarea>
+                <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title jzzf_smartid_source">{{title}}</textarea>
             </li>
             <li>
                 <label for="jzzf_element_{{counter}}_name">ID</label>
-                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
+                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name jzzf_smartid" value="{{name}}">
             </li>
         </ul>
     </fieldset>
@@ -240,11 +240,11 @@
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">Heading</label>
-                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title" value="{{title}}">
+                <input type="text" id="jzzf_element_{{counter}}_title" class="jzzf_element_title jzzf_smartid_source" value="{{title}}">
             </li>
             <li>
                 <label for="jzzf_element_{{counter}}_name">ID</label>
-                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
+                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name jzzf_smartid" value="{{name}}">
             </li>
         </ul>
     </fieldset>
@@ -256,11 +256,11 @@
         <ul>
             <li>
                 <label for="jzzf_element_{{counter}}_title">HTML code</label>
-                <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title">{{title}}</textarea>
+                <textarea id="jzzf_element_{{counter}}_title" class="jzzf_element_title jzzf_smartid_source">{{title}}</textarea>
             </li>
             <li>
                 <label for="jzzf_element_{{counter}}_name">ID</label>
-                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name" value="{{name}}">
+                <input type="text" id="jzzf_element_{{counter}}_name" class="jzzf_element_name jzzf_smartid" value="{{name}}">
             </li>
         </ul>
     </fieldset>

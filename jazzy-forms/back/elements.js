@@ -1,6 +1,6 @@
-function jzzf_element($, update_listener) {
+function jzzf_element($, id_helper, deletion_listener, name_update_listener) {
     var partials = {};
-    
+
     this.counter = function() {
         if(jzzf_element.incremental == undefined) {
             jzzf_element.incremental = 0;
@@ -83,7 +83,7 @@ function jzzf_element($, update_listener) {
             if(confirm("Are you sure to delete this element?")) {
                 $(this).parentsUntil('#jzzf_elements_list').remove();
             }
-            update_listener();
+            deletion_listener();
         });
         element.find('.jzzf_option_add').click(function() {
             var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
@@ -100,6 +100,10 @@ function jzzf_element($, update_listener) {
         });
         element.find('.jzzf_option_table tbody').sortable();
         element.delegate('.jzzf_option_delete', 'click', self.delete_option);
+        element.find('.jzzf_element_name').change(name_update_listener);
+        var smartid = new jzzf_smartid(id_helper, element);
+        smartid.bind();
+        smartid.init();
     }
 
     this.delete_option = function() {
@@ -195,8 +199,8 @@ jzzf_element.from_index = function(idx) {
     return jQuery('#jzzf_elements_list > li:eq(' + idx + ')');
 }
 
-jzzf_element.create = function(type, listener) {
-    return new jzzf_element(jQuery, listener);
+jzzf_element.create = function(type, deletion_listener, name_update_listener) {
+    return new jzzf_element(jQuery, deletion_listener, name_update_listener);
 }
 
 jzzf_element.data_from_li = function(li) {
