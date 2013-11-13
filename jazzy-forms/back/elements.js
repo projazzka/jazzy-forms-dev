@@ -100,7 +100,8 @@ function jzzf_element($, id_helper, deletion_listener, name_update_listener) {
         });
         element.find('.jzzf_option_table tbody').sortable();
         element.delegate('.jzzf_option_delete', 'click', self.delete_option);
-        element.find('.jzzf_element_name').change(name_update_listener);
+        var name_element = element.find('.jzzf_element_name');
+        name_element.bind('jzzf_smartid_change', 'change', name_update_listener);
         var smartid = new jzzf_smartid(id_helper, element);
         smartid.bind();
         smartid.init();
@@ -199,8 +200,8 @@ jzzf_element.from_index = function(idx) {
     return jQuery('#jzzf_elements_list > li:eq(' + idx + ')');
 }
 
-jzzf_element.create = function(type, deletion_listener, name_update_listener) {
-    return new jzzf_element(jQuery, deletion_listener, name_update_listener);
+jzzf_element.create = function(type, id_helper, deletion_listener, name_update_listener) {
+    return new jzzf_element(jQuery, id_helper, deletion_listener, name_update_listener);
 }
 
 jzzf_element.data_from_li = function(li) {

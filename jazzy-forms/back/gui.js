@@ -348,7 +348,7 @@
     function update_element_names() {
         element_names.length = 0;
         $('.jzzf_element_name').each(function() {
-            element_names.push($(this).val());
+            element_names.push({"name":$(this).val()});
         });
     }
     
