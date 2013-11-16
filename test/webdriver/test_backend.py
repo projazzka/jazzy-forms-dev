@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -256,6 +258,31 @@ class Backend(unittest.TestCase):
         self._assert_option(1, 0, 'C', '3', False)
         self._assert_option(1, 1, 'D', '4', True)
 
+    def test_smartid_special_chars(self):
+        self._jazzy()
+        
+        self._add_form("Form")
+
+        self._add_element('n')
+        self._edit_element(0, "title", ' Das "Über-Namensgebungs" ¿%titel%?')
+        self._assert_element_attribute(0, 'name', '_das_bernamensgebungs_titel')
+
+    def test_smartid_identical(self):
+        self._jazzy()
+        
+        self._add_form("Form")
+
+        self._add_element('n')
+        self._add_element('n')
+        self._add_element('n')
+        self._edit_element(0, "title", "Identical")
+        self._assert_element_attribute(0, 'name', 'identical')
+        self._edit_element(1, "title", "Identical")
+        self._edit_element(2, "title", "Identical")
+        self._assert_element_attribute(0, 'name', 'identical')
+        self._assert_element_attribute(1, 'name', 'identical_1')
+        self._assert_element_attribute(2, 'name', 'identical_2')
+                
     def _add_form(self, title, first=True):
         if not first:
             self.driver.find_element_by_id("jzzf_form_new").click()
