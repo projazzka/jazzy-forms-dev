@@ -100,8 +100,8 @@ function jzzf_element($, id_helper, deletion_listener, name_update_listener) {
         });
         element.find('.jzzf_option_table tbody').sortable();
         element.delegate('.jzzf_option_delete', 'click', self.delete_option);
-        var name_element = element.find('.jzzf_element_name');
-        name_element.bind('jzzf_smartid_change', 'change', name_update_listener);
+        var smartid_element = element.find('.jzzf_element_name, .jzzf_element_title');
+        smartid_element.bind('blur', 'change', name_update_listener);
         var smartid = new jzzf_smartid(id_helper, element);
         smartid.bind();
         smartid.init();
