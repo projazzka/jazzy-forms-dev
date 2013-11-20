@@ -264,8 +264,8 @@ class Backend(unittest.TestCase):
         self._add_form("Form")
 
         self._add_element('n')
-        self._edit_element(0, "title", ' Das "Über-Namensgebungs" ¿%titel%?')
-        self._assert_element_attribute(0, 'name', '_das_bernamensgebungs_titel')
+        self._edit_element(0, "title", ' Der "$ber-Namensgebungs" {%titel%}')
+        self._assert_element_attribute(0, 'name', '_der_bernamensgebungs_titel')
 
     def test_smartid_identical(self):
         self._jazzy()
