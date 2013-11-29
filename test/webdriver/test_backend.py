@@ -283,6 +283,18 @@ class Backend(unittest.TestCase):
         time.sleep(1) # no idea why 
         self._assert_element_attribute(1, 'name', 'identical_1')
         self._assert_element_attribute(2, 'name', 'identical_2')
+
+    def test_smartid_after_save(self):
+        self._jazzy()
+        
+        self._add_form("Form")
+
+        self._add_element('n')
+        self._edit_element(0, "title", "Mine")
+        self._assert_element_attribute(0, 'name', 'mine')
+        self._save_form()
+        self._edit_element(0, "title", "Yours")
+        self._assert_element_attribute(0, 'name', 'mine')
                 
     def _add_form(self, title, first=True):
         if not first:
