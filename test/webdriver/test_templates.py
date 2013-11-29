@@ -33,6 +33,7 @@ class Templates(unittest.TestCase):
         driver = self.driver
         driver.get(self.base_url + "/templates")
         self.input(1.1, 1)
+        time.sleep(1) # No idea why
                 
         self.assertEqual("Result for 1.1", driver.find_element_by_id("jzzf_18_element").text)
         self.assertEqual("1.1*1=1.1", driver.find_element_by_id("jzzf_18_element_1").text)
@@ -43,6 +44,7 @@ class Templates(unittest.TestCase):
         driver = self.driver
         driver.get(self.base_url + "/templates")
         self.input(1.1, 2)
+        time.sleep(1) # No idea why
 
         self.assertEqual("Result for 1.1", driver.find_element_by_id("jzzf_18_element").text)
         self.assertEqual("1.1*2=2.2", driver.find_element_by_id("jzzf_18_element_1").text)

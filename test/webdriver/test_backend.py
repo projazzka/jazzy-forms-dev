@@ -26,7 +26,7 @@ class Backend(unittest.TestCase):
         driver.get(self.base_url + 'wptest/wp-login.php')
         wait = WebDriverWait(self.driver, 10)
         wait.until(lambda driver: driver.find_element_by_id('wp-submit'))
-        time.sleep(2)
+        time.sleep(0.2)
         driver.find_element_by_id("user_login").clear()
         driver.find_element_by_id("user_login").send_keys("admin")
         driver.find_element_by_id("user_pass").clear()
@@ -280,6 +280,7 @@ class Backend(unittest.TestCase):
         self._edit_element(1, "title", "Identical")
         self._edit_element(2, "title", "Identical")
         self._assert_element_attribute(0, 'name', 'identical')
+        time.sleep(1) # no idea why 
         self._assert_element_attribute(1, 'name', 'identical_1')
         self._assert_element_attribute(2, 'name', 'identical_2')
                 
