@@ -2,6 +2,9 @@ function jzzf_smartid(id_helper, container) {
     var $ = jQuery;
 
     var handle_source_change = function() {
+        if($(this).val() == $(this).data('jzzf_value_on_focus')) {
+            return;
+        }
         var smarttitle = $(this);
         var smartid = container.find('.jzzf_smartid');
         if(smartid.hasClass('jzzf_smartid_clean')) {
@@ -10,7 +13,7 @@ function jzzf_smartid(id_helper, container) {
         }
     }
     
-    var handle_id_focus = function() {
+    var handle_focus = function() {
         var elem = $(this);
         elem.data('jzzf_value_on_focus', elem.val());
     }
@@ -31,7 +34,7 @@ function jzzf_smartid(id_helper, container) {
     this.bind = function() {
         container.find('.jzzf_smartid').bind('change keyup', handle_id_change);
         container.find('.jzzf_smartid_source').bind("keyup change", handle_source_change);
-        container.find('.jzzf_smartid').bind("focus", handle_id_focus);
+        container.find('.jzzf_smartid, .jzzf_smartid_source').bind("focus", handle_focus);
     }
 
     this.init = function() {
