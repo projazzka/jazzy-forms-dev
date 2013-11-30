@@ -183,7 +183,7 @@ class Backend(unittest.TestCase):
         self._save_form()
         self._assert_element_attribute(0, 'title', 'Number Element')
         self._assert_element_attribute(1, 'title', 'New Number Element')
-        self._assert_element_attribute(1, 'name', 'new_number_element')
+        self._assert_element_attribute(1, 'name', 'number_element_2')
 
     def test_options(self):
         self._jazzy()
@@ -280,7 +280,7 @@ class Backend(unittest.TestCase):
         self._edit_element(1, "title", "Identical")
         self._edit_element(2, "title", "Identical")
         self._assert_element_attribute(0, 'name', 'identical')
-        time.sleep(1) # no idea why 
+        time.sleep(5) # no idea why 
         self._assert_element_attribute(1, 'name', 'identical_1')
         self._assert_element_attribute(2, 'name', 'identical_2')
 
@@ -293,6 +293,7 @@ class Backend(unittest.TestCase):
         self._edit_element(0, "title", "Mine")
         self._assert_element_attribute(0, 'name', 'mine')
         self._save_form()
+        self._toggle_element(0)
         self._edit_element(0, "title", "Yours")
         self._assert_element_attribute(0, 'name', 'mine')
                 
