@@ -125,6 +125,11 @@ I would love to gain insight about the way you are using this software and the t
 
 == Changelog ==
 
+= 0.11 =
+* Backend: form and element duplication
+* Backend: automatically propose element IDs based on titles
+* fix IF function: now works correctly without third argument
+
 = 0.10.1 =
 * Negation operation to work with non-numbers, e.g. -x
 * Re-calculate formula when reset button is hit
