@@ -43,13 +43,16 @@
             "point": {"type": "str", "len": 1, "default": "."},
             "classes": {"type": "str"},
             "divisions": {"type": "int", "len": 1, "default": 1},
-            "break": {"type": "bool", "default": 1}
+            "break": {"type": "bool", "default": 1},
+            "required": {"type": "bool", "default": 0},
+            "missing": {"type": "str", "text": true}
         },
         "one_to_many": {
             "options": "option"
         },
         "add": {
-            "0.0905": ["visible", "prefix", "postfix", "zeros", "decimals", "fixed", "thousands", "point", "classes", "divisions", "break"]
+            "0.0905": ["visible", "prefix", "postfix", "zeros", "decimals", "fixed", "thousands", "point", "classes", "divisions", "break"],
+            "1.0000": ["required", "missing"]
         },
         "change": {
             "0.0905": ["title", "formula"]

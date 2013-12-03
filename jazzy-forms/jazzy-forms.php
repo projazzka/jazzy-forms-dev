@@ -3,9 +3,9 @@
 Plugin Name: Jazzy Forms
 Plugin URI: http://www.jazzyforms.com/
 Description: Online form builder with an emphasis on calculation
-Version: 0.11
+Version: 1.0
 Author: Igor Prochazka
-Author URI: http://www.l90r.com/
+Author URI: http://www.jazzyforms.com/
 
 ---------------------------------------------------------------------
     This file is part of the WordPress plugin "Jazzy Forms"
@@ -27,8 +27,8 @@ Author URI: http://www.l90r.com/
 ---------------------------------------------------------------------
 */
 
-define(JZZF_VERSION, 0.1100);
-define(JZZF_VERSION_STRING, "0.1100");
+define(JZZF_VERSION, 1.0000);
+define(JZZF_VERSION_STRING, "1.0000");
 define(JZZF_OPTION_VERSION, 'jzzf_version');
 
 define(JZZF_ROOT, WP_PLUGIN_DIR . '/jazzy-forms/');

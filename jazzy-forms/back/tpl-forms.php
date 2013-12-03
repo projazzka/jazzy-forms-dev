@@ -71,6 +71,23 @@
             </div>
         </fieldset>
 </script>
+<script id="jzzf_tmpl_validation" type="text/html">
+        <fieldset class="jzzf_div_collapsable jzzf_div_collapsed">
+            <h3 class="jzzf_toggler"><div></div>Validation</h3>
+            <div class="jzzf_collapsable_body">
+                <ul>
+                    <li>
+                        <input type="checkbox" id="jzzf_element_{{counter}}_required" class="jzzf_element_required" {{#required}}checked="checked"{{/required}}>
+                        <label for="jzzf_element_{{counter}}_required">Required</label>
+                    </li>
+                    <li>
+                        <label for="jzzf_element_{{counter}}_missing">Error text if missing</label>
+                        <input type="text" id="jzzf_element_{{counter}}_missing" class="jzzf_element_missing" value="{{missing}}">
+                    </li>
+                </ul>
+            </div>
+        </fieldset>
+</script>
 <script id="jzzf_tmpl_n" type="text/html">
 {{>common}}
         <fieldset class="jzzf_div_collapsable">
@@ -88,6 +105,7 @@
                 </ul>
             </div>
         </fieldset>
+{{>validation}}
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_a" type="text/html">
@@ -103,16 +121,19 @@
                 </ul>
             </div>
         </fieldset>
+{{>validation}}
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_d" type="text/html">
 {{>common}}
 {{>options}}
+{{>validation}}
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_r" type="text/html">
 {{>common}}
 {{>options}}
+{{>validation}}
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_c" type="text/html">
@@ -136,6 +157,7 @@
             </ul>
         </div>
     </fieldset>
+{{>validation}}
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_f" type="text/html">
@@ -232,6 +254,7 @@
             </li>
         </ul>
     </fieldset>
+{{>validation}}
 {{>foot}}
 </script>
 <script id="jzzf_tmpl_h" type="text/html">

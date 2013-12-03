@@ -141,10 +141,12 @@ function jzzf_element($, id_helper, deletion_listener, name_update_listener) {
             'point',
             'classes',
             'divisions',
+            'missing'
         ];
         var checkboxes = [
             'fixed',
-            'break'
+            'break',
+            'required'
         ];
 
         var type = li.find('.jzzf_element_type').val();
