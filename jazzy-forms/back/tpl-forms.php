@@ -355,6 +355,7 @@
 <div id="jzzf_form">
     <ul id="jzzf_tabs">
         <li jzzf_section="elements">Elements</li>
+        <li jzzf_section="validation">Validation</li>
         <li jzzf_section="appearance">Appearance</li>
         <li jzzf_section="email">Email</li>
         <li jzzf_section="general" >General</li>
@@ -388,6 +389,14 @@
                 <ul id="jzzf_elements_list">
                 </ul>
             </div>
+        </div>
+        <div class="jzzf_section" id="jzzf_section_validation">
+            <ul>
+                <li>
+                    <label for="jzzf_incomplete">Error text if required fields are missing</label><br>
+                    <textarea id="jzzf_incomplete"></textarea>
+                </li>
+            </ul>
         </div>
         <div class="jzzf_section" id="jzzf_section_appearance">
             <ul>

@@ -5,7 +5,8 @@
             "name": {"type": "str"},
             "theme": {"type": "int"},
             "css": {"type": "str", "longtext": true},
-            "realtime": {"type": "bool", "default": true}
+            "realtime": {"type": "bool", "default": true},
+            "incomplete": {"type": "str", "text": true}
         },
         "one_to_many": {
             "elements": "element"
@@ -14,7 +15,8 @@
             "email": "email"
         },
         "add": {
-            "0.0904": ["realtime"]
+            "0.0904": ["realtime"],
+            "1.0000": ["incomplete"]
         },
         "change": {
             "0.0905": ["css"]

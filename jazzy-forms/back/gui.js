@@ -177,6 +177,7 @@
         } else {
             $('#jzzf_default_css').removeAttr('checked');
         }
+        $('#jzzf_incomplete').val(form.incomplete);
         $('#jzzf_css').val(form.css);
         $('#jzzf_id').val(form.id);
         $('#jzzf_title').val(form.title);
@@ -244,6 +245,7 @@
             "theme": $('#jzzf_default_css').is(':checked'),
             "realtime": $('#jzzf_realtime').is(':checked'),
             "css": $('#jzzf_css').val(),
+            "incomplete": $('#jzzf_incomplete').val(),
             "elements": elements
         };
         if(has_email(elements)) {
