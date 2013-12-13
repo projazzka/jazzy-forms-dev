@@ -13,6 +13,7 @@ class Jzzf_Graph {
     public $templates;
     public $params;
     public $email;
+    public $required;
     
     public function __construct() {
         $this->data = array();
@@ -22,6 +23,7 @@ class Jzzf_Graph {
         $this->templates = array();
         $this->params = array();
         $this->email = array();
+        $this->required = array();
     }
     
     public function to_array() {
@@ -31,7 +33,8 @@ class Jzzf_Graph {
             "dependencies" => $this->dependencies,
             "formulas" => $this->formulas,
             "params" => $this->params,
-            "email" => $this->email
+            "email" => $this->email,
+            "required" => $this->required
         );
     }
 }
@@ -102,6 +105,9 @@ class Jzzf_Graph_Generator {
         $id = strtolower($elem->name);
         $type = $elem->type;
         $this->graph->types[$id] = $type;
+        if(property_exists($elem, 'required') && $elem->required) {
+            $this->graph->required[$id] = $elem->missing;
+        }
         if($type == "f") {
             $this->process_output_element($id, $elem);
         } elseif($this->is_template($type)) {

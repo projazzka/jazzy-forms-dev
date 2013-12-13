@@ -41,7 +41,8 @@ class Jzzf_List_Template {
             "templates": <?php echo json_encode($graph->templates) ?>,
             "form": <?php echo json_encode($form) ?>,
             "params": <?php echo json_encode($graph->params) ?>,
-            "email": <?php echo json_encode($graph->email) ?>
+            "email": <?php echo json_encode($graph->email) ?>,
+            "required": <?php echo json_encode($graph->required, JSON_FORCE_OBJECT) ?>
         };
         var jzzf_ajax_url = "<?php esc_attr_e(admin_url('admin-ajax.php'))  ?>";
         var jzzf = new jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);

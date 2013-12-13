@@ -24,6 +24,7 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 		$this->assertEquals(array(), $graph->formulas);
 		$this->assertEquals(array(), $graph->templates);
 		$this->assertEquals(array(), $graph->params);
+		$this->assertEquals(array(), $graph->required);
 		$this->assertEquals(null, $graph->email);
     }
 	
@@ -245,5 +246,14 @@ class Graph_Test extends PHPUnit_Framework_TestCase {
 			"a": ["out"]}', true), $graph->dependencies);
 	}
 
+    function test_required() {
+        $elements = array(
+   			(object) array('name'=> 'a', 'type'=> 'n', 'title'=>'A', 'value'=>''),
+			(object) array('name'=> 'b', 'type'=> 'r', 'title'=>'B', 'options' => array(), 'required'=>true, 'missing'=>'Give me a Bee'),
+			(object) array('name'=> 'c', 'type'=> 'd', 'title'=>'C', 'options' => array(), 'required'=>true, 'missing'=>'Give me a Sea')
+        );
+		$graph = $this->get_graph_from_elements($elements);
+   		$this->assertEquals(array('b'=>'Give me a Bee', 'c'=>'Give me a Sea'), $graph->required);
+    }
 }
 
