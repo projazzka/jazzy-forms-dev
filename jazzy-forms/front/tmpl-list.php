@@ -11,6 +11,11 @@ class Jzzf_List_Template {
         echo esc_attr('jzzf_' . $this->form->id . '_' . strtolower($element->name));
     }
 
+    function asterisk($element) {
+        if($element->required) {
+            echo '<span class="jzzf_asterisk">*</span>';
+        }
+    }
 
     function script($form) {?>
 <?php
@@ -78,19 +83,19 @@ class Jzzf_List_Template {
     }
     
     function number($element) { ?>
-    <label class="jzzf_number_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+    <label class="jzzf_number_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?><?php $this->asterisk($element) ?></label><?php // avoid line-feed
     ?><input type="text" id="<?php $this->id($element) ?>" value="<?php esc_attr_e($element->default) ?>">
 <?php
     }
 
     function textarea($element) { ?>
-    <label class="jzzf_textarea_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+    <label class="jzzf_textarea_label jzzf_element_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?><?php $this->asterisk($element) ?></label><?php // avoid line-feed
     ?><textarea id="<?php $this->id($element) ?>"><?php esc_html_e($element->default) ?></textarea>
 <?php
     }
     
     function radio($element) { ?>
-    <label class="jzzf_radio_label jzzf_element_label"><?php esc_html_e($element->title) ?></label>
+    <label class="jzzf_radio_label jzzf_element_label"><?php esc_html_e($element->title) ?><?php $this->asterisk($element) ?></label>
     <ul id="<?php $this->id($element) ?>" class="jzzf_radio">
     <?php $idx = 0; foreach($element->options as $option) { $idx++; ?>
     <li>
@@ -103,7 +108,7 @@ class Jzzf_List_Template {
     }
     
     function dropdown($element) { ?>
-    <label class="jzzf_element_label jzzf_dropdown_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
+    <label class="jzzf_element_label jzzf_dropdown_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?><?php $this->asterisk($element) ?></label><?php // avoid line-feed
     ?><select id="<?php $this->id($element) ?>">
     <?php foreach($element->options as $option) : ?>
     <option<?php if($option->default): ?> selected="selected"<?php endif ?>><?php esc_html_e($option->title) ?></option>
