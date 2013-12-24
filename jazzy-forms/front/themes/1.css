@@ -60,7 +60,8 @@
 }
 
 .jzzf_form .jzzf_element {
-    padding-right: 8px;
+    padding-left: 4px;
+    padding-right: 4px;
     display: block;
 }
 
@@ -89,4 +90,25 @@ div.jzzf_quarter { width: 92px; }
 .jzzf_message {
     width: 125px;
     float: left;
+}
+
+form.jzzf_form .jzzf_form_error {
+    background-color: #ffdfdf;
+    text-align: center;
+    color: #df0000;
+    font-weight: bold;
+    border: 2px solid #df0000;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.jzzf_erroneous {
+    background-color: #ffdfdf;
+    border: 2px solid #df0000;    
+}
+
+.jzzf_form .jzzf_asterisk {
+    margin-left: 5px;
+    font-weight: normal;
 }
