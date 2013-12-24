@@ -14,9 +14,13 @@
     width: 530px;
 }
 
-.jzzf_form input, .jzzf_form select {
+.jzzf_form input[type="text"], .jzzf_form input[type="checkbox"], .jzzf_form input[type="radio"], .jzzf_form select {
     padding: 0;
     margin: 0;
+}
+
+.jzzf_form input[type="button"] {
+    margin-top: 16px;
 }
 
 .jzzf_form :focus {/* remember to define focus styles! */
