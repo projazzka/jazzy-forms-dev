@@ -128,7 +128,7 @@ function jazzy_forms($, form_id, graph) {
     
     function add_element_error(id, msg) {
         var paragraph = $('<p>').text(msg);
-        element(id).closest('.jzzf_row').find('.jzzf_error').show().append(paragraph);
+        element(id).closest('.jzzf_element').addClass('jzzf_erroneous').find('.jzzf_error').show().append(paragraph);
     }
     
     function set_form_error(msg) {
@@ -137,6 +137,7 @@ function jazzy_forms($, form_id, graph) {
     
     function reset_error_messages() {
         var form_selector = '.jzzf_form_' + form_id;
+        $(form_selector + ' .jzzf_erroneous').removeClass('jzzf_erroneous');
         $(form_selector + ' .jzzf_error, ' + form_selector + ' .jzzf_form_error').empty().hide();
     }
 

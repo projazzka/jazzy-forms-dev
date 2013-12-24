@@ -72,10 +72,10 @@ class Jzzf_List_Template {
     }
     
     function after($element, $last) { ?>
+  <div class="jzzf_error"></div>
   </div>
         <?php if($last) : ?>
   <div class="clear"></div>
-  <div class="jzzf_error"></div>
   <div class="jzzf_message"></div>
   </li>
         <?php endif ?>
