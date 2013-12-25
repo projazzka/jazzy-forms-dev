@@ -86,7 +86,7 @@ function jzzf_element($, id_helper, deletion_listener, name_update_listener) {
             deletion_listener();
         });
         element.find('.jzzf_option_add').click(function() {
-            var counter = $(this).parentsUntil('.jzzf_elements_list').find('.jzzf_element_counter').val();
+            var counter = $(this).closest('.jzzf_element').find('.jzzf_element_counter').val();
             var data = {"title":"Option"}
             var option_table = $(this).parent().find('.jzzf_option_table tbody')
             if(option_table.find('.jzzf_option').length == 0) {
