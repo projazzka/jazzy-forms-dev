@@ -368,3 +368,13 @@
 #jzzf_form .jzzf_smartid_clean {
     color: #aaa;
 }
+
+#jzzf_form input, #jzzf_form {
+    font-size: 12px;
+}
+
+#jzzf_selection select {
+    font-size: 12px;
+    height: 24px;
+    line-height: normal;
+}
