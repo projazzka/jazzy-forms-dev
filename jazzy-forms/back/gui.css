@@ -228,9 +228,13 @@
     float: none;
 }
 
-#jzzf_css, #jzzf_email_message {
+#jzzf_css, #jzzf_email_message, #jzzf_incomplete {
     width: 435px;
     height: 200px;
+}
+
+#jzzf_section_validation label {
+    width: 435px;
 }
 
 .jzzf_element_body legend {
