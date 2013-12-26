@@ -10,6 +10,7 @@ function jzzf_smartid(id_helper, container) {
         if(smartid.hasClass('jzzf_smartid_clean')) {
             var name = id_helper.suggest_name(smarttitle.val());
             smartid.val(name);
+            smartid.trigger('jzzf_smartid_change');
         }
     }
     
