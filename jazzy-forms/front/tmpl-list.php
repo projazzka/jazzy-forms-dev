@@ -130,7 +130,7 @@ class Jzzf_List_Template {
     
     function output($element) { ?>
         <label class="jzzf_element_label jzzf_output_label" for="<?php $this->id($element) ?>"><?php esc_html_e($element->title) ?></label><?php // avoid line-feed
-        ?><input type="text" readonly="readonly" id="<?php $this->id($element) ?>"<?php if($element->invalid) : ?> value="Invalid formula"<?php endif ?>>
+        ?><input type="text" readonly="readonly" id="<?php $this->id($element) ?>"<?php if($element->invalid) : ?> value="..."<?php endif ?>>
 <?php
     }
 
