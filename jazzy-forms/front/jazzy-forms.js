@@ -926,3 +926,12 @@ function Jzzf_Calculator(engine, types, library) {
         }
     }    
 }
+
+jQuery(function() {
+    if (typeof(jzzf_forms) != "undefined") {
+        for(var i=0; i<jzzf_forms.length; i++) {
+            var instance = new jazzy_forms(jQuery, jzzf_forms[i].id, jzzf_forms[i].data);
+        }
+    }
+});
+

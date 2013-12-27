@@ -38,7 +38,10 @@ class Jzzf_List_Template {
     
     function graph($form, $graph) {  ?>
     <script type="text/javascript">
-        var jzzf_graph_<?php echo $form->id ?> = {
+        if(typeof(jzzf_forms) == "undefined") {
+            jzzf_forms = [];
+        }
+        var graph = {
             "data": <?php echo json_encode($graph->data) ?>,
             "types": <?php echo json_encode($graph->types) ?>,
             "dependencies": <?php echo json_encode($graph->dependencies) ?>,
@@ -50,7 +53,7 @@ class Jzzf_List_Template {
             "required": <?php echo json_encode($graph->required, JSON_FORCE_OBJECT) ?>
         };
         var jzzf_ajax_url = "<?php esc_attr_e(admin_url('admin-ajax.php'))  ?>";
-        var jzzf = new jazzy_forms(jQuery, <?php echo $form->id ?>, jzzf_graph_<?php echo $form->id ?>);
+        jzzf_forms.push({"id": <?php echo $form->id ?>, "data": graph});        
     </script>
 <?php
     }
