@@ -50,7 +50,7 @@ class Jzzf_List_Template {
             "form": <?php echo json_encode($form) ?>,
             "params": <?php echo json_encode($graph->params) ?>,
             "email": <?php echo json_encode($graph->email) ?>,
-            "required": <?php echo json_encode($graph->required, JSON_FORCE_OBJECT) ?>
+            "required": <?php if($graph->required) echo json_encode($graph->required); else echo "{}"; ?>
         };
         var jzzf_ajax_url = "<?php esc_attr_e(admin_url('admin-ajax.php'))  ?>";
         jzzf_forms.push({"id": <?php echo $form->id ?>, "data": graph});        
