@@ -9,7 +9,7 @@ Author URI: http://www.jazzyforms.com/
 
 ---------------------------------------------------------------------
     This file is part of the WordPress plugin "Jazzy Forms"
-    Copyright (C) 2012 by Igor Prochazka
+    Copyright (C) 2012, 2013 by Igor Prochazka
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

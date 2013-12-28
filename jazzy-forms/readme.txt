@@ -1,18 +1,16 @@
 === Jazzy Forms ===
 Contributors: jazzigor
 Donate link: http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=donate
-Tags: forms, form generator, calculator, price calculator, cost estimate, quote, email
+Tags: forms, form generator, form builder, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
-Tested up to: 3.7.1
-Stable tag: 0.11
+Tested up to: 3.8
+Stable tag: 1.0
 
-Online form generator, ideal for cost-estimates and calculations
+Online form builder, ideal for cost-estimates and calculations
 
 == Description ==
 
 Jazzy Forms is an online form generator that performs instant calculations. It's ideal for inter-active price calculators and for sending out cost estimates by email.
-
-Features:
 
 * Form insertion into posts or pages
 * Easy form set-up with drag and drop
@@ -23,6 +21,7 @@ Features:
 * Rich number formatting
 * Flexible (vertical or side-by-side) layout
 * Formula placeholders in text output elements
+* Required/obligatory fields and error messages
 
 Form elements:
 
@@ -111,10 +110,6 @@ Yes, you can use text, heading and HTML elements with formulas. Wrap these formu
 
 Thank you. For this project your feedback, your ideas and suggestions are much more valuable for me than your money! So please drop me an email instead.
 
-= Is there a list of known issues? =
-
-Yes, Jazzy Forms is still at an early stage. Bugs and enhancement request are tracked [here](https://github.com/l90r/jazzy-forms-dev/issues?sort=created&direction=desc&state=open).
-
 = I have a suggestion =
 
 Bug reports and support requests are handled in the official WordPress forum. You can also get in touch with me at jazzyforms@gmail.com and twitter.com/jazzyforms .
@@ -124,6 +119,13 @@ I would love to gain insight about the way you are using this software and the t
 == Screenshots ==
 
 == Changelog ==
+
+= 1.0 =
+* Required fields and corresponding validation
+* Minor backend layout fixes for 3.8
+* Frontend stylesheet not to affect default button styling
+* Improve compability with Firefox' stylesheet importing
+* Improve compability with plugins that move scripts to the footer
 
 = 0.11 =
 * Backend: form and element duplication
