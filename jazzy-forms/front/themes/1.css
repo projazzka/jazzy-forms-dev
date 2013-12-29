@@ -40,7 +40,8 @@
 }
 
 .jzzf_form .jzzf_element {
-    padding-bottom: 1em;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .jzzf_form .jzzf_element_c.jzzf_ahead_c {
@@ -65,10 +66,10 @@
     display: block;
 }
 
-div.jzzf_full { width: 392px; }
-div.jzzf_half { width: 192px; }
-div.jzzf_third { width: 125px; }
-div.jzzf_quarter { width: 92px; }
+div.jzzf_full { width: 400px; }
+div.jzzf_half { width: 200px; }
+div.jzzf_third { width: 133px; }
+div.jzzf_quarter { width: 100px; }
 
 .jzzf_row {
     margin: 0;
@@ -76,7 +77,10 @@ div.jzzf_quarter { width: 92px; }
     overflow: hidden;
 }
 
-.jzzf_form input[type=text], .jzzf_form select { width: 100%; }
+.jzzf_full input[type=text], .jzzf_full select { width: 388px; }
+.jzzf_half input[type=text], .jzzf_half select { width: 188px; }
+.jzzf_third input[type=text], .jzzf_third select { width: 121px; }
+.jzzf_quarter input[type=text], .jzzf_quarter select { width: 88px; }
 
 .jzzf_break {
     float: left;
@@ -106,6 +110,10 @@ form.jzzf_form .jzzf_form_error {
 .jzzf_erroneous {
     background-color: #ffdfdf;
     border: 2px solid #df0000;    
+}
+
+.jzzf_error {
+        color: #df0000;
 }
 
 .jzzf_form .jzzf_asterisk {
