@@ -127,12 +127,17 @@ function jazzy_forms($, form_id, graph) {
     }
     
     function add_element_error(id, msg) {
-        var paragraph = $('<p>').text(msg);
-        element(id).closest('.jzzf_element').addClass('jzzf_erroneous').find('.jzzf_error').show().append(paragraph);
+        var div = element(id).closest('.jzzf_element').addClass('jzzf_erroneous');
+        if(msg) {
+            var paragraph = $('<p>').text(msg);
+            div.find('.jzzf_error').show().append(paragraph);
+        }
     }
     
     function set_form_error(msg) {
-        $('.jzzf_form_' + form_id + ' .jzzf_form_error').text(msg).show();
+        if(msg) {
+            $('.jzzf_form_' + form_id + ' .jzzf_form_error').text(msg).show();
+        }
     }
     
     function reset_error_messages() {
