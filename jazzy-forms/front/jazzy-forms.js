@@ -129,8 +129,7 @@ function jazzy_forms($, form_id, graph) {
     function add_element_error(id, msg) {
         var div = element(id).closest('.jzzf_element').addClass('jzzf_erroneous');
         if(msg) {
-            var paragraph = $('<p>').text(msg);
-            div.find('.jzzf_error').show().append(paragraph);
+            div.find('.jzzf_error').show().text(msg);
         }
     }
     
