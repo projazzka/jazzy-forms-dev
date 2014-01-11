@@ -6,10 +6,11 @@ formula = comparison;
 comparison = concatenation, [("<" | ">" | "<=" | "=>" | "<>"), comparison];
 concatenation = sum, [ "&", concatenation ];
 sum = product, [("+" | "-"), sum];
-product = exponentiation, [("*" | "/"), term];
+product = exponentiation, [("*" | "/"), product];
 exponentiation = negation, ["^", exponentiation];
-negation = ["-"], term
-term = negation | number | string | function | identifier | association;
+negation = ["-"], percentage
+percentage = term ["%"]
+term = number | string | function | identifier | association;
 
 arguments = comparison, { ",", comparison };
 function = identifier, "(", arguments ")";
@@ -170,7 +171,7 @@ class Jzzf_Parser {
                 $num[1] *= (-1);
                 return $num;
             } else {
-                $positive = $this->term();
+                $positive = $this->percentage();
                     if(!$positive) {
                     throw new Exception('missing negation operand');
                     return array();
@@ -178,11 +179,29 @@ class Jzzf_Parser {
                 return array("o", "-", array("n", 0), $positive);
             }
         } else {
-            return $this->term();
+            return $this->percentage();
         }
+    }
+
+    private function percentage() {
+        $value = $this->term();
+        if($this->ahead('%')) {
+            if(!$value) {
+                throw new Exception("Unexpected percentage sign");
+            }
+            $this->consume();
+            if($value[0] == 'n') {
+                $value[1] /= 100;
+                return $value;
+            } else {
+                return array("o", "/", $value, array("n", 100));
+            }
+        }
+        return $value;
     }
         
     private function term() {
+        //$this->dump();
         if($this->complete()) {
             return array();
         }
@@ -199,5 +218,10 @@ class Jzzf_Parser {
             return $this->association();
         }
         return null;
+    }
+    
+    // for debugging only
+    private function dump() {
+        print json_encode($this->rest) . "\n";
     }
 }
