@@ -23,10 +23,23 @@ class Radio(unittest.TestCase):
         self.assertEqual("22", driver.find_element_by_id("jzzf_5_third_out").get_attribute("value"))
         self.assertEqual("30", driver.find_element_by_id("jzzf_5_fourth_out").get_attribute("value"))
         self.assertEqual("yes", driver.find_element_by_id("jzzf_5_fifth_out").get_attribute("value"))
+        self.assertEqual("", driver.find_element_by_id("jzzf_5_labelfirst").get_attribute("value"))
+        self.assertEqual("Option A", driver.find_element_by_id("jzzf_5_labelsecond").get_attribute("value"))
+        self.assertEqual("Option B", driver.find_element_by_id("jzzf_5_labelthird").get_attribute("value"))
+        self.assertEqual("Option C", driver.find_element_by_id("jzzf_5_labelfourth").get_attribute("value"))
+        self.assertEqual("Yes", driver.find_element_by_id("jzzf_5_labelfifth").get_attribute("value"))
+        self.assertEqual("0", driver.find_element_by_id("jzzf_5_selectedfirst").get_attribute("value"))
+        self.assertEqual("1", driver.find_element_by_id("jzzf_5_selectedsecond").get_attribute("value"))
+        self.assertEqual("2", driver.find_element_by_id("jzzf_5_selectedthird").get_attribute("value"))
+        self.assertEqual("3", driver.find_element_by_id("jzzf_5_selectedfourth").get_attribute("value"))
+        self.assertEqual("1", driver.find_element_by_id("jzzf_5_selectedfifth").get_attribute("value"))
 
         driver.find_element_by_xpath("(//input[@name='jzzf_5_element_2'])[2]").click()
 
         self.assertEqual("0", driver.find_element_by_id("jzzf_5_second_out").get_attribute("value"))
+        self.assertEqual("Option B", driver.find_element_by_id("jzzf_5_labelsecond").get_attribute("value"))
+        self.assertEqual("2", driver.find_element_by_id("jzzf_5_selectedsecond").get_attribute("value"))
+        
         driver.find_element_by_name("jzzf_5_element_number_three").click()
         self.assertEqual("11", driver.find_element_by_id("jzzf_5_third_out").get_attribute("value"))
         driver.find_element_by_xpath("(//input[@name='jzzf_5_fourth'])[2]").click()
