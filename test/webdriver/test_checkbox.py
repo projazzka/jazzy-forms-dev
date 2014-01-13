@@ -20,6 +20,8 @@ class Checkbox(unittest.TestCase):
         self.assertEqual("0", driver.find_element_by_id("jzzf_6_second_out").get_attribute("value"))
         self.assertEqual("20", driver.find_element_by_id("jzzf_6_third_out").get_attribute("value"))
         self.assertEqual("no", driver.find_element_by_id("jzzf_6_fourth_out").get_attribute("value"))
+        self.assertEqual("1", driver.find_element_by_id("jzzf_6_checked").get_attribute("value"))
+        self.assertEqual("No values, default checked", driver.find_element_by_id("jzzf_6_label").get_attribute("value"))
 
         driver.find_element_by_id("jzzf_6_first").click()
 
@@ -30,6 +32,8 @@ class Checkbox(unittest.TestCase):
         self.assertEqual("10", driver.find_element_by_id("jzzf_6_third_out").get_attribute("value"))
         driver.find_element_by_id("jzzf_6_fourth").click()
         self.assertEqual("yes", driver.find_element_by_id("jzzf_6_fourth_out").get_attribute("value"))
+        self.assertEqual("0", driver.find_element_by_id("jzzf_6_checked").get_attribute("value"))
+        self.assertEqual("", driver.find_element_by_id("jzzf_6_label").get_attribute("value"))
     
     def tearDown(self):
         self.driver.quit()
