@@ -329,9 +329,33 @@ function jazzy_forms($, form_id, graph) {
                 return element(id).find('option:selected').text();
             case "r":
                 return element(id).find('input:checked').siblings("label").text();
+            case "c":
+                var box = element(id);
+                return box.is(':checked') ? box.siblings("label").text() : "";
             default:
                 types.raise_ref();
         }
+    }
+    
+    this.selected = function(id) {
+        var type = graph.types[id];
+        switch(type) {
+            case "d":
+                return element(id).find('option:selected').index() + 1;
+            case "r":
+                return element(id).find('input:checked').parent().index() + 1;
+            case "c":
+                return types.value(element(id).is(':checked')) ? 1 : 0;
+            default:
+                types.raise_ref();
+        }
+    }
+    
+    this.checked = function(id) {
+        if(graph.types[id] != 'c') {
+            types.raise_ref();
+        }
+        return element(id).is(':checked');
     }
     
 }
@@ -521,8 +545,15 @@ function Jzzf_Library(types, engine) {
         'label': function(args) {
             var id = _id(args);
             return engine.label(id);
+        },
+        'selected': function(args) {
+            var id = _id(args);
+            return engine.selected(id);
+        },
+        'checked': function(args) {
+            var id = _id(args);
+            return engine.checked(id);
         }
-        
     };
     
     var operations = {
