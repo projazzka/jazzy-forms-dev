@@ -147,12 +147,13 @@
         $('#jzzf_form_save').click(save);
         
         $('#jzzf_new_form_title').bind('change keyup', function() {
-            $('#jzzf_title').val($('#jzzf_new_form_title').val()).change();
-            return true;
+            $('#jzzf_title').val($('#jzzf_new_form_title').val());
+            $('#jzzf_title').trigger('jzzf_smartid_change');
+            return false;
         });
         $('#jzzf_title').bind('change keyup', function() {
             $('#jzzf_new_form_title').val($('#jzzf_title').val());
-            return true;
+            return false;
         });
 
         form_smartid_helper.bind();

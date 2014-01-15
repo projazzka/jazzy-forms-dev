@@ -34,7 +34,7 @@ function jzzf_smartid(id_helper, container) {
 
     this.bind = function() {
         container.find('.jzzf_smartid').bind('change keyup', handle_id_change);
-        container.find('.jzzf_smartid_source').bind("keyup change", handle_source_change);
+        container.find('.jzzf_smartid_source').bind("keyup change jzzf_smartid_change", handle_source_change);
         container.find('.jzzf_smartid, .jzzf_smartid_source').bind("focus", handle_focus);
     }
 
