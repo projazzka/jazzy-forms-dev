@@ -4,7 +4,7 @@ Donate link: http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=plugin_d
 Tags: forms, form generator, form builder, calculator, price calculator, cost estimate, quote, email
 Requires at least: 3.2.1
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.1 
 
 Online form builder, ideal for cost-estimates and calculations
 
@@ -34,8 +34,6 @@ Form elements:
 * Reset button
 * Email button
 * Text/Heading/HTML
-
-Features like input validation, anti-spam measures or data collection are coming soon.
 
 [Official web site](http://www.jazzyforms.com/?utm_source=wordpress&utm_medium=plugin_directory&utm_term=&utm_content=&utm_campaign=official)
 
@@ -119,6 +117,12 @@ I would love to gain insight about the way you are using this software and the t
 == Screenshots ==
 
 == Changelog ==
+
+= 1.1 =
+* Support for percentage notation
+* Extend LABEL function to checkboxes
+* SELECTED and CHECKED functions
+* Several backend fixes
 
 = 1.0 =
 * Required fields and corresponding validation
