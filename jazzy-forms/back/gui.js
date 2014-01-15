@@ -266,6 +266,14 @@
         $('#jzzf_form_form').submit();
     }
     
+    function default_email_parameters() {
+        return {
+            'sending': 'Sending...',
+            'ok': "Message sent",
+            'fail': "Can't send the message"
+        };
+    }
+    
     function add_form() {
         switch_head(true);
 
@@ -278,11 +286,7 @@
             'elements': [],
             'theme': 1,
             'realtime': true,
-            'email': {
-                'sending': 'Sending...',
-                'ok': "Message sent",
-                'fail': "Can't send the message"
-            }
+            'email': default_email_parameters()
         };
         elements = [];
         set_form(form);
@@ -300,6 +304,9 @@
         mark_clean();
         form = jzzf_forms[idx];
         form_index = idx;
+        if(!form.email) {
+            form.email = default_email_parameters();
+        }
         set_form(form);
     }
     
