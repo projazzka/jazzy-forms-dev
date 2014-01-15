@@ -258,6 +258,17 @@ class Backend(unittest.TestCase):
         self._assert_option(1, 0, 'C', '3', False)
         self._assert_option(1, 1, 'D', '4', True)
 
+    def test_smartid_unchanged(self): # Bug124
+        self._jazzy()
+        
+        self._add_form("Form")
+
+        self._add_element('n')
+        self._add_element('n')
+        self._assert_element_attribute(0, 'name', 'element')
+        self._edit_element(1, "title", 'Element')
+        self._assert_element_attribute(1, 'name', 'element_1')
+
     def test_smartid_special_chars(self):
         self._jazzy()
         

@@ -20,7 +20,7 @@
         var name = '';
         var obj = {
             'title': title,
-            'name': name,
+            'name': '',
             'type': type,
             'decimals': 9,
             'point': '.',
@@ -39,6 +39,7 @@
         var obj = new_element(type);
         var gui = jzzf_element.create(type, element_id_helper, adjust_email_tab, update_element_names);
         gui.add(obj, remove ? item : null, false);
+        update_element_names();
         adjust_email_tab();
     }
 
