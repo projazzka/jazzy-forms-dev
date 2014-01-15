@@ -170,20 +170,23 @@ class Backend(unittest.TestCase):
         self._assert_element_attribute(1, 'title', 'Number Element 2')
         self._assert_element_attribute(1, 'name', 'number_element_2')
 
+        self._edit_element(1, "title", "Other Element")
+        self._assert_element_attribute(1, 'name', 'other_element')
+
         self._save_form()
         self._assert_element_attribute(0, 'type', 'n')
         self._assert_element_attribute(0, 'title', 'Number Element')
         self._assert_element_attribute(0, 'name', 'number_element')
         self._assert_element_attribute(1, 'type', 'n')
-        self._assert_element_attribute(1, 'title', 'Number Element 2')
-        self._assert_element_attribute(1, 'name', 'number_element_2')
+        self._assert_element_attribute(1, 'title', 'Other Element')
+        self._assert_element_attribute(1, 'name', 'other_element')
         self._toggle_element(1)
         self._edit_element(1, "title", "New Number Element")
 
         self._save_form()
         self._assert_element_attribute(0, 'title', 'Number Element')
         self._assert_element_attribute(1, 'title', 'New Number Element')
-        self._assert_element_attribute(1, 'name', 'number_element_2')
+        self._assert_element_attribute(1, 'name', 'other_element')
 
     def test_options(self):
         self._jazzy()

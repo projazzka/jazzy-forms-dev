@@ -106,7 +106,7 @@
             var title = id_helper.suggest_title(data.title);
             var name = id_helper.suggest_name(title);
             data.title = title;
-            data.name = name;
+            data.name = '';//name;
             jzzf_element.reset_ids(data);
             element.add(data, placeholder, false);
             return false;
