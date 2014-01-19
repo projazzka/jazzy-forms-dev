@@ -1,0 +1,8 @@
+== Execute a single test case:
+
+phpunit Parser_test.php
+
+== Execute all test cases:
+
+phpunit *.php
+

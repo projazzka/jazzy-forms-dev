@@ -1,0 +1,20 @@
+== Pending
+
+Test cases pending to be ported from Selenium IDE to Selenium WebDriver (python):
+- insertion
+- multiple
+- russian
+- logical
+- maths
+- invalid (to be fixed)
+- formatting
+
+== Execute a single test case:
+
+python test_backend.py Backend.test_smartid_identical
+
+== Execute all test cases:
+
+python -m unittest discover . "test*.py"
+
+
