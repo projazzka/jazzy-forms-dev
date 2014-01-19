@@ -5,8 +5,10 @@
 formula = comparison;
 comparison = concatenation, [("<" | ">" | "<=" | "=>" | "<>"), comparison];
 concatenation = sum, [ "&", concatenation ];
-sum = product, [("+" | "-"), sum];
-product = exponentiation, [("*" | "/"), product];
+addition = subtraction, ["+", addition];
+subtraction = product, ["-", difference];
+multiplication = division, ["*", multiplication];
+division = exponentiation, ["/", division];
 exponentiation = negation, ["^", exponentiation];
 negation = ["-"], percentage
 percentage = term ["%"]
@@ -55,17 +57,25 @@ class Jzzf_Parser {
     }
     
     private function concatenation() {
-        return $this->operation('concatenation', array('&'), 'sum');
+        return $this->operation('concatenation', array('&'), 'addition');
     }
 
-    private function sum() {
-        return $this->operation('sum', array('+', '-'), 'product');
+    private function addition() {
+        return $this->operation('addition', array('+'), 'subtraction');
+    }
+
+    private function subtraction() {
+        return $this->operation('subtraction', array('-'), 'multiplication');
     }
     
-    private function product() {
-        return $this->operation('product', array('*', '/'), 'exponentiation');
+    private function multiplication() {
+        return $this->operation('multiplication', array('*'), 'division');
     }
     
+    private function division() {
+        return $this->operation('division', array('/'), 'exponentiation');
+    }
+
     private function exponentiation() {
         return $this->operation('exponentiation', '^', 'negation');
     }
